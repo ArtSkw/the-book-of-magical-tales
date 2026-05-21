@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Book of Magical Tales / Księga Magicznych Opowieści</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=EB+Garamond:ital,wght@0,500;0,600;1,500&family=MedievalSharp&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="storybook-shell is-entering" aria-label="The Book of Magical Tales / Księga Magicznych Opowieści">
+      <section class="table-scene">
+        <div class="ambient-shadow"></div>
+        <div class="candle-wrap">
+          <button class="candle" id="candleButton" type="button" aria-label="Brighten or dim the candle">
+            <span class="flame"></span>
+            <span class="wick"></span>
+            <span class="wax"></span>
+            <span class="pool"></span>
+          </button>
+        </div>
+        <div class="book" aria-live="polite">
+          <div class="language-switch" id="languageSwitch" aria-label="Choose language">
+            <button class="language-option is-active" type="button" data-language="en">EN</button>
+            <button class="language-option" type="button" data-language="pl">PL</button>
+          </div>
+          <button class="sound-toggle" id="soundToggle" type="button" aria-pressed="false">
+            <span>Sound</span>
+          </button>
+          <nav class="story-tabs" id="storyTabs" aria-label="Choose a tale"></nav>
+
+          <section class="page left-page">
+            <div class="page-inner">
+              <div class="page-border">
+                <div class="page-kicker" id="storyKicker"></div>
+                <h1 id="storyTitle"></h1>
+                <div class="illustration-frame" id="illustrationFrame" role="button" tabindex="0" aria-label="Wake the manuscript illustration"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="page right-page">
+            <div class="page-inner">
+              <div class="page-border text-page">
+                <div class="page-count" id="pageCount"></div>
+                <div class="page-progress" id="pageProgress" aria-hidden="true"></div>
+                <h2 id="pageTitle"></h2>
+                <article class="story-text" id="storyText"></article>
+                <div class="choice-panel" id="choicePanel" aria-label="Gentle choice"></div>
+                <button class="parent-prompt" id="parentPromptButton" type="button" aria-expanded="false">
+                  <span>Parent note</span>
+                </button>
+                <button class="restart-story" id="restartStory" type="button" hidden>Begin again</button>
+                <aside class="prompt-card" id="promptCard" hidden></aside>
+              </div>
+            </div>
+          </section>
+
+          <div class="spine" aria-hidden="true"></div>
+          <div class="page-controls" aria-label="Page controls">
+            <button class="nav-button" id="prevPage" type="button" aria-label="Previous page">‹</button>
+            <button class="nav-button" id="nextPage" type="button" aria-label="Next page">›</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
