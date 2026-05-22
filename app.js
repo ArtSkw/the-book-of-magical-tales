@@ -3,6 +3,7 @@ import { dragonSvg, bellSvg } from "./illustrations.js";
 import { storyTranslations, uiText } from "./locales.js";
 
 const STORAGE_KEY = "bookOfMagicalTalesState";
+const ASSET_BASE = import.meta.env.BASE_URL || "/";
 
 const ART_ANIMATION_PRESETS = {
   "cover-bridge": ["sun-warmth", "river-lower", "water-sparkle-one", "dragon-soft", "leaf-drift", "tree-hush", "cover-mote-one", "cover-mote-two"],
@@ -91,7 +92,7 @@ const storyAudio = (() => {
 
   const sounds = Object.fromEntries(
     Object.entries(soundMap).map(([name, settings]) => {
-      const audio = new Audio(settings.src);
+      const audio = new Audio(assetPath(settings.src));
       audio.preload = "auto";
       audio.volume = settings.volume;
       return [name, audio];
@@ -164,6 +165,30 @@ function escapeHtml(value = "") {
 
 function escapeAttribute(value = "") {
   return escapeHtml(value);
+}
+
+function assetPath(path = "") {
+  if (!path || /^(?:[a-z]+:)?\/\//i.test(path) || path.startsWith("data:")) return path;
+
+  const normalizedBase = ASSET_BASE.endsWith("/") ? ASSET_BASE : `${ASSET_BASE}/`;
+  return path.startsWith("/")
+    ? `${normalizedBase}${path.slice(1)}`
+    : `${normalizedBase}${path}`;
+}
+
+function cssAsset(path) {
+  return `url("${assetPath(path)}")`;
+}
+
+function setupSceneAssets() {
+  document.documentElement.style.setProperty(
+    "--tabletop-background",
+    cssAsset("/assets/scene/premium-tabletop-background-v2.png")
+  );
+  document.documentElement.style.setProperty(
+    "--book-frame-background",
+    cssAsset("/assets/scene/premium-book-frame-flat-bright-transparent.png")
+  );
 }
 
 function mergeChoiceMap(baseValue, translationValue) {
@@ -463,7 +488,7 @@ function renderStoryArt(type, art, visuals = [], artAnimation = "") {
     .join("");
 
   return `
-    <img class="story-art-image" src="${escapeAttribute(art)}" alt="" aria-hidden="true" />
+    <img class="story-art-image" src="${escapeAttribute(assetPath(art))}" alt="" aria-hidden="true" />
     <span class="story-art-vignette" aria-hidden="true"></span>
     ${overlay}
   `;
@@ -611,6 +636,7 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowRight") turnPage(1);
 });
 
+setupSceneAssets();
 loadSavedState();
 updateSceneCandleAnchor();
 renderStory();
