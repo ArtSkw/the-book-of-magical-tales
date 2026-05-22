@@ -10,7 +10,7 @@ A browser-based parent-child interactive storybook inspired by illuminated manus
 
 The Book of Magical Tales is a cozy bilingual storybook for children and parents. It presents illustrated fantasy tales in Polish and English, with each story structured around values such as kindness, courage, patience, friendship, care for nature, respect for animals, and quiet cooperation.
 
-The experience is meant to feel like opening an old magical book on a candlelit medieval table: pages glow softly, illustrations breathe with small animated details, choices write themselves into the story, and parent notes offer gentle prompts for conversation.
+The experience is meant to feel like opening an old magical book on a candlelit medieval table: pages glow softly, illustrations breathe with small animated details, choices write themselves into the story, and occasional curiosity notes add little real-world sparks.
 
 ---
 
@@ -19,7 +19,7 @@ The experience is meant to feel like opening an old magical book on a candlelit 
 - **Two complete tales** — *The Dragon on the Old Bridge* and *The Bell of Moonhill*
 - **Bilingual reading** — Polish and English versions with a smooth language transition
 - **Choice-aware storytelling** — child choices affect later details, dialogue, helpers, illustrations, and final reflections
-- **Parent-child co-reading prompts** — optional notes tied to each scene and virtue
+- **Curiosity notes** — rare “Did you know...?” popovers tied to page topics such as mills, bells, reeds, bridges, birds, and village life
 - **Manuscript-like presentation** — premium book frame, candlelit tabletop, parchment pages, medieval typography, and page-turn controls
 - **High-resolution illustrations** — page-specific raster artwork with dedicated CSS “living details”
 - **Gentle sound layer** — page rustle, choice chime, and magical ink sounds, with an accessible sound toggle
@@ -148,4 +148,3 @@ This keeps asset paths working correctly on GitHub Pages.
 | v1.1 | Replace static tabletop background with a subtle looping candle video layer |
 | v1.2 | Add more tales using the Polish-first story template |
 | v1.3 | Improve asset loading strategy for smaller initial downloads |
-

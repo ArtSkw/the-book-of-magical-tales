@@ -415,7 +415,7 @@ function renderStory() {
   renderTabs();
   els.storyKicker.textContent = story.kicker;
   els.storyTitle.textContent = story.title;
-  els.parentPromptButton.querySelector("span").textContent = text().parentNote;
+  els.parentPromptButton.querySelector("span").textContent = text().curiosityNote;
   els.restartStory.textContent = text().restartStory;
   els.pageCount.textContent = text().pageCount(state.pageIndex + 1, story.pages.length);
   renderProgress(story);
@@ -431,8 +431,8 @@ function renderStory() {
   if (pageDetails.ending) {
     state.promptOpen = false;
   }
-  renderParentPrompt(page, false, pageDetails.virtue);
-  els.parentPromptButton.hidden = Boolean(pageDetails.ending);
+  renderParentPrompt(page, false);
+  els.parentPromptButton.hidden = !page.curiosityNote;
   renderNavigationState(story, page);
   els.restartStory.hidden = !pageDetails.ending;
 
@@ -441,10 +441,19 @@ function renderStory() {
   wakeIllustration(false);
 }
 
-function renderParentPrompt(page = currentPage(), animate = false, virtue = resolvedPage(page).virtue) {
+function renderParentPrompt(page = currentPage(), animate = false) {
+  const note = page.curiosityNote;
+  if (!note) {
+    state.promptOpen = false;
+    els.promptCard.hidden = true;
+    els.promptCard.innerHTML = "";
+    els.parentPromptButton.setAttribute("aria-expanded", "false");
+    return;
+  }
+
   els.promptCard.innerHTML = `
-    <p>${escapeHtml(page.parentPrompt)}</p>
-    <p class="prompt-virtue">${escapeHtml(text().virtue)}: ${escapeHtml(virtue)}</p>
+    <p class="prompt-title">${escapeHtml(note.title || text().curiosityNote)}</p>
+    <p>${escapeHtml(note.body)}</p>
   `;
   els.promptCard.hidden = !state.promptOpen;
   els.parentPromptButton.setAttribute("aria-expanded", String(state.promptOpen));
@@ -587,6 +596,13 @@ els.parentPromptButton.addEventListener("click", () => {
   if (state.promptOpen) playSound("ink");
 });
 
+document.addEventListener("click", (event) => {
+  if (!state.promptOpen) return;
+  if (els.promptCard.contains(event.target) || els.parentPromptButton.contains(event.target)) return;
+  state.promptOpen = false;
+  renderParentPrompt(currentPage());
+});
+
 els.restartStory.addEventListener("click", restartCurrentStory);
 els.soundToggle.addEventListener("click", () => {
   if (state.soundEnabled) {
@@ -644,6 +660,10 @@ els.candleButton.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") turnPage(-1);
   if (event.key === "ArrowRight") turnPage(1);
+  if (event.key === "Escape" && state.promptOpen) {
+    state.promptOpen = false;
+    renderParentPrompt(currentPage());
+  }
 });
 
 setupSceneAssets();

@@ -19,6 +19,10 @@ export const stories = [
         visual: "bridge",
         choices: [],
         parentPrompt: "How can you tell that the dragon may be worried about something?",
+        curiosityNote: {
+          title: "Did you know...?",
+          body: "Old stone bridges were often built from many wedge-shaped stones. The middle stone helped the arch hold its shape, almost like a quiet keeper of the road."
+        },
         virtue: "wonder"
       },
       {
@@ -151,6 +155,10 @@ export const stories = [
         visual: "mill",
         choices: [],
         parentPrompt: "What help did each person offer?",
+        curiosityNote: {
+          title: "Did you know...?",
+          body: "Many medieval mills stood beside streams because moving water could turn a great wheel. That wheel helped grind grain into flour for the whole village."
+        },
         virtue: "friendship"
       },
       {
@@ -177,6 +185,10 @@ export const stories = [
           }
         ],
         parentPrompt: "How can you tell someone is helping carefully?",
+        curiosityNote: {
+          title: "Did you know...?",
+          body: "Reeds are light, bendy plants that grow near water. People have used them for baskets, mats, roofs, and tiny woven things for a very long time."
+        },
         virtue: "patience"
       },
       {
@@ -345,6 +357,10 @@ export const stories = [
         visual: "tower",
         choices: [],
         parentPrompt: "What helps you feel calm when something expected does not happen?",
+        curiosityNote: {
+          title: "Did you know...?",
+          body: "Before clocks were common, village bells helped people know when to gather, work, rest, or come home. A bell could be the voice of the whole village."
+        },
         virtue: "wonder"
       },
       {
@@ -408,6 +424,10 @@ export const stories = [
         visual: "rope",
         choices: [],
         parentPrompt: "How did the problem feel different once everyone could see it clearly?",
+        curiosityNote: {
+          title: "Did you know...?",
+          body: "Pear trees can live for many years, and their spring blossoms are loved by bees. In old villages, an orchard was both a pantry and a little shelter for birds."
+        },
         virtue: "patience"
       },
       {
@@ -503,6 +523,10 @@ export const stories = [
           }
         ],
         parentPrompt: "How is searching for the problem different from searching for the solution?",
+        curiosityNote: {
+          title: "Did you know...?",
+          body: "Many old bells were cast from bronze, a metal made by mixing copper with tin. Bronze can ring with a warm voice that travels far through the air."
+        },
         virtue: "honesty"
       },
       {

@@ -7,11 +7,12 @@ Every tale should follow the project rules in `BRIEF.md`:
 - 9-10 pages, preferably 10.
 - 3 short paragraphs per page.
 - Choice pages on pages 2, 4, 6, and 8.
-- Every page needs `title`, `body`, `cue`, `visual`, `choices`, `parentPrompt`, and `virtue`.
+- Every page needs `title`, `body`, `cue`, `visual`, `choices`, and `virtue`.
 - Every page needs a distinct illustration composition. Page 1 can be a cover-like wide tableau; later pages should vary between close-ups, medium scenes, detail vignettes, low views, object-focused images, group scenes, and final tableaux.
 - Page 10 should be the ending page, have no choices, and end with `"Koniec."` in Polish and `"The end."` in English.
 - All `visual` and `visualByChoice` IDs must exist in `illustrationCatalog.js`.
 - Choices should be kind, valid, nonviolent, and softly acknowledged later.
+- Each tale should include at least 3 optional `curiosityNote` entries, shown as "Czy wiesz, że...?" / "Did you know...?" popovers.
 - Every tale should be written Polish-first, then adapted into English. Polish should define the read-aloud rhythm, folk-tale warmth, page titles, and emotional pacing; English should preserve the same structure and image beats while reading naturally.
 
 ## Story Planning Pass
@@ -24,7 +25,19 @@ Before writing the JS object, outline:
 - **Educational thread:** what the child learns through action, not exposition.
 - **Final reflection:** what virtue the story names by the end.
 - **Illustration rhythm:** one distinct composition per page, with the focal subject and camera scale named before image generation.
+- **Curiosity hooks:** three concrete topics from the tale, such as a craft, animal, plant, medieval object, village custom, food, weather sign, or old belief.
 - **Bilingual voice:** the Polish source wording first, then the English adaptation approach, including any names or terms that should remain consistent.
+
+## Curiosity Note Pass
+
+After drafting the story, choose 3 pages for optional curiosity notes:
+
+- Tie every note to something visible or mentioned on that page.
+- Keep each note short, warm, and wonder-based rather than encyclopedic.
+- Prefer real-world details children can imagine: mills, bridges, bells, birds, reeds, orchards, candles, village work, tools, food, or old customs.
+- Avoid frightening historical facts, violence, disease, punishment, or anything that pulls the tale out of its gentle mood.
+- Write the Polish note first, then adapt it into natural English.
+- Do not add notes to every page; rarity should make the button feel like a small discovery.
 
 ## Polish-First Writing Pass
 
@@ -36,7 +49,7 @@ When adding or rewriting a tale:
 - Prefer grounded Polish diction: "wioska", "młyn", "sad", "potok", "bochenek", "płótno", "dzwonnica", "ścieżka", "łąka".
 - Avoid awkward calques, stiff word order, and overly ornate pseudo-medieval diction.
 - Avoid gendered second-person phrases when possible. Prefer neutral wording such as "Po tym wyborze..." or "Dzięki temu...".
-- Keep parent prompts conversational and reflective.
+- Add exactly 3 curiosity notes per tale, written as short wonder-sparking facts tied to concrete page content.
 - Adapt into English second, preserving meaning and page beats without copying Polish syntax too literally.
 - Check both language versions against the current book layout after the pass.
 
@@ -73,7 +86,7 @@ When adding or rewriting a tale:
       cue: "lantern",
       visual: "page-one-visual",
       choices: [],
-      parentPrompt: "What do you notice about this moment?",
+      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
       virtue: "wonder"
     },
     {
@@ -97,7 +110,6 @@ When adding or rewriting a tale:
           response: "Immediate gentle response for choice B."
         }
       ],
-      parentPrompt: "How might this choice help?",
       virtue: "patience"
     },
     {
@@ -122,7 +134,6 @@ When adding or rewriting a tale:
       cue: "lantern",
       visual: "page-three-visual",
       choices: [],
-      parentPrompt: "What changed because of the choice?",
       virtue: "kindness"
     },
     {
@@ -146,7 +157,7 @@ When adding or rewriting a tale:
           response: "Immediate gentle response for choice D."
         }
       ],
-      parentPrompt: "Who could help here?",
+      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
       virtue: "cooperation"
     },
     {
@@ -171,7 +182,6 @@ When adding or rewriting a tale:
       cue: "notes",
       visual: "page-five-visual",
       choices: [],
-      parentPrompt: "What different kinds of helping do you see?",
       virtue: "friendship"
     },
     {
@@ -195,7 +205,7 @@ When adding or rewriting a tale:
           response: "Immediate gentle response for choice F."
         }
       ],
-      parentPrompt: "What would make this feel safe?",
+      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
       virtue: "courage"
     },
     {
@@ -220,7 +230,6 @@ When adding or rewriting a tale:
       cue: "lantern",
       visual: "page-seven-visual",
       choices: [],
-      parentPrompt: "What did the characters understand now?",
       virtue: "wisdom"
     },
     {
@@ -244,7 +253,6 @@ When adding or rewriting a tale:
           response: "Immediate gentle response for gesture H."
         }
       ],
-      parentPrompt: "How should this promise be remembered?",
       virtue: "loyalty"
     },
     {
@@ -269,7 +277,6 @@ When adding or rewriting a tale:
       cue: "notes",
       visual: "page-nine-visual",
       choices: [],
-      parentPrompt: "What feels repaired, understood, or protected?",
       virtue: "peace"
     },
     {
@@ -294,7 +301,6 @@ When adding or rewriting a tale:
       cue: "glint",
       visual: "page-ten-visual",
       choices: [],
-      parentPrompt: "Which gentle choice would you like to remember?",
       virtue: "gratitude",
       ending: true
     }
