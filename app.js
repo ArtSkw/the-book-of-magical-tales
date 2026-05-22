@@ -43,7 +43,7 @@ const state = {
   pageIndex: 0,
   choices: {},
   bookmarks: {},
-  language: "en",
+  language: "pl",
   soundEnabled: true,
   promptOpen: false,
   choiceNudge: false,
@@ -247,7 +247,9 @@ function loadSavedState() {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}");
     state.choices = saved.choices || {};
     state.bookmarks = saved.bookmarks || {};
-    state.language = saved.language === "pl" ? "pl" : "en";
+    if (saved.language === "pl" || saved.language === "en") {
+      state.language = saved.language;
+    }
     if (Object.hasOwn(saved, "soundEnabled")) {
       state.soundEnabled = saved.soundEnabled === true;
     }
