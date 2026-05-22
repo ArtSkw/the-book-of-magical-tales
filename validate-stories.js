@@ -6,6 +6,7 @@ const EXPECTED_PAGE_MIN = 9;
 const EXPECTED_PAGE_MAX = 10;
 const EXPECTED_PARAGRAPHS = 3;
 const EXPECTED_CHOICE_PAGES = [2, 4, 6, 8];
+const MIN_CURIOSITY_NOTES = 3;
 
 const errors = [];
 
@@ -56,6 +57,11 @@ for (const story of stories) {
     addError(story, `expected exactly one ending page, got ${endingPages.length}`);
   }
 
+  const curiosityNotes = story.pages.filter((page) => page.curiosityNote);
+  if (curiosityNotes.length < MIN_CURIOSITY_NOTES) {
+    addError(story, `expected at least ${MIN_CURIOSITY_NOTES} curiosity notes, got ${curiosityNotes.length}`);
+  }
+
   story.pages.forEach((page, index) => {
     const pageNumber = index + 1;
     const label = `page ${pageNumber}`;
@@ -73,9 +79,20 @@ for (const story of stories) {
     } else if (illustrationFamily && !illustrationFamily.visuals[page.visual]) {
       addError(story, `${label} unknown visual "${page.visual}" for illustration "${story.illustration}"`);
     }
-    if (!page.parentPrompt) addError(story, `${label} missing parentPrompt`);
     if (!page.virtue) addError(story, `${label} missing virtue`);
     if (!Array.isArray(page.choices)) addError(story, `${label} choices must be an array`);
+
+    if (page.curiosityNote) {
+      if (!isPlainObject(page.curiosityNote)) {
+        addError(story, `${label} curiosityNote must be an object`);
+      } else {
+        if (!page.curiosityNote.title) addError(story, `${label} curiosityNote missing title`);
+        if (!page.curiosityNote.body) addError(story, `${label} curiosityNote missing body`);
+        if (page.curiosityNote.body && page.curiosityNote.body.length > 280) {
+          addError(story, `${label} curiosityNote should stay short`);
+        }
+      }
+    }
 
     if (page.ending) {
       const finalParagraph = Array.isArray(page.body) ? page.body.at(-1) : "";

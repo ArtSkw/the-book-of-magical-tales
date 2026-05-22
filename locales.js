@@ -5,6 +5,7 @@ export const uiText = {
     savedPage: (page) => `p. ${page}`,
     choiceHint: "Choose a kind action, then turn the page to see what changes.",
     parentNote: "Parent note",
+    curiosityNote: "Did you know...?",
     restartStory: "Begin again",
     virtue: "Virtue",
     soundLabel: "Sound",
@@ -18,6 +19,7 @@ export const uiText = {
     savedPage: (page) => `s. ${page}`,
     choiceHint: "Wybierz dobry gest, a potem przewróć stronę, by zobaczyć, co się zmieni.",
     parentNote: "Notatka dla rodzica",
+    curiosityNote: "Czy wiesz, że...?",
     restartStory: "Zacznij od nowa",
     virtue: "Cnota",
     soundLabel: "Dźwięk",
@@ -42,6 +44,10 @@ export const storyTranslations = {
             "Nie ryczał. Nie straszył. Tylko trzymał łapy pod brodą, a ogonem otulał jeden obluzowany kamień, jakby pilnował czegoś bardzo kruchego."
           ],
           parentPrompt: "Po czym poznajesz, że smok może się czymś martwić?",
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Dawne kamienne mosty często budowano z wielu klinowatych kamieni. Środkowy kamień pomagał łukowi trzymać kształt, trochę jak cichy strażnik drogi."
+          },
           virtue: "zachwyt"
         },
         {
@@ -114,6 +120,10 @@ export const storyTranslations = {
             }
           },
           parentPrompt: "Jaką pomoc zaoferowała każda osoba?",
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Wiele dawnych młynów stawiano nad strumieniami, bo płynąca woda mogła obracać wielkie koło. To koło pomagało mielić ziarno na mąkę dla całej wioski."
+          },
           virtue: "przyjaźń"
         },
         {
@@ -134,6 +144,10 @@ export const storyTranslations = {
             }
           ],
           parentPrompt: "Po czym poznasz, że ktoś pomaga uważnie?",
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Trzciny to lekkie i giętkie rośliny rosnące przy wodzie. Od bardzo dawna ludzie wyplatali z nich kosze, maty, dachy i różne drobne rzeczy."
+          },
           virtue: "cierpliwość"
         },
         {
@@ -225,6 +239,10 @@ export const storyTranslations = {
             "Gustaw położył dłoń na tarczy, a Oliwia zauważyła, że Koniczynka, jego cierpliwa klacz, kieruje pysk w stronę ścieżki do starego sadu, gdzie ćmy błyszczały jak srebrne listki."
           ],
           parentPrompt: "Co pomaga zachować spokój, kiedy coś dzieje się inaczej niż zwykle?",
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Zanim zegary stały się powszechne, wiejskie dzwony pomagały ludziom wiedzieć, kiedy się zebrać, pracować, odpocząć albo wracać do domu."
+          },
           virtue: "zachwyt"
         },
         {
@@ -261,6 +279,10 @@ export const storyTranslations = {
             }
           },
           parentPrompt: "Czy problem wydaje się inny, kiedy go lepiej rozumiemy?",
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Grusze potrafią żyć bardzo długo, a ich wiosenne kwiaty są lubiane przez pszczoły. W dawnych wioskach sad był i spiżarnią, i małym schronieniem dla ptaków."
+          },
           virtue: "cierpliwość"
         },
         {
@@ -317,6 +339,10 @@ export const storyTranslations = {
             }
           ],
           parentPrompt: "Czym różni się szukanie problemu od szukania rozwiązania?",
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Wiele dawnych dzwonów odlewano ze spiżu, czyli brązu dzwonowego. To metal, który potrafi zabrzmieć ciepłym głosem i ponieść dźwięk daleko przez powietrze."
+          },
           virtue: "serdeczność"
         },
         {
