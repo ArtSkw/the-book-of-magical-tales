@@ -87,6 +87,8 @@ const storyAudio = (() => {
     button: { src: "/assets/sounds/button-press.wav", volume: 0.52 },
     choice: { src: "/assets/sounds/choice-chime.mp3", volume: 0.62 },
     ink: { src: "/assets/sounds/magic-ink.wav", volume: 0.58 },
+    illustrationDragon: { src: "/assets/sounds/dragon-story-image-sound.mp3", volume: 0.5 },
+    illustrationBell: { src: "/assets/sounds/moonhill-story-image-sound.wav", volume: 0.48 },
     pageTurn: { src: "/assets/sounds/page-turn.wav", volume: 0.56 }
   };
 
@@ -107,6 +109,52 @@ const storyAudio = (() => {
     audio.play().catch(() => {});
   }
 
+  function fadeVolume(audio, from, to, duration = 180) {
+    const startedAt = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - startedAt) / duration, 1);
+      audio.volume = from + (to - from) * progress;
+      if (progress < 1) {
+        window.requestAnimationFrame(tick);
+      }
+    }
+
+    window.requestAnimationFrame(tick);
+  }
+
+  function playFaded(name) {
+    const base = sounds[name];
+    if (!base) return;
+
+    const audio = base.cloneNode();
+    const targetVolume = base.volume;
+    audio.volume = 0;
+    let fadeOutScheduled = false;
+
+    const fadeOut = () => fadeVolume(audio, audio.volume, 0, 420);
+    const scheduleFadeOut = () => {
+      if (fadeOutScheduled) return;
+      fadeOutScheduled = true;
+      const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
+      window.setTimeout(fadeOut, Math.max(duration * 1000 - 520, 700));
+    };
+
+    audio.addEventListener("loadedmetadata", scheduleFadeOut, { once: true });
+    audio.addEventListener("ended", () => {
+      audio.volume = 0;
+    }, { once: true });
+
+    audio.play()
+      .then(() => {
+        fadeVolume(audio, 0, targetVolume, 180);
+        if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
+          scheduleFadeOut();
+        }
+      })
+      .catch(() => {});
+  }
+
   return {
     button() {
       play("button");
@@ -119,6 +167,9 @@ const storyAudio = (() => {
     },
     choice() {
       play("choice");
+    },
+    illustration(storyType) {
+      playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon");
     }
   };
 })();
@@ -297,7 +348,8 @@ function playButtonSound() {
 }
 
 function playIllustrationAccent() {
-  playSound("ink");
+  if (!state.soundEnabled) return;
+  storyAudio.illustration(currentStory().illustration);
 }
 
 function saveBookmark(story = currentStory()) {

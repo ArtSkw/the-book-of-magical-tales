@@ -1921,7 +1921,7 @@ html[lang="pl"] .choice-button {
 .prompt-card {
   position: absolute;
   left: clamp(0.95rem, 1.8vw, 1.7rem);
-  bottom: clamp(3.7rem, 5.35vw, 5rem);
+  bottom: clamp(3.4rem, 4.95vw, 4.7rem);
   z-index: 9;
   width: min(24rem, calc(100% - clamp(1.9rem, 3.6vw, 3.4rem)));
   padding: 0.75rem 0.85rem;
