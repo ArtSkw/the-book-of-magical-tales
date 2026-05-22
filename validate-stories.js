@@ -7,6 +7,7 @@ const EXPECTED_PAGE_MAX = 10;
 const EXPECTED_PARAGRAPHS = 3;
 const EXPECTED_CHOICE_PAGES = [2, 4, 6, 8];
 const MIN_CURIOSITY_NOTES = 3;
+const MAX_CURIOSITY_NOTES = 4;
 
 const errors = [];
 
@@ -60,6 +61,9 @@ for (const story of stories) {
   const curiosityNotes = story.pages.filter((page) => page.curiosityNote);
   if (curiosityNotes.length < MIN_CURIOSITY_NOTES) {
     addError(story, `expected at least ${MIN_CURIOSITY_NOTES} curiosity notes, got ${curiosityNotes.length}`);
+  }
+  if (curiosityNotes.length > MAX_CURIOSITY_NOTES) {
+    addError(story, `expected no more than ${MAX_CURIOSITY_NOTES} curiosity notes, got ${curiosityNotes.length}`);
   }
 
   story.pages.forEach((page, index) => {
