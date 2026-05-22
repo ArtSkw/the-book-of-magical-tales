@@ -12,7 +12,7 @@ Every tale should follow the project rules in `BRIEF.md`:
 - Page 10 should be the ending page, have no choices, and end with `"Koniec."` in Polish and `"The end."` in English.
 - All `visual` and `visualByChoice` IDs must exist in `illustrationCatalog.js`.
 - Choices should be kind, valid, nonviolent, and softly acknowledged later.
-- Each tale should include at least 3 optional `curiosityNote` entries, shown as "Czy wiesz, że...?" / "Did you know...?" popovers.
+- Each tale should include 3-4 optional `curiosityNote` entries, shown as "Czy wiesz, że...?" / "Did you know...?" popovers. Three is the minimum; add a fourth only when the story has a genuinely worthwhile topic.
 - Every tale should be written Polish-first, then adapted into English. Polish should define the read-aloud rhythm, folk-tale warmth, page titles, and emotional pacing; English should preserve the same structure and image beats while reading naturally.
 
 ## Story Planning Pass
@@ -30,10 +30,11 @@ Before writing the JS object, outline:
 
 ## Curiosity Note Pass
 
-After drafting the story, choose 3 pages for optional curiosity notes:
+After drafting the story, choose 3-4 pages for optional curiosity notes:
 
 - Tie every note to something visible or mentioned on that page.
 - Keep each note short, warm, and wonder-based rather than encyclopedic.
+- Use 3 notes as the default. Add a fourth only when research or story content provides a truly interesting, child-friendly hook.
 - Prefer real-world details children can imagine: mills, bridges, bells, birds, reeds, orchards, candles, village work, tools, food, or old customs.
 - Avoid frightening historical facts, violence, disease, punishment, or anything that pulls the tale out of its gentle mood.
 - Write the Polish note first, then adapt it into natural English.
@@ -49,7 +50,7 @@ When adding or rewriting a tale:
 - Prefer grounded Polish diction: "wioska", "młyn", "sad", "potok", "bochenek", "płótno", "dzwonnica", "ścieżka", "łąka".
 - Avoid awkward calques, stiff word order, and overly ornate pseudo-medieval diction.
 - Avoid gendered second-person phrases when possible. Prefer neutral wording such as "Po tym wyborze..." or "Dzięki temu...".
-- Add exactly 3 curiosity notes per tale, written as short wonder-sparking facts tied to concrete page content.
+- Add 3-4 curiosity notes per tale, written as short wonder-sparking facts tied to concrete page content.
 - Adapt into English second, preserving meaning and page beats without copying Polish syntax too literally.
 - Check both language versions against the current book layout after the pass.
 
