@@ -183,7 +183,7 @@ export const storyTranslations = {
           body: [
             "Mieszkańcy przechodzili przez most jeden po drugim. Każdy zerkał w dół, gdzie przy trzcinach stała nowa mysia kołyska.",
             "Smok położył się na ciepłym kamieniu. Wyglądał teraz na mniejszego niż wtedy, gdy wszyscy się go bali, ale wcale nie mniej istotnego.",
-            "Oliwia zrozumiała, że zamknięta droga czasem jest pytaniem. A najlepsza odpowiedź nie polega na pchaniu się naprzód, tylko najpierw słuchaniu i zrozumieniu."
+            "Oliwia zrozumiała, że zamknięta droga czasem jest pytaniem. A najlepsza odpowiedź nie polega na parciu do przodu, tylko najpierw słuchaniu i zrozumieniu."
           ],
           echoes: {
             7: {
