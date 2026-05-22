@@ -321,6 +321,17 @@ function selectedChoice(page = currentPage()) {
   return page.choices.find((choice) => choice.id === choiceId);
 }
 
+function pageNeedsChoice(page = currentPage()) {
+  return page.choices.length > 0 && !selectedChoiceId();
+}
+
+function renderNavigationState(story = currentStory(), page = currentPage()) {
+  const needsChoice = pageNeedsChoice(page);
+  els.prevPage.disabled = state.pageIndex === 0;
+  els.nextPage.disabled = state.pageIndex === story.pages.length - 1 || needsChoice;
+  els.nextPage.classList.toggle("needs-choice", state.choiceNudge && needsChoice);
+}
+
 function choiceVariant(variantsByPage) {
   if (!variantsByPage) return "";
 
@@ -422,9 +433,7 @@ function renderStory() {
   }
   renderParentPrompt(page, false, pageDetails.virtue);
   els.parentPromptButton.hidden = Boolean(pageDetails.ending);
-  els.prevPage.disabled = state.pageIndex === 0;
-  els.nextPage.disabled = state.pageIndex === story.pages.length - 1;
-  els.nextPage.classList.toggle("needs-choice", state.choiceNudge);
+  renderNavigationState(story, page);
   els.restartStory.hidden = !pageDetails.ending;
 
   renderChoices(page);
@@ -512,8 +521,7 @@ function turnPage(direction) {
   if (direction > 0 && currentPage().choices.length && !selectedChoiceId()) {
     state.choiceNudge = true;
     renderChoices(currentPage());
-    els.nextPage.classList.add("needs-choice");
-    playSound("ink");
+    renderNavigationState(story, currentPage());
     return;
   }
 
@@ -567,7 +575,7 @@ els.choicePanel.addEventListener("click", (event) => {
   storyChoices()[state.pageIndex] = button.dataset.choice;
   saveState();
   state.choiceNudge = false;
-  els.nextPage.classList.remove("needs-choice");
+  renderNavigationState();
   renderChoices(currentPage());
   playSound("choice");
   wakeIllustration(true);
