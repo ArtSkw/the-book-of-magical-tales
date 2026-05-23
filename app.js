@@ -92,6 +92,12 @@ const storyAudio = (() => {
     illustrationBell: { src: "/assets/sounds/moonhill-story-image-sound.wav", volume: 0.56 },
     pageTurn: { src: "/assets/sounds/page-turn.wav", volume: 0.56 }
   };
+  const illustrationEnvelope = {
+    fadeInMs: 260,
+    fadeOutMs: 2200,
+    fadeOutLeadMs: 2600,
+    minFadeOutDelayMs: 900
+  };
 
   const sounds = Object.fromEntries(
     Object.entries(soundMap).map(([name, settings]) => {
@@ -176,15 +182,10 @@ const storyAudio = (() => {
       play("choice");
     },
     illustration(storyType) {
-      playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon");
+      playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon", illustrationEnvelope);
     },
     illustrationIntro(storyType) {
-      playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon", {
-        fadeInMs: 260,
-        fadeOutMs: 2200,
-        fadeOutLeadMs: 2600,
-        minFadeOutDelayMs: 900
-      });
+      playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon", illustrationEnvelope);
     }
   };
 })();
