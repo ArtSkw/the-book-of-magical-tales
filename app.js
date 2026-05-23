@@ -57,7 +57,7 @@ const LANGUAGE_ARRIVE_MS = 1080;
 const TABLE_SCENE_IMAGE_SIZE = { width: 1535, height: 1024 };
 const TABLE_SCENE_CANDLE_POINT = { x: 0.923, y: 0.18 };
 let sceneAnchorFrame = 0;
-const playedStoryIntros = new Set();
+let pendingStoryImageSoundStoryId = "";
 
 const els = {
   body: document.body,
@@ -507,7 +507,7 @@ function renderStory() {
   renderChoices(page);
   renderIllustration(story.illustration, pageDetails.cue, pageDetails.visuals, pageDetails.art, pageDetails.artAnimation);
   wakeIllustration(false);
-  playStoryIntroWhenCoverLoads(story, pageDetails);
+  playPendingStoryImageSoundWhenImageLoads(story, pageDetails);
 }
 
 function renderParentPrompt(page = currentPage(), animate = false) {
@@ -592,15 +592,18 @@ function wakeIllustration(playAudio = true) {
   if (playAudio) playIllustrationAccent();
 }
 
-function playStoryIntroWhenCoverLoads(story, pageDetails) {
-  if (state.pageIndex !== 0 || !pageDetails.art || playedStoryIntros.has(story.id)) return;
+function playPendingStoryImageSoundWhenImageLoads(story, pageDetails) {
+  if (pendingStoryImageSoundStoryId !== story.id) return;
 
   const image = els.illustrationFrame.querySelector(".story-art-image");
-  if (!image) return;
-
-  playedStoryIntros.add(story.id);
+  if (!pageDetails.art || !image) {
+    pendingStoryImageSoundStoryId = "";
+    return;
+  }
 
   const playIntro = () => {
+    if (pendingStoryImageSoundStoryId !== story.id) return;
+    pendingStoryImageSoundStoryId = "";
     if (!state.soundEnabled) return;
     storyAudio.illustrationIntro(story.illustration);
   };
@@ -638,8 +641,11 @@ function turnPage(direction) {
 
 function chooseStory(index) {
   playButtonSound();
+  if (index === state.storyIndex) return;
+
   state.storyIndex = index;
   const story = currentStory();
+  pendingStoryImageSoundStoryId = story.id;
   state.pageIndex = Math.min(state.bookmarks[story.id] || 0, story.pages.length - 1);
   state.promptOpen = false;
   state.choiceNudge = false;
