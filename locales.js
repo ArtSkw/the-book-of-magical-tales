@@ -348,7 +348,7 @@ export const storyTranslations = {
         {
           title: "Wioska naprawia dzwon",
           body: [
-            "Przy świecach i świetle księżyca mieszkańcy wioski pracowali w kręgu. Kowalka stukała cicho, cieśla podtrzymywał belkę, a piekarka podawała owsiane bułeczki.",
+            "Przy świecach i świetle księżyca mieszkańcy wioski pracowali w kręgu. Kowalka stukała cicho, cieśla podtrzymywał belkę, a piekarz podawał owsiane bułeczki.",
             "Oliwia polerowała dzwon lnianą szmatką, aż odbiło się w nim błyszczące światło latarni. Na dole Koniczynka nasłuchiwała, czy pojawi się w końcu jakiś ton z góry.",
             "Milcząca wieża zmieniła się w warsztat, a warsztat wyglądał jak rodzina zebrana wokół czegoś, czego nikt nie chciał zostawić samego."
           ],
