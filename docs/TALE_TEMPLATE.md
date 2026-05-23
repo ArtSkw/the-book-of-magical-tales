@@ -2,6 +2,8 @@
 
 Use this template when adding a new tale to `stories.js`.
 
+For the full production process, follow `docs/NEW_STORY_WORKFLOW.md`. This template is the story data and quality checklist used during that workflow.
+
 Every tale should follow the project rules in `BRIEF.md`:
 
 - 9-10 pages, preferably 10.
@@ -14,6 +16,28 @@ Every tale should follow the project rules in `BRIEF.md`:
 - Choices should be kind, valid, nonviolent, and softly acknowledged later.
 - Each tale should include 3-4 optional `curiosityNote` entries, shown as "Czy wiesz, że...?" / "Did you know...?" popovers. Three is the minimum; add a fourth only when the story has a genuinely worthwhile topic.
 - Every tale should be written Polish-first, then adapted into English. Polish should define the read-aloud rhythm, folk-tale warmth, page titles, and emotional pacing; English should preserve the same structure and image beats while reading naturally.
+
+## New Tale Production Checklist
+
+Use this checklist before considering a tale ready for review:
+
+- [ ] Story seed is defined: place, problem, virtue, medieval detail, fantasy detail, educational hook, and emotional arc.
+- [ ] Polish version is drafted first and uses the current Polish tales as the tone reference.
+- [ ] Page titles describe concrete story moments rather than abstract translated phrases.
+- [ ] Tale has preferably 10 pages, or more only when the story truly needs it.
+- [ ] Every page has 3 short read-aloud paragraphs.
+- [ ] Choice pages are balanced and every choice is kind, valid, nonviolent, and softly acknowledged later.
+- [ ] The final page ends clearly with `"Koniec."` in Polish and `"The end."` in English.
+- [ ] 3-4 curiosity notes are included, with 3 as the minimum and 4 only for a genuinely worthwhile topic.
+- [ ] English is adapted after Polish, preserving meaning and page beats while reading naturally.
+- [ ] Placeholder-art layout pass is complete in both languages before final images are generated.
+- [ ] Every page and choice variant has an illustration brief with a distinct composition.
+- [ ] High-resolution images have been reviewed for story accuracy, style match, continuity, and calm readability.
+- [ ] CSS living details are page-specific and do not reuse one generic animation across the whole tale.
+- [ ] Any story-specific sounds are curated, softly faded, optional, and tied only to intended interactions.
+- [ ] `npm run validate:stories` passes.
+- [ ] `npm run build` passes.
+- [ ] Owner review is complete before pushing the new tale to Git.
 
 ## Story Planning Pass
 
