@@ -124,21 +124,27 @@ const storyAudio = (() => {
     window.requestAnimationFrame(tick);
   }
 
-  function playFaded(name) {
+  function playFaded(name, options = {}) {
     const base = sounds[name];
     if (!base) return;
 
+    const {
+      fadeInMs = 180,
+      fadeOutMs = 420,
+      fadeOutLeadMs = 520,
+      minFadeOutDelayMs = 700
+    } = options;
     const audio = base.cloneNode();
     const targetVolume = base.volume;
     audio.volume = 0;
     let fadeOutScheduled = false;
 
-    const fadeOut = () => fadeVolume(audio, audio.volume, 0, 420);
+    const fadeOut = () => fadeVolume(audio, audio.volume, 0, fadeOutMs);
     const scheduleFadeOut = () => {
       if (fadeOutScheduled) return;
       fadeOutScheduled = true;
       const duration = Number.isFinite(audio.duration) ? audio.duration : 0;
-      window.setTimeout(fadeOut, Math.max(duration * 1000 - 520, 700));
+      window.setTimeout(fadeOut, Math.max(duration * 1000 - fadeOutLeadMs, minFadeOutDelayMs));
     };
 
     audio.addEventListener("loadedmetadata", scheduleFadeOut, { once: true });
@@ -148,7 +154,7 @@ const storyAudio = (() => {
 
     audio.play()
       .then(() => {
-        fadeVolume(audio, 0, targetVolume, 180);
+        fadeVolume(audio, 0, targetVolume, fadeInMs);
         if (audio.readyState >= HTMLMediaElement.HAVE_METADATA) {
           scheduleFadeOut();
         }
@@ -171,6 +177,14 @@ const storyAudio = (() => {
     },
     illustration(storyType) {
       playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon");
+    },
+    illustrationIntro(storyType) {
+      playFaded(storyType === "bell" ? "illustrationBell" : "illustrationDragon", {
+        fadeInMs: 260,
+        fadeOutMs: 2200,
+        fadeOutLeadMs: 2600,
+        minFadeOutDelayMs: 900
+      });
     }
   };
 })();
@@ -587,7 +601,7 @@ function playStoryIntroWhenCoverLoads(story, pageDetails) {
 
   const playIntro = () => {
     if (!state.soundEnabled) return;
-    storyAudio.illustration(story.illustration);
+    storyAudio.illustrationIntro(story.illustration);
   };
 
   if (image.complete && image.naturalWidth > 0) {
