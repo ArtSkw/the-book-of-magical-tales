@@ -91,8 +91,8 @@ const storyAudio = (() => {
     button: { src: "/assets/sounds/button-press.wav", volume: 0.52 },
     choice: { src: "/assets/sounds/choice-chime.mp3", volume: 0.62 },
     ink: { src: "/assets/sounds/magic-ink.wav", volume: 0.58 },
-    illustrationDragon: { src: "/assets/sounds/dragon-story-image-sound.wav", volume: 0.62 },
-    illustrationBell: { src: "/assets/sounds/moonhill-story-image-sound.wav", volume: 0.56 },
+    illustrationDragon: { src: "/assets/sounds/dragon-story-image-sound.wav", volume: 0.80 },
+    illustrationBell: { src: "/assets/sounds/moonhill-story-image-sound.wav", volume: 0.80 },
     bookOpen: { src: "/assets/sounds/book-opening.wav", volume: 0.72 },
     pageTurn: { src: "/assets/sounds/page-turn.wav", volume: 0.56 }
   };
