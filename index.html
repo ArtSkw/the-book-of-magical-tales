@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="storybook-shell is-entering" aria-label="The Book of Magical Tales / Księga Magicznych Opowieści">
+    <main class="storybook-shell is-entering is-book-closed" aria-label="The Book of Magical Tales / Księga Magicznych Opowieści">
       <section class="table-scene">
         <div class="ambient-shadow"></div>
         <div class="candle-wrap">
@@ -24,6 +24,7 @@
             <span class="pool"></span>
           </button>
         </div>
+        <button class="book-cover-start" id="bookCoverStart" type="button" aria-label="Otwórz Księgę Magicznych Opowieści"></button>
         <div class="book" aria-live="polite">
           <div class="language-switch" id="languageSwitch" aria-label="Choose language">
             <button class="language-option is-active" type="button" data-language="en">EN</button>

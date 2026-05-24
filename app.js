@@ -52,6 +52,8 @@ const state = {
 };
 
 const ENTRY_ANIMATION_MS = 2550;
+const BOOK_OPEN_CONTENT_DELAY_MS = 1120;
+const BOOK_OPEN_ANIMATION_MS = 1850;
 const LANGUAGE_FADE_MS = 180;
 const LANGUAGE_ARRIVE_MS = 1080;
 const TABLE_SCENE_IMAGE_SIZE = { width: 1535, height: 1024 };
@@ -63,6 +65,7 @@ const els = {
   body: document.body,
   shell: document.querySelector(".storybook-shell"),
   tableScene: document.querySelector(".table-scene"),
+  bookCoverStart: document.querySelector("#bookCoverStart"),
   book: document.querySelector(".book"),
   storyTabs: document.querySelector("#storyTabs"),
   storyKicker: document.querySelector("#storyKicker"),
@@ -90,6 +93,7 @@ const storyAudio = (() => {
     ink: { src: "/assets/sounds/magic-ink.wav", volume: 0.58 },
     illustrationDragon: { src: "/assets/sounds/dragon-story-image-sound.wav", volume: 0.62 },
     illustrationBell: { src: "/assets/sounds/moonhill-story-image-sound.wav", volume: 0.56 },
+    bookOpen: { src: "/assets/sounds/book-opening.wav", volume: 0.72 },
     pageTurn: { src: "/assets/sounds/page-turn.wav", volume: 0.56 }
   };
   const illustrationEnvelope = {
@@ -175,6 +179,9 @@ const storyAudio = (() => {
     pageTurn() {
       play("pageTurn");
     },
+    bookOpen() {
+      play("bookOpen");
+    },
     ink() {
       play("ink");
     },
@@ -255,6 +262,10 @@ function setupSceneAssets() {
   document.documentElement.style.setProperty(
     "--book-frame-background",
     cssAsset("/assets/scene/premium-book-frame-flat-bright-transparent.png")
+  );
+  document.documentElement.style.setProperty(
+    "--book-cover-background",
+    cssAsset("/assets/scene/premium-book-cover-closed-v1.png")
   );
 }
 
@@ -366,6 +377,26 @@ function playButtonSound() {
 function playIllustrationAccent() {
   if (!state.soundEnabled) return;
   storyAudio.illustration(currentStory().illustration);
+}
+
+function openBookFromCover() {
+  if (!els.shell.classList.contains("is-book-closed")) return;
+
+  playSound("bookOpen");
+  els.bookCoverStart.disabled = true;
+  els.bookCoverStart.setAttribute("aria-hidden", "true");
+  els.shell.classList.add("is-opening-book");
+
+  window.setTimeout(() => {
+    els.shell.classList.remove("is-book-closed");
+    els.shell.classList.add("is-book-opened");
+    pendingStoryImageSoundStoryId = currentStory().id;
+    playPendingStoryImageSoundWhenImageLoads(currentStory(), resolvedPage(currentPage()));
+  }, BOOK_OPEN_CONTENT_DELAY_MS);
+
+  window.setTimeout(() => {
+    els.shell.classList.remove("is-opening-book");
+  }, BOOK_OPEN_ANIMATION_MS);
 }
 
 function saveBookmark(story = currentStory()) {
@@ -748,6 +779,7 @@ els.illustrationFrame.addEventListener("keydown", (event) => {
     wakeIllustration(true);
   }
 });
+els.bookCoverStart.addEventListener("click", openBookFromCover);
 els.candleButton.addEventListener("click", () => {
   playButtonSound();
   els.body.classList.toggle("dimmed");
