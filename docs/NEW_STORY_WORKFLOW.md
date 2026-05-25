@@ -15,7 +15,7 @@ Define:
 - **Working title:** Polish first, English later.
 - **Core place:** bridge, mill, orchard, tower, forest road, river crossing, workshop, herb garden, market, monastery, ferry, stable, or another medieval-inspired setting.
 - **Small problem:** something is lost, quiet, tangled, cracked, misunderstood, frightened, blocked, forgotten, or waiting to be repaired.
-- **Main virtue:** kindness, patience, courage, listening, care, friendship, honesty, gratitude, humility, stewardship, or cooperation.
+- **Core value direction:** kindness, patience, courage, listening, care, friendship, honesty, gratitude, humility, stewardship, or cooperation. This should guide the story, but it should be shown through concrete events rather than named repeatedly.
 - **Medieval detail:** craft, tool, food, custom, building, road, village duty, weather sign, song, map, bell, lantern, horse tack, basket, reed, wool, flour, or woodwork.
 - **Fantasy detail:** gentle creature, old oath, moon sign, enchanted object, listening river, wise animal, hidden path, tiny folk, lantern magic, or remembered song.
 - **Educational hook:** a concrete thing a child can learn through the story rather than through explanation.
@@ -30,6 +30,7 @@ Use the current Polish versions of **Smoczy Most** and **Księżycowy Dzwon** as
 - natural read-aloud rhythm
 - warm folk-tale simplicity
 - concrete village and medieval details
+- grounded cause-and-effect rather than abstract metaphor
 - gentle emotional naming
 - soft repetitions where they help the parent read aloud
 - page titles based on what actually happens in the scene
@@ -41,7 +42,7 @@ Draft:
 - 10-page structure, or more only if the story truly needs it
 - 3 short paragraphs per page
 - choice pages and choice responses
-- consequence echoes after choices
+- consequence echoes after choices, plus `paragraphByChoice` variants that replace at least two paragraphs on each affected page
 - final page ending clearly with **"Koniec."**
 - 3-4 curiosity-note candidates
 
@@ -58,7 +59,9 @@ The story should have:
 - Choice consequences reflected later through detail, helper, dialogue, image, or ending.
 - 3-4 curiosity notes, with 3 as the minimum and 4 only when there is a genuinely worthwhile topic.
 - No combat resolution, enemy framing, fear escalation, or moralizing lecture.
+- No generic discussion prompts, explicit value labels, or mid-story moral summaries.
 - A secure final page with repair, understanding, safety, belonging, or wonder.
+- A clear final reflection may gather the main values, but earlier pages should stay descriptive, concrete, and story-led.
 
 Run the tale mentally as a read-aloud session: if a page feels too dense, split or simplify before moving on.
 
@@ -235,4 +238,3 @@ After review changes are complete:
 - commit with a clear story-focused message
 - push to `main`
 - confirm GitHub Pages deployment succeeds
-

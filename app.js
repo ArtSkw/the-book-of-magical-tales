@@ -45,7 +45,7 @@ const state = {
   bookmarks: {},
   language: "pl",
   soundEnabled: true,
-  promptOpen: false,
+  curiosityOpen: false,
   choiceNudge: false,
   languageAnimating: false,
   wakeToken: 0
@@ -76,8 +76,8 @@ const els = {
   pageTitle: document.querySelector("#pageTitle"),
   storyText: document.querySelector("#storyText"),
   choicePanel: document.querySelector("#choicePanel"),
-  parentPromptButton: document.querySelector("#parentPromptButton"),
-  promptCard: document.querySelector("#promptCard"),
+  curiosityNoteButton: document.querySelector("#curiosityNoteButton"),
+  curiosityCard: document.querySelector("#curiosityCard"),
   restartStory: document.querySelector("#restartStory"),
   languageSwitch: document.querySelector("#languageSwitch"),
   soundToggle: document.querySelector("#soundToggle"),
@@ -283,6 +283,10 @@ function mergeChoiceMap(baseValue, translationValue) {
   );
 }
 
+function isPlainObject(value) {
+  return value && typeof value === "object" && !Array.isArray(value);
+}
+
 function translatedPage(page, translation = {}) {
   const translated = { ...page, ...translation };
 
@@ -295,8 +299,7 @@ function translatedPage(page, translation = {}) {
   }
 
   translated.echoes = mergeChoiceMap(page.echoes, translation.echoes);
-  translated.virtueByChoice = mergeChoiceMap(page.virtueByChoice, translation.virtueByChoice);
-
+  translated.paragraphByChoice = mergeChoiceMap(page.paragraphByChoice, translation.paragraphByChoice);
   return translated;
 }
 
@@ -454,15 +457,26 @@ function choiceAsset(defaultAsset, variantsByPage) {
 
 function resolvedPage(page) {
   const echo = choiceVariant(page.echoes);
+  const paragraphVariant = choiceVariant(page.paragraphByChoice);
   const cue = choiceVariant(page.cueByChoice) || page.cue;
   const choiceVisual = choiceVariant(page.visualByChoice);
   const visuals = [page.visual, choiceVisual].filter(Boolean);
-  const virtue = choiceVariant(page.virtueByChoice) || page.virtue;
   const art = choiceAsset(page.art, page.artByChoice);
   const artAnimation = choiceAsset(page.artAnimation, page.artAnimationByChoice);
-  const body = echo ? [page.body[0], echo, ...page.body.slice(1)] : page.body;
+  const variantBody = [...page.body];
 
-  return { body, cue, visuals, virtue, echo, ending: page.ending, art, artAnimation };
+  if (isPlainObject(paragraphVariant)) {
+    Object.entries(paragraphVariant).forEach(([paragraphIndex, paragraph]) => {
+      const index = Number(paragraphIndex);
+      if (Number.isInteger(index) && index >= 0 && index < variantBody.length && typeof paragraph === "string") {
+        variantBody[index] = paragraph;
+      }
+    });
+  }
+
+  const body = echo ? [variantBody[0], echo, ...variantBody.slice(1)] : variantBody;
+
+  return { body, cue, visuals, echo, ending: page.ending, art, artAnimation };
 }
 
 function renderTabs() {
@@ -514,7 +528,7 @@ function renderStory() {
   renderTabs();
   els.storyKicker.textContent = story.kicker;
   els.storyTitle.textContent = story.title;
-  els.parentPromptButton.querySelector("span").textContent = text().curiosityNote;
+  els.curiosityNoteButton.querySelector("span").textContent = text().curiosityNote;
   els.restartStory.textContent = text().restartStory;
   els.pageCount.textContent = text().pageCount(state.pageIndex + 1, story.pages.length);
   renderProgress(story);
@@ -528,10 +542,10 @@ function renderStory() {
     })
     .join("");
   if (pageDetails.ending) {
-    state.promptOpen = false;
+    state.curiosityOpen = false;
   }
-  renderParentPrompt(page, false);
-  els.parentPromptButton.hidden = !page.curiosityNote;
+  renderCuriosityNote(page, false);
+  els.curiosityNoteButton.hidden = !page.curiosityNote;
   renderNavigationState(story, page);
   els.restartStory.hidden = !pageDetails.ending;
 
@@ -541,27 +555,27 @@ function renderStory() {
   playPendingStoryImageSoundWhenImageLoads(story, pageDetails);
 }
 
-function renderParentPrompt(page = currentPage(), animate = false) {
+function renderCuriosityNote(page = currentPage(), animate = false) {
   const note = page.curiosityNote;
   if (!note) {
-    state.promptOpen = false;
-    els.promptCard.hidden = true;
-    els.promptCard.innerHTML = "";
-    els.parentPromptButton.setAttribute("aria-expanded", "false");
+    state.curiosityOpen = false;
+    els.curiosityCard.hidden = true;
+    els.curiosityCard.innerHTML = "";
+    els.curiosityNoteButton.setAttribute("aria-expanded", "false");
     return;
   }
 
-  els.promptCard.innerHTML = `
-    <p class="prompt-title">${escapeHtml(note.title || text().curiosityNote)}</p>
+  els.curiosityCard.innerHTML = `
+    <p class="curiosity-note-title">${escapeHtml(note.title || text().curiosityNote)}</p>
     <p>${escapeHtml(note.body)}</p>
   `;
-  els.promptCard.hidden = !state.promptOpen;
-  els.parentPromptButton.setAttribute("aria-expanded", String(state.promptOpen));
+  els.curiosityCard.hidden = !state.curiosityOpen;
+  els.curiosityNoteButton.setAttribute("aria-expanded", String(state.curiosityOpen));
 
-  els.promptCard.classList.remove("is-writing");
-  if (state.promptOpen && animate) {
+  els.curiosityCard.classList.remove("is-writing");
+  if (state.curiosityOpen && animate) {
     window.requestAnimationFrame(() => {
-      els.promptCard.classList.add("is-writing");
+      els.curiosityCard.classList.add("is-writing");
     });
   }
 }
@@ -660,7 +674,7 @@ function turnPage(direction) {
 
   playSound("pageTurn");
   state.pageIndex = nextIndex;
-  state.promptOpen = false;
+  state.curiosityOpen = false;
   state.choiceNudge = false;
   saveBookmark(story);
   els.book.classList.remove("turning");
@@ -678,7 +692,7 @@ function chooseStory(index) {
   const story = currentStory();
   pendingStoryImageSoundStoryId = story.id;
   state.pageIndex = Math.min(state.bookmarks[story.id] || 0, story.pages.length - 1);
-  state.promptOpen = false;
+  state.curiosityOpen = false;
   state.choiceNudge = false;
   renderStory();
 }
@@ -687,7 +701,7 @@ function restartCurrentStory() {
   const story = currentStory();
   playSound("pageTurn");
   state.pageIndex = 0;
-  state.promptOpen = false;
+  state.curiosityOpen = false;
   state.choiceNudge = false;
   delete state.bookmarks[story.id];
   delete state.choices[story.id];
@@ -717,17 +731,17 @@ els.choicePanel.addEventListener("click", (event) => {
   wakeIllustration(false);
 });
 
-els.parentPromptButton.addEventListener("click", () => {
-  state.promptOpen = !state.promptOpen;
-  renderParentPrompt(currentPage(), state.promptOpen);
-  if (state.promptOpen) playSound("ink");
+els.curiosityNoteButton.addEventListener("click", () => {
+  state.curiosityOpen = !state.curiosityOpen;
+  renderCuriosityNote(currentPage(), state.curiosityOpen);
+  if (state.curiosityOpen) playSound("ink");
 });
 
 document.addEventListener("click", (event) => {
-  if (!state.promptOpen) return;
-  if (els.promptCard.contains(event.target) || els.parentPromptButton.contains(event.target)) return;
-  state.promptOpen = false;
-  renderParentPrompt(currentPage());
+  if (!state.curiosityOpen) return;
+  if (els.curiosityCard.contains(event.target) || els.curiosityNoteButton.contains(event.target)) return;
+  state.curiosityOpen = false;
+  renderCuriosityNote(currentPage());
 });
 
 els.restartStory.addEventListener("click", restartCurrentStory);
@@ -749,7 +763,7 @@ els.languageSwitch.addEventListener("click", (event) => {
   playButtonSound();
   playSound("ink");
   state.languageAnimating = true;
-  state.promptOpen = false;
+  state.curiosityOpen = false;
   state.choiceNudge = false;
   els.book.classList.remove("language-changing");
   els.languageSwitch.classList.remove("language-changing");
@@ -788,9 +802,9 @@ els.candleButton.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") turnPage(-1);
   if (event.key === "ArrowRight") turnPage(1);
-  if (event.key === "Escape" && state.promptOpen) {
-    state.promptOpen = false;
-    renderParentPrompt(currentPage());
+  if (event.key === "Escape" && state.curiosityOpen) {
+    state.curiosityOpen = false;
+    renderCuriosityNote(currentPage());
   }
 });
 
@@ -804,3 +818,11 @@ new ResizeObserver(scheduleSceneCandleAnchorUpdate).observe(els.tableScene);
 window.setTimeout(() => {
   els.shell.classList.remove("is-entering");
 }, ENTRY_ANIMATION_MS);
+
+window.addEventListener(
+  "pointermove",
+  () => {
+    els.shell.classList.add("can-hover");
+  },
+  { once: true }
+);
