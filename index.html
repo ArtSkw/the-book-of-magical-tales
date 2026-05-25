@@ -24,7 +24,24 @@
             <span class="pool"></span>
           </button>
         </div>
-        <button class="book-cover-start" id="bookCoverStart" type="button" aria-label="Otwórz Księgę Magicznych Opowieści"></button>
+        <button class="book-cover-start" id="bookCoverStart" type="button" aria-label="Otwórz Księgę Magicznych Opowieści">
+          <span class="cover-living-detail cover-warmth" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-glint glint-corner" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-glint glint-medallion" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-glint glint-clasp" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-glint glint-spine" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-glint glint-lower" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-reflection reflection-medallion" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-reflection reflection-clasp" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-one" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-two" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-three" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-four" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-five" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-six" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-seven" aria-hidden="true"></span>
+          <span class="cover-living-detail cover-dust dust-eight" aria-hidden="true"></span>
+        </button>
         <div class="book" aria-live="polite">
           <div class="language-switch" id="languageSwitch" aria-label="Choose language">
             <button class="language-option is-active" type="button" data-language="en">EN</button>
@@ -53,11 +70,11 @@
                 <h2 id="pageTitle"></h2>
                 <article class="story-text" id="storyText"></article>
                 <div class="choice-panel" id="choicePanel" aria-label="Gentle choice"></div>
-                <button class="parent-prompt" id="parentPromptButton" type="button" aria-expanded="false">
+                <button class="curiosity-note-button" id="curiosityNoteButton" type="button" aria-expanded="false">
                   <span>Did you know...?</span>
                 </button>
                 <button class="restart-story" id="restartStory" type="button" hidden>Begin again</button>
-                <aside class="prompt-card" id="promptCard" hidden></aside>
+                <aside class="curiosity-note-card" id="curiosityCard" hidden></aside>
               </div>
             </div>
           </section>

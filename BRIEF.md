@@ -113,7 +113,7 @@ Stories should combine:
 
 - **Medieval life and material culture:** castles, bridges, bells, mills, workshops, guilds, market squares, herb gardens, scribes, maps, illuminated books, banners, horses, ferries, feast days, harvests, weather signs, tools, craft traditions, village duties, and road customs.
 - **Gentle fantasy wonder:** dragons, talking animals, hidden paths, lantern magic, old oaths, moonlit bells, forest spirits, tiny folk, enchanted maps, wise horses, sleeping giants, healing springs, star signs, and objects that awaken through kindness.
-- **Classic high-fantasy virtues:** fellowship, humility, mercy, stewardship, loyalty, hospitality, courage in small people, respect for old wisdom, reverence for nature, hope in dark or confusing moments, and the idea that power is best used to protect.
+- **Classic high-fantasy values:** fellowship, humility, mercy, stewardship, loyalty, hospitality, courage in small people, respect for old wisdom, reverence for nature, hope in dark or confusing moments, and the idea that power is best used to protect.
 - **Universal family values:** love, patience, honesty, forgiveness, gratitude, cooperation, care for elders, care for younger or smaller beings, sibling/friendship repair, community responsibility, and respect for animals and the natural world.
 
 Do not imitate or reuse specific characters, places, races, names, plots, or lore from Tolkien or any other existing copyrighted world. Use classic fantasy values as inspiration, then build original characters, places, customs, and conflicts.
@@ -130,7 +130,7 @@ Use these principles:
 - **Agency without pressure:** give the child meaningful choices, but make every option kind and valid. Avoid success/failure framing.
 - **Secure endings:** end with repair, understanding, safety, or belonging. It is fine for a mystery to remain wondrous, but the child should feel emotionally held.
 - **Learning through story:** weave in concrete knowledge about medieval crafts, nature, seasons, animals, tools, maps, weather, music, gardens, or village life through action rather than exposition.
-- **Conversation prompts:** parent prompts should invite reflection, not quiz the child. Prefer "What do you think...?", "How might...?", "What would help...?", and "Have you ever felt...?"
+- **Curiosity notes instead of prompts:** optional adult-child support should come through rare, high-quality "Czy wiesz, że...?" / "Did you know...?" notes tied to concrete page content. Do not use generic parent prompts or quiz-like reflection buttons.
 - **Respect for developmental comfort:** keep suspense gentle, avoid intense fear, avoid humiliation, avoid abandonment as a threat, and avoid moralizing lectures.
 - **Repetition and rhythm:** use recurring phrases, ritual gestures, and clear story beats to help young children predict, remember, and retell.
 - **Diverse competence:** let different characters help in different ways: noticing, carrying, waiting, mending, singing, remembering, cooking, drawing maps, caring for animals, or asking good questions.
@@ -144,9 +144,9 @@ Before adding or approving a tale, check that it includes:
 - At least one animal, natural place, craft, tool, song, map, or old custom that teaches gently.
 - At least one moment of listening before action.
 - At least one moment where a small or overlooked character matters.
-- At least one caregiver/parent prompt that helps the adult connect the story to the child's feelings or everyday life.
+- 3-4 curiosity notes per tale, with 3 as the minimum and a fourth only when the page offers a genuinely worthwhile child-friendly topic.
 - No combat resolution, no defeated enemy, and no reward for domination.
-- A final reflection that names what was learned through action, not preaching.
+- A final reflection that names or gathers the main values only at the end, after the story has shown them through action.
 
 ### Bilingual Story Rule
 
@@ -155,18 +155,18 @@ Every tale should be planned for both Polish and English. Polish should be the c
 Use **Polish-first story creation** for every new tale and every major rewrite:
 
 - Draft the tale in Polish first, as if it were an original Polish children's folk-fantasy story written for warm read-aloud co-reading.
-- Let the Polish version define the emotional rhythm, sensory details, sentence cadence, recurring phrases, page titles, and parent prompt tone.
-- Translate or adapt into English second, preserving meaning, page structure, choices, image moments, virtues, and emotional arc while making the English sound natural rather than literal.
+- Let the Polish version define the emotional rhythm, sensory details, sentence cadence, recurring phrases, page titles, curiosity notes, and story pacing.
+- Translate or adapt into English second, preserving meaning, page structure, choices, image moments, curiosity notes, and emotional arc while making the English sound natural rather than literal.
 - Treat English as the layout-aligned companion version, not the source of Polish phrasing.
 
 Use **Polish transcreation and folk-tale styling** for the Polish source:
 
 - Rewrite the tale as natural Polish children's-book prose, as if it were originally written in Polish.
-- Preserve the same page count, choice IDs, choice meaning, virtues, image moments, and emotional arc.
+- Preserve the same page count, choice IDs, choice meaning, curiosity notes, image moments, and emotional arc.
 - Prefer warm, simple, read-aloud sentence rhythm over direct English word order.
 - Avoid stiff translated idioms, overly formal phrasing, and awkward medieval vocabulary that a Polish-speaking child would not naturally receive.
 - Avoid gendered second-person wording such as "wybrałeś" where a neutral phrase works. Prefer forms like "Po tym wyborze...", "Dzięki temu...", or "Teraz...".
-- Parent prompts should sound conversational and gentle in Polish, not like quiz questions.
+- Curiosity notes should sound natural and wonder-sparking in Polish, not encyclopedic or quiz-like.
 - After writing, read each Polish page aloud and check layout fit next to the illustration.
 
 Polish folk-tale prose should generally include:
@@ -176,8 +176,9 @@ Polish folk-tale prose should generally include:
 - **Grounded Polish diction:** use natural words such as "wioska", "zagroda", "młyn", "izba", "siodło", "płótno", "bochenek", "dzwonnica", "sad", "ścieżka", "potok", and "łąka" where they fit the medieval-fantasy setting.
 - **Personified nature:** let rivers murmur, bells remember, wind carry news, trees listen, horses understand, and small animals matter.
 - **Simple emotional naming:** use clear child-friendly feeling words: "zmartwiony", "stremowany", "dumny", "spokojniejszy", "zawstydzony", "wdzięczny", "odważny po cichu".
+- **Grounded causality:** make scenes work through concrete reasons and visible actions. Prefer "the pennant let the village know something important was happening" over symbolic or abstract explanation.
 - **Concrete kindness:** show values through actions: waiting, warming, covering from wind, calling a careful helper, sharing bread, repairing a crack, speaking softly, giving a small creature room.
-- **Low moralizing:** avoid direct lessons such as "trzeba być dobrym"; instead let the final paragraph show what changed and what the child can remember.
+- **Low moralizing:** avoid direct lessons such as "trzeba być dobrym" and avoid sneaking summary morals into middle pages. Let the middle of the tale stay descriptive, eventful, and grounded. Save the clear value reflection for the final page.
 - **Musical closure:** final pages may use a short repeating phrase or image that feels like closing a bedtime tale, ending clearly with "Koniec." in Polish and "The end." in English.
 
 Recommended story themes:
@@ -209,7 +210,7 @@ Each page should usually contain **three short paragraphs**:
 
 - One paragraph for place, mood, sensory detail, or action.
 - One paragraph for character feeling, dialogue, discovery, or consequence.
-- One paragraph that deepens the moral imagination, sets up a choice, or reflects on what changed.
+- One paragraph that adds concrete consequence, prepares the next action, sets up a choice, or shows what changed without turning into a moral lesson.
 
 Keep paragraphs short enough for parent-child co-reading. If a page becomes cramped, split the moment into another page rather than making the text too dense.
 
@@ -226,9 +227,9 @@ Recommended 10-page rhythm:
 7. **Deeper understanding:** the problem is reframed through listening, repair, or cooperation.
 8. **Final choice:** child chooses the closing gesture or promise.
 9. **Resolution:** helpers gather, something is repaired, understood, returned, comforted, or protected.
-10. **Reflection and ending:** the book names the awakened virtue and ends clearly with **"The end."**
+10. **Reflection and ending:** the book gathers the main values and ends clearly with **"The end."**
 
-Use mostly linear stories with soft branching. Choices should change details, helpers, dialogue, illustration details, virtue wording, or closing reflection while keeping every path kind and valid.
+Use mostly linear stories with soft branching. Choices should change details, helpers, dialogue, illustration details, curiosity echoes, or closing reflection while keeping every path kind and valid. Each consequence page should replace at least two body paragraphs through `paragraphByChoice`, so the selected choice feels woven into the prose rather than only mentioned in a highlighted note.
 
 ## Example Page Data Shape
 
@@ -240,8 +241,10 @@ type StoryPage = {
   illustrationId?: string;
   animationCue?: string;
   interactionPrompt?: string;
-  parentPrompt?: string;
-  virtue?: "kindness" | "patience" | "courage" | "honesty" | "wonder" | "loyalty" | "mercy";
+  curiosityNote?: {
+    title: string;
+    body: string;
+  };
 };
 ```
 
@@ -254,7 +257,7 @@ Simple interactions:
 - Tap illuminated initial letter to make gold ink shimmer.
 - Tap candle to brighten/dim the page.
 - Tap bookmark to switch stories.
-- Tap a hidden parent prompt icon for discussion questions.
+- Tap a curiosity note button for a short, page-specific "Did you know...?" fact.
 
 Choice interactions:
 
@@ -277,22 +280,24 @@ When a child chooses an action, the next page or later resolution should visibly
 - Which helper arrives.
 - Which small object is used.
 - Which illustration animation is emphasized.
-- Which virtue is named or reflected on.
-- A short "because you chose..." story beat.
+- Which concrete detail, helper, dialogue, or final reflection appears.
+- At least two prose paragraphs through `paragraphByChoice`.
+- A short, quiet branch note that signals the book remembered the earlier choice.
 
 All choices should remain kind, constructive, and valid. The story may rejoin the main path after a choice, but the child should feel that their decision mattered and changed the way the tale unfolded.
 
-## Parent Prompts
+## Curiosity Notes
 
-Parent prompts should be optional and unobtrusive, perhaps behind a small bookmark, candle mark, or margin symbol.
+Curiosity notes replace parent prompts. They should be optional, rare, and unobtrusive, appearing on only 3-4 pages per tale.
 
-Examples:
+Good curiosity notes:
 
-- "Why do you think the dragon stayed on the bridge?"
-- "Who helped in this part of the story?"
-- "What could the knight say gently?"
-- "Was the smallest character brave too?"
-- "What would you do if someone was afraid?"
+- connect to something visible or mentioned on the current page
+- add a small real-world or folklore-adjacent spark about medieval life, nature, animals, crafts, tools, food, bells, mills, bridges, gardens, weather, or old customs
+- are short enough to read without breaking the story mood
+- are written in Polish first, then adapted into natural English
+
+Avoid generic discussion questions, moral quizzes, therapy-like reflection prompts, and long encyclopedic explanations.
 
 ## Visual Direction
 
@@ -499,7 +504,7 @@ Include a mute toggle from the beginning if audio is implemented.
 ## Future Ideas
 
 - Story branching with 2-3 kind choices per story.
-- "Virtues awakened" ending cards.
+- Optional keepsake ending pages that summarize the tale's values without adding mid-story moral labels.
 - Custom child/parent name insertion.
 - Story bookmark saves.
 - Printable story page export.

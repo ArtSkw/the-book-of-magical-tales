@@ -83,7 +83,6 @@ for (const story of stories) {
     } else if (illustrationFamily && !illustrationFamily.visuals[page.visual]) {
       addError(story, `${label} unknown visual "${page.visual}" for illustration "${story.illustration}"`);
     }
-    if (!page.virtue) addError(story, `${label} missing virtue`);
     if (!Array.isArray(page.choices)) addError(story, `${label} choices must be an array`);
 
     if (page.curiosityNote) {
@@ -115,9 +114,42 @@ for (const story of stories) {
       if (!choice.response) addError(story, `${choiceLabel} missing response`);
     });
 
-    for (const field of ["echoes", "cueByChoice", "visualByChoice", "virtueByChoice"]) {
+    for (const field of ["echoes", "paragraphByChoice", "cueByChoice", "visualByChoice"]) {
       if (page[field] && !isPlainObject(page[field])) {
         addError(story, `${label} ${field} must be an object`);
+      }
+    }
+
+    if (page.echoes) {
+      for (const [sourcePage, variants] of Object.entries(page.echoes)) {
+        const paragraphVariants = page.paragraphByChoice?.[sourcePage];
+        if (!isPlainObject(paragraphVariants)) {
+          addError(story, `${label} paragraphByChoice missing variants for source page ${sourcePage}`);
+          continue;
+        }
+
+        for (const choiceId of Object.keys(variants)) {
+          const replacements = paragraphVariants[choiceId];
+          if (!isPlainObject(replacements)) {
+            addError(story, `${label} paragraphByChoice missing "${choiceId}" replacement`);
+            continue;
+          }
+
+          const changedIndexes = Object.keys(replacements);
+          if (changedIndexes.length < 2) {
+            addError(story, `${label} paragraphByChoice "${choiceId}" should replace at least two paragraphs`);
+          }
+
+          for (const [paragraphIndex, paragraph] of Object.entries(replacements)) {
+            const indexNumber = Number(paragraphIndex);
+            if (!Number.isInteger(indexNumber) || indexNumber < 0 || indexNumber >= EXPECTED_PARAGRAPHS) {
+              addError(story, `${label} paragraphByChoice "${choiceId}" has invalid paragraph index "${paragraphIndex}"`);
+            }
+            if (typeof paragraph !== "string" || !paragraph.trim()) {
+              addError(story, `${label} paragraphByChoice "${choiceId}" paragraph ${paragraphIndex} must be text`);
+            }
+          }
+        }
       }
     }
 

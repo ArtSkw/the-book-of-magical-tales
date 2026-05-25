@@ -352,7 +352,7 @@ button {
     transform 320ms ease;
 }
 
-.book-cover-start:hover {
+.storybook-shell.can-hover .book-cover-start:hover {
   filter:
     drop-shadow(0 3.85rem 3.35rem rgba(0, 0, 0, 0.38))
     drop-shadow(0 0 1rem rgba(255, 204, 118, 0.16));
@@ -378,16 +378,169 @@ button {
   pointer-events: none;
 }
 
-.book-cover-start::after {
+.cover-living-detail {
   position: absolute;
-  inset: 10% 10% 11%;
-  content: "";
-  background:
-    radial-gradient(ellipse at 50% 54%, rgba(255, 225, 148, 0.18), transparent 54%),
-    radial-gradient(ellipse at 73% 20%, rgba(255, 198, 105, 0.12), transparent 24%);
-  mix-blend-mode: screen;
-  opacity: 0.18;
+  display: block;
   pointer-events: none;
+}
+
+.cover-warmth {
+  top: 12%;
+  left: 52%;
+  width: 24%;
+  height: 72%;
+  background:
+    radial-gradient(ellipse at 75% 22%, rgba(255, 213, 126, 0.38), transparent 42%),
+    radial-gradient(ellipse at 58% 62%, rgba(255, 176, 78, 0.2), transparent 54%);
+  mix-blend-mode: screen;
+  opacity: 0.36;
+  animation: coverCandleWarmth 5200ms ease-in-out 900ms infinite;
+}
+
+.cover-glint {
+  width: clamp(0.62rem, 0.78vw, 0.9rem);
+  height: clamp(0.62rem, 0.78vw, 0.9rem);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 224, 0.95) 0 12%, rgba(255, 224, 134, 0.72) 16% 35%, rgba(255, 183, 78, 0.18) 44%, transparent 72%);
+  filter: blur(0.02rem);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: scale(0.58);
+  animation: coverGoldGlint 9400ms ease-in-out infinite;
+}
+
+.glint-corner {
+  top: 17.8%;
+  right: 17.4%;
+  animation-delay: 1200ms;
+}
+
+.glint-medallion {
+  top: 50.2%;
+  right: 35.6%;
+  animation-delay: 3600ms;
+}
+
+.glint-clasp {
+  top: 47.2%;
+  right: 6.8%;
+  animation-delay: 5200ms;
+}
+
+.glint-spine {
+  top: 20.6%;
+  left: 12.8%;
+  animation-delay: 6900ms;
+}
+
+.glint-lower {
+  bottom: 15.4%;
+  right: 19.5%;
+  animation-delay: 8200ms;
+}
+
+.cover-reflection {
+  border-radius: 999px;
+  background:
+    linear-gradient(110deg, transparent, rgba(255, 238, 176, 0.62), rgba(255, 190, 83, 0.24), transparent);
+  filter: blur(0.08rem);
+  mix-blend-mode: screen;
+  opacity: 0;
+  transform: rotate(-10deg) translateX(-0.4rem);
+  animation: coverReflectionGlimmer 7600ms ease-in-out infinite;
+}
+
+.reflection-medallion {
+  top: 31.5%;
+  right: 21%;
+  width: 15%;
+  height: 1%;
+  animation-delay: 2100ms;
+}
+
+.reflection-clasp {
+  top: 46.5%;
+  right: 3.8%;
+  width: 8%;
+  height: 1.25%;
+  animation-delay: 5800ms;
+}
+
+.cover-dust {
+  width: clamp(0.2rem, 0.28vw, 0.33rem);
+  height: clamp(0.2rem, 0.28vw, 0.33rem);
+  border-radius: 50%;
+  background: rgba(255, 235, 174, 0.86);
+  box-shadow: 0 0 0.72rem rgba(255, 199, 100, 0.58);
+  filter: blur(0.01rem);
+  mix-blend-mode: screen;
+  opacity: 0;
+  animation: coverDustDriftRight 10400ms linear infinite;
+}
+
+.dust-one {
+  top: 18%;
+  right: 20%;
+  animation-delay: 300ms;
+}
+
+.dust-two {
+  top: 28%;
+  right: 9%;
+  animation-delay: 1600ms;
+  animation-duration: 12200ms;
+}
+
+.dust-three {
+  top: 10%;
+  right: 36%;
+  animation-delay: 3100ms;
+  animation-duration: 11600ms;
+}
+
+.dust-four {
+  top: 39%;
+  right: 24%;
+  animation-delay: 4700ms;
+  animation-duration: 13200ms;
+}
+
+.dust-five {
+  top: 15%;
+  right: 48%;
+  animation-name: coverDustDriftLeft;
+  animation-delay: 2100ms;
+  animation-duration: 13800ms;
+}
+
+.dust-six {
+  top: 46%;
+  right: 15%;
+  animation-delay: 6500ms;
+  animation-duration: 9800ms;
+}
+
+.dust-seven {
+  top: 33%;
+  left: 18%;
+  width: clamp(0.14rem, 0.2vw, 0.24rem);
+  height: clamp(0.14rem, 0.2vw, 0.24rem);
+  opacity: 0;
+  animation-name: coverDustDriftDim;
+  animation-delay: 3600ms;
+  animation-duration: 15800ms;
+}
+
+.dust-eight {
+  top: 23%;
+  left: 32%;
+  width: clamp(0.13rem, 0.18vw, 0.22rem);
+  height: clamp(0.13rem, 0.18vw, 0.22rem);
+  opacity: 0;
+  animation-name: coverDustDriftDim;
+  animation-delay: 8700ms;
+  animation-duration: 17000ms;
 }
 
 .storybook-shell.is-entering .book-cover-start {
@@ -738,7 +891,7 @@ html[lang="pl"] h2 {
 .language-option:focus-visible,
 .sound-toggle:focus-visible,
 .nav-button:focus-visible,
-.parent-prompt:focus-visible,
+.curiosity-note-button:focus-visible,
 .choice-button:focus-visible,
 .candle:focus-visible {
   outline: 3px solid #f8d577;
@@ -1952,7 +2105,7 @@ html[lang="pl"] .story-text {
 }
 
 .choice-button,
-.parent-prompt,
+.curiosity-note-button,
 .nav-button {
   border: 1px solid rgba(62, 31, 20, 0.38);
   color: #3a2117;
@@ -2017,7 +2170,7 @@ html[lang="pl"] .choice-button {
   animation: inkWrite 1150ms ease both;
 }
 
-.parent-prompt,
+.curiosity-note-button,
 .restart-story {
   align-self: flex-start;
   min-height: 2.38rem;
@@ -2036,7 +2189,7 @@ html[lang="pl"] .choice-button {
   color: #6d2c22;
 }
 
-.prompt-card {
+.curiosity-note-card {
   position: absolute;
   left: clamp(0.95rem, 1.8vw, 1.7rem);
   bottom: clamp(3.4rem, 4.95vw, 4.7rem);
@@ -2055,21 +2208,21 @@ html[lang="pl"] .choice-button {
     inset 0 0 0 1px rgba(255, 250, 220, 0.48);
 }
 
-.prompt-card p {
+.curiosity-note-card p {
   margin: 0;
 }
 
-.prompt-card p + p {
+.curiosity-note-card p + p {
   margin-top: 0.38rem;
 }
 
-.prompt-title {
+.curiosity-note-title {
   color: #7a2d24;
   font-family: "MedievalSharp", serif;
   font-size: 0.86em;
 }
 
-.prompt-card.is-writing {
+.curiosity-note-card.is-writing {
   animation: inkWrite 1050ms ease both;
 }
 
@@ -2158,8 +2311,8 @@ html[lang="pl"] .choice-button {
 .book.language-arriving .right-page h2,
 .book.language-arriving .right-page .story-text p,
 .book.language-arriving .right-page .choice-panel,
-.book.language-arriving .right-page .parent-prompt,
-.book.language-arriving .right-page .prompt-card:not([hidden]),
+.book.language-arriving .right-page .curiosity-note-button,
+.book.language-arriving .right-page .curiosity-note-card:not([hidden]),
 .book.language-arriving .right-page .restart-story:not([hidden]) {
   animation: languageRewriteInk 860ms cubic-bezier(0.2, 0.78, 0.18, 1) both;
   transform-origin: left center;
@@ -2186,8 +2339,8 @@ html[lang="pl"] .choice-button {
 }
 
 .book.language-arriving .right-page .choice-panel,
-.book.language-arriving .right-page .parent-prompt,
-.book.language-arriving .right-page .prompt-card:not([hidden]),
+.book.language-arriving .right-page .curiosity-note-button,
+.book.language-arriving .right-page .curiosity-note-card:not([hidden]),
 .book.language-arriving .right-page .restart-story:not([hidden]) {
   animation-delay: 470ms;
 }
@@ -2464,6 +2617,139 @@ body.dimmed {
   100% {
     opacity: 0;
     transform: scale(1.42);
+  }
+}
+
+@keyframes coverCandleWarmth {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  45% {
+    opacity: 0.62;
+    transform: translate3d(0.2rem, -0.06rem, 0) scale(1.026);
+  }
+
+  68% {
+    opacity: 0.42;
+    transform: translate3d(-0.08rem, 0.05rem, 0) scale(1.01);
+  }
+}
+
+@keyframes coverGoldGlint {
+  0%,
+  58%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  63% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  70% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+}
+
+@keyframes coverReflectionGlimmer {
+  0%,
+  55%,
+  100% {
+    opacity: 0;
+    transform: rotate(-10deg) translateX(-0.6rem);
+  }
+
+  64% {
+    opacity: 0.56;
+    transform: rotate(-10deg) translateX(0.35rem);
+  }
+
+  73% {
+    opacity: 0;
+    transform: rotate(-10deg) translateX(1rem);
+  }
+}
+
+@keyframes coverDustDriftRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0) scale(0.72);
+  }
+
+  16% {
+    opacity: 0.64;
+  }
+
+  36% {
+    opacity: 0.5;
+    transform: translate3d(-0.9rem, -2.2rem, 0) scale(1);
+  }
+
+  62% {
+    opacity: 0.36;
+    transform: translate3d(0.85rem, -4rem, 0) scale(0.86);
+  }
+
+  82% {
+    opacity: 0.18;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-0.35rem, -6.2rem, 0) scale(0.74);
+  }
+}
+
+@keyframes coverDustDriftLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0.55rem, 0) scale(0.68);
+  }
+
+  18% {
+    opacity: 0.52;
+  }
+
+  44% {
+    opacity: 0.42;
+    transform: translate3d(1.2rem, -2rem, 0) scale(0.96);
+  }
+
+  70% {
+    opacity: 0.24;
+    transform: translate3d(-0.7rem, -4.2rem, 0) scale(0.82);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(0.4rem, -6rem, 0) scale(0.7);
+  }
+}
+
+@keyframes coverDustDriftDim {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0.3rem, 0) scale(0.62);
+  }
+
+  20% {
+    opacity: 0.22;
+  }
+
+  52% {
+    opacity: 0.16;
+    transform: translate3d(0.8rem, -1.7rem, 0) scale(0.82);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate3d(-0.55rem, -3.7rem, 0) scale(0.68);
   }
 }
 
