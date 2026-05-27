@@ -46,6 +46,8 @@ const state = {
   language: "pl",
   soundEnabled: true,
   curiosityOpen: false,
+  screenNoteOpen: false,
+  allowNarrowOpen: false,
   choiceNudge: false,
   languageAnimating: false,
   wakeToken: 0
@@ -58,14 +60,28 @@ const LANGUAGE_FADE_MS = 180;
 const LANGUAGE_ARRIVE_MS = 1080;
 const TABLE_SCENE_IMAGE_SIZE = { width: 1535, height: 1024 };
 const TABLE_SCENE_CANDLE_POINT = { x: 0.923, y: 0.18 };
+const SCENE_ASSETS = [
+  "/assets/scene/premium-tabletop-background-v2.png",
+  "/assets/scene/premium-book-frame-flat-bright-transparent.png",
+  "/assets/scene/premium-book-cover-closed-v1.png"
+];
+const CORE_SOUND_NAMES = ["button", "choice", "ink", "bookOpen", "pageTurn"];
 let sceneAnchorFrame = 0;
 let pendingStoryImageSoundStoryId = "";
+const imagePreloadCache = new Map();
+const scheduledStoryPreloads = new Set();
 
 const els = {
   body: document.body,
   shell: document.querySelector(".storybook-shell"),
   tableScene: document.querySelector(".table-scene"),
   bookCoverStart: document.querySelector("#bookCoverStart"),
+  screenNoteBackdrop: document.querySelector("#screenNoteBackdrop"),
+  screenNoteModal: document.querySelector("#screenNoteModal"),
+  screenNoteTitle: document.querySelector("#screenNoteTitle"),
+  screenNoteBody: document.querySelector("#screenNoteBody"),
+  screenNoteClose: document.querySelector("#screenNoteClose"),
+  screenNoteContinue: document.querySelector("#screenNoteContinue"),
   book: document.querySelector(".book"),
   storyTabs: document.querySelector("#storyTabs"),
   storyKicker: document.querySelector("#storyKicker"),
@@ -103,19 +119,26 @@ const storyAudio = (() => {
     minFadeOutDelayMs: 900
   };
 
-  const sounds = Object.fromEntries(
-    Object.entries(soundMap).map(([name, settings]) => {
-      const audio = new Audio(assetPath(settings.src));
-      audio.preload = "auto";
-      audio.volume = settings.volume;
-      return [name, audio];
-    })
-  );
+  const sounds = new Map();
+
+  function getSound(name, preload = "none") {
+    const settings = soundMap[name];
+    if (!settings) return null;
+    if (sounds.has(name)) return sounds.get(name);
+
+    const audio = new Audio(assetPath(settings.src));
+    audio.preload = preload;
+    audio.volume = settings.volume;
+    if (preload !== "none") audio.load();
+    sounds.set(name, audio);
+    return audio;
+  }
 
   function play(name) {
-    const base = sounds[name];
+    const base = getSound(name, "auto");
     if (!base) return;
     const audio = base.cloneNode();
+    audio.preload = "auto";
     audio.volume = base.volume;
     audio.play().catch(() => {});
   }
@@ -135,7 +158,7 @@ const storyAudio = (() => {
   }
 
   function playFaded(name, options = {}) {
-    const base = sounds[name];
+    const base = getSound(name, "metadata");
     if (!base) return;
 
     const {
@@ -145,6 +168,7 @@ const storyAudio = (() => {
       minFadeOutDelayMs = 700
     } = options;
     const audio = base.cloneNode();
+    audio.preload = "auto";
     const targetVolume = base.volume;
     audio.volume = 0;
     let fadeOutScheduled = false;
@@ -173,6 +197,12 @@ const storyAudio = (() => {
   }
 
   return {
+    primeCore() {
+      CORE_SOUND_NAMES.forEach((name) => getSound(name, "auto"));
+    },
+    primeStory(storyType) {
+      getSound(storyType === "bell" ? "illustrationBell" : "illustrationDragon", "metadata");
+    },
     button() {
       play("button");
     },
@@ -252,6 +282,102 @@ function assetPath(path = "") {
 
 function cssAsset(path) {
   return `url("${assetPath(path)}")`;
+}
+
+function uniqueValues(values) {
+  return [...new Set(values.filter(Boolean))];
+}
+
+function scheduleIdle(callback, timeout = 1800) {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(callback, { timeout });
+    return;
+  }
+
+  window.setTimeout(callback, Math.min(timeout, 800));
+}
+
+function preloadImage(path, { priority = "low" } = {}) {
+  if (!path) return Promise.resolve();
+
+  const url = assetPath(path);
+  if (imagePreloadCache.has(url)) return imagePreloadCache.get(url);
+
+  const image = new Image();
+  image.decoding = "async";
+  image.fetchPriority = priority;
+
+  const preload = new Promise((resolve) => {
+    image.onload = () => resolve(url);
+    image.onerror = () => resolve(url);
+  });
+
+  imagePreloadCache.set(url, preload);
+  image.src = url;
+  return preload;
+}
+
+function preloadImages(paths, options = {}) {
+  uniqueValues(paths).forEach((path) => preloadImage(path, options));
+}
+
+function collectChoiceAssets(variantsByPage = {}) {
+  return Object.values(variantsByPage)
+    .flatMap((variants) => Object.values(variants || {}))
+    .filter((value) => typeof value === "string");
+}
+
+function collectPageArtAssets(page = {}) {
+  return uniqueValues([
+    page.art,
+    ...collectChoiceAssets(page.artByChoice)
+  ]);
+}
+
+function collectStoryArtAssets(story) {
+  return uniqueValues(story.pages.flatMap(collectPageArtAssets));
+}
+
+function preloadAdjacentStoryArt(storyIndex = state.storyIndex) {
+  const story = stories[storyIndex];
+  if (!story) return;
+
+  const indices = [state.pageIndex - 1, state.pageIndex, state.pageIndex + 1]
+    .filter((index) => index >= 0 && index < story.pages.length);
+
+  preloadImages(
+    indices.flatMap((index) => collectPageArtAssets(story.pages[index])),
+    { priority: "low" }
+  );
+}
+
+function scheduleStoryPreload(storyIndex = state.storyIndex) {
+  if (scheduledStoryPreloads.has(storyIndex)) return;
+  scheduledStoryPreloads.add(storyIndex);
+  scheduleIdle(() => {
+    const story = stories[storyIndex];
+    if (story) preloadImages(collectStoryArtAssets(story), { priority: "low" });
+  }, 2600);
+}
+
+function warmInitialAssets() {
+  storyAudio.primeCore();
+  preloadImages(SCENE_ASSETS, { priority: "high" });
+
+  const story = stories[state.storyIndex];
+  const page = story?.pages[state.pageIndex];
+  if (page) {
+    preloadImages(collectPageArtAssets(page), { priority: "high" });
+  }
+
+  stories.forEach((candidateStory) => {
+    const coverArt = candidateStory.pages[0]?.art;
+    if (coverArt) preloadImage(coverArt, { priority: candidateStory.id === story?.id ? "high" : "low" });
+  });
+
+  scheduleIdle(() => {
+    preloadAdjacentStoryArt(state.storyIndex);
+  }, 1200);
 }
 
 function setupSceneAssets() {
@@ -368,6 +494,46 @@ function renderSoundToggle() {
   els.soundToggle.querySelector("span").textContent = state.soundEnabled ? text().soundLabel : text().quietLabel;
 }
 
+function shouldRecommendWiderScreen() {
+  return window.matchMedia("(max-width: 899px), (orientation: portrait) and (max-width: 1024px)").matches;
+}
+
+function renderScreenNoteText() {
+  els.screenNoteTitle.textContent = text().screenNoteTitle;
+  els.screenNoteBody.textContent = text().screenNoteBody;
+  els.screenNoteClose.textContent = text().screenNoteClose;
+  els.screenNoteContinue.textContent = text().screenNoteContinue;
+}
+
+function closeScreenNote({ restoreFocus = true } = {}) {
+  state.screenNoteOpen = false;
+  els.screenNoteBackdrop.hidden = true;
+  els.shell.classList.remove("has-screen-note");
+  if (restoreFocus) {
+    els.bookCoverStart.focus({ preventScroll: true });
+  }
+}
+
+function openScreenNote() {
+  state.screenNoteOpen = true;
+  renderScreenNoteText();
+  els.screenNoteBackdrop.hidden = false;
+  els.shell.classList.add("has-screen-note");
+  window.requestAnimationFrame(() => {
+    els.screenNoteClose.focus({ preventScroll: true });
+  });
+}
+
+function handleScreenRecommendationResize() {
+  if (!shouldRecommendWiderScreen()) {
+    state.allowNarrowOpen = false;
+    els.shell.classList.remove("is-narrow-open-allowed");
+    if (state.screenNoteOpen) {
+      closeScreenNote();
+    }
+  }
+}
+
 function playSound(effect) {
   if (!state.soundEnabled) return;
   storyAudio[effect]?.();
@@ -379,13 +545,21 @@ function playButtonSound() {
 
 function playIllustrationAccent() {
   if (!state.soundEnabled) return;
+  storyAudio.primeStory(currentStory().illustration);
   storyAudio.illustration(currentStory().illustration);
 }
 
 function openBookFromCover() {
   if (!els.shell.classList.contains("is-book-closed")) return;
+  if (shouldRecommendWiderScreen() && !state.allowNarrowOpen) {
+    playButtonSound();
+    openScreenNote();
+    return;
+  }
 
   playSound("bookOpen");
+  scheduleStoryPreload(state.storyIndex);
+  els.shell.classList.toggle("is-narrow-open-allowed", state.allowNarrowOpen);
   els.bookCoverStart.disabled = true;
   els.bookCoverStart.setAttribute("aria-hidden", "true");
   els.shell.classList.add("is-opening-book");
@@ -510,6 +684,7 @@ function renderProgress(story = currentStory()) {
 function renderLanguageSwitch() {
   document.documentElement.lang = state.language;
   renderSoundToggle();
+  renderScreenNoteText();
   els.languageSwitch.setAttribute("aria-label", text().languageLabel);
   els.languageSwitch.querySelectorAll("[data-language]").forEach((button) => {
     const isActive = button.dataset.language === state.language;
@@ -522,6 +697,10 @@ function renderStory() {
   const story = currentStory();
   const page = currentPage();
   const pageDetails = resolvedPage(page);
+
+  preloadImage(pageDetails.art, { priority: "high" });
+  preloadAdjacentStoryArt(state.storyIndex);
+  storyAudio.primeStory(story.illustration);
 
   els.book.classList.toggle("long-story-title", story.title.length > 28);
   renderLanguageSwitch();
@@ -622,7 +801,7 @@ function renderStoryArt(type, art, visuals = [], artAnimation = "") {
     .join("");
 
   return `
-    <img class="story-art-image" src="${escapeAttribute(assetPath(art))}" alt="" aria-hidden="true" />
+    <img class="story-art-image" src="${escapeAttribute(assetPath(art))}" alt="" aria-hidden="true" decoding="async" fetchpriority="high" />
     <span class="story-art-vignette" aria-hidden="true"></span>
     ${overlay}
   `;
@@ -689,7 +868,9 @@ function chooseStory(index) {
   if (index === state.storyIndex) return;
 
   state.storyIndex = index;
+  scheduleStoryPreload(state.storyIndex);
   const story = currentStory();
+  storyAudio.primeStory(story.illustration);
   pendingStoryImageSoundStoryId = story.id;
   state.pageIndex = Math.min(state.bookmarks[story.id] || 0, story.pages.length - 1);
   state.curiosityOpen = false;
@@ -718,6 +899,12 @@ els.storyTabs.addEventListener("click", (event) => {
   if (!button) return;
   chooseStory(Number(button.dataset.story));
 });
+
+els.storyTabs.addEventListener("pointerenter", (event) => {
+  const button = event.target.closest("[data-story]");
+  if (!button) return;
+  scheduleStoryPreload(Number(button.dataset.story));
+}, true);
 
 els.choicePanel.addEventListener("click", (event) => {
   const button = event.target.closest("[data-choice]");
@@ -794,12 +981,27 @@ els.illustrationFrame.addEventListener("keydown", (event) => {
   }
 });
 els.bookCoverStart.addEventListener("click", openBookFromCover);
+els.screenNoteClose.addEventListener("click", () => {
+  playButtonSound();
+  closeScreenNote();
+});
+els.screenNoteContinue.addEventListener("click", () => {
+  playButtonSound();
+  state.allowNarrowOpen = true;
+  closeScreenNote({ restoreFocus: false });
+  openBookFromCover();
+});
 els.candleButton.addEventListener("click", () => {
   playButtonSound();
   els.body.classList.toggle("dimmed");
 });
 
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && state.screenNoteOpen) {
+    closeScreenNote();
+    return;
+  }
+  if (state.screenNoteOpen) return;
   if (event.key === "ArrowLeft") turnPage(-1);
   if (event.key === "ArrowRight") turnPage(1);
   if (event.key === "Escape" && state.curiosityOpen) {
@@ -810,10 +1012,13 @@ document.addEventListener("keydown", (event) => {
 
 setupSceneAssets();
 loadSavedState();
+warmInitialAssets();
 updateSceneCandleAnchor();
 renderStory();
 window.addEventListener("resize", scheduleSceneCandleAnchorUpdate);
+window.addEventListener("resize", handleScreenRecommendationResize);
 window.visualViewport?.addEventListener("resize", scheduleSceneCandleAnchorUpdate);
+window.visualViewport?.addEventListener("resize", handleScreenRecommendationResize);
 new ResizeObserver(scheduleSceneCandleAnchorUpdate).observe(els.tableScene);
 window.setTimeout(() => {
   els.shell.classList.remove("is-entering");

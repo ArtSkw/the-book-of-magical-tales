@@ -9,7 +9,11 @@ export const uiText = {
     soundLabel: "Sound",
     quietLabel: "Quiet",
     soundOn: "Sound on",
-    soundOff: "Sound off"
+    soundOff: "Sound off",
+    screenNoteTitle: "Best opened on a wider screen",
+    screenNoteBody: "This book opens best on a wider screen. Turn your tablet sideways or use a larger screen so the tales, illustrations, and choices can rest comfortably on the pages.",
+    screenNoteClose: "I understand",
+    screenNoteContinue: "Open anyway"
   },
   pl: {
     languageLabel: "Wybierz język",
@@ -21,7 +25,11 @@ export const uiText = {
     soundLabel: "Dźwięk",
     quietLabel: "Cisza",
     soundOn: "Dźwięk włączony",
-    soundOff: "Dźwięk wyłączony"
+    soundOff: "Dźwięk wyłączony",
+    screenNoteTitle: "Najlepiej otwierać na szerszym ekranie",
+    screenNoteBody: "Ta księga najlepiej otwiera się na szerszym ekranie. Obróć tablet poziomo albo usiądź przy większym ekranie, żeby opowieści, ilustracje i wybory zmieściły się wygodnie na stronach.",
+    screenNoteClose: "Rozumiem",
+    screenNoteContinue: "Otwórz mimo to"
   }
 };
 

@@ -42,6 +42,24 @@
           <span class="cover-living-detail cover-dust dust-seven" aria-hidden="true"></span>
           <span class="cover-living-detail cover-dust dust-eight" aria-hidden="true"></span>
         </button>
+        <div class="screen-note-backdrop" id="screenNoteBackdrop" hidden>
+          <section
+            class="screen-note-modal"
+            id="screenNoteModal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="screenNoteTitle"
+            aria-describedby="screenNoteBody"
+          >
+            <span class="screen-note-glow" aria-hidden="true"></span>
+            <h2 id="screenNoteTitle"></h2>
+            <p id="screenNoteBody"></p>
+            <div class="screen-note-actions">
+              <button class="screen-note-button screen-note-primary" id="screenNoteClose" type="button"></button>
+              <button class="screen-note-button screen-note-secondary" id="screenNoteContinue" type="button"></button>
+            </div>
+          </section>
+        </div>
         <div class="book" aria-live="polite">
           <div class="language-switch" id="languageSwitch" aria-label="Choose language">
             <button class="language-option is-active" type="button" data-language="en">EN</button>
