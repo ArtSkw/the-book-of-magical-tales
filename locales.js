@@ -130,11 +130,11 @@ export const storyTranslations = {
           paragraphByChoice: {
             3: {
               lantern: {
-                0: "Gustaw zatknął czerwony proporzec przy ścieżce do młyna, a uniesiona latarnia pokazała najbezpieczniejsze kamienie pod mchem. Materiał poruszył się na wietrze i dał znak wiosce.",
+                0: "Gustaw zatknął czerwony proporzec przy ścieżce do młyna, a uniesiona latarnia pokazała najbezpieczniejsze kamienie pod mchem. Materiał poruszył się na wietrze i dał znak ludziom z wioski.",
                 1: "Dzięki jasnemu światłu zaraz nadszedł młynarz z owczą wełną, piekarka z czystą chustą i wikliniarz z naręczem trzcin pachnących deszczem. Każdy wiedział, gdzie ostrożnie postawić stopę."
               },
               bread: {
-                0: "Gustaw zatknął czerwony proporzec przy ścieżce do młyna, a przy omszałej szczelinie czekały okruszki ciepłego chleba. Materiał poruszył się na wietrze i dał znak wiosce.",
+                0: "Gustaw zatknął czerwony proporzec przy ścieżce do młyna, a przy omszałej szczelinie czekały okruszki ciepłego chleba. Materiał poruszył się na wietrze i dał znak ludziom z wioski.",
                 1: "Zwabione zapachem myszki wysunęły noski, gdy nadszedł młynarz z owczą wełną, piekarka z czystą chustą i wikliniarz z naręczem trzcin pachnących deszczem."
               }
             }
@@ -215,7 +215,7 @@ export const storyTranslations = {
           body: [
             "Mieszkańcy przechodzili przez most jeden po drugim. Każdy zerkał w dół, gdzie przy trzcinach stała nowa mysia kołyska.",
             "Smok położył się na ciepłym kamieniu. Wyglądał teraz na mniejszego niż wtedy, gdy wszyscy się go bali, ale cały czas czuwał w pobliżu.",
-            "Oliwia zrozumiała, że zamknięta droga czasem jest pytaniem. A najlepsza odpowiedź nie polega na parciu do przodu, tylko najpierw słuchaniu i zrozumieniu."
+            "Oliwia zrozumiała, że zamknięta droga czasem wymaga pytania. A najlepsza odpowiedź nie polega na parciu do przodu, tylko najpierw słuchaniu i zrozumieniu."
           ],
           echoes: {
             7: {
@@ -230,7 +230,7 @@ export const storyTranslations = {
                 1: "Smok położył się na ciepłym kamieniu obok liter. Wyglądał teraz na mniejszego niż wtedy, gdy wszyscy się go bali, ale cały czas czuwał w pobliżu."
               },
               "wave-goodnight": {
-                0: "Mieszkańcy przechodzili przez most jeden po drugim, zatrzymując się przy trzech nowych kwiatach ogrzanych sennym smoczym oddechem.",
+                0: "Mieszkańcy przechodzili przez most jeden po drugim, zatrzymując się przy trzech świeżo wyrosłych kwiatach, ogrzanych sennym smoczym oddechem.",
                 1: "Smok położył się na ciepłym kamieniu z jednym okiem przymkniętym. Wyglądał teraz na mniejszego niż wtedy, gdy wszyscy się go bali, ale cały czas czuwał w pobliżu."
               }
             }
@@ -239,7 +239,7 @@ export const storyTranslations = {
         {
           title: "To, co zapamiętała księga",
           body: [
-            "Długo po tym, jak świece przygasły, most wciąż symbolizował to, co tam było: smoka, trzcinową kołyskę i rzeczne myszki śpiące bezpiecznie przy brzegu.",
+            "Długo po tym, jak świece przygasły, most wciąż symbolizował to, co tam zostało: smoka, trzcinową kołyskę i rzeczne myszki śpiące bezpiecznie przy brzegu.",
             "Na ostatniej stronie księga zapisała cicho: siła może osłaniać, odwaga może słuchać, a życzliwość potrafi otworzyć nawet najstarszą drogę.",
             "Koniec."
           ],
@@ -252,11 +252,11 @@ export const storyTranslations = {
           paragraphByChoice: {
             7: {
               "name-promise": {
-                0: "Długo po tym, jak świece przygasły, most wciąż symbolizował to, co tam było: smoka, złote słowa podziękowania i rzeczne myszki śpiące bezpiecznie przy brzegu.",
-                1: "Na ostatniej stronie księga zapisała cicho: siła może osłaniać, odwaga może słuchać, a wdzięczność potrafi sprawić, że stara droga wydaje się nowa."
+                0: "Długo po tym, jak świece przygasły, most wciąż symbolizował to, co tam zostało: smoka, złote słowa podziękowania i rzeczne myszki śpiące bezpiecznie przy brzegu.",
+                1: "Na ostatniej stronie księga zapisała cicho: siła może osłaniać, odwaga może słuchać, a wdzięczność potrafi sprawić, że stara droga ożywa na nowo."
               },
               "wave-goodnight": {
-                0: "Długo po tym, jak świece przygasły, most wciąż symbolizował to, co tam było: smoka, trzy ciepłe kwiaty i rzeczne myszki śpiące bezpiecznie przy brzegu.",
+                0: "Długo po tym, jak świece przygasły, most wciąż symbolizował to, co tam zostało: smoka, trzy świeżo wyrosłe kwiaty i rzeczne myszki śpiące bezpiecznie przy brzegu.",
                 1: "Na ostatniej stronie księga zapisała cicho: siła może osłaniać, odwaga może słuchać, a łagodne pożegnanie potrafi zostawić drogę w spokoju."
               }
             }
@@ -481,11 +481,11 @@ export const storyTranslations = {
           paragraphByChoice: {
             7: {
               "ring-gently": {
-                0: "Długo po kolacji dzwon odpoczywał w wieży nad wioską, a jedna jasna srebrna nuta zdawała się krążyć przy jego naprawionym brzegu.",
+                0: "Długo po kolacji dzwon czuwał w wieży nad wioską, a jedna jasna srebrna nuta zdawała się krążyć przy jego naprawionym brzegu.",
                 1: "Księżycowe Wzgórze zapamiętało, że to, co ciche, nie jest bez znaczenia. Czasem czeka tylko na pomocne dłonie, cierpliwych przyjaciół i jedno ostrożne pociągnięcie ku nowemu początkowi."
               },
               "share-song": {
-                0: "Długo po kolacji dzwon odpoczywał w wieży nad wioską, a melodia nuceniem podjęta przez sąsiadów zdawała się unosić na księżycowym niebie.",
+                0: "Długo po kolacji dzwon czuwał w wieży nad wioską, a melodia nuceniem podjęta przez sąsiadów zdawała się unosić na księżycowym niebie.",
                 1: "Księżycowe Wzgórze zapamiętało, że to, co ciche, nie jest bez znaczenia. Czasem czeka tylko na pomocne dłonie, cierpliwych przyjaciół i łagodną pieśń, ku nowemu początkowi."
               }
             }

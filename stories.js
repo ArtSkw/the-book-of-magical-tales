@@ -134,11 +134,11 @@ export const stories = [
         paragraphByChoice: {
           3: {
             lantern: {
-              0: "Gustaw planted a red pennant by the path to the mill, and the lifted lantern showed the safest stones beneath the moss. The cloth stirred in the wind, giving the village a sign.",
+              0: "Gustaw planted a red pennant by the path to the mill, and the lifted lantern showed the safest stones beneath the moss. The cloth stirred in the wind, giving the people of the village a sign.",
               1: "Thanks to the clear light, the miller soon arrived with sheep's wool, the baker with a clean kerchief, and the basket maker with reeds smelling of rain. Each helper knew where to step."
             },
             bread: {
-              0: "Gustaw planted a red pennant by the path to the mill while crumbs of warm bread waited near the mossy crack. The cloth stirred in the wind, giving the village a sign.",
+              0: "Gustaw planted a red pennant by the path to the mill while crumbs of warm bread waited near the mossy crack. The cloth stirred in the wind, giving the people of the village a sign.",
               1: "Drawn by the scent, the mice poked out their noses as the miller arrived with sheep's wool, the baker with a clean kerchief, and the basket maker with reeds smelling of rain."
             }
           }
@@ -279,7 +279,7 @@ export const stories = [
         body: [
           "The villagers crossed the bridge one by one. Each looked down to where the new mouse cradle rested among the reeds.",
           "The dragon curled on the warm stone. It looked smaller now than when everyone had feared it, but it still kept watch nearby.",
-          "Oliwia understood that a closed road is sometimes a question. And the best answer is not to push forward, but first to listen and understand."
+          "Oliwia understood that a closed road sometimes needs a question. And the best answer is not to push forward, but first to listen and understand."
         ],
         echoes: {
           7: {
@@ -294,7 +294,7 @@ export const stories = [
               1: "The dragon curled on the warm stone near the letters. It looked smaller now than when everyone had feared it, but it still kept watch nearby."
             },
             "wave-goodnight": {
-              0: "The villagers crossed the bridge one by one, pausing beside three new flowers warmed open by the dragon's sleepy breath.",
+              0: "The villagers crossed the bridge one by one, pausing beside three freshly grown flowers warmed open by the dragon's sleepy breath.",
               1: "The dragon curled on the warm stone with one eye half closed. It looked smaller now than when everyone had feared it, but it still kept watch nearby."
             }
           }
@@ -324,7 +324,7 @@ export const stories = [
       {
         title: "What the Book Remembered",
         body: [
-          "Long after the candles burned low, the bridge still stood for what had happened there: a dragon, a reed cradle, and river mice sleeping safely by the bank.",
+          "Long after the candles burned low, the bridge still stood for what remained there: a dragon, a reed cradle, and river mice sleeping safely by the bank.",
           "On the final page, the book wrote quietly: strength can shelter, courage can listen, and kindness can open even the oldest road.",
           "The end."
         ],
@@ -337,11 +337,11 @@ export const stories = [
         paragraphByChoice: {
           7: {
             "name-promise": {
-              0: "Long after the candles burned low, the bridge still stood for what had happened there: a dragon, golden words of thanks, and river mice sleeping safely by the bank.",
-              1: "On the final page, the book wrote quietly that strength can shelter, courage can listen, and gratitude can make an old road feel new."
+              0: "Long after the candles burned low, the bridge still stood for what remained there: a dragon, golden words of thanks, and river mice sleeping safely by the bank.",
+              1: "On the final page, the book wrote quietly that strength can shelter, courage can listen, and gratitude can make an old road come alive again."
             },
             "wave-goodnight": {
-              0: "Long after the candles burned low, the bridge still stood for what had happened there: a dragon, three warm flowers, and river mice sleeping safely by the bank.",
+              0: "Long after the candles burned low, the bridge still stood for what remained there: a dragon, three freshly grown flowers, and river mice sleeping safely by the bank.",
               1: "On the final page, the book wrote quietly that strength can shelter, courage can listen, and a gentle farewell can leave the road peaceful."
             }
           }
@@ -707,15 +707,15 @@ export const stories = [
           }
         },
         paragraphByChoice: {
-          7: {
-            "ring-gently": {
-              0: "Long after supper, the bell rested high above the village, and one clear silver note seemed to linger near its mended rim.",
-              1: "Moonhill remembered that what is quiet is not without meaning. Sometimes it waits for helpful hands, patient friends, and one careful pull toward a new beginning."
-            },
-            "share-song": {
-              0: "Long after supper, the bell rested high above the village, and the melody the neighbors had hummed seemed to float in the moonlit sky.",
-              1: "Moonhill remembered that what is quiet is not without meaning. Sometimes it waits for helpful hands, patient friends, and a gentle song toward a new beginning."
-            }
+            7: {
+              "ring-gently": {
+                0: "Long after supper, the bell kept watch high above the village, and one clear silver note seemed to linger near its mended rim.",
+                1: "Moonhill remembered that what is quiet is not without meaning. Sometimes it waits for helpful hands, patient friends, and one careful pull toward a new beginning."
+              },
+              "share-song": {
+                0: "Long after supper, the bell kept watch high above the village, and the melody the neighbors had hummed seemed to float in the moonlit sky.",
+                1: "Moonhill remembered that what is quiet is not without meaning. Sometimes it waits for helpful hands, patient friends, and a gentle song toward a new beginning."
+              }
           }
         },
         visualByChoice: {
