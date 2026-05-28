@@ -13,7 +13,7 @@ export const stories = [
           "Moss grew between the stones, soft as a green blanket; a brook whispered beneath the arches; and there, in the very middle, sat a small copper dragon. To their surprise, it looked deeply worried.",
           "It did not roar. It did not frighten anyone. It only held its paws beneath its chin and wrapped its tail around one loose stone, as if guarding something very fragile."
         ],
-        art: "/assets/illustrations/dragon-bridge/dragon-tale-intro-raster.png",
+        art: "/assets/illustrations/dragon-bridge/dragon-tale-intro-raster.webp",
         artAnimation: "cover-bridge",
         cue: "lantern",
         visual: "bridge",
@@ -30,7 +30,7 @@ export const stories = [
           "Then from beneath the stones came a tiny sound: peep, peep, peep. The murmur of the brook almost covered it, and the wind stirred the reeds as if they, too, wanted to hear more.",
           "Gustaw did not take a step. He rested his shield against his knee and took a calm breath, and Oliwia did the same, watching the dragon carefully."
         ],
-        art: "/assets/illustrations/dragon-bridge/dragon-tale-smoke-thread-closeup.png",
+        art: "/assets/illustrations/dragon-bridge/dragon-tale-smoke-thread-closeup.webp",
         artAnimation: "smoke-thread",
         cue: "breath",
         visual: "smoke",
@@ -80,8 +80,8 @@ export const stories = [
         },
         artByChoice: {
           1: {
-            ask: "/assets/illustrations/dragon-bridge/dragon-tale-loose-stone-ask-low.png",
-            listen: "/assets/illustrations/dragon-bridge/dragon-tale-loose-stone-listen-low.png"
+            ask: "/assets/illustrations/dragon-bridge/dragon-tale-loose-stone-ask-low.webp",
+            listen: "/assets/illustrations/dragon-bridge/dragon-tale-loose-stone-listen-low.webp"
           }
         },
         artAnimationByChoice: {
@@ -101,7 +101,7 @@ export const stories = [
           "Gustaw held a lantern, Oliwia had half a rye loaf wrapped in linen, and the dragon breathed warmth more gently than one would use a candle flame.",
           "They needed to begin with a small, calm gesture: one that would not frighten the mice and would show the dragon it could trust their company."
         ],
-        art: "/assets/illustrations/dragon-bridge/dragon-tale-warm-little-plan-still-life-revised-2.png",
+        art: "/assets/illustrations/dragon-bridge/dragon-tale-warm-little-plan-still-life-revised-2.webp",
         artAnimation: "warm-plan",
         cue: "lantern",
         visual: "mist",
@@ -157,8 +157,8 @@ export const stories = [
         },
         artByChoice: {
           3: {
-            lantern: "/assets/illustrations/dragon-bridge/dragon-tale-friends-mill-lantern-path.png",
-            bread: "/assets/illustrations/dragon-bridge/dragon-tale-friends-mill-bread-close.png"
+            lantern: "/assets/illustrations/dragon-bridge/dragon-tale-friends-mill-lantern-path.webp",
+            bread: "/assets/illustrations/dragon-bridge/dragon-tale-friends-mill-bread-close.webp"
           }
         },
         artAnimationByChoice: {
@@ -182,7 +182,7 @@ export const stories = [
           "The dragon lowered its snout and warmed it with one tiny breath. The mice blinked, their whiskers trembling, but not one of them ran.",
           "Now the nest had to move from stone to basket. For such a task, hands had to be careful, and hearts calmer still."
         ],
-        art: "/assets/illustrations/dragon-bridge/dragon-tale-basket-bridge-craft.png",
+        art: "/assets/illustrations/dragon-bridge/dragon-tale-basket-bridge-craft.webp",
         artAnimation: "basket-craft",
         cue: "breath",
         visual: "wool",
@@ -236,8 +236,8 @@ export const stories = [
         },
         artByChoice: {
           5: {
-            "basket-maker": "/assets/illustrations/dragon-bridge/dragon-tale-tiny-footsteps-basket-maker.png",
-            "carry-together": "/assets/illustrations/dragon-bridge/dragon-tale-tiny-footsteps-carry-together.png"
+            "basket-maker": "/assets/illustrations/dragon-bridge/dragon-tale-tiny-footsteps-basket-maker.webp",
+            "carry-together": "/assets/illustrations/dragon-bridge/dragon-tale-tiny-footsteps-carry-together.webp"
           }
         },
         artAnimationByChoice: {
@@ -257,7 +257,7 @@ export const stories = [
           "Gustaw's sword shone in its scabbard. Not because anyone had won, but because someone smaller had been helped.",
           "The book rustled one page. It wanted to know what would happen next before the path led the travelers onward toward an inn full of candles."
         ],
-        art: "/assets/illustrations/dragon-bridge/dragon-tale-promise-path.png",
+        art: "/assets/illustrations/dragon-bridge/dragon-tale-promise-path.webp",
         artAnimation: "promise-path",
         cue: "glint",
         visual: "oath",
@@ -307,8 +307,8 @@ export const stories = [
         },
         artByChoice: {
           7: {
-            "name-promise": "/assets/illustrations/dragon-bridge/dragon-tale-lanterns-water-name-promise-revised.png",
-            "wave-goodnight": "/assets/illustrations/dragon-bridge/dragon-tale-lanterns-water-wave-goodnight.png"
+            "name-promise": "/assets/illustrations/dragon-bridge/dragon-tale-lanterns-water-name-promise-revised.webp",
+            "wave-goodnight": "/assets/illustrations/dragon-bridge/dragon-tale-lanterns-water-wave-goodnight.webp"
           }
         },
         artAnimationByChoice: {
@@ -354,8 +354,8 @@ export const stories = [
         },
         artByChoice: {
           7: {
-            "name-promise": "/assets/illustrations/dragon-bridge/dragon-tale-ending-name-promise-revised-2.png",
-            "wave-goodnight": "/assets/illustrations/dragon-bridge/dragon-tale-ending-wave-goodnight-revised.png"
+            "name-promise": "/assets/illustrations/dragon-bridge/dragon-tale-ending-name-promise-revised-2.webp",
+            "wave-goodnight": "/assets/illustrations/dragon-bridge/dragon-tale-ending-wave-goodnight-revised.webp"
           }
         },
         artAnimationByChoice: {
@@ -385,7 +385,7 @@ export const stories = [
           "But that evening the bell tower stayed silent. Families gathered in wool shawls with horn lanterns and turned their eyes and ears toward the place where sound should have come from.",
           "Gustaw laid a hand on his shield, while Oliwia noticed Koniczynka, his patient mare, pointing her nose toward the path to the old orchard, where moths shone like silver leaves."
         ],
-        art: "/assets/illustrations/moonhill-bell/moonhill-quiet-tower.png",
+        art: "/assets/illustrations/moonhill-bell/moonhill-quiet-tower.webp",
         artAnimation: "moonhill-quiet-tower",
         cue: "lantern",
         visual: "tower",
@@ -402,7 +402,7 @@ export const stories = [
           "Oliwia felt a small worry in her belly, but she listened to everyone. The villagers began thinking together about how to help when no sound came from the bell tower.",
           "They could follow the horse's nose toward the silver moths. Or they could ask the village elders whether the mountain wind might have something to do with it."
         ],
-        art: "/assets/illustrations/moonhill-bell/moonhill-two-ways-to-begin.png",
+        art: "/assets/illustrations/moonhill-bell/moonhill-two-ways-to-begin.webp",
         artAnimation: "moonhill-two-ways",
         cue: "banner",
         visual: "orchard",
@@ -452,8 +452,8 @@ export const stories = [
         },
         artByChoice: {
           1: {
-            "follow-clover": "/assets/illustrations/moonhill-bell/moonhill-pear-rope-follow-clover.png",
-            "ask-elders": "/assets/illustrations/moonhill-bell/moonhill-pear-rope-ask-elders.png"
+            "follow-clover": "/assets/illustrations/moonhill-bell/moonhill-pear-rope-follow-clover.webp",
+            "ask-elders": "/assets/illustrations/moonhill-bell/moonhill-pear-rope-ask-elders.webp"
           }
         },
         artAnimationByChoice: {
@@ -477,7 +477,7 @@ export const stories = [
           "The village baker wrapped the lowest rung in cloth, Oliwia watched the fluffy nest, and Koniczynka stood still as if even her tail knew how to keep silence.",
           "The rope had to be freed in the right way. But how could the village be strong and gentle at the same time beside sleeping birds?"
         ],
-        art: "/assets/illustrations/moonhill-bell/moonhill-sleeping-finches.png",
+        art: "/assets/illustrations/moonhill-bell/moonhill-sleeping-finches.webp",
         artAnimation: "moonhill-sleeping-finches",
         cue: "notes",
         visual: "finches",
@@ -533,8 +533,8 @@ export const stories = [
         },
         artByChoice: {
           3: {
-            "move-slowly": "/assets/illustrations/moonhill-bell/moonhill-untangled-rope-move-slowly.png",
-            "steady-ladder": "/assets/illustrations/moonhill-bell/moonhill-untangled-rope-steady-ladder.png"
+            "move-slowly": "/assets/illustrations/moonhill-bell/moonhill-untangled-rope-move-slowly.webp",
+            "steady-ladder": "/assets/illustrations/moonhill-bell/moonhill-untangled-rope-steady-ladder.webp"
           }
         },
         artAnimationByChoice: {
@@ -554,7 +554,7 @@ export const stories = [
           "The carpenter touched the bell with two fingers and nodded. 'There is no use being angry about it. Tonight we will help it find its voice again.'",
           "The villagers joined their strengths: someone knew bells, someone could hold the ladder firmly, and someone simply knew how to give courage when it was needed."
         ],
-        art: "/assets/illustrations/moonhill-bell/moonhill-small-crack.png",
+        art: "/assets/illustrations/moonhill-bell/moonhill-small-crack.webp",
         artAnimation: "moonhill-small-crack",
         cue: "bell",
         visual: "crack",
@@ -608,8 +608,8 @@ export const stories = [
         },
         artByChoice: {
           5: {
-            "invite-smith": "/assets/illustrations/moonhill-bell/moonhill-mending-invite-smith.png",
-            "thank-bell": "/assets/illustrations/moonhill-bell/moonhill-mending-thank-bell.png"
+            "invite-smith": "/assets/illustrations/moonhill-bell/moonhill-mending-invite-smith.webp",
+            "thank-bell": "/assets/illustrations/moonhill-bell/moonhill-mending-thank-bell.webp"
           }
         },
         artAnimationByChoice: {
@@ -629,7 +629,7 @@ export const stories = [
           "The moon shone above the tower. The finches stirred in the orchard, and the children in the square held their breath as if the whole village were listening and patiently waiting.",
           "The book waited for one last gesture. How should everyone welcome the new voice of the bell they all needed?"
         ],
-        art: "/assets/illustrations/moonhill-bell/moonhill-first-new-sound.png",
+        art: "/assets/illustrations/moonhill-bell/moonhill-first-new-sound.webp",
         artAnimation: "moonhill-first-sound",
         cue: "bell",
         visual: "moon",
@@ -679,8 +679,8 @@ export const stories = [
         },
         artByChoice: {
           7: {
-            "ring-gently": "/assets/illustrations/moonhill-bell/moonhill-softer-ring-ring-gently.png",
-            "share-song": "/assets/illustrations/moonhill-bell/moonhill-softer-ring-share-song.png"
+            "ring-gently": "/assets/illustrations/moonhill-bell/moonhill-softer-ring-ring-gently.webp",
+            "share-song": "/assets/illustrations/moonhill-bell/moonhill-softer-ring-share-song.webp"
           }
         },
         artAnimationByChoice: {
@@ -726,8 +726,8 @@ export const stories = [
         },
         artByChoice: {
           7: {
-            "ring-gently": "/assets/illustrations/moonhill-bell/moonhill-last-ring-ring-gently.png",
-            "share-song": "/assets/illustrations/moonhill-bell/moonhill-last-ring-share-song.png"
+            "ring-gently": "/assets/illustrations/moonhill-bell/moonhill-last-ring-ring-gently.webp",
+            "share-song": "/assets/illustrations/moonhill-bell/moonhill-last-ring-share-song.webp"
           }
         },
         artAnimationByChoice: {
