@@ -73,27 +73,28 @@ Recommendation: during the responsive polish pass, raise compact controls toward
 
 ## Asset Inventory
 
-Current local `public/assets` inventory:
+Current local `public/assets` inventory after the WebP optimization pass:
 
 | Group | Size | Notes |
 | --- | ---: | --- |
-| Dragon Bridge illustrations | ~45 MB | 15 PNG images, most around 2.8-3.2 MB. |
-| Moonhill Bell illustrations | ~45 MB | 15 PNG images, most around 2.8-3.2 MB. |
-| Tracked scene layers | ~8.3 MB | Table, open book frame, closed cover. |
+| Dragon Bridge illustrations | ~6.1 MB | 15 WebP images, most around 375-500 KB. |
+| Moonhill Bell illustrations | ~6.3 MB | 15 WebP images, most around 330-515 KB. |
+| Tracked scene layers | ~1.1 MB | Table, open book frame, closed cover, all WebP. |
 | Audio | ~4.3 MB | Largest files are story-image sounds. |
-| Total public assets, local | ~105 MB | Includes untracked local source/reference files currently inside `public`. |
+| Total public assets, local | ~17 MB | Runtime/public assets only. Original PNGs are archived locally outside `public`. |
 
 Largest asset pattern:
 
-- Story illustrations are `1448 x 1086` PNGs.
-- Scene layers are around `1535 x 1024` or `1619 x 971`.
-- Most story PNGs are around `3 MB` each.
+- Story illustrations are `1448 x 1086` WebP files generated from the original PNGs.
+- Scene layers are around `1535 x 1024` or `1619 x 971`, now served as WebP.
+- Most story WebPs are around `0.35-0.5 MB` each.
 - `dragon-story-image-sound.wav` is about `1.9 MB`.
 - `moonhill-story-image-sound.wav` is about `1.5 MB`.
 
 Local-only cleanup note:
 
 - `premium-book-cover-closed-v1-source.png` was moved out of `public` into ignored `local-assets/scene/`, so it remains available locally without being served.
+- The original runtime PNG art and scene files were archived into ignored `local-assets/original-png-assets/` after WebP variants were generated.
 - `.DS_Store` files were removed from `public`.
 - Future source/reference files should live outside `public` so they are not accidentally served.
 

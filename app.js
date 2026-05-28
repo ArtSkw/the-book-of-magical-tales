@@ -61,9 +61,9 @@ const LANGUAGE_ARRIVE_MS = 1080;
 const TABLE_SCENE_IMAGE_SIZE = { width: 1535, height: 1024 };
 const TABLE_SCENE_CANDLE_POINT = { x: 0.923, y: 0.18 };
 const SCENE_ASSETS = [
-  "/assets/scene/premium-tabletop-background-v2.png",
-  "/assets/scene/premium-book-frame-flat-bright-transparent.png",
-  "/assets/scene/premium-book-cover-closed-v1.png"
+  "/assets/scene/premium-tabletop-background-v2.webp",
+  "/assets/scene/premium-book-frame-flat-bright-transparent.webp",
+  "/assets/scene/premium-book-cover-closed-v1.webp"
 ];
 const CORE_SOUND_NAMES = ["button", "choice", "ink", "bookOpen", "pageTurn"];
 let sceneAnchorFrame = 0;
@@ -148,7 +148,8 @@ const storyAudio = (() => {
 
     function tick(now) {
       const progress = Math.min((now - startedAt) / duration, 1);
-      audio.volume = from + (to - from) * progress;
+      const volume = from + (to - from) * progress;
+      audio.volume = Math.max(0, Math.min(1, volume));
       if (progress < 1) {
         window.requestAnimationFrame(tick);
       }
@@ -383,15 +384,15 @@ function warmInitialAssets() {
 function setupSceneAssets() {
   document.documentElement.style.setProperty(
     "--tabletop-background",
-    cssAsset("/assets/scene/premium-tabletop-background-v2.png")
+    cssAsset("/assets/scene/premium-tabletop-background-v2.webp")
   );
   document.documentElement.style.setProperty(
     "--book-frame-background",
-    cssAsset("/assets/scene/premium-book-frame-flat-bright-transparent.png")
+    cssAsset("/assets/scene/premium-book-frame-flat-bright-transparent.webp")
   );
   document.documentElement.style.setProperty(
     "--book-cover-background",
-    cssAsset("/assets/scene/premium-book-cover-closed-v1.png")
+    cssAsset("/assets/scene/premium-book-cover-closed-v1.webp")
   );
 }
 
