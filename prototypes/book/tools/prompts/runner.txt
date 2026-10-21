@@ -1,0 +1,5 @@
+REF: textile-ref.png
+The attached image is a STYLE reference only (a woven runner in an old painting). Create a NEW image: a flat, top-down, evenly lit TEXTURE of a woven medieval tapestry table runner, landscape 3:2, with the long axis horizontal, the textile filling the whole canvas edge to edge.
+Colours: deep madder red ground, ochre and old gold, indigo blue, cream and dark brown, slightly faded.
+Pattern: a wide central band of repeating stylised flowers, rosettes and vines; along the top and bottom edges narrow borders of small geometric motifs (lozenges, diamonds, little crosses) separated by thin stripes. The pattern must repeat seamlessly from the left edge to the right edge.
+Visible woven threads and weave texture, a little worn. No fringe, no folds, no wrinkles, no perspective, no shadows, no background, no text.

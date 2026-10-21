@@ -10,6 +10,7 @@
     "validate:stories": "node validate-stories.js"
   },
   "devDependencies": {
+    "three": "^0.186.1",
     "vite": "^7.1.12"
   }
 }

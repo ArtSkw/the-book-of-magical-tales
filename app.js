@@ -427,6 +427,7 @@ function translatedPage(page, translation = {}) {
 
   translated.echoes = mergeChoiceMap(page.echoes, translation.echoes);
   translated.paragraphByChoice = mergeChoiceMap(page.paragraphByChoice, translation.paragraphByChoice);
+  translated.curiosityNoteByChoice = mergeChoiceMap(page.curiosityNoteByChoice, translation.curiosityNoteByChoice);
   return translated;
 }
 
@@ -725,7 +726,7 @@ function renderStory() {
     state.curiosityOpen = false;
   }
   renderCuriosityNote(page, false);
-  els.curiosityNoteButton.hidden = !page.curiosityNote;
+  els.curiosityNoteButton.hidden = !pageNote(page);
   renderNavigationState(story, page);
   els.restartStory.hidden = !pageDetails.ending;
 
@@ -735,8 +736,13 @@ function renderStory() {
   playPendingStoryImageSoundWhenImageLoads(story, pageDetails);
 }
 
+// The page's "Did you know" note, which may depend on an earlier choice.
+function pageNote(page) {
+  return choiceVariant(page.curiosityNoteByChoice) || page.curiosityNote;
+}
+
 function renderCuriosityNote(page = currentPage(), animate = false) {
-  const note = page.curiosityNote;
+  const note = pageNote(page);
   if (!note) {
     state.curiosityOpen = false;
     els.curiosityCard.hidden = true;

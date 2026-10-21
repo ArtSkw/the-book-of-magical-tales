@@ -1,0 +1,38 @@
+REFS: m-sheet-heroes.png, m-sheet-moonhill.png, pentiment-stylesheet.png, pentiment-farm.png, tone-dragon-bridge-p4.png, tone-dragon-bridge-p5.png, set-moonhill.png
+SIZE: 1536x1024, landscape. The picture fills the whole canvas edge to edge, no border.
+
+STYLE — OPTION A v2, "Pentiment manuscript": drawn exactly in the manner of the game Pentiment (see the attached Pentiment references: the character style sheet on parchment, Andreas in the red cap, the farmyard scene in the book frame), for a premium children's picture book (ages 4–8).
+LINE: a confident, near-black brown ink line (#2b1d14) of slightly varying weight around every shape, like a dip pen: bold on figures, thinner in the distance. A few economical interior lines (fold lines, fingers, eyelids) — not dense hatching.
+COLOUR: a SIMPLE, RESTRAINED, MUTED palette — about eight to ten colours for the whole picture, slightly desaturated and earthy, like mineral pigments on old paper: warm parchment cream, ochre, brick red, muted sage and olive greens, grey-olive stone, soft slate blue-grey, warm browns, the characters' fixed colours. Each shape is filled with ONE transparent watercolour wash of its local colour, with natural mottling, pigment granulation and soft blooms inside the shape, and at most one darker wash for its shadow side. Warm parchment paper grain shows through everywhere. No saturated orange sunset, no glowing sky, no rich gradients, no glossy highlights, no dramatic lighting — light is calm and even, the time of day is suggested only by a pale sky wash.
+SIMPLIFICATION: like Pentiment, backgrounds are simplified and calm: trees as rounded cluster shapes with a few leaf marks, grass as a flat wash with a few strokes, hills as flat bands, sky as one pale flat wash with a few simple cloud shapes. Detail is concentrated on the characters and the key object; the rest stays quiet and readable. Still a finished, carefully composed illustration — never empty, never sketchy.
+FIGURES: Pentiment proportions and faces — simple, warm, expressive; small dark eyes with a clear upper lid, simple straight noses, rosy cheeks as a soft wash; never anime, never big shiny eyes, never caricature.
+TONE CONSISTENCY: the whole book shares the colour balance of the attached TONE REFERENCES (two approved pages of this book): natural, gently warm, balanced — muted earthy colours, but not washed out or faded. The time of day (given in the scene) only makes the picture a little darker and cooler; it never adds sunset oranges or pinks, glowing skies or a different palette.
+GOLD: burnished gold leaf as flat ochre-gold (#c9972b) with a slightly brighter band and a crisp ink edge, used sparingly for magic and lantern light.
+Perspective is believable and logical but lightly flattened like a medieval miniature. Never photographic, never 3D-render, never digital painting with soft airbrushed shading. Absolutely no text, letters, numbers, runes or signatures anywhere.
+
+CHARACTERS (match the attached sheets for identity):
+Sir Gustaw — a young knight of about twenty: chin-length wavy blond hair, no beard, long oval face. Grey mail shirt to mid-thigh over grey hose, grey knee plates, tall brown boots, a sword always sheathed in a brown scabbard at his left hip. Red cloak (#8a3a2c) clasped at the right shoulder with a round gold brooch. Red kite shield (#9b2f2a) with a golden rampant griffin.
+Oliwia — a girl of about nine, two heads shorter than Gustaw (her head reaches his chest): long wavy chestnut-brown hair past her waist with a thin braid around the crown, dark brows, oval face; ankle-length teal-green dress (#3f7d78) with narrow gold trim at neck, cuffs and hem; a brown leather satchel on a strap across her chest; brown ankle boots; small tan hands.
+Koniczynka — Gustaw's gentle cream-white palfrey mare: flaxen mane and tail, soft grey muzzle, dark kind eyes, a red caparison cloth with a narrow gold border over her back, a brown leather bridle. Calm and curious.
+The baker — a round, cheerful clean-shaven man of about forty, white cap, cream shirt, white apron dusted with flour.
+The blacksmith — a strong woman of about thirty, dark hair in a braid wrapped round her head, slate-blue dress under a sooty leather apron, a small hammer.
+The carpenter — a man of about thirty-five, long brown hair tied back, brown beard, rust-brown tunic with rolled sleeves, leather apron.
+Villagers of Moonhill — a few families in wool shawls and hoods with small horn lanterns, and their children.
+
+SET — the square (must match the attached location sheet): a cobbled, roughly round village square on a hilltop with a stone well with a small tiled roof in the middle, timber-framed houses with steep thatched and red-tiled roofs and small square windows around it, chimney smoke.
+SET — the bell tower (must match the location sheet): a slender tower, the lower two-thirds of rough grey stone, on top a timber-framed belfry with FOUR open round-arched windows, a steep red-tiled pyramid roof with a small iron crescent-moon weathervane; one iron-studded wooden door at the foot of the front (south) face; on the back (north) face, high at the belfry, one green-grey wooden shutter.
+STATE: the bell is mended: across the old crack on its rim sits a short row of exactly three small shining rivets.
+STATE: a thin crescent moon (the same crescent seen through the belfry windows earlier that night) rides high above the tower — never a full moon.
+TIME (colour script): night; deep muted blue-grey sky (never black) with small gold-dot stars; the darkest page, cool; figures keep their full colours, softly lit.
+
+CAMERA: the default view, a visual rhyme with page 1 — in the square, south of the tower, looking north; wider and a little higher than page 1.
+
+SCENE (page 9, "The Bell Sounds Different", variant ring-gently): night, the thin crescent moon high above the tower. The whole village is gathered in the square around the well — parents, children, elders, the baker, the blacksmith, the carpenter, Gustaw, Oliwia and Koniczynka — and the baker gently pulls the rope at the tower door; the bell's soft voice is shown only as three or four thin, flat gold-leaf rings drifting from the belfry over the roofs. The villagers listen with quiet smiles; Koniczynka, very proud, has a white smudge of flour on her nose. Warm lantern light in the windows.
+
+TEXT IT ILLUSTRATES: "The bell rang more softly than before, but its voice was clear and sweet. It did not reach across the whole valley, yet it filled the village from window to window."
+COUNTS: the named people plus a few families; one tower; one moon; one mare.
+NEGATIVES: no text, no musical-note symbols, no letters; no fireworks; no black sky.
+
+QUALITY: clear focal point readable at a glance by a 5-year-old; detail concentrated on the characters and the key object; calm simplified background; finished, never sketchy or empty.
+
+REFERENCE ROLES: the Pentiment references define the drawing style, line and level of simplification — follow them closely. The TONE REFERENCES (two finished pages of this book: the kneeling scene on the bridge and the helpers walking onto the bridge) define the colour balance and warmth every picture must share. The character sheets define identity, costume and colours of each character only (re-draw them in the Pentiment manner). The location sheet defines ONLY the shape and layout of the place — the square, the bell tower, the pear tree, the belfry, the buildings — which must match it exactly; ignore its colours, they are washed out. Never copy a composition from a reference.

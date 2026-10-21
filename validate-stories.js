@@ -1,4 +1,5 @@
 import { stories } from "./stories.js";
+import { storyTranslations } from "./locales.js";
 import { illustrationCatalog } from "./illustrationCatalog.js";
 import { renderedVisuals } from "./illustrations.js";
 
@@ -8,6 +9,14 @@ const EXPECTED_PARAGRAPHS = 3;
 const EXPECTED_CHOICE_PAGES = [2, 4, 6, 8];
 const MIN_CURIOSITY_NOTES = 3;
 const MAX_CURIOSITY_NOTES = 4;
+
+// What fits under the 5:4 plate on a right page of the 3D book (prototypes/book/pageArt.js, PLATE),
+// in every language: one line per choice label, at most two lines of response, a note of at most
+// four lines. Measured in EB Garamond at the book's sizes; checked for English and each translation.
+const CHOICE_OPTIONS = 2;
+const MAX_CHOICE_LABEL = 38;
+const MAX_CHOICE_RESPONSE = 120;
+const MAX_NOTE_BODY = 220;
 
 const errors = [];
 
@@ -58,7 +67,8 @@ for (const story of stories) {
     addError(story, `expected exactly one ending page, got ${endingPages.length}`);
   }
 
-  const curiosityNotes = story.pages.filter((page) => page.curiosityNote);
+  // a note may also depend on an earlier choice (curiosityNoteByChoice): that page still has one note
+  const curiosityNotes = story.pages.filter((page) => page.curiosityNote || page.curiosityNoteByChoice);
   if (curiosityNotes.length < MIN_CURIOSITY_NOTES) {
     addError(story, `expected at least ${MIN_CURIOSITY_NOTES} curiosity notes, got ${curiosityNotes.length}`);
   }
@@ -91,9 +101,7 @@ for (const story of stories) {
       } else {
         if (!page.curiosityNote.title) addError(story, `${label} curiosityNote missing title`);
         if (!page.curiosityNote.body) addError(story, `${label} curiosityNote missing body`);
-        if (page.curiosityNote.body && page.curiosityNote.body.length > 280) {
-          addError(story, `${label} curiosityNote should stay short`);
-        }
+        // its length is checked with the book limits below, for every language
       }
     }
 
@@ -175,6 +183,55 @@ for (const story of stories) {
 
   if (JSON.stringify(actualChoicePages) !== JSON.stringify(EXPECTED_CHOICE_PAGES)) {
     addError(story, `expected choice pages ${EXPECTED_CHOICE_PAGES.join(", ")}, got ${actualChoicePages.join(", ") || "none"}`);
+  }
+
+  checkBookLimits(story);
+}
+
+// The notes of a page as [where, note]: its own note and every note chosen by an earlier choice.
+function notesOf(page) {
+  const out = [];
+  if (isPlainObject(page.curiosityNote)) out.push(["curiosityNote", page.curiosityNote]);
+  for (const [sourcePage, variants] of Object.entries(page.curiosityNoteByChoice || {})) {
+    for (const [choiceId, note] of Object.entries(variants || {})) out.push([`curiosityNoteByChoice ${sourcePage}/${choiceId}`, note]);
+  }
+  return out;
+}
+
+// Content limits of the 3D book's plate pages, for English (stories.js) and each translation
+// (locales.js), resolved the way prototypes/book/story.js does it: a translated field replaces
+// the English one, choices are merged option by option.
+function checkBookLimits(story) {
+  const languages = [["en", () => ({})], ...Object.entries(storyTranslations).map(([lang, tales]) => [lang, (i) => tales[story.id]?.pages?.[i] || {}])];
+  for (const [lang, translated] of languages) {
+    story.pages.forEach((base, index) => {
+      const tr = translated(index);
+      const label = `[${lang}] page ${index + 1}`;
+      const choices = (base.choices || []).map((choice, i) => ({ ...choice, ...(tr.choices?.[i] || {}) }));
+      if (tr.choices && tr.choices.length !== (base.choices || []).length) {
+        addError(story, `${label} has ${tr.choices.length} translated choices for ${(base.choices || []).length} options`);
+      }
+      if (choices.length && choices.length !== CHOICE_OPTIONS) {
+        addError(story, `${label} has ${choices.length} choice options; the book's plate holds exactly ${CHOICE_OPTIONS}`);
+      }
+      choices.forEach((choice, i) => {
+        if (choice.label && choice.label.length > MAX_CHOICE_LABEL) {
+          addError(story, `${label} choice ${i + 1} label is ${choice.label.length} chars (max ${MAX_CHOICE_LABEL}, one line on the seal): "${choice.label}"`);
+        }
+        if (choice.response && choice.response.length > MAX_CHOICE_RESPONSE) {
+          addError(story, `${label} choice ${i + 1} response is ${choice.response.length} chars (max ${MAX_CHOICE_RESPONSE}, two lines): "${choice.response}"`);
+        }
+      });
+      const notes = notesOf({ curiosityNote: tr.curiosityNote || base.curiosityNote, curiosityNoteByChoice: tr.curiosityNoteByChoice || base.curiosityNoteByChoice });
+      for (const [where, note] of notes) {
+        if (note?.body && note.body.length > MAX_NOTE_BODY) {
+          addError(story, `${label} ${where} is ${note.body.length} chars (max ${MAX_NOTE_BODY}, four lines under the plate)`);
+        }
+      }
+      if (choices.length && notes.length) {
+        addError(story, `${label} has choices and a curiosity note; under the plate there is room for one or the other (the note would be left out)`);
+      }
+    });
   }
 }
 
