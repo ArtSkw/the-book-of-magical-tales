@@ -63,7 +63,8 @@ Kind, authored, never anime: almond eyes with a visible upper lid and a dark-bro
 4. **None** (SPOT/vignette): true transparency; the group stands on at most a small tuft of grass or a patch of stone that belongs to the silhouette.
 
 ### 1.7 Gold and magic — painted as objects, never as lines
-- **Dragon's breath**: one small, flat, opaque cloud of burnished gold leaf (`#c9972b` with a `#f3c76a` band), with a punched-dot pattern and a crisp ink contour like any other object; "small enough to fit in a milk cup" relative to the snout. It is a shape with a round, slightly scalloped edge. Never a stream, thread, wisp, ribbon, vector line, smoke trail, sparkle or transparent haze.
+- **Dragon's breath** (user, 2026-10-21; replaces the earlier flat gold-leaf cloud): soft translucent wisps of warm golden air with a fine gold-leaf edge, curling, thinning and dissolving like breath on a frosty morning (`BREATH` in `_build_a2.py`). Never round cloud icons, flower or blossom shapes, dots, sparks, rays, lines or threads. Warmed stones glow amber from inside.
+- **A tune — humming, a song, a lullaby** (user, 2026-10-24): a light, airy scatter of about eight tiny gold-leaf notes in the manner of a medieval chant book (square and lozenge note heads, a few with one thin stem; no staff, no modern clefs or quavers) with a few tiny four-pointed gold sparkles, floating loosely and far apart and fading away (`MELODY` in `_build_moonhill.py`). Never a ribbon, line or thread: next to a bell rope it reads as a second rope. A bell's ring alone may still be drawn as a few wide, soft waves of warm air.
 - **Lantern light / warmed things glowing**: a flat pale-gold field (`#f3c76a`) with a crisp edge, optionally rayed with 6–8 short straight gold strokes like a manuscript sun. Light "lies on" stones as a flat shape. No gradients, no lens flare, no light rays as thin lines, no cast shadows.
 - **Warmed stone** (p3): a flat pale-gold halo ring around the stone, like a nimbus.
 - **The sword "shone"** (p8): one small flat gold four-pointed star on the pommel. That is the whole glint.
@@ -72,6 +73,11 @@ Kind, authored, never anime: almond eyes with a visible upper lid and a dark-bro
 
 ### 1.8 Forbidden (goes into every prompt as negatives)
 Text, letters, numbers, runes, signatures, watermarks · any figure not listed in the counts · any animal not listed (no birds, no horse, no dog) · gradients, airbrush, modelling, photographic texture, 3D-render look, depth-of-field blur, bokeh, fish-eye distortion · sparkles, lens flare, light rays as lines, smoke threads · anime, chibi, caricature, teeth, open-mouth grins · drawn weapons, raised weapons, fire, flames · black night, cluttered backgrounds, perspective grids · parchment margins or border ornament inside plates · the dragon with spread wings, a spade-tipped tail, red eyes or a giant size.
+
+### 1.8a Continuity of bodies and buildings (user, 2026-10-24)
+- A structure stays whole: a parapet, wall, deck or tower runs on unbroken behind and past any figure. It is hidden only where something really stands in front of it, and it never fades out or stops where a figure lies.
+- Every figure is drawn whole and countable: two legs and two feet on a ladder, never a limb melting into a trunk or wall. A person holds one stick, staff or tool, never a doubled copy of it (one for leaning, one for pointing).
+- The dragon's head reads as **two-horned**: two long swept-back horns plus a pair of very short stubs in front, less than a third of their length. Never three long horns.
 
 ### 1.9 Readability rule
 Every image is judged cold at 320 px wide: the key object must be the clearest thing, the counts must be countable, the smallest meaningful detail (a mouse's eye, a crumb) is at least 3 px at that size. Eye-lines of all figures converge on the key object.
@@ -134,13 +140,13 @@ Seven shots. Each stays a manuscript image: same contour, same flat colour, same
 | 4 | **HIGH** — table-top, bird's eye | A plan, an offering, things laid out; choice pages where two options must be shown without resolving | Seen straight from above like a map; the ground (stone blocks) is the background; hands and snouts enter from the edges; objects in plan view | Like a diagram or a "table" miniature; hands drawn with 2–3 lines; light as a flat disc |
 | 5 | **LOW** — child's / mouse's eye | The small ones' point of view; a journey measured in paws | Eye at ground level, horizon at the top quarter, stones as big blocks, people cut at the waist by the top edge (hems, boots, loads as kind shapes), mice in the foreground | No distortion; flat colour; big simple shapes; counts stay safe because faces are out of frame |
 | 6 | **DETAIL** — hands and the object | The careful task; "hands had to be careful" | Tight crop around one object; hands from the edges; no faces; flat-field or diaper ground | The object gets the densest marks (weave, wool, griffin); everything else is calm flat colour |
-| 7 | **SPOT** — vignette | Choice pages that need no setting; the ending; anything that lives next to the text | Transparent ground, the group composed as one silhouette, soft irregular edge, at most a tuft of grass as a base | A drollery grown up: pure cut-out on cream |
+| 7 | **SPOT** — vignette | Only small ornaments beside the text (tailpieces, drolleries). Never a story scene: a scene is a `plate` or a `full` portrait, and a tale's last page is the closing emblem (see Layouts) | Transparent ground, the group composed as one silhouette, soft irregular edge, at most a tuft of grass as a base | A drollery grown up: pure cut-out on cream |
 
 Reserved, not used in this tale: **THRESHOLD** (framed through a doorway or arch) — for tales with interiors; the inn at the end of p8 is its cue for the next tale.
 
 Rhythm rules: no two consecutive pages share a shot (checked along both reading paths); a variant pair keeps the same shot unless the choice itself changes whose point of view we take (p5: big ones vs small ones); CLOSE and SPOT never carry the heavy story beats alone; every tale has at least one WIDE at the start and one near the end.
 
-Layouts: `full` = right page, portrait 2:3, 1024×1536 (book adds margin). `plate` = framed plate on the right page, 1536×1024 or 1024×1024, gold frame line inside the image. `vignette` = 1024×1024 transparent PNG, no frame.
+Layouts (page rule, user 2026-10-21; it overrides the older page cards below): the left page carries text only. The right page is either a `plate` — 1536×1024, shown as a 5:4 crop, with the choices or a "Did you know" note under it — or a `full` portrait, 2:3, 1024×1536, when nothing sits under the picture. The layout follows from the content (choices or note → plate, otherwise full). The one exception is a tale's last page: a `vignette` spread carrying the closing emblem, a gold illuminated roundel made as the pair of the title emblem (`emblem()` in the prompt builders). Transparent cut-out scenes are never used. `prototypes/prompts/_build_a2.py` rejects any other scene layout, and `validate-stories.js` rejects a vignette spread on any page other than the ending.
 
 ---
 
@@ -299,6 +305,8 @@ Visual rhyme with page 1: same side view, same `full` format, nightfall, the bri
 - **Text:** PL „smoka, trzy świeżo wyrosłe kwiaty i rzeczne myszki śpiące bezpiecznie przy brzegu" · EN "a dragon, three freshly grown flowers, and river mice sleeping safely by the bank".
 
 ### Summary table
+
+> Historical (pilot, 2026-10-19). The current shots, layouts and prompts live in `prototypes/prompts/_build_a2.py`, `prototypes/prompts/_build_moonhill.py` and `src/book/pages.js`. The SPOT/vignette rows below are superseded by the page rule in the Layouts section.
 
 Note (2026-10-19): the face limit is now 3–4 characters per scene. The cards for p3 (both), p5 bread, p7 (both) and p8 still use the old faceless framing and are to be widened when they are generated — e.g. p7 shows the helpers and heroes around the cradle, not only their hands; p8 shows Gustaw and Oliwia with the dragon, not only a belt and hilt.
 

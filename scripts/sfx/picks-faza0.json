@@ -1,0 +1,14 @@
+{
+  "exportedAt": "2026-10-24T22:59:40.273Z",
+  "modelsShown": true,
+  "verdict": { "model": "same", "motif": "sfx" },
+  "general": "",
+  "sounds": {
+    "seal-press": { "picked": [{ "file": "seal-press/seal-press--sfx-v2-t01.wav", "model": "sfx-v2", "label": "Wersja B" }], "note": "" },
+    "page-turn-a": { "picked": [{ "file": "page-turn-a/page-turn-a--sfx-v2-t01.wav", "model": "sfx-v2", "label": "Wersja A" }], "note": "" },
+    "db-bed-evening": { "picked": [{ "file": "db-bed-evening/db-bed-evening--sfx-v2-t01.wav", "model": "sfx-v2", "label": "Wersja B" }], "note": "" },
+    "choice-motif": { "picked": [{ "file": "choice-motif/choice-motif--sfx-v3-t02.wav", "model": "sfx-v3", "label": "Wersja B" }], "note": "" },
+    "choice-motif-music": { "picked": [{ "file": "choice-motif-music/choice-motif-music--music-v2-t01.mp3", "model": "music-v2", "label": "Wersja A" }], "note": "" },
+    "harp-pluck": { "picked": [{ "file": "harp-pluck/harp-pluck--sfx-v3-t01.wav", "model": "sfx-v3", "label": "Wersja A" }], "note": "" }
+  }
+}

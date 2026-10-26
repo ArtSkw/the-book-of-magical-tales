@@ -1,0 +1,12 @@
+{
+  "sheet": "redo2",
+  "exportedAt": "2026-10-25T21:19:52.031Z",
+  "verdict": {},
+  "general": "",
+  "sounds": {
+    "ribbon-silk": { "picked": [{ "file": "raw/ribbon-silk-r2a/ribbon-silk-r2a--sfx-v3-t01.wav", "model": "sfx-v3", "role": "ribbon-silk-r2a" }], "ship": 1, "note": "" },
+    "quill-rewrite": { "picked": [{ "file": "raw/quill-rewrite-r2a/quill-rewrite-r2a--sfx-v2-t02.wav", "model": "sfx-v2", "role": "quill-rewrite-r2a" }], "ship": 1, "note": "" },
+    "cover-open": { "picked": [{ "file": "raw/cover-open-r2a/cover-open-r2a--sfx-v2-t01.wav", "model": "sfx-v2", "role": "cover-open-r2a" }], "ship": 1, "note": "" },
+    "room-bed": { "picked": [{ "file": "raw/room-bed-r2a/room-bed-r2a--sfx-v3-t02.wav", "model": "sfx-v3", "role": "room-bed-r2a" }], "ship": 1, "note": "" }
+  }
+}

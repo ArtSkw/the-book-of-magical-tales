@@ -9,10 +9,10 @@ Every tale should follow the project rules in `BRIEF.md`:
 - 9-10 pages, preferably 10.
 - 3 short paragraphs per page.
 - Choice pages on pages 2, 4, 6, and 8.
-- Every page needs `title`, `body`, `cue`, `visual`, `choices`.
+- Every page needs `title`, `body`, `choices`.
 - Every page needs a distinct illustration composition. Page 1 can be a cover-like wide tableau; later pages should vary between close-ups, medium scenes, detail vignettes, low views, object-focused images, group scenes, and final tableaux.
 - Page 10 should be the ending page, have no choices, and end with `"Koniec."` in Polish and `"The end."` in English.
-- All `visual` and `visualByChoice` IDs must exist in `illustrationCatalog.js`.
+- Every page's pictures, each choice variant included, are listed in the tale's spread manifest in `src/book/pages.js`, and the tale with its ribbon in `src/book/tales.js`; `npm run validate:stories` checks that every picture exists under `public/`.
 - Choices should be kind, valid, nonviolent, and softly acknowledged later.
 - Every consequence page with `echoes` should also include `paragraphByChoice` variants that replace at least two paragraphs for each possible choice.
 - Each tale should include 3-4 optional `curiosityNote` entries, shown as "Czy wiesz, że...?" / "Did you know...?" popovers. Three is the minimum; add a fourth only when the story has a genuinely worthwhile topic.
@@ -106,7 +106,6 @@ When adding or rewriting a tale:
   shortTitle: "Ribbon Title",
   title: "The Full Tale Title",
   kicker: "A tale of ...",
-  illustration: "new-illustration-family",
   pages: [
     {
       title: "Page One Title",
@@ -115,8 +114,6 @@ When adding or rewriting a tale:
         "Paragraph two: character feeling, discovery, dialogue, or complication.",
         "Paragraph three: concrete consequence, next action, or setup for what matters."
       ],
-      cue: "lantern",
-      visual: "page-one-visual",
       choices: [],
       curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
     },
@@ -127,8 +124,6 @@ When adding or rewriting a tale:
         "Paragraph two.",
         "Paragraph three that invites a kind choice."
       ],
-      cue: "breath",
-      visual: "page-two-visual",
       choices: [
         {
           id: "choice-a",
@@ -167,14 +162,6 @@ When adding or rewriting a tale:
           }
         }
       },
-      visualByChoice: {
-        1: {
-          "choice-a": "visual-for-choice-a",
-          "choice-b": "visual-for-choice-b"
-        }
-      },
-      cue: "lantern",
-      visual: "page-three-visual",
       choices: [],
     },
     {
@@ -184,8 +171,6 @@ When adding or rewriting a tale:
         "Paragraph two.",
         "Paragraph three."
       ],
-      cue: "banner",
-      visual: "page-four-visual",
       choices: [
         {
           id: "choice-c",
@@ -213,14 +198,6 @@ When adding or rewriting a tale:
           "choice-d": "Because you chose action D, a different helper or detail changes."
         }
       },
-      visualByChoice: {
-        3: {
-          "choice-c": "visual-for-choice-c",
-          "choice-d": "visual-for-choice-d"
-        }
-      },
-      cue: "notes",
-      visual: "page-five-visual",
       choices: [],
     },
     {
@@ -230,8 +207,6 @@ When adding or rewriting a tale:
         "Paragraph two.",
         "Paragraph three."
       ],
-      cue: "glint",
-      visual: "page-six-visual",
       choices: [
         {
           id: "choice-e",
@@ -259,14 +234,6 @@ When adding or rewriting a tale:
           "choice-f": "Because you chose action F, understanding deepens that way."
         }
       },
-      visualByChoice: {
-        5: {
-          "choice-e": "visual-for-choice-e",
-          "choice-f": "visual-for-choice-f"
-        }
-      },
-      cue: "lantern",
-      visual: "page-seven-visual",
       choices: [],
     },
     {
@@ -276,8 +243,6 @@ When adding or rewriting a tale:
         "Paragraph two.",
         "Paragraph three."
       ],
-      cue: "bell",
-      visual: "page-eight-visual",
       choices: [
         {
           id: "choice-g",
@@ -304,14 +269,6 @@ When adding or rewriting a tale:
           "choice-h": "Because you chose gesture H, the resolution reflects it."
         }
       },
-      visualByChoice: {
-        7: {
-          "choice-g": "visual-for-choice-g",
-          "choice-h": "visual-for-choice-h"
-        }
-      },
-      cue: "notes",
-      visual: "page-nine-visual",
       choices: [],
     },
     {
@@ -327,14 +284,6 @@ When adding or rewriting a tale:
           "choice-h": "Because you chose gesture H, the final page remembers it."
         }
       },
-      visualByChoice: {
-        7: {
-          "choice-g": "visual-for-choice-g",
-          "choice-h": "visual-for-choice-h"
-        }
-      },
-      cue: "glint",
-      visual: "page-ten-visual",
       choices: [],
       ending: true
     }

@@ -31,8 +31,12 @@ Gustaw and Oliwia: as in `MANUSCRIPT_BIBLE.md` §2.2–2.3 (red kite shield with
 - Page 3 onward: the rope is visible tangled in the pear tree; from page 5 it is free and hangs inside the tower again.
 - Page 6: the hair-thin crack on the bell's rim, on the side facing the **east** window.
 - Page 7: mended — a short row of **three small shining rivets** across the crack (`invite-smith` variant shows the blacksmith working them; both variants end with the rivets).
-- Pages 6–10: one night, one moon: a **thin crescent** (as on the location sheet). It shows in the belfry windows on 6–7, rises over the tower on 8 and rides high on 9–10. Never a full moon.
+- Pages 6–10: one night, one moon: a **thin crescent** (as on the location sheet). It shows in the belfry windows on 6–7, peeps out from a small cloud beside the tower on 8 and rides high on 9–10. Never a full moon.
 - Pages 8–10: the bell has its rivets.
+- Page 5 `lullaby`: Oliwia and Gustaw hum the finches a lullaby (one thin gold-leaf ribbon of melody, no note symbols); the smallest chick hums in its sleep.
+- Page 7 `thank-bell` = "remember the bell's name" (Wieczornica): the villagers lay their hands on the bell and whisper it; no letters on the bell.
+- Page 10 `ring-gently`: three small silver moths (silver-white, gold-leaf edge), one on each rivet; `share-song`: the finches in the nest, the tune they learned.
+- Pages 1, 6, 8 are 5:4 plates (a note or choices sit under them); 3 stays a portrait.
 
 ## 4. Colour script
 

@@ -1,0 +1,107 @@
+{
+  "sheet": "redo3",
+  "exportedAt": "2026-10-25T23:21:02.557Z",
+  "verdict": {},
+  "general": "",
+  "sounds": {
+    "mh-bed-tower": {
+      "picked": [
+        {
+          "file": "raw/mh-bed-tower-r3a/mh-bed-tower-r3a--sfx-v2-t01.wav",
+          "model": "sfx-v2",
+          "role": "mh-bed-tower-r3a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "mh-bed-square-evening": {
+      "picked": [
+        {
+          "file": "raw/mh-bed-square-evening-r3a/mh-bed-square-evening-r3a--sfx-v3-t01.wav",
+          "model": "sfx-v3",
+          "role": "mh-bed-square-evening-r3a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "mh-bed-orchard-evening": {
+      "picked": [
+        {
+          "file": "raw/mh-bed-orchard-evening-r3a/mh-bed-orchard-evening-r3a--sfx-v3-t01.wav",
+          "model": "sfx-v3",
+          "role": "mh-bed-orchard-evening-r3a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "db-bed-evening": {
+      "picked": [
+        {
+          "file": "raw/db-bed-evening-r3a/db-bed-evening-r3a--sfx-v3-t01.wav",
+          "model": "sfx-v3",
+          "role": "db-bed-evening-r3a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "db-bed-dusk": {
+      "picked": [
+        {
+          "file": "raw/db-bed-dusk-r3b/db-bed-dusk-r3b--sfx-v3-t01.wav",
+          "model": "sfx-v3",
+          "role": "db-bed-dusk-r3b"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "db-bed-deepdusk": {
+      "picked": [
+        {
+          "file": "raw/db-bed-deepdusk-r3a/db-bed-deepdusk-r3a--sfx-v2-t01.wav",
+          "model": "sfx-v2",
+          "role": "db-bed-deepdusk-r3a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "db-bed-night": {
+      "picked": [
+        {
+          "file": "raw/db-bed-night-r3a/db-bed-night-r3a--sfx-v2-t01.wav",
+          "model": "sfx-v2",
+          "role": "db-bed-night-r3a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "bell-intro-theme": {
+      "picked": [
+        {
+          "file": "raw/bell-intro-r3c/bell-intro-r3c--music-v2-t01.mp3",
+          "model": "music-v2",
+          "role": "bell-intro-r3c"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "bell-ending-theme": {
+      "picked": [
+        {
+          "file": "raw/bell-ending-r3c/bell-ending-r3c--music-v2-5-t01.mp3",
+          "model": "music-v2-5",
+          "role": "bell-ending-r3c"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    }
+  }
+}

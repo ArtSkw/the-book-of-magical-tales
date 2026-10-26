@@ -88,7 +88,7 @@ Update:
 
 - `stories.js` for English text and shared story metadata
 - `locales.js` for Polish text and UI-localized fields
-- `illustrationCatalog.js` for new visual IDs
+- `src/book/pages.js` for the tale's spread manifest (its pictures) and `src/book/tales.js` for its ribbon
 - `docs/TALE_TEMPLATE.md` only if the story reveals a reusable rule
 
 Use placeholder or existing fallback art at this stage. The point is to verify structure and layout before committing to final illustrations.

@@ -1,8 +1,9 @@
-# Assets of the 3D book scene (`prototypes/book.html`)
+# Assets of the 3D book scene (`index.html`, `src/book/`)
 
 Every third-party file here is **CC0 1.0 (public domain)**; no attribution is required, but sources
 are recorded so they can be re-downloaded or swapped. Everything else in this folder was made for
-this project (generated or baked by script). Total payload of this folder: about 5.2 MB.
+this project (generated or baked by script). Textures and models: about 5.2 MB; the sounds in
+`sound/` are listed with their sources in `scripts/sfx/` (`picks.json`, `manifest.json`).
 
 ## Third-party (CC0)
 
@@ -36,12 +37,13 @@ work as textures; no lettering was generated, all text is set at runtime in EB G
 
 | File | How it was made |
 | --- | --- |
-| `textures/cover_diff.webp` (1024×1436) | generated: tooled dark-brown leather front board with gold filigree, enamel flowers and an empty cartouche (style reference: the 2D cover `public/assets/scene/premium-book-cover-closed-v1.webp`); resized to the board's aspect. The title is drawn into the cartouche at runtime (`book.js`, `coverMaps`) |
+| `textures/cover_diff.webp` (1024×1436) | generated: tooled dark-brown leather front board with gold filigree, enamel flowers and an empty cartouche (style reference: the cover of the earlier 2D edition, `public/assets/scene/premium-book-cover-closed-v1.webp`, now only in git history); resized to the board's aspect. The title is drawn into the cartouche at runtime (`book.js`, `coverMaps`) |
 | `textures/cover_nor.webp`, `cover_orm.webp` | derived from the cover art with numpy/PIL: a gold mask (hue/saturation/value) drives metalness 0.95 and roughness 0.3; enamel is glossy; height from the gold and enamel masks plus fine leather grain → OpenGL normal map, blended with the leather normal. ORM = (AO 1, roughness, metalness). At runtime the title is embossed into the normal map and made metallic in the ORM |
 | `textures/parchment.webp` (1024×1413) | generated: handmade rag paper (fibres, soft formation, faint foxing); calmed, warmed and aged towards the edges with numpy/PIL. Drawn under the text of every page (`pageArt.js`) |
 | `textures/parchment_nor.webp` | derived from the parchment: fibre relief (high-passed luminance → normal map) for the 3D page material |
 | `textures/runner_diff.webp` (1024×768) | generated: woven medieval tapestry runner (madder red, ochre, indigo); made to tile left–right by cross-fading the ends |
 | `textures/feather.webp` (256×1113, alpha) | generated: a single quill feather on flat black; alpha keyed from the black background |
+| `textures/room_wall.webp` (1536×1024) | generated: the far wall of the chamber behind the desk, a hearth, shelves and a door (`prototypes/prompts/room-wall.txt`); blurred out of focus, darkened towards its edges by `prototypes/book/tools/bake_room.py` |
 
 Baked procedurally with numpy/PIL (the brown leather above as grain):
 
@@ -49,7 +51,6 @@ Baked procedurally with numpy/PIL (the brown leather above as grain):
 | --- | --- |
 | `textures/boardin_diff/nor/orm.webp` | inside of the boards: leather turn-ins with two gold fillets, a dotted roll with lozenges and a blind-tooled line, laid out for the board size in `book.js` (`SQUARE`, `HINGE`, `RAD`) |
 | `textures/spine_diff/nor/orm.webp` | spine: gold rules and beading at the five raised bands (`SPINE_BANDS` in `book.js`), fleurons in the panels |
-| `textures/backdrop.webp` | painted with PIL (moonlit arched window, shelves, hanging herbs) and blurred; the far wall of the study |
 
 Built in code at runtime (no files): the book geometry (rounded boards, brass corner pieces, clasps,
 raised-band spine, page blocks with draped gilded fore-edges, curling pages, the pool of leaves that
@@ -60,18 +61,20 @@ tapered ink-stained shaft, stood in the inkwell's neck), pewter inkwell, key, fo
 wax seal, instanced lavender bundles, the runner's fringe, dust motes, page typography and
 ornaments.
 
-The four silk ribbon bookmarks (`prototypes/book/ribbons.js`, one per tale in `tales.js`) are also
+The four silk ribbon bookmarks (`src/book/ribbons.js`, one per tale in `tales.js`) are also
 made at runtime: colour and roughness/metalness maps drawn on a canvas per ribbon (warp streaks,
 woven selvedges, a gold-thread motif — flame, bell, star, trefoil — and a swallow-tail cut with a
 few loose threads in alpha), a procedural taffeta-rib normal map, a physical silk material (sheen,
 slight anisotropy) and a soft contact-shadow strip. The generic printed pages glimpsed on the
 riffling leaves are drawn at runtime in EB Garamond (pseudo-words), like every other page.
 
-The on-screen controls of `prototypes/book.html` reuse `textures/leather_diff.webp` (Poly Haven
+The on-screen controls of `index.html` reuse `textures/leather_diff.webp` (Poly Haven
 "Brown Leather", CC0, above) as the grain of their leather plaques; no other files were added for
 them (gilt, icons and the gold-leaf thumb are CSS and inline SVG).
 
-Font: EB Garamond (SIL Open Font License 1.1), loaded from Google Fonts, not stored here.
+Font: EB Garamond (SIL Open Font License 1.1, `public/fonts/OFL.txt`), the variable-font files
+Google Fonts serves (v33, font version 1.003), self-hosted in `public/fonts/`: the latin subsets as
+served, the latin-ext subsets trimmed to Latin Extended-A (pyftsubset) for Polish.
 
 Illustrations shown on the pages are the project's own art from `public/assets/illustrations/v2/`
-(see `prototypes/book/pages.js`), not part of this folder.
+(see `src/book/pages.js`), not part of this folder.

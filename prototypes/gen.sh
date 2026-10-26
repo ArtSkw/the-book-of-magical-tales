@@ -7,7 +7,7 @@ id="$1"; out="$root/raw/$id.png"
 first="$(head -1 "$root/prompts/$id.txt")"
 images=()
 IFS=',' read -ra refs <<<"${first#REFS:}"
-for r in "${refs[@]}"; do r="$(echo "$r" | xargs)"; [ -n "$r" ] && images+=(-i "$root/refs/$r"); done
+for r in ${refs[@]+"${refs[@]}"}; do r="$(echo "$r" | xargs)"; [ -n "$r" ] && images+=(-i "$root/refs/$r"); done
 brief="$(tail -n +2 "$root/prompts/$id.txt")"
 codex exec --skip-git-repo-check -s workspace-write -C "$root" ${images[@]+"${images[@]}"} - <<PROMPT
 You are producing one illustration asset. Attached images (if any) are references whose roles are explained in the brief.

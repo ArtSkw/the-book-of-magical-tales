@@ -10,7 +10,7 @@ jobs = set(sys.argv[3:])
 os.makedirs(out, exist_ok=True)
 kb = lambda p: f"{os.path.getsize(p) // 1024} KB"
 
-# Book dimensions (must match prototypes/book/book.js)
+# Book dimensions (must match src/book/book.js)
 W, D, SQUARE, HINGE, R = 1.0, 1.38, 0.058, 0.012, 0.006
 BW, BD = W + SQUARE + HINGE, D + SQUARE * 2           # board
 CW, CH = 1024, int(round(1024 * (BD - 2 * R) / (BW - 2 * R)))  # cover / inner-face texture

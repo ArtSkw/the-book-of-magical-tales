@@ -1,35 +1,19 @@
 export const uiText = {
   en: {
-    languageLabel: "Choose language",
     pageCount: (page, total) => `Page ${page} of ${total}`,
-    savedPage: (page) => `p. ${page}`,
-    choiceHint: "Choose a kind action, then turn the page to see what changes.",
-    curiosityNote: "Did you know...?",
+    choiceHint: "Decide what to do and continue the story.",
     restartStory: "Begin again",
     soundLabel: "Sound",
-    quietLabel: "Quiet",
     soundOn: "Sound on",
-    soundOff: "Sound off",
-    screenNoteTitle: "Best opened on a wider screen",
-    screenNoteBody: "This book opens best on a wider screen. Turn your tablet sideways or use a larger screen so the tales, illustrations, and choices can rest comfortably on the pages.",
-    screenNoteClose: "I understand",
-    screenNoteContinue: "Open anyway"
+    soundOff: "Sound off"
   },
   pl: {
-    languageLabel: "Wybierz język",
     pageCount: (page, total) => `Strona ${page} z ${total}`,
-    savedPage: (page) => `s. ${page}`,
-    choiceHint: "Wybierz dobry gest, a potem przewróć stronę, by zobaczyć, co się zmieni.",
-    curiosityNote: "Czy wiesz, że...?",
+    choiceHint: "Zdecyduj, co zrobić, i kontynuuj historię.",
     restartStory: "Zacznij od nowa",
     soundLabel: "Dźwięk",
-    quietLabel: "Cisza",
     soundOn: "Dźwięk włączony",
-    soundOff: "Dźwięk wyłączony",
-    screenNoteTitle: "Najlepiej otwierać na szerszym ekranie",
-    screenNoteBody: "Ta księga najlepiej otwiera się na szerszym ekranie. Obróć tablet poziomo albo usiądź przy większym ekranie, żeby opowieści, ilustracje i wybory zmieściły się wygodnie na stronach.",
-    screenNoteClose: "Rozumiem",
-    screenNoteContinue: "Otwórz mimo to"
+    soundOff: "Dźwięk wyłączony"
   }
 };
 
@@ -44,14 +28,14 @@ export const storyTranslations = {
           title: "Nieoczekiwane spotkanie",
           body: [
             "Pod wieczór rycerz Gustaw i mała Oliwia doszli do starego kamiennego mostu. Od niepamiętnych czasów chodziły po nim konie objuczone sakwami, młynarze z workami mąki i dzieci, które niosły mleko do wioski.",
-            "Między kamieniami rósł mech, miękki jak zielona derka, a pod jedynym łukiem szemrał potok. Na samym środku mostu siedział nieduży miedziany smok. Wcale nie wyglądał groźnie. Wyglądał na zmartwionego.",
+            "Między kamieniami rósł mech, miękki jak zielona derka, a pod jedynym łukiem szemrał potok. Na samym środku mostu siedział miedziany smok. Jak na smoka był nieduży, mniej więcej wielkości konia. Wcale nie wyglądał groźnie. Wyglądał na zmartwionego.",
             "Nie ryczał i nikogo nie straszył. Siedział prosto, z przednimi łapami opartymi o murek, a ogonem otulał jeden obluzowany kamień, jakby strzegł czegoś bardzo kruchego."
           ],
         },
         {
-          title: "Cichy głos spod mostu",
+          title: "Mała niespodzianka",
           body: [
-            "Smok westchnął i wypuścił z nozdrzy obłoczek tak mały, że zmieściłby się w kubku na mleko. Obłoczek miał złote brzegi i opadał pod most powoli, bardzo powoli.",
+            "Smok westchnął i wypuścił z nozdrzy obłoczek tak mały, że zmieściłby się w kubku na mleko. Obłoczek miał złote brzegi i opadał na obluzowany kamień powoli, bardzo powoli.",
             "Wtedy spod kamieni dobiegło cichutkie: pi, pi, pi. Potok szumiał tak, że prawie je zagłuszył, a trzciny pochyliły się na wietrze, jakby też chciały posłuchać.",
             "Gustaw nie zrobił ani kroku. Oparł tarczę o kolano i odetchnął spokojnie. Oliwia odetchnęła razem z nim i nie spuszczała ze smoka oczu."
           ],
@@ -62,7 +46,7 @@ export const storyTranslations = {
             },
             {
               label: "Poczekaj i posłuchaj",
-              response: "W ciszy Oliwia usłyszy najcichsze piśnięcie spod mostu."
+              response: "W ciszy Oliwia usłyszy najcichsze piśnięcie spod kamienia."
             }
           ],
         },
@@ -70,8 +54,8 @@ export const storyTranslations = {
           title: "Kamień z sekretem",
           body: [
             "Oliwia uklękła przy krawędzi mostu i zobaczyła gniazdko rzecznych myszek, wciśnięte między mech, wapno i korzonki trawy.",
-            "Najmniejsza myszka schowała się za kamykiem ogrzanym smoczym oddechem. Smok bał się, że ciężkie buty zatrzęsą mostem i wypłoszą maleńką rodzinę z kryjówki.",
-            "Smok nie zamknął drogi dla kaprysu. Most miał swój sekret, a smok pilnował tych, którzy są za mali, żeby sami zawołać o pomoc."
+            "Najmniejsza myszka schowała się za kamieniem ogrzanym smoczym oddechem. Smok bał się, że każdy krok na moście wypłoszy maleńką rodzinę z kryjówki.",
+            "Smok nie zamknął drogi dla kaprysu. Obluzowany kamień chybotał się pod każdym krokiem, a razem z nim drżało gniazdko. Ktoś musiał pilnować tych, którzy są za mali, żeby sami zawołać o pomoc."
           ],
           echoes: {
             1: {
@@ -83,21 +67,21 @@ export const storyTranslations = {
             1: {
               ask: {
                 0: "Kiedy Oliwia łagodnie zapytała, co się stało, smok stuknął pazurem w obluzowany kamień i ostrożnie uchylił jego brzeg.",
-                1: "Pod spodem Oliwia zobaczyła gniazdko rzecznych myszek, wciśnięte między mech, wapno i korzonki trawy. Najmniejsza myszka schowała się za kamykiem ogrzanym smoczym oddechem."
+                1: "Pod spodem Oliwia zobaczyła gniazdko rzecznych myszek, wciśnięte między mech, wapno i korzonki trawy. Najmniejsza myszka schowała się za kamieniem ogrzanym smoczym oddechem."
               },
               listen: {
                 0: "Oliwia czekała w ciszy tak długo, aż piśnięcie odezwało się znowu. Dochodziło z brzegu mostu, gdzie mech przykrywał wąską szczelinę między kamieniami.",
-                1: "W środku było gniazdko rzecznych myszek, wciśnięte między wapno i korzonki trawy. Najmniejsza myszka drżała za kamykiem ogrzanym smoczym oddechem."
+                1: "W środku było gniazdko rzecznych myszek, wciśnięte między wapno i korzonki trawy. Najmniejsza myszka drżała za kamieniem ogrzanym smoczym oddechem."
               }
             }
           },
         },
         {
-          title: "Plan dla małych myszek",
+          title: "Pierwszy mały gest",
           body: [
             "Wieczór robił się chłodny, a znad potoku podnosiła się mgła, biała jak wstążka. W omszałej szczelinie myszki drżały i ruszały wąsikami.",
             "Gustaw trzymał latarnię, Oliwia pół bochenka żytniego chleba zawiniętego w lniane płótno, a smok chuchał ciepłem tak delikatnie, że nie zgasiłby nawet świecy.",
-            "Trzeba było zacząć od czegoś małego i spokojnego. Od gestu, który nie spłoszy myszek, a smokowi pokaże, że może im zaufać."
+            "Trzeba było zacząć od czegoś małego i spokojnego. Od gestu, który nie spłoszy myszek, a smokowi pokaże, że może zaufać wędrowcom."
           ],
           choices: [
             {
@@ -111,16 +95,16 @@ export const storyTranslations = {
           ],
         },
         {
-          title: "Pomoc nadchodzi z młyna",
+          title: "Czerwony proporzec",
           body: [
             "Gustaw zatknął czerwony proporzec przy ścieżce do młyna. Proporzec załopotał na wietrze i ludzie we wsi zobaczyli, że na moście dzieje się coś ważnego.",
             "Wkrótce nadszedł młynarz z naręczem owczej wełny, piekarka z czystą chustą i wikliniarz z pękiem trzcin pachnących deszczem. Każde z nich niosło coś innego.",
-            "Nikt się nie śmiał, że to taka mała sprawa. Wioska, która umie zatroszczyć się o maleńkie stworzenia, poradzi sobie i z wielkimi sprawami."
+            "Nikt się nie śmiał, że to taka mała sprawa."
           ],
           echoes: {
             3: {
-              lantern: "Latarnia świeciła wysoko, więc pomocnicy widzieli, gdzie bezpiecznie stanąć.",
-              bread: "Chleb został podzielony, więc myszki odważyły się wyjrzeć."
+              lantern: "Gustaw uniósł latarnię wysoko, więc pomocnicy widzieli, gdzie bezpiecznie stanąć.",
+              bread: "Oliwia podzieliła się chlebem, więc myszki odważyły się wyjrzeć."
             }
           },
           paragraphByChoice: {
@@ -130,7 +114,7 @@ export const storyTranslations = {
                 1: "Wkrótce nadszedł młynarz z naręczem owczej wełny, piekarka z czystą chustą i wikliniarz z pękiem trzcin pachnących deszczem. W jasnym świetle każde wiedziało, gdzie ostrożnie postawić stopę."
               },
               bread: {
-                0: "Gustaw zatknął czerwony proporzec przy ścieżce do młyna, a przy omszałej szczelinie czekały okruszki ciepłego chleba. Proporzec załopotał i dał znak ludziom we wsi.",
+                0: "Gustaw zatknął czerwony proporzec przy ścieżce do młyna, a przy omszałej szczelinie czekały okruszki chleba. Proporzec załopotał i dał znak ludziom we wsi.",
                 1: "Myszki poczuły zapach chleba i wysunęły noski akurat wtedy, gdy nadchodzili młynarz z owczą wełną, piekarka z czystą chustą i wikliniarz z trzcinami pachnącymi deszczem."
               }
             }
@@ -151,7 +135,7 @@ export const storyTranslations = {
         {
           title: "Kołyska z trzciny i mchu",
           body: [
-            "Wikliniarz uplótł kołyskę z trzcin, wełny i suchego mchu. Wyszła okrągła jak łupinka orzecha i lekka jak wiosenny liść.",
+            "Wikliniarz uplótł kołyskę z trzcin, wełny i suchego mchu, a piekarka wyścieliła ją swoją czystą chustą. Kołyska wyszła okrągła jak łupinka orzecha i lekka jak wiosenny liść.",
             "Smok pochylił pysk i ogrzał ją jednym maleńkim chuchnięciem. Myszki mrugały, wąsiki im drżały, ale żadna nie uciekła.",
             "Teraz gniazdko musiało przenieść się z kamienia do kołyski. Do takiej przeprowadzki potrzeba ostrożnych rąk i jeszcze spokojniejszych serc."
           ],
@@ -182,24 +166,24 @@ export const storyTranslations = {
           paragraphByChoice: {
             5: {
               crumbs: {
-                0: "Oliwia pokruszyła skórkę chleba i ułożyła z okruszków ścieżkę od szczeliny aż do kołyski. Pierwsza myszka szła okruszek po okruszku, aż weszła na wełnę. Za nią druga. Najmniejsza zatrzymywała się przy każdym okruszku i zjadała go do ostatniego.",
+                0: "Oliwia pokruszyła skórkę chleba i ułożyła z okruszków ścieżkę od szczeliny aż do kołyski. Pierwsza myszka szła okruszek po okruszku, aż weszła na wełnę. Za nią druga. Najmniejsza zatrzymywała się przy każdym okruszku i zjadała go do ostatniej okruszyny.",
                 1: "„Już dobrze” – szepnęła Oliwia. Kiedy wszystkie trzy siedziały w środku, wikliniarz ostrożnie podniósł kołyskę, a Gustaw podsunął pod nią tarczę, żeby nikt nie spadł."
               },
               "warm-path": {
-                0: "Smok pochylił się nad mostem i chuchnął na kamienie, jeden po drugim, od szczeliny aż do kołyski. Kamienie zrobiły się ciepłe i zalśniły złotawo. Pierwsza myszka przeszła po nich jak po dywanie i weszła na wełnę. Za nią druga.",
+                0: "Smok pochylił się nad murkiem i chuchnął na kamienie, jeden po drugim, od szczeliny aż do kołyski. Kamienie nagrzały się i zajaśniały bursztynowo, jak węgielki, które już nie parzą. Pierwsza myszka przeszła po nich jak po dywanie i weszła na wełnę. Za nią druga.",
                 1: "Najmniejsza ruszyła na końcu, a smok prowadził ją ciepłym nosem. Kiedy wszystkie trzy siedziały w środku, wikliniarz ostrożnie podniósł kołyskę, a Gustaw podsunął pod nią tarczę, żeby nikt nie spadł."
               }
             }
           },
           curiosityNote: {
             title: "Czy wiesz, że...?",
-            body: "Z trzciny plecie się nie tylko kosze. Dawniej kryto nią dachy chat, a dobrze ułożony trzcinowy dach chronił dom przed deszczem nawet przez kilkadziesiąt lat."
+            body: "Badylarka, najmniejsza polska mysz, waży tyle co moneta. Wysoko w trzcinach plecie okrągłe gniazdko z żywych źdźbeł, a ogonkiem trzyma się łodyg jak piątą łapką."
           },
         },
         {
           title: "Obietnica na starym moście",
           body: [
-            "Kiedy myszki były już bezpieczne, smok zszedł z drogi. Most znów stał otworem, ale nikt nie przebiegł przez niego w pośpiechu.",
+            "Kiedy myszki były już bezpieczne, smok zszedł z drogi i most znów stał otworem. Oliwia obiecała smokowi, że w gospodzie poprosi wszystkich wędrowców, żeby szli przez most łagodnie. A młynarz przyrzekł, że nazajutrz za mostowe osadzi obluzowany kamień na nowo.",
             "Miecz Gustawa zalśnił w pochwie. Nie dlatego, że ktoś wygrał bitwę. Dlatego, że ktoś mniejszy dostał pomoc.",
             "Księga zaszeleściła kartką. Chciała jeszcze zobaczyć, jak się pożegnają, zanim ścieżka zaprowadzi wędrowców do gospody pełnej świec."
           ],
@@ -215,11 +199,11 @@ export const storyTranslations = {
           ],
         },
         {
-          title: "Most znów jest otwarty",
+          title: "Na palcach przez most",
           body: [
             "Mieszkańcy wioski przechodzili przez most jeden po drugim. Każdy zerkał w dół, tam gdzie wśród trzcin stała nowa mysia kołyska.",
             "Smok zwinął się na ciepłym kamieniu. Wydawał się teraz mniejszy niż wtedy, gdy wszyscy się go bali, ale wciąż czuwał w pobliżu.",
-            "Oliwia zrozumiała, że zamknięta droga czasem czeka na pytanie. I że zanim się ruszy naprzód, najlepiej najpierw posłuchać."
+            "Oliwia zrozumiała, że zamknięta droga czasem czeka na pytanie. I że zanim się ruszy naprzód, najlepiej posłuchać."
           ],
           echoes: {
             7: {
@@ -231,11 +215,11 @@ export const storyTranslations = {
             7: {
               "name-promise": {
                 0: "Smok podarował mostowi jedną ze swoich miedzianych łusek i ciepłym oddechem osadził ją w murku, tuż przy dawnym mysim domu. Nocą łuska świeciła jak mała latarenka. Każdy, kto przechodził przez most, zwalniał przy niej kroku i stąpał na palcach.",
-                1: "Smok czuwał przy kołysce z otwartymi oczami. Nie musiał już zamykać drogi, bo most sam przypominał wszystkim: idź łagodnie, tu mieszkają mali."
+                1: "Smok czuwał przy kołysce z otwartymi oczami. Nie musiał już zamykać drogi, bo most sam przypominał wszystkim: idź łagodnie, tuż obok mieszkają mali."
               },
               "wave-goodnight": {
                 0: "Smok mrugnął sennie, zwinął się wokół kołyski i zasnął, pierwszy raz od dnia, w którym obluzował się kamień. Mieszkańcy przechodzili przez most na paluszkach i uciszali się nawzajem szeptem, żeby go nie obudzić.",
-                1: "Z każdym sennym oddechem z nozdrzy smoka ulatywał złoty obłoczek. Obłoczki krążyły nad kołyską jak ciepłe świetliki, a myszki spały w cieple przez całą noc."
+                1: "Z każdym sennym oddechem z nozdrzy smoka ulatywała smużka złotego ciepła. Otulała kołyskę i powoli rozpływała się w ciemności, a myszki spały w cieple aż do rana."
               }
             }
           },
@@ -264,7 +248,7 @@ export const storyTranslations = {
                 1: "Na ostatniej stronie księga zapisała cichutko: siła może osłaniać, odwaga może słuchać, a wdzięczność zostawia po sobie światło dla innych."
               },
               "wave-goodnight": {
-                0: "Długo po tym, jak w gospodzie zgasły świece, przy starym moście spał smok. Obok niego, w trzcinowej kołysce, spały rzeczne myszki, a nad nimi unosiły się złote obłoczki smoczego snu.",
+                0: "Długo po tym, jak w gospodzie zgasły świece, przy starym moście spał smok. Obok niego, w trzcinowej kołysce, spały rzeczne myszki, a nad nimi rozpływały się złote smużki ciepłego, sennego oddechu.",
                 1: "Na ostatniej stronie księga zapisała cichutko: siła może osłaniać, odwaga może słuchać, a nawet najwierniejszy strażnik może spokojnie zasnąć, kiedy wie, że nie jest sam."
               }
             }
@@ -282,17 +266,17 @@ export const storyTranslations = {
           body: [
             "Na Księżycowym Wzgórzu wieczorny dzwon co dzień wołał ludzi do domów. Odzywał się wtedy, gdy z kominów szedł niebieskawy dym, a kury szukały w zagrodach swoich grzęd.",
             "Tego wieczoru dzwonnica milczała. Rodziny wyszły na plac w wełnianych chustach, z rogowymi latarniami w rękach, i wszyscy patrzyli w górę, nasłuchując.",
-            "Gustaw położył dłoń na tarczy. Oliwia zauważyła tymczasem, że Koniczynka, jego cierpliwa klacz, wyciąga pysk ku ścieżce do starego sadu, gdzie ćmy połyskiwały jak srebrne listki."
+            "Gustaw też zadarł głowę. Oliwia zauważyła tymczasem, że Koniczynka, jego cierpliwa klacz, wyciąga pysk ku ścieżce do starego sadu, gdzie ćmy połyskiwały jak srebrne listki."
           ],
           curiosityNote: {
             title: "Czy wiesz, że...?",
-            body: "Zanim w domach pojawiły się zegary, wiejski dzwon mówił ludziom, kiedy się zebrać, kiedy pracować, a kiedy wracać do domu. Był jak głos całej wioski."
+            body: "W średniowieczu wieczorny dzwon przypominał też, żeby przykryć ogień w palenisku, bo nocą łatwo o pożar. Francuzi nazywali go „couvre-feu”, czyli „przykryj ogień”."
           },
         },
         {
-          title: "Dwie drogi do zagadki",
+          title: "Klucz, lina i koński nos",
           body: [
-            "Wójt pomyślał o kluczu do wieży. Piekarz spojrzał na linę od dzwonu. A dzieci patrzyły w stronę sadu, bo Koniczynka wciąż wpatrywała się między grusze.",
+            "Wójt pomyślał o kluczu do wieży. Piekarz szukał wzrokiem liny od dzwonu. A dzieci patrzyły w stronę sadu, bo Koniczynka wciąż wpatrywała się między grusze.",
             "Oliwię coś ścisnęło w brzuchu, ale wysłuchała każdego po kolei. Wkrótce cała wioska zastanawiała się razem, czemu dzwon milczy i jak mu pomóc.",
             "Można było pójść za końskim nosem, ku srebrnym ćmom. Można też było zapytać najstarszych, czy nie maczał w tym palców górski wiatr."
           ],
@@ -317,7 +301,7 @@ export const storyTranslations = {
           echoes: {
             1: {
               "follow-clover": "Koniczynka prowadziła, więc księga dostrzegła znaki w sadzie.",
-              "ask-elders": "Starsi zostali zapytani, więc księga przypomniała sobie dawny wiatr."
+              "ask-elders": "Wioska zapytała starszych, więc księga przypomniała sobie dawny wiatr."
             }
           },
           paragraphByChoice: {
@@ -331,10 +315,6 @@ export const storyTranslations = {
                 1: "Właśnie tam lina zaplątała się wysoko w gałęziach, tuż przy gniazdku zięb ukrytym w liściach pachnących deszczem i owocami. Wystarczyło mocniej szarpnąć, a gniazdko mogło spaść."
               }
             }
-          },
-          curiosityNote: {
-            title: "Czy wiesz, że...?",
-            body: "Grusze żyją bardzo długo, a ich wiosenne kwiaty uwielbiają pszczoły. W dawnych wioskach sad był i spiżarnią, i schronieniem dla ptaków."
           },
         },
         {
@@ -350,22 +330,22 @@ export const storyTranslations = {
               response: "Powolne ruchy pozwolą ziębom spać dalej."
             },
             {
-              label: "Trzymajcie mocno drabinę",
-              response: "Pewnie trzymana drabina pozwoli pracować spokojnie."
+              label: "Zanućcie ziębom kołysankę",
+              response: "Cicha kołysanka sprawi, że zięby się nie obudzą."
             }
           ],
         },
         {
-          title: "Uwolniona lina",
+          title: "Wolna lina, zachrypnięty dzwon",
           body: [
             "Pętla po pętli lina się luzowała. Jeden gruszkowy liść spadł Oliwii na rękaw, jakby chciał jej powiedzieć, że dobrze wybrała.",
             "Kiedy puścił ostatni supeł, wszyscy uśmiechnęli się bez słowa. Zięby spały dalej, ciepło wtulone pod skrzydło matki.",
-            "Lina znów zwisała z wieży. Ale kiedy cieśla lekko za nią pociągnął, rozległo się tylko głuche stuk, jakby dzwon odchrząknął i zamilkł."
+            "Lina znów zwisała z wieży. Ale kiedy cieśla lekko za nią pociągnął, rozległ się tylko chrapliwy brzęk, jakby dzwon zachrypł."
           ],
           echoes: {
             3: {
               "move-slowly": "Wszyscy ruszali się powoli, więc w gniazdku było cicho.",
-              "steady-ladder": "Drabina stała pewnie, więc lina bezpiecznie zjechała na dół."
+              "lullaby": "Oliwia i Gustaw zanucili kołysankę, więc zięby spały jak zaczarowane."
             }
           },
           paragraphByChoice: {
@@ -374,19 +354,19 @@ export const storyTranslations = {
                 0: "Pętla po pętli lina się luzowała, a każda ręka poruszała się wolno jak pyłek w świetle latarni. Jeden gruszkowy liść spadł Oliwii na rękaw.",
                 1: "Kiedy puścił ostatni supeł, wszyscy uśmiechnęli się bez słowa. Zięby spały dalej, ciepło wtulone pod skrzydło matki."
               },
-              "steady-ladder": {
-                0: "Drabina stała pewnie pod butami cieśli, więc sięgnął supła i nawet nie trącił gałęzi. Jeden gruszkowy liść spadł Oliwii na rękaw.",
-                1: "Kiedy puścił ostatni supeł, cieśla opuścił linę oburącz. Zięby spały dalej, ciepło wtulone pod skrzydło matki."
+              "lullaby": {
+                0: "Oliwia i Gustaw zaczęli cichutko nucić kołysankę, a cieśla w jej rytmie luzował linę pętla po pętli. Jeden gruszkowy liść spadł Oliwii na rękaw.",
+                1: "Kiedy puścił ostatni supeł, kołysanka ucichła. Zięby spały dalej, ciepło wtulone pod skrzydło matki, a najmniejsza poruszała dzióbkiem, jakby nuciła przez sen."
               }
             }
           },
         },
         {
-          title: "Pęknięcie na dzwonie",
+          title: "Pęknięcie i zapomniane imię",
           body: [
             "W wieży, na brzegu spiżowego dzwonu, biegło pęknięcie cienkie jak włos. Zobaczyli je dopiero wtedy, gdy przysunęli latarnię bardzo blisko.",
             "Cieśla dotknął dzwonu dwoma palcami i pokiwał głową. „Nie ma się co złościć. Dziś w nocy pomożemy mu odzyskać głos”.",
-            "Każdy dołożył coś od siebie. Ktoś znał się na dzwonach, ktoś umiał mocno trzymać drabinę, a ktoś po prostu potrafił dodać otuchy, kiedy było trzeba."
+            "Babcia Janina pogładziła spiż. „Kiedyś ten dzwon miał imię. Wołaliśmy go po imieniu, a dziś już nikt go nie pamięta”."
           ],
           choices: [
             {
@@ -394,17 +374,13 @@ export const storyTranslations = {
               response: "Kowalka przyniesie mały młoteczek i lśniące nity."
             },
             {
-              label: "Podziękujcie dzwonowi",
-              response: "Wszyscy potraktują dzwon jak starego przyjaciela, a nie jak zepsutą rzecz."
+              label: "Przypomnijcie imię dzwonu",
+              response: "Babcia Janina poszuka w pamięci imienia, które dzwon dostał na chrzcie."
             }
           ],
-          curiosityNote: {
-            title: "Czy wiesz, że...?",
-            body: "Dawne dzwony odlewano ze spiżu, czyli stopu miedzi i cyny. Spiżowy dzwon ma ciepły głos, który niesie się bardzo daleko."
-          },
         },
         {
-          title: "Wioska naprawia dzwon",
+          title: "Trzy lśniące nity",
           body: [
             "Przy świecach i przy księżycu mieszkańcy pracowali w kręgu. Kowalka stukała cichutko, cieśla podtrzymywał belkę, a piekarz podawał z rąk do rąk owsiane bułeczki.",
             "Oliwia polerowała dzwon lnianą szmatką, aż zabłysło w nim światło latarni. Na dole Koniczynka nastawiała uszu, czy z góry nie dobiegnie wreszcie jakiś dźwięk.",
@@ -413,18 +389,30 @@ export const storyTranslations = {
           echoes: {
             5: {
               "invite-smith": "Przyszła kowalka, więc wieżę wypełniło ostrożne stukanie.",
-              "thank-bell": "Wszyscy podziękowali dzwonowi, więc pracowało się raźniej."
+              "thank-bell": "Babcia Janina przypomniała sobie imię dzwonu, więc spiż się obudził."
             }
           },
           paragraphByChoice: {
             5: {
               "invite-smith": {
-                0: "Przy świecach i przy księżycu kowalka pracowała w kręgu z małym młoteczkiem i lśniącymi nitami. Cieśla podtrzymywał belkę, a piekarz podawał z rąk do rąk owsiane bułeczki.",
+                0: "Przy świecach i przy księżycu kowalka małym młoteczkiem wbijała lśniące nity. Cieśla podtrzymywał belkę, a piekarz podawał z rąk do rąk owsiane bułeczki.",
                 1: "Między jednym ostrożnym stuknięciem a drugim Oliwia polerowała dzwon lnianą szmatką, aż zabłysło w nim światło latarni. Na dole Koniczynka nastawiała uszu, czy z góry nie dobiegnie wreszcie jakiś dźwięk."
               },
               "thank-bell": {
-                0: "Przy świecach i przy księżycu mieszkańcy najpierw przyłożyli dłonie do dzwonu i podziękowali mu za wszystkie wieczory, kiedy wołał ich do domów.",
-                1: "Potem Oliwia polerowała go lnianą szmatką, kowalka stukała cichutko, a cieśla podtrzymywał belkę. Na dole Koniczynka nastawiała uszu, czy z góry nie dobiegnie wreszcie jakiś dźwięk."
+                0: "Przy świecach i przy księżycu babcia Janina przypomniała sobie imię dzwonu: Wieczornica, bo co wieczór zwoływał sąsiadów. Wszyscy przyłożyli dłonie do dzwonu i razem szepnęli jego imię, a spiż zadrżał ciepło, jakby się budził.",
+                1: "Potem Oliwia polerowała dzwon lnianą szmatką, kowalka stukała cichutko, a cieśla podtrzymywał belkę. Na dole Koniczynka nastawiała uszu, czy z góry nie dobiegnie wreszcie jakiś dźwięk."
+              }
+            }
+          },
+          curiosityNoteByChoice: {
+            5: {
+              "invite-smith": {
+                title: "Czy wiesz, że...?",
+                body: "Spiż na dzwony to mniej więcej cztery części miedzi i jedna część cyny. Więcej cyny daje jaśniejszy głos, ale metal robi się kruchy. Dlatego nawet wielki dzwon może pęknąć."
+              },
+              "thank-bell": {
+                title: "Czy wiesz, że...?",
+                body: "Dawne dzwony dostawały imiona, a ich poświęcenie nazywano chrztem dzwonu. Słynny dzwon na Wawelu odlano w 1520 roku i nazwano Zygmunt, na cześć króla. Dzwoni do dziś."
               }
             }
           },
@@ -433,8 +421,8 @@ export const storyTranslations = {
           title: "Jak powitać nowy głos",
           body: [
             "Wreszcie dzwon był gotowy. Nie miał już brzmieć tak głośno jak dawniej, ale kowalka się uśmiechnęła: „Cichy głos też potrafi zawołać do domu”.",
-            "Nad wieżą wzeszedł księżyc. W sadzie poruszyły się zięby, a dzieci na placu wstrzymały oddech. Cała wioska słuchała i czekała.",
-            "Księga czekała na ostatni gest. Jak powitać nowy głos dzwonu, którego wszyscy tak potrzebowali?"
+            "Nad wieżą księżyc wyjrzał zza chmur. W sadzie poruszyły się zięby, a dzieci na placu wstrzymały oddech. Cała wioska słuchała i czekała.",
+            "Księga zawahała się nad ostatnim gestem. Jak powitać nowy głos dzwonu, którego wszyscy tak potrzebowali?"
           ],
           choices: [
             {
@@ -452,29 +440,41 @@ export const storyTranslations = {
           body: [
             "Dzwon odezwał się ciszej niż dawniej, ale jasno i miło dla ucha. Nie doleciał na drugi koniec doliny, za to wypełnił wioskę od okna do okna.",
             "Słuchali go rodzice i dzieci, starsi, piekarz, kowalka, cieśla i bardzo dumna Koniczynka, która miała na nosie biały ślad mąki po zjedzonych bułeczkach.",
-            "Księżycowe Wzgórze zapamiętało, że wspólnota to nie tylko ci, którzy razem siadają do stołu. To także ci, którzy zostają, żeby ten stół naprawić."
+            "Księżycowe Wzgórze zapamiętało, że dzwon naprawiła cała wioska i każdy dołożył coś od siebie."
           ],
           echoes: {
             7: {
-              "ring-gently": "Pociągnięcie było delikatne, więc pierwsza nuta zabrzmiała wyjątkowo.",
+              "ring-gently": "Pociągnięcie było delikatne, więc pierwsza nuta zabrzmiała jasno i czysto.",
               "share-song": "Wioska nuciła razem, więc pierwsza nuta nie była sama."
             }
           },
           paragraphByChoice: {
             7: {
               "ring-gently": {
-                0: "Dzwon odezwał się ciszej niż dawniej, ale jasno i miło dla ucha. Delikatne pociągnięcie poniosło nutę od domu do domu, bez zbędnego hałasu.",
+                0: "Dzwon odezwał się ciszej niż dawniej, ale jasno i miło dla ucha. Delikatne pociągnięcie poniosło nutę od domu do domu.",
                 1: "Słuchali go rodzice i dzieci, starsi, piekarz, kowalka, cieśla i bardzo dumna Koniczynka, która miała na nosie biały ślad mąki po zjedzonych bułeczkach."
               },
               "share-song": {
                 0: "Dzwon odezwał się ciszej niż dawniej, a mieszkańcy nucili razem z nim, aż nie dało się rozróżnić, gdzie kończy się dzwon, a gdzie zaczynają się głosy.",
-                1: "Słuchali go rodzice i dzieci, starsi, piekarz, kowalka, cieśla i bardzo dumna Koniczynka. Nawet zięby w sadzie spały spokojnie."
+                1: "Słuchali go rodzice i dzieci, starsi, piekarz, kowalka, cieśla i bardzo dumna Koniczynka. W sadzie mała zięba podniosła główkę i też nasłuchiwała."
+              }
+            }
+          },
+          curiosityNoteByChoice: {
+            7: {
+              "ring-gently": {
+                title: "Czy wiesz, że...?",
+                body: "Dzwon umiał mówić różne rzeczy: szybkie bicie znaczyło niebezpieczeństwo, powolne smutek. W górskich wsiach we mgle dzwoniono długo w noc, żeby zabłąkani wędrowcy trafili do domu."
+              },
+              "share-song": {
+                title: "Czy wiesz, że...?",
+                body: "Młode zięby uczą się śpiewu, słuchając starszych ptaków. Dlatego zięby z różnych okolic śpiewają trochę inaczej, jakby każda dolina miała własną gwarę."
               }
             }
           },
         },
         {
-          title: "Pieśń na dobranoc",
+          title: "Pamiątka tamtej nocy",
           body: [
             "Długo po kolacji dzwon odpoczywał w wieży nad wioską, a jego naprawiony brzeg połyskiwał w świetle księżyca.",
             "Księżycowe Wzgórze zapamiętało, że to, co ciche, wcale nie jest nieważne. Czasem czeka tylko na pomocne ręce, cierpliwych przyjaciół i łagodną pieśń na nowy początek.",
@@ -489,12 +489,12 @@ export const storyTranslations = {
           paragraphByChoice: {
             7: {
               "ring-gently": {
-                0: "Długo po kolacji dzwon czuwał w wieży nad wioską, a przy jego naprawionym brzegu wciąż jakby krążyła jedna jasna, srebrna nuta.",
-                1: "Księżycowe Wzgórze zapamiętało, że to, co ciche, wcale nie jest nieważne. Czasem czeka tylko na pomocne ręce, cierpliwych przyjaciół i jedno ostrożne pociągnięcie."
+                0: "Długo po kolacji z sadu przyfrunęły srebrne ćmy. Wypolerowany dzwon lśnił w świetle księżyca, więc usiadły na trzech nitach i połyskiwały jak trzy małe gwiazdy.",
+                1: "Od tamtej pory wracają co wieczór, gdy dzwon delikatnie woła do domów. A ludzie mówią, że Księżycowe Wzgórze nosi trzy gwiazdki na pamiątkę tamtej nocy."
               },
               "share-song": {
-                0: "Długo po kolacji dzwon czuwał w wieży nad wioską, a melodia, którą zanucili sąsiedzi, jakby wciąż unosiła się pod księżycem.",
-                1: "Księżycowe Wzgórze zapamiętało, że to, co ciche, wcale nie jest nieważne. Czasem czeka tylko na pomocne ręce, cierpliwych przyjaciół i łagodną pieśń na nowy początek."
+                0: "Długo po kolacji pisklęta zięb wierciły się w gniazdku i przez sen cichutko powtarzały melodię, którą słyszały z placu.",
+                1: "Od tamtej pory dzwon woła wioskę do domów wieczorem, a o świcie zięby budzą ją tą samą piosenką. Księżycowe Wzgórze ma teraz dwa głosy: jeden ze spiżu, drugi z piórek."
               }
             }
           },

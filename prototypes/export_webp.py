@@ -6,7 +6,7 @@
 --plate FOCUS crops a landscape master to the 5:4 plate first, at full height: a 1536x1024
 generation becomes exactly 1280x1024, so nothing is upscaled. FOCUS (0..1) sets where the window
 sits across the picture: 0 keeps the left edge, 0.5 the centre, 1 the right edge. Pick it so every
-figure and story prop stays inside (see the crop table in prototypes/book/pages.js).
+figure and story prop stays inside (see the crop table in src/book/pages.js).
 
 Used by export_v2.sh; call it directly to re-export from prototypes/graded/ without regrading.
 Transparent images (emblems, ornaments) are trimmed to their drawing, as before.

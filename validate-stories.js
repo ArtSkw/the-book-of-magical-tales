@@ -1,7 +1,9 @@
+import { readdirSync } from "node:fs";
 import { stories } from "./stories.js";
 import { storyTranslations } from "./locales.js";
-import { illustrationCatalog } from "./illustrationCatalog.js";
-import { renderedVisuals } from "./illustrations.js";
+// the 3D book's tales and their spread manifests (tales.js and pages.js hold data only)
+import { tales } from "./src/book/tales.js";
+import { allImageSources } from "./src/book/pages.js";
 
 const EXPECTED_PAGE_MIN = 9;
 const EXPECTED_PAGE_MAX = 10;
@@ -10,7 +12,7 @@ const EXPECTED_CHOICE_PAGES = [2, 4, 6, 8];
 const MIN_CURIOSITY_NOTES = 3;
 const MAX_CURIOSITY_NOTES = 4;
 
-// What fits under the 5:4 plate on a right page of the 3D book (prototypes/book/pageArt.js, PLATE),
+// What fits under the 5:4 plate on a right page of the 3D book (src/book/pageArt.js, PLATE),
 // in every language: one line per choice label, at most two lines of response, a note of at most
 // four lines. Measured in EB Garamond at the book's sizes; checked for English and each translation.
 const CHOICE_OPTIONS = 2;
@@ -19,21 +21,6 @@ const MAX_CHOICE_RESPONSE = 120;
 const MAX_NOTE_BODY = 220;
 
 const errors = [];
-
-for (const [family, familyCatalog] of Object.entries(illustrationCatalog)) {
-  const rendered = new Set(renderedVisuals[family] || []);
-  for (const visual of Object.keys(familyCatalog.visuals)) {
-    if (!rendered.has(visual)) {
-      errors.push(`Illustration catalog "${family}": visual "${visual}" has no renderer`);
-    }
-  }
-
-  for (const visual of rendered) {
-    if (!familyCatalog.visuals[visual]) {
-      errors.push(`Illustration renderer "${family}": visual "${visual}" is missing from catalog`);
-    }
-  }
-}
 
 function addError(story, message) {
   errors.push(`${story.title}: ${message}`);
@@ -48,13 +35,7 @@ for (const story of stories) {
   if (!story.shortTitle) addError(story, "missing shortTitle");
   if (!story.title) addError(story, "missing title");
   if (!story.kicker) addError(story, "missing kicker");
-  if (!story.illustration) addError(story, "missing illustration");
   if (!Array.isArray(story.pages)) addError(story, "pages must be an array");
-
-  const illustrationFamily = illustrationCatalog[story.illustration];
-  if (story.illustration && !illustrationFamily) {
-    addError(story, `unknown illustration family "${story.illustration}"`);
-  }
 
   if (!Array.isArray(story.pages)) continue;
 
@@ -87,12 +68,6 @@ for (const story of stories) {
       addError(story, `${label} expected ${EXPECTED_PARAGRAPHS} paragraphs, got ${page.body.length}`);
     }
 
-    if (!page.cue) addError(story, `${label} missing cue`);
-    if (!page.visual) {
-      addError(story, `${label} missing visual`);
-    } else if (illustrationFamily && !illustrationFamily.visuals[page.visual]) {
-      addError(story, `${label} unknown visual "${page.visual}" for illustration "${story.illustration}"`);
-    }
     if (!Array.isArray(page.choices)) addError(story, `${label} choices must be an array`);
 
     if (page.curiosityNote) {
@@ -122,7 +97,7 @@ for (const story of stories) {
       if (!choice.response) addError(story, `${choiceLabel} missing response`);
     });
 
-    for (const field of ["echoes", "paragraphByChoice", "cueByChoice", "visualByChoice"]) {
+    for (const field of ["echoes", "paragraphByChoice", "curiosityNoteByChoice"]) {
       if (page[field] && !isPlainObject(page[field])) {
         addError(story, `${label} ${field} must be an object`);
       }
@@ -160,21 +135,6 @@ for (const story of stories) {
         }
       }
     }
-
-    if (page.visualByChoice && illustrationFamily) {
-      for (const [sourcePage, variants] of Object.entries(page.visualByChoice)) {
-        if (!isPlainObject(variants)) {
-          addError(story, `${label} visualByChoice for page ${sourcePage} must be an object`);
-          continue;
-        }
-
-        for (const visual of Object.values(variants)) {
-          if (!illustrationFamily.visuals[visual]) {
-            addError(story, `${label} unknown choice visual "${visual}" for illustration "${story.illustration}"`);
-          }
-        }
-      }
-    }
   });
 
   const actualChoicePages = story.pages
@@ -188,6 +148,50 @@ for (const story of stories) {
   checkBookLimits(story);
 }
 
+// The page rule of the 3D book (src/book/pages.js): the left page carries only text, the
+// right page the picture (a 5:4 plate with the choices or the note under it, or a 2:3 portrait),
+// chosen from the page's content when a spread gives no layout. Only the ending page runs its
+// text over both pages round the closing emblem ("vignette").
+for (const tale of tales) {
+  if (!tale.spreads) continue;
+  const story = stories.find((s) => s.id === tale.id);
+  if (!story) {
+    errors.push(`Book tale "${tale.id}": has spreads but no story with that id`);
+    continue;
+  }
+  const endingPage = story.pages.findIndex((page) => page.ending) + 1;
+  for (const spread of tale.spreads) {
+    if (spread.layout === "vignette" && spread.page !== endingPage) {
+      addError(story, `book spread for page ${spread.page} uses layout "vignette"; only the ending page (${endingPage || "none"}) may (leave layout out: text left, picture right)`);
+    }
+  }
+}
+
+// Every picture a spread manifest names (all its variants, tailpieces, ornaments) is a file
+// under public/, spelled exactly (GitHub Pages is case-sensitive, a Mac's disk is not).
+function inPublic(src) {
+  let dir = new URL("./public/", import.meta.url);
+  const parts = src.split("/").filter(Boolean);
+  for (const [i, part] of parts.entries()) {
+    let names;
+    try {
+      names = readdirSync(dir);
+    } catch {
+      return false;
+    }
+    if (!names.includes(part)) return false;
+    dir = new URL(`${part}${i < parts.length - 1 ? "/" : ""}`, dir);
+  }
+  return true;
+}
+for (const tale of tales) {
+  for (const src of allImageSources(tale.spreads || [])) {
+    if (!src.startsWith("/assets/") || !inPublic(src)) {
+      errors.push(`Book tale "${tale.id}": picture ${src} not found under public/`);
+    }
+  }
+}
+
 // The notes of a page as [where, note]: its own note and every note chosen by an earlier choice.
 function notesOf(page) {
   const out = [];
@@ -199,7 +203,7 @@ function notesOf(page) {
 }
 
 // Content limits of the 3D book's plate pages, for English (stories.js) and each translation
-// (locales.js), resolved the way prototypes/book/story.js does it: a translated field replaces
+// (locales.js), resolved the way src/book/story.js does it: a translated field replaces
 // the English one, choices are merged option by option.
 function checkBookLimits(story) {
   const languages = [["en", () => ({})], ...Object.entries(storyTranslations).map(([lang, tales]) => [lang, (i) => tales[story.id]?.pages?.[i] || {}])];

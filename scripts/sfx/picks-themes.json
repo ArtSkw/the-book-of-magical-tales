@@ -1,0 +1,14 @@
+{
+  "sheet": "themes",
+  "exportedAt": "2026-10-25T22:10:41.328Z",
+  "verdict": {},
+  "general": "",
+  "sounds": {
+    "dragon-intro-theme": { "picked": [{ "file": "raw/dragon-intro-a/dragon-intro-a--music-v2-5-t01.mp3", "model": "music-v2-5", "role": "dragon-intro-a" }], "ship": 1, "note": "" },
+    "dragon-ending-theme": { "picked": [{ "file": "raw/dragon-ending-b/dragon-ending-b--music-v2-t01.mp3", "model": "music-v2", "role": "dragon-ending-b" }], "ship": 1, "note": "" },
+    "bell-intro-theme": { "picked": [{ "file": "raw/bell-intro-a/bell-intro-a--music-v2-5-t01.mp3", "model": "music-v2-5", "role": "bell-intro-a" }], "ship": 1, "note": "" },
+    "bell-ending-theme": { "picked": [{ "file": "raw/bell-ending-a/bell-ending-a--music-v2-5-t01.mp3", "model": "music-v2-5", "role": "bell-ending-a" }], "ship": 1, "note": "" },
+    "ref-motif-end": { "picked": [], "ship": 0, "note": "" },
+    "ref-choice-motif": { "picked": [], "ship": 0, "note": "" }
+  }
+}
