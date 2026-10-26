@@ -1,5 +1,7 @@
 # Medieval Fantasy Interactive Storybook
 
+> The original project brief. The concept, values, nonviolence rules and story rules still hold. The first plan was a 2D app with animated illustrations; the book was built as a 3D book on a candle-lit desk instead, and the sections on scope, interaction, motion and technology now describe what was built. The working documents for new tales are `docs/TALE_TEMPLATE.md` (story data and rules) and `docs/NEW_STORY_WORKFLOW.md` (the production process).
+
 ## Working Title
 
 **The Book of Magical Tales / Księga Magicznych Opowieści**
@@ -13,7 +15,7 @@ Alternative title directions:
 
 ## Concept
 
-A short-session parent-child interactive fairy tale book set in a gentle medieval fantasy world. The app presents an open illuminated manuscript on a table, with warm candlelight, parchment textures, calligraphic headings, readable story text, and small animated illustrations that come alive when a page is opened.
+A short-session parent-child interactive fairy tale book set in a gentle medieval fantasy world. The app presents an open illuminated manuscript on a table, with warm candlelight, parchment textures, calligraphic headings, readable story text, and an illustration on every page.
 
 The experience should feel like opening an old magical book together at bedtime or during quiet play. It is not a combat game. It is a cozy, imaginative story ritual where medieval and fantasy themes are used to explore courage, kindness, patience, friendship, family, respect for animals, and care for the natural world.
 
@@ -73,30 +75,26 @@ The app opens on:
 - Subtle shadows, paper grain, edge wear, ink marks, and decorative manuscript borders.
 - A simple story selector represented as bookmarks, ribbons, or page tabs.
 
-The child and parent choose a story, turn pages, read together, and watch small animations on illustrated pages.
+The child and parent choose a story, turn pages, read together, and make small, kind choices that the tale remembers.
 
-## MVP Scope
+## Scope Of The First Release
 
-The earliest prototype may start smaller, but the durable story format should aim for a richer short-session tale:
+- One polished 3D book on a candle-lit desk, with room, candle light and props.
+- Two complete tales, ten pages each, with four choices of two options per tale.
+- One illustration or illustration variant per page, a title emblem and a closing emblem per tale.
+- Page turns, a ribbon per tale, and the choices sealed with wax.
+- Polish and English, switchable at any time.
+- Optional sound: a bed for each place and time of day, a few quiet spot sounds, a theme at the start and end of each tale.
+- Story data as plain JS objects (`stories.js`, `locales.js`), checked by `npm run validate:stories`.
 
-- One polished open-book scene.
-- Two complete starter stories.
-- Around 9-10 pages per story.
-- One relevant illustration or illustration variant per page, including the title/opening illustration for each tale.
-- Page-turn controls.
-- Animated page-specific illustration moments triggered when a page opens.
-- Candle flicker and warm lighting overlay.
-- Optional ambient sound hooks, even if sound is not implemented immediately.
-- Local story data stored in JSON or TypeScript objects.
+The two starter stories, as planned and as built:
 
-Recommended MVP stories:
-
-1. **The Dragon on the Bridge**
+1. **The Dragon on the Bridge** (built as *Smok na starym moście / The Dragon on the Old Bridge*)
    - A small dragon blocks a bridge because it is protecting or listening to something underneath.
    - The knight helps by asking questions, sharing food, lighting a lantern, and calling helpers.
    - Values: compassion, curiosity, patience, care for animals.
 
-2. **The Lost Bell of Moonhill**
+2. **The Lost Bell of Moonhill** (built as *Dzwon z Księżycowego Wzgórza / The Bell of Moonhill*)
    - A village bell has gone quiet before the evening gathering.
    - The knight, horse, and villagers follow clues and discover the bell is not stolen but tangled, hidden, cracked, or waiting to be repaired.
    - Values: cooperation, family/community ties, respect for different skills, repairing rather than blaming.
@@ -216,48 +214,24 @@ Keep paragraphs short enough for parent-child co-reading. If a page becomes cram
 
 Each page should have a relevant illustration or illustration variant. A 10-page tale should therefore plan for 10 illustration moments, including the title/opening illustration.
 
-Recommended 10-page rhythm:
-
-1. **Invitation:** introduce place, mood, and small problem.
-2. **First clue:** reveal a creature, mystery, map, sound, or emotional complication.
-3. **First choice:** child chooses a kind or brave action.
-4. **Consequence:** the story acknowledges the choice through detail, helper, dialogue, or illustration.
-5. **Wider world:** a new helper, place, family tie, animal, or natural detail enters.
-6. **Second choice:** child chooses how to continue with patience, courage, honesty, or care.
-7. **Deeper understanding:** the problem is reframed through listening, repair, or cooperation.
-8. **Final choice:** child chooses the closing gesture or promise.
-9. **Resolution:** helpers gather, something is repaired, understood, returned, comforted, or protected.
-10. **Reflection and ending:** the book gathers the main values and ends clearly with **"The end."**
+The 10-page rhythm, with the choices on pages 2, 4, 6 and 8 and each tale ending in **"Koniec."** / **"The end."**, is in `docs/TALE_TEMPLATE.md`.
 
 Use mostly linear stories with soft branching. Choices should change details, helpers, dialogue, illustration details, curiosity echoes, or closing reflection while keeping every path kind and valid. Each consequence page should replace at least two body paragraphs through `paragraphByChoice`, so the selected choice feels woven into the prose rather than only mentioned in a highlighted note.
 
-## Example Page Data Shape
+## Page Data Shape
 
-```ts
-type StoryPage = {
-  id: string;
-  title?: string;
-  body: string[];
-  illustrationId?: string;
-  animationCue?: string;
-  interactionPrompt?: string;
-  curiosityNote?: {
-    title: string;
-    body: string;
-  };
-};
-```
+The data shape of a tale, its pages, choices, echoes and curiosity notes, is in `docs/TALE_TEMPLATE.md`, with copyable skeletons.
 
 ## Interaction Ideas
 
-Simple interactions:
+Interactions as built:
 
-- Turn page.
-- Tap illustration to trigger a tiny repeatable animation.
-- Tap illuminated initial letter to make gold ink shimmer.
-- Tap candle to brighten/dim the page.
-- Tap bookmark to switch stories.
-- Tap a curiosity note button for a short, page-specific "Did you know...?" fact.
+- Turn the page: tap or swipe it, use the arrows, or the keyboard's arrow keys.
+- Touch a tale's ribbon to open it.
+- Choose by pressing one of two wax seals; the page waits until a choice is made.
+- Switch the language: the open spread is rewritten in ink.
+- Turn sound on or off.
+- Read a short "Did you know...?" note under the picture on 3-4 pages per tale.
 
 Choice interactions:
 
@@ -279,7 +253,7 @@ When a child chooses an action, the next page or later resolution should visibly
 - Dialogue.
 - Which helper arrives.
 - Which small object is used.
-- Which illustration animation is emphasized.
+- Which illustration variant is shown.
 - Which concrete detail, helper, dialogue, or final reflection appears.
 - At least two prose paragraphs through `paragraphByChoice`.
 - A short, quiet branch note that signals the book remembered the earlier choice.
@@ -330,7 +304,7 @@ Illustrations should draw from manuscript-like medieval game art similar in spir
 
 The illustrations can sit inside framed manuscript panels, margin vignettes, maps, illuminated initials, or decorative page scenes. The goal is not photorealism; the goal is a living manuscript.
 
-Detailed current art direction: see `docs/ILLUSTRATION_ART_DIRECTION.md`.
+Detailed current art direction: the style bible `docs/pilot/MANUSCRIPT_BIBLE.md` and each tale's set bible (`docs/pilot/SET_BIBLE_<tale-id>.md`).
 
 Avoid:
 
@@ -350,10 +324,7 @@ Recommended direction:
 - Large enough type for child-parent reading at desktop and tablet sizes.
 - Avoid using script fonts for long paragraphs.
 
-Possible font pairings:
-
-- Title: **Uncial Antiqua**, **MedievalSharp**, or **Cinzel Decorative**.
-- Body: **Cormorant Garamond**, **EB Garamond**, **Merriweather**, or **Literata**.
+As built: **EB Garamond** for everything (titles, text, labels), self-hosted, with painted illuminated initials and gold ornaments carrying the medieval feeling, so the body text stays easy to read.
 
 ## Color And Lighting
 
@@ -366,131 +337,26 @@ Palette direction:
 
 Use restrained color. The page should feel old and warm, not neon or cartoonish.
 
-## Animation Direction
+## Motion Direction
 
-Animations should be small, magical, and page-specific.
+Motion belongs to the book and the desk, not to the pictures, which stay still so they can be read:
 
-Examples:
+- The candle flickers and its light moves softly over the pages.
+- The book opens from its cover; leaves curl and turn; ribbons lift under the hand.
+- A choice is sealed with wax and its answer written in ink; a changed language is rewritten in ink.
+- "Begin again" riffles the pages back to the tale's title.
 
-- Candle flame flickers continuously.
-- Gold ink glints on illuminated letters.
-- Dragon blinks, exhales warm light, or warms flowers with a tiny flame.
-- Shield opens like a shelter over a small animal in the rain.
-- Banner waves gently.
-- Map route draws itself in red ink.
-- Stars form a constellation.
-- Castle windows glow one by one.
-- Raven tilts its head and drops a ribbon.
-- Horse nudges the knight toward someone sad.
+Motion stays slow and calm, never flashes, and gives way to a crossfade when the reader prefers reduced motion.
 
-Animations should trigger when:
+## As Built
 
-- A page opens.
-- The child taps the illustration.
-- A choice is made.
+The first plan was a 2D/2.5D React app with CSS/SVG animation, to keep text readable. The book was built in 3D instead, with the text typeset onto the pages at runtime, which kept it as readable as the 2D plan.
 
-## Technical Recommendation
-
-Start with a **2D / 2.5D browser app**, not full 3D.
-
-Recommended stack:
-
-- **Vite**
-- **React**
-- **TypeScript**
-- **CSS modules or plain CSS**
-- **SVG illustrations with separated animated layers**
-- Optional: **Framer Motion** or **GSAP** for animation timelines.
-- Optional: **Howler.js** for page turns, candle crackle, and soft ambient cues.
-
-Why:
-
-- Easier to build locally and test in the browser.
-- Better text readability than mapping text onto 3D pages.
-- Faster content iteration.
-- CSS/SVG animations are enough for magical page moments.
-- Can still achieve strong lighting, depth, and atmosphere.
-
-Avoid full Three.js for the MVP unless the goal becomes a visual-tech prototype rather than a storybook prototype.
-
-## Architecture Sketch
-
-Suggested components:
-
-- `App`
-- `BookScene`
-- `OpenBook`
-- `PageSpread`
-- `StorySelector`
-- `PageControls`
-- `AnimatedIllustration`
-- `Candle`
-- `ParentPrompt`
-
-Suggested data:
-
-- `stories.ts`
-- `illustrations.ts`
-- `animationCues.ts`
-
-The app should map story/page data to reusable presentation components.
-
-## Page Layout
-
-Desktop/tablet layout:
-
-- Open two-page spread.
-- Left page often contains illustration or map.
-- Right page often contains story text.
-- Navigation appears as subtle page corners, bookmarks, or small icon buttons.
-
-Mobile layout:
-
-- Prefer a single-page or stacked page mode if the spread becomes too small.
-- Keep text readable.
-- Preserve book feeling through page texture, borders, and candle glow.
-
-## Asset Strategy
-
-MVP assets can be a mix of:
-
-- Hand-authored SVGs.
-- AI-generated or AI-assisted manuscript-style illustrations separated into layers where possible.
-- CSS textures and overlays.
-- Small transparent PNG details.
-- Reusable decorative ornaments: borders, flourishes, ribbons, illuminated capitals, page tabs, wax seals, and small marginal creatures.
-
-Best approach for animated illustrations:
-
-- Create the main illustration as a static base.
-- Separate moving parts into distinct SVG/PNG layers.
-- Animate layer transforms, opacity, filters, masks, or stroke paths.
-- Keep the animation consistent with manuscript art: limited motion, slight puppet-like movement, ink shimmer, small glowing accents, and page-contained effects.
-
-Example dragon illustration layers:
-
-- `dragon-body`
-- `dragon-eye`
-- `dragon-wing`
-- `warm-breath`
-- `smoke`
-- `bridge`
-- `flowers`
-
-## Sound Direction
-
-Sound should be optional and gentle.
-
-Possible sounds:
-
-- Page turn.
-- Candle crackle.
-- Soft quill/ink shimmer.
-- Tiny bell.
-- Warm dragon breath.
-- Distant evening ambience.
-
-Include a mute toggle from the beginning if audio is implemented.
+- **Stack:** Vite and plain JavaScript, no framework; three.js for the book, the desk and the light; Web Audio for sound; deployed to GitHub Pages from `main`.
+- **Code:** `index.html` and `src/book/` (`main.js` the scene and reading, `book.js` the book, `pageArt.js` the typesetting of the pages, `pages.js` and `tales.js` the pictures and the tales, `soundscape.js` the sound script). The tales' text is in `stories.js` and `locales.js`.
+- **Page layout:** the left page carries the text, the right page the picture: a framed 5:4 plate with the choices or a note under it, or a 2:3 portrait. The reading mode follows the screen: the whole spread, one page at a time, the text column on a phone held upright, or a part of the spread at a time on a phone held sideways.
+- **Pictures:** raster illustrations in style A v2 (Pentiment-like manuscript art), generated with Codex ImageGen from builder-written prompts, graded per time of day and exported as WebP; shared marginal ornaments. The pipeline lives in `prototypes/` and never ships.
+- **Sound:** generated with ElevenLabs and mastered by the tools in `scripts/sfx/` into Opus and AAC files; a bed per place and time of day with long crossfades, a few quiet spot sounds, one UI click, a seal and a harp for choices, and a theme at the start and end of each tale. Sound starts with the reader's first tap on the start gate; it can be turned off at any time, and the book remembers that.
 
 ## Accessibility And Comfort
 
@@ -503,18 +369,14 @@ Include a mute toggle from the beginning if audio is implemented.
 
 ## Future Ideas
 
-- Story branching with 2-3 kind choices per story.
+- More tales: forest oath, winter feast, lost heirloom, boastful knight learns humility. Two ribbons in the book are waiting for them.
 - Optional keepsake ending pages that summarize the tale's values without adding mid-story moral labels.
 - Custom child/parent name insertion.
 - Story bookmark saves.
 - Printable story page export.
-- More tales: forest oath, winter feast, lost heirloom, boastful knight learns humility.
 - Simple story editor for parent-authored tales.
 - Isometric mini-map between stories.
-- Later optional 3D table/book scene using Three.js while keeping page content as 2D textures or overlays.
 
-## Feasibility Summary
+## Status
 
-Highly feasible as a local browser app if built as a 2D/2.5D interactive storybook. Animated illustrations are technically straightforward when assets are prepared as layers. The main project risk is not browser animation, but content scope: writing stories, preparing visual assets, and polishing the atmosphere.
-
-The best first milestone is a small vertical slice: one story, four pages, one animated illustration, candle flicker, and page turns. If that feels magical, expand the content.
+The first release is live with two complete tales: https://artskw.github.io/the-book-of-magical-tales/. As the brief foresaw, the main work is content: writing tales, preparing their pictures and sound, and polishing the atmosphere.
