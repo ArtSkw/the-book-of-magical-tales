@@ -1,0 +1,24 @@
+{
+  "sheet": "motif",
+  "exportedAt": "2026-10-25T19:58:16.309Z",
+  "verdict": { "set": "mix" },
+  "general": "Ogólnie dźwięk przewracanej strony poprzedzającej dźwięk harfy(wyboru) jest IMO za głośny, wybór powinien być albo głośniejszy, albo przewracana strona delikatnie przyciszona. ",
+  "sounds": {
+    "choice-motif": { "picked": [
+      { "file": "raw/choice-motif/choice-motif--sfx-v3-t02.wav", "model": "sfx-v3" },
+      { "file": "raw/choice-motif/choice-motif--sfx-v3-t04.wav", "model": "sfx-v3" },
+      { "file": "raw/choice-motif/choice-motif--sfx-v3-t07.wav", "model": "sfx-v3" },
+      { "file": "raw/choice-motif/choice-motif--sfx-v3-t08.wav", "model": "sfx-v3" } ], "ship": 4, "note": "" },
+    "set-a": { "picked": [
+      { "file": "preview/choice-motif/choice-motif--sfx-v3-t02--D.wav", "model": "sfx-v3", "role": "W1 · D", "from": "raw/choice-motif/choice-motif--sfx-v3-t02.wav", "semitones": -0.01 },
+      { "file": "preview/choice-motif/choice-motif--sfx-v3-t01--D.wav", "model": "sfx-v3", "role": "W2 · D", "from": "raw/choice-motif/choice-motif--sfx-v3-t01.wav", "semitones": -0.02 },
+      { "file": "preview/choice-motif/choice-motif--sfx-v3-t07--D.wav", "model": "sfx-v3", "role": "W3 · D", "from": "raw/choice-motif/choice-motif--sfx-v3-t07.wav", "semitones": -0.02 },
+      { "file": "preview/choice-motif/choice-motif--sfx-v3-t08--D.wav", "model": "sfx-v3", "role": "W4 · D", "from": "raw/choice-motif/choice-motif--sfx-v3-t08.wav", "semitones": -0.03 } ], "ship": 4, "note": "" },
+    "set-b": { "picked": [
+      { "file": "preview/choice-motif/choice-motif--sfx-v3-t02--D.wav", "model": "sfx-v3", "role": "W1 · D (wybór 1)", "from": "raw/choice-motif/choice-motif--sfx-v3-t02.wav", "semitones": -0.01 },
+      { "file": "preview/choice-motif/choice-motif--sfx-v3-t01--D.wav", "model": "sfx-v3", "role": "W4 · D (wybór 4)", "from": "raw/choice-motif/choice-motif--sfx-v3-t01.wav", "semitones": -0.02 } ], "ship": 4, "note": "" },
+    "motif-end": { "picked": [
+      { "file": "raw/motif-end/motif-end--music-v2-t03.mp3", "model": "music-v2" },
+      { "file": "raw/motif-end/motif-end--music-v2-t04.mp3", "model": "music-v2" } ], "ship": 1, "note": "" }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "./",
+  "name": "The Book of Magical Tales",
+  "short_name": "Magical Tales",
+  "description": "An interactive book of tales for children. Turn the pages, decide what the heroes do and discover true facts from the Middle Ages.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "background_color": "#0b0604",
+  "theme_color": "#0b0604",
+  "categories": ["books", "kids", "education"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

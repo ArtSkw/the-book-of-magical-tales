@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odsłuch dźwięków</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <style>
+      /* Listening sheets for the book's sounds (scripts/sfx/). ?sheet=library | motif | phase0 reads
+         local-assets/sfx/sheets/<name>.json, written by sheets.mjs. Audio loads only when played;
+         the waveforms are drawn from peaks measured beforehand. Served by the Vite dev server;
+         nothing here ships with the book. */
+      :root {
+        --bg: #0f0906; --card: #1d130c; --line: rgba(214, 172, 96, 0.28);
+        --gold: #e2bf74; --gold-hi: #f6dd9c; --text: #f1e2c2; --muted: rgba(241, 226, 194, 0.62); --pick: #d9a441; --warn: #f0a080; --good: #b8d4a0;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--bg); color: var(--text); font: 18px/1.45 "EB Garamond", Georgia, serif; }
+      main { max-width: 1000px; margin: 0 auto; padding: 24px 16px 90px; }
+      h1 { font-weight: 600; font-size: 30px; margin: 0 0 6px; color: var(--gold-hi); }
+      h2.sec { font-weight: 600; font-size: 26px; margin: 34px 0 4px; color: var(--gold-hi); border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+      h3.grp { font-weight: 600; font-size: 20px; margin: 22px 0 2px; color: var(--gold); }
+      h4 { font-weight: 600; font-size: 20px; margin: 0; color: var(--gold-hi); }
+      p { margin: 0 0 10px; }
+      .muted { color: var(--muted); }
+      .small { font-size: 15px; }
+      a { color: var(--gold); }
+      nav.sheets { display: flex; gap: 14px; flex-wrap: wrap; margin: 0 0 12px; font-size: 16px; }
+      nav.sheets a[aria-current] { color: var(--gold-hi); font-weight: 600; text-decoration: none; }
+      .panel { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 14px 0; }
+      .controls { display: flex; flex-wrap: wrap; gap: 12px 22px; align-items: center; position: sticky; top: 0; z-index: 5; background: #1a110b; }
+      input[type="range"], input[type="checkbox"], input[type="radio"] { accent-color: var(--gold); vertical-align: middle; }
+      label { cursor: pointer; }
+      button { font: 600 16px/1 "EB Garamond", serif; color: var(--gold); background: #2a1b10; border: 1px solid var(--line); border-radius: 8px; padding: 9px 12px; cursor: pointer; min-height: 40px; }
+      button:hover { color: var(--gold-hi); border-color: rgba(236, 200, 128, 0.7); }
+      button.on { background: var(--pick); color: #2a160a; border-color: var(--pick); }
+      button.play { min-width: 104px; text-align: left; }
+      textarea { width: 100%; min-height: 50px; font: 16px/1.35 "EB Garamond", serif; color: var(--text); background: #140d08; border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; }
+      details summary { cursor: pointer; color: var(--muted); font-size: 15px; }
+      details p { font-size: 15px; font-style: italic; margin-top: 6px; }
+      .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; margin: 12px 0; }
+      .head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+      .where { margin: 4px 0 2px; }
+      .count { font-size: 15px; color: var(--muted); white-space: nowrap; }
+      .count.ok { color: var(--good); }
+      .take { display: grid; grid-template-columns: auto 1fr auto; gap: 6px 12px; align-items: center; padding: 9px 0; border-top: 1px solid rgba(214, 172, 96, 0.14); }
+      .takes .take:first-child { border-top: 0; }
+      .take canvas { width: 100%; height: 44px; display: block; background: #140d08; border-radius: 6px; cursor: pointer; }
+      .meta { grid-column: 2 / 4; font-size: 14px; color: var(--muted); display: flex; gap: 12px; flex-wrap: wrap; }
+      .meta .w { color: var(--warn); }
+      .meta .g { color: var(--good); }
+      .badge { font-size: 13px; padding: 0 7px; border-radius: 6px; border: 1px solid var(--line); color: var(--gold); }
+      .badge.hidden { display: none; }
+      .tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; align-items: center; }
+      .verdict fieldset { border: 0; padding: 0; margin: 0 0 12px; }
+      .verdict legend { font-weight: 600; color: var(--gold); margin-bottom: 4px; }
+      .verdict label { display: inline-block; margin: 2px 16px 2px 0; }
+      .err { color: var(--warn); }
+      @media (max-width: 640px) { .take { grid-template-columns: auto 1fr; } .take > .pick { grid-column: 1 / 3; } .meta { grid-column: 1 / 3; } }
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav class="sheets small"><a href="?sheet=redo3">Nowe tła i motywy dzwonu</a><a href="?sheet=themes">Motywy opowieści</a><a href="?sheet=redo2">Nowe nagrania</a><a href="?sheet=redo">Poprawki (odrzucone)</a><a href="?sheet=library">Cała biblioteka</a><a href="?sheet=motif">Motyw wyboru</a><a href="?sheet=phase0">Faza 0 (zakończona)</a></nav>
+      <h1 id="title">Odsłuch dźwięków</h1>
+      <p id="intro" class="muted small"></p>
+      <div class="panel controls">
+        <label>Głośność <input type="range" id="vol" min="0" max="1" step="0.01" value="0.8" /></label>
+        <label><input type="checkbox" id="match" checked /> Wyrównaj głośność</label>
+        <label><input type="checkbox" id="reveal" /> Pokaż modele</label>
+        <label class="small">Nagranie czytania (do testu tła): <input type="file" id="voice" accept="audio/*" /></label>
+        <span id="voiceInfo" class="small muted"></span>
+        <button id="stop">■ Stop</button>
+      </div>
+      <div id="sections"><p class="muted">Wczytuję…</p></div>
+      <section class="panel verdict">
+        <h4>Werdykt i eksport</h4>
+        <div id="questions"></div>
+        <label for="general" class="small muted">Uwagi ogólne</label>
+        <textarea id="general" placeholder="np. strony zbyt szeleszczące, tła za głośne…"></textarea>
+        <div class="tools">
+          <button id="export">Pobierz wybory (JSON)</button>
+          <button id="copy">Kopiuj do schowka</button>
+          <button id="resetPicks">Przywróć wstępny wybór</button>
+          <span id="exportInfo" class="small muted"></span>
+        </div>
+      </section>
+      <p class="muted small" id="footer"></p>
+    </main>
+
+    <script type="module">
+      const $ = (s, el = document) => el.querySelector(s);
+      const params = new URLSearchParams(location.search);
+      const NAME = params.get("sheet") || "library";
+      const SFX = new URL("../../local-assets/sfx/", location.href);
+      document.querySelectorAll("nav.sheets a").forEach((a) => a.getAttribute("href") === `?sheet=${NAME}` && a.setAttribute("aria-current", "page"));
+      const MODEL = { "sfx-v2": "v2", "sfx-v3": "v3", "music-v2": "Music v2", "music-v2-5": "Music v2.5", "music-v1": "Music v1" };
+      const esc = (s = "") => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      const el = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; };
+      const db = (v) => Math.pow(10, v / 20);
+      const num = (v) => String(v).replace(".", ",");
+
+      // ---------------------------------------------------------------- audio: one context, buffers on demand
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const master = ctx.createGain();
+      master.connect(ctx.destination);
+      const vol = $("#vol");
+      const setVol = () => (master.gain.value = Number(vol.value) ** 2);
+      vol.addEventListener("input", setVol);
+      setVol();
+      const buffers = new Map(); // file -> Promise<AudioBuffer>, the last ~24 kept
+      function load(file) {
+        if (!buffers.has(file)) {
+          buffers.set(file, fetch(new URL(file, SFX)).then((r) => { if (!r.ok) throw new Error(r.status); return r.arrayBuffer(); }).then((b) => ctx.decodeAudioData(b)));
+          while (buffers.size > 24) buffers.delete(buffers.keys().next().value);
+        }
+        return buffers.get(file);
+      }
+      let voices = [];
+      let playing = null; // { take, at, offset, dur, loop, button }
+      function stopAll() {
+        for (const v of voices) { try { v.stop(); } catch {} }
+        voices = [];
+        if (playing) { draw(playing.take); playing.button?.classList.remove("on"); }
+        playing = null;
+      }
+      $("#stop").addEventListener("click", stopAll);
+      function voice(buffer, { when = 0, gain = 1, rate = 1, offset = 0, loop = false, duration } = {}) {
+        const src = ctx.createBufferSource();
+        src.buffer = buffer;
+        src.playbackRate.value = rate;
+        src.loop = loop;
+        const g = ctx.createGain();
+        g.gain.value = gain;
+        src.connect(g).connect(master);
+        const at = ctx.currentTime + 0.03 + when;
+        if (duration) src.start(at, offset, duration); else src.start(at, offset);
+        voices.push(src);
+        return { src, at };
+      }
+      // level matching from the measured loudness: one-shots to -20 LUFS momentary max, beds to
+      // -30 LUFS integrated (they sit that far under everything else), never past the peak
+      const matchDb = (t) => (!$("#match").checked ? 0 : t.bed ? Math.min(-30 - t.I, -3 - t.TP) : Math.min(-20 - t.M, -1 - t.TP));
+
+      // ---------------------------------------------------------------- waveforms from measured peaks
+      function draw(t, progress = -1) {
+        const c = t.canvas;
+        if (!c || !t.peaks) return;
+        const dpr = Math.min(2, devicePixelRatio || 1);
+        const w = Math.max(1, Math.round(c.clientWidth * dpr)), h = Math.round(c.clientHeight * dpr);
+        if (c.width !== w) { c.width = w; c.height = h; }
+        const g = c.getContext("2d");
+        g.clearRect(0, 0, w, h);
+        const k = db(matchDb(t)) * (t.bed ? 2.5 : 1);
+        const P = t.peaks, bw = w / P.length;
+        for (let i = 0; i < P.length; i++) {
+          const a = Math.min(1, (P[i] / 1000) * k);
+          g.fillStyle = progress >= 0 && i / P.length > progress ? "rgba(226,191,116,0.32)" : "rgba(226,191,116,0.82)";
+          g.fillRect(i * bw, h / 2 - (a * h) / 2, Math.max(1, bw - 0.5), Math.max(1, a * h));
+        }
+        if (progress >= 0) { g.fillStyle = "#f6dd9c"; g.fillRect(Math.floor(progress * w), 0, Math.max(1, dpr), h); }
+      }
+      (function tick() {
+        if (playing) {
+          const el2 = (ctx.currentTime - playing.at) + playing.offset;
+          const p = playing.loop ? (el2 % playing.dur) / playing.dur : el2 / playing.dur;
+          if (!playing.loop && p > 1) stopAll();
+          else draw(playing.take, Math.max(0, p));
+        }
+        requestAnimationFrame(tick);
+      })();
+
+      // ---------------------------------------------------------------- playback actions
+      async function playTake(t, { loop = false, offset = 0, button = null } = {}) {
+        await ctx.resume();
+        const again = playing && playing.take === t && playing.button === button && !offset;
+        stopAll();
+        if (again) return; // a second press stops
+        button?.classList.add("on");
+        let buffer;
+        try { buffer = await load(t.file); } catch { button?.classList.remove("on"); return alert("Nie udało się wczytać tego pliku."); }
+        const { at } = voice(buffer, { gain: db(matchDb(t)), loop, offset });
+        playing = { take: t, at, offset, dur: buffer.duration, loop, button };
+      }
+      async function playSeam(t) {
+        await ctx.resume();
+        stopAll();
+        const buffer = await load(t.file);
+        const off = Math.max(0, buffer.duration - 3);
+        const { src, at } = voice(buffer, { gain: db(matchDb(t)), loop: true, offset: off });
+        src.stop(at + 6);
+        playing = { take: t, at, offset: off, dur: buffer.duration, loop: true };
+        setTimeout(() => playing?.take === t && stopAll(), 6300);
+      }
+      let reader = null; // the user's own read-aloud recording
+      async function playUnder(t, rel) {
+        if (!reader) return alert("Najpierw wybierz u góry nagranie, na którym czytasz stronę na głos (np. notatkę głosową z telefonu).");
+        await ctx.resume();
+        stopAll();
+        const buffer = await load(t.file);
+        voice(reader.buffer, { gain: Math.min(db(-20 - reader.loud), db(-1 - reader.peak)) });
+        const { at } = voice(buffer, { gain: db(-20 + rel - t.I), loop: true, duration: reader.buffer.duration });
+        playing = { take: t, at, offset: 0, dur: buffer.duration, loop: true };
+      }
+      // a choice as it will sound: seal (-3 dB), the response written in (-9 dB), then the take (-10 dB vs a page turn)
+      async function asChoice(t, when = 0) {
+        const C = sheet.context || {};
+        const seal = C.seal, quill = C.quill; // { file, M, I, TP }
+        if (seal) voice(await load(seal.file), { when, gain: db(matchDb(seal) - 3) });
+        if (quill) voice(await load(quill.file), { when: when + 0.09, gain: db(matchDb(quill) - 9) });
+        voice(await load(t.file), { when: when + (seal ? 0.5 : 0), gain: db(matchDb(t) - 10) });
+      }
+      async function playSequence(takes, choice) {
+        await ctx.resume();
+        stopAll();
+        let when = 0;
+        for (const t of takes) {
+          if (choice) await asChoice(t, when);
+          else voice(await load(t.file), { when, gain: db(matchDb(t) - 10) });
+          when += choice ? 2.6 : 1.9;
+        }
+      }
+
+      // ---------------------------------------------------------------- state (per sheet, this browser only)
+      const KEY = NAME === "phase0" ? "sfxReview.phase0b" : `sfxReview.${NAME}`;
+      const load0 = () => { try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch { return null; } };
+      let S = load0();
+      const persist = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch {} };
+      const takeByFile = new Map();
+      const allTakes = []; // every row (one file may be in several cards)
+      const pk = (it, t) => `${it.id}|${t.file}`;
+      let sheet = null;
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      function seeded(list, key) {
+        let h = 7;
+        for (const ch of key) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+        const rnd = () => ((h = (h * 1664525 + 1013904223) >>> 0) / 2 ** 32);
+        return list.map((x) => [rnd(), x]).sort((a, b) => a[0] - b[0]).map((x) => x[1]);
+      }
+      function counter(item, node) {
+        const n = item.takes.filter((t) => S.picks[pk(item, t)]).length;
+        node.textContent = `wybrane ${n} · w książce ${item.ship}`;
+        node.classList.toggle("ok", n === item.ship);
+      }
+
+      async function build() {
+        try { sheet = await (await fetch(new URL(`sheets/${NAME}.json`, SFX), { cache: "no-store" })).json(); }
+        catch { $("#sections").innerHTML = `<p class="err">Brak arkusza „${esc(NAME)}”. Uruchom: node scripts/sfx/sheets.mjs</p>`; return; }
+        document.title = sheet.title;
+        $("#title").textContent = sheet.title;
+        $("#intro").textContent = sheet.intro || "";
+        $("#reveal").checked = Boolean(sheet.showModels);
+        if (!S) {
+          S = { picks: {}, notes: {}, verdict: {}, general: "" };
+          for (const sec of sheet.sections) for (const g of sec.groups) for (const it of g.items) for (const t of it.takes) if (t.recommended) S.picks[pk(it, t)] = true;
+          persist();
+        }
+        const root = $("#sections");
+        root.innerHTML = "";
+        allTakes.length = 0;
+        for (const sec of sheet.sections) {
+          root.append(el(`<h2 class="sec">${esc(sec.title)}</h2>`));
+          for (const g of sec.groups) {
+            if (g.title) root.append(el(`<h3 class="grp">${esc(g.title)}</h3>`));
+            if (g.note) root.append(el(`<p class="small muted">${esc(g.note)}</p>`));
+            for (const it of g.items) root.append(card(it));
+          }
+        }
+        $("#questions").innerHTML = (sheet.questions || []).map((q) => `<fieldset><legend>${esc(q.legend)}</legend>${q.options.map((o) => `<label><input type="radio" name="${esc(q.name)}" value="${esc(o.value)}" /> ${esc(o.label)}</label>`).join("")}</fieldset>`).join("");
+        document.querySelectorAll("#questions input").forEach((r) => {
+          r.checked = S.verdict[r.name] === r.value;
+          r.addEventListener("change", () => { S.verdict[r.name] = r.value; persist(); });
+        });
+        $("#general").value = S.general || "";
+        applyReveal();
+        const st = sheet.stats;
+        $("#footer").textContent = `${st ? `${st.takes} wersji · ${st.credits} kredytów (nagłówki character-cost) · ` : ""}arkusz z ${new Date(sheet.builtAt).toLocaleString("pl-PL")}`;
+        requestAnimationFrame(() => allTakes.forEach((t) => draw(t)));
+      }
+
+      function card(it) {
+        const bed = it.loop;
+        const c = el(`<section class="card">
+          <div class="head"><h4>${esc(it.label)}</h4><span class="count"></span></div>
+          <p class="where">${esc(it.where || "")}</p>
+          ${it.hint ? `<p class="small muted">${esc(it.hint)}</p>` : ""}
+          ${it.prompt ? `<details><summary>Prompt (angielski) · ${it.kind === "music" ? `${num(it.lengthMs / 1000)} s, Music API` : `${num(it.seconds)} s${bed ? ", pętla" : ""}`}</summary><p>${esc(it.prompt)}</p></details>` : ""}
+          <div class="takes"></div>
+          <div class="tools item-tools"></div>
+          <textarea placeholder="uwagi do tego dźwięku…"></textarea>
+        </section>`);
+        const cnt = c.querySelector(".count");
+        const ta = c.querySelector("textarea");
+        ta.value = S.notes[it.id] || "";
+        ta.addEventListener("input", () => { S.notes[it.id] = ta.value; persist(); });
+        const list = sheet.blind ? seeded(it.takes, it.id) : it.takes;
+        for (const [i, t0] of list.entries()) {
+          const t = { ...t0, bed, card: it.id, label: t0.label || t0.role || `Wersja ${letters[i]}` };
+          takeByFile.set(t.file, t);
+          allTakes.push(t);
+          const warn = (t.warn || []).map((w) => `<span class="w">${esc(w)}</span>`).join("");
+          const good = (t.good || []).map((w) => `<span class="g">${esc(w)}</span>`).join("");
+          const row = el(`<div class="take">
+            <button class="play">▶ ${esc(t.label)}</button>
+            <canvas title="kliknij, żeby odtworzyć od tego miejsca"></canvas>
+            <button class="pick">★ Wybieram</button>
+            <div class="meta"><span class="badge model">${esc(MODEL[t.tag] || t.tag || "")}${t.take ? ` t${String(t.take).padStart(2, "0")}` : ""}</span><span>${num((t.dur ?? 0).toFixed(2))} s</span>${t.pitch ? `<span>${esc(t.pitch)}</span>` : ""}${t.mine ? `<span class="g">twój wybór z fazy 0</span>` : ""}${t.recommended && !t.mine && !t.role ? `<span>wstępnie wybrane</span>` : ""}${warn}${good}${t.credits ? `<span>${t.credits} kr.</span>` : ""}</div>
+          </div>`);
+          c.querySelector(".takes").append(row);
+          t.canvas = row.querySelector("canvas");
+          const play = row.querySelector(".play"), pick = row.querySelector(".pick");
+          const key = pk(it, t);
+          pick.classList.toggle("on", Boolean(S.picks[key]));
+          pick.addEventListener("click", () => {
+            if (S.picks[key]) delete S.picks[key]; else S.picks[key] = true;
+            pick.classList.toggle("on", Boolean(S.picks[key]));
+            counter(it, cnt);
+            persist();
+          });
+          const loopOn = () => c.querySelector(".loop")?.checked ?? true;
+          play.addEventListener("click", () => playTake(t, { loop: bed && loopOn(), button: play }));
+          t.canvas.addEventListener("click", (e) => {
+            const r = t.canvas.getBoundingClientRect();
+            playTake(t, { loop: bed && loopOn(), offset: ((e.clientX - r.left) / r.width) * t.dur, button: play });
+          });
+          const tools = el(`<div class="tools"></div>`);
+          if (bed) {
+            const seam = el(`<button>Szew pętli</button>`), under = el(`<button>Pod moim głosem</button>`);
+            seam.addEventListener("click", () => playSeam(t));
+            under.addEventListener("click", () => playUnder(t, Number(c.querySelector(".rel")?.value ?? -27)));
+            tools.append(seam, under);
+          }
+          if (it.tools?.includes("asChoice")) {
+            const b = el(`<button>Jak przy wyborze</button>`);
+            b.addEventListener("click", async () => { await ctx.resume(); stopAll(); asChoice(t); });
+            tools.append(b);
+          }
+          if (tools.childNodes.length) { tools.style.gridColumn = "1 / -1"; row.append(tools); }
+        }
+        const it2 = c.querySelector(".item-tools");
+        if (bed) {
+          it2.append(el(`<label class="small"><input type="checkbox" class="loop" checked /> Zapętl przy odtwarzaniu</label>`));
+          const rel = el(`<label class="small">Tło względem głosu <input type="range" class="rel" min="-40" max="-12" step="1" value="-27" /> <span>−27 dB</span></label>`);
+          rel.querySelector("input").addEventListener("input", (e) => (rel.querySelector("span").textContent = `${e.target.value.replace("-", "−")} dB`));
+          it2.append(rel);
+        }
+        if (it.tools?.includes("sequence")) {
+          const seq = el(`<button>Zagraj zestaw po kolei</button>`), seqC = el(`<button>Zestaw jak przy kolejnych wyborach</button>`);
+          const takes = () => allTakes.filter((x) => x.card === it.id);
+          seq.addEventListener("click", () => playSequence(takes(), false));
+          seqC.addEventListener("click", () => playSequence(takes(), true));
+          it2.append(seq, seqC);
+        }
+        counter(it, cnt);
+        return c;
+      }
+      function applyReveal() { document.querySelectorAll(".badge.model").forEach((b) => b.classList.toggle("hidden", !$("#reveal").checked)); }
+      $("#reveal").addEventListener("change", applyReveal);
+      $("#match").addEventListener("change", () => allTakes.forEach((t) => draw(t)));
+      addEventListener("resize", () => allTakes.forEach((t) => draw(t)));
+
+      $("#voice").addEventListener("change", async (e) => {
+        const f = e.target.files?.[0];
+        if (!f) return;
+        try {
+          const buffer = await ctx.decodeAudioData(await f.arrayBuffer());
+          // loudness of the speech (RMS of the louder half of 50 ms windows), and its peak
+          const d = buffer.getChannelData(0), hop = Math.floor(buffer.sampleRate * 0.05), lv = [];
+          let peak = 0;
+          for (let s = 0; s + hop <= d.length; s += hop) { let e2 = 0; for (let i = s; i < s + hop; i++) { e2 += d[i] * d[i]; peak = Math.max(peak, Math.abs(d[i])); } lv.push(e2 / hop); }
+          lv.sort((a, b) => b - a);
+          const top = lv.slice(0, Math.max(1, Math.floor(lv.length / 2)));
+          reader = { buffer, loud: 10 * Math.log10(top.reduce((a, b) => a + b, 0) / top.length + 1e-12), peak: 20 * Math.log10(peak + 1e-12) };
+          $("#voiceInfo").textContent = `${f.name}, ${Math.round(buffer.duration)} s: gotowe`;
+        } catch { $("#voiceInfo").textContent = "Nie udało się odczytać tego pliku."; }
+      });
+
+      // ---------------------------------------------------------------- export
+      $("#general").addEventListener("input", (e) => { S.general = e.target.value; persist(); });
+      function exportData() {
+        const sounds = {};
+        for (const sec of sheet.sections) for (const g of sec.groups) for (const it of g.items) {
+          const picked = it.takes.filter((t) => S.picks[pk(it, t)]).map((t) => ({ file: t.file, model: t.tag, ...(t.role ? { role: t.role } : {}), ...(t.from ? { from: t.from, semitones: t.semis } : {}) }));
+          sounds[it.id] = { picked, ship: it.ship, note: S.notes[it.id] || "" };
+        }
+        return { sheet: NAME, exportedAt: new Date().toISOString(), verdict: S.verdict, general: S.general, sounds };
+      }
+      $("#export").addEventListener("click", () => {
+        const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(new Blob([JSON.stringify(exportData(), null, 2)], { type: "application/json" })), download: `sfx-picks-${NAME}.json` });
+        a.click();
+        $("#exportInfo").textContent = `Pobrano sfx-picks-${NAME}.json`;
+      });
+      $("#copy").addEventListener("click", async () => {
+        try { await navigator.clipboard.writeText(JSON.stringify(exportData(), null, 2)); $("#exportInfo").textContent = "Skopiowano"; }
+        catch { $("#exportInfo").textContent = "Nie udało się skopiować; użyj pobierania"; }
+      });
+      $("#resetPicks").addEventListener("click", () => {
+        if (!confirm("Przywrócić wstępny wybór i skasować twoje gwiazdki w tym arkuszu? Uwagi zostaną.")) return;
+        S.picks = {};
+        for (const sec of sheet.sections) for (const g of sec.groups) for (const it of g.items) for (const t of it.takes) if (t.recommended) S.picks[pk(it, t)] = true;
+        persist();
+        build();
+      });
+
+      build();
+    </script>
+  </body>
+</html>

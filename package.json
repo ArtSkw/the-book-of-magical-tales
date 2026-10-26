@@ -7,9 +7,15 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "validate:stories": "node validate-stories.js"
+    "validate:stories": "node validate-stories.js",
+    "sfx:gen": "node --env-file=.env scripts/sfx/generate.mjs",
+    "sfx:index": "node scripts/sfx/generate.mjs --index",
+    "sfx:review": "vite --port 5193 --strictPort",
+    "sfx:master": "node scripts/sfx/master.mjs",
+    "sfx:check": "node scripts/sfx/check.mjs"
   },
   "devDependencies": {
-    "vite": "^7.1.12"
+    "three": "^0.186.1",
+    "vite": "^7.3.7"
   }
 }

@@ -7,3 +7,19 @@ local-assets/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Superset
+.superset/config.local.json
+
+# Image sources: Codex generations and graded masters stay local (re-crop / regrade from them)
+prototypes/raw/
+prototypes/graded/
+.superset/attachments/
+# Image prompts written by prototypes/prompts/_build_a2.py and _build_moonhill.py: derived from the
+# builders (the source of truth, with _style-*.txt and _ref-a2.txt), regenerated on demand.
+# Hand-written prompts (orn-*, set-*, room-wall) stay tracked.
+prototypes/prompts/a2-*.txt
+prototypes/prompts/mh-*.txt
+# Composition and setting references cut from local raws (prototypes/raw) for the builders
+prototypes/refs/*-composition.png
+prototypes/refs/*-setting.png

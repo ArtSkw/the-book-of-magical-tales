@@ -1,0 +1,21 @@
+REFS:
+SIZE: 1536x1024, landscape. OPAQUE (no transparency, no alpha).
+
+USE: the far wall of the small chamber behind the reading desk in a 3D storybook. In the book the picture is mapped flat onto a wall about 3.3 m wide and 2.2 m tall, standing about a metre behind a candle-lit desk, and it is only ever seen dimly and out of focus behind the desk while the book opens. The camera looks DOWN over the desk at it, so only the BOTTOM THIRD of the picture is ever seen: everything that matters sits in the lowest third, between about 15% and 85% of the width. The top two thirds are quiet wall that is almost never seen.
+
+STYLE: a soft painterly matte painting, like a warm oil or gouache concept painting for a cosy fantasy film interior: broad, soft brushwork, simple readable shapes, gentle edges, low contrast, no ink outlines, no fine detail, no texture noise. It must read as "a warm, lived-in room" even when heavily blurred. Never photographic, never 3D-rendered, never cartoon.
+
+VIEW: a straight-on, flat elevation of ONE wall, as if seen squarely from the middle of the room: no perspective convergence, no side walls, no ceiling. The bottom edge of the picture is the floor line: a thin strip (about 4% of the height) of warm, worn oak floorboards runs along the bottom, lit by the fire.
+
+THE WALL: warm earthen plaster in honey ochre, terracotta and umber, hand-smoothed and slightly uneven, between dark oak timber posts, with a low dark oak beam along the very top. A cosy, low, hand-built room: the chamber of a reader or a traveller in a quiet medieval / light-fantasy village, in the spirit of a snug hillside burrow home, but NOT any recognisable film set.
+
+CONTENT, from left to right, standing on the floor (keep all of it in the lowest third):
+- at about 35% from the left: a low, round-mouthed stone hearth set into the wall at floor level, with a small fire of logs glowing orange-gold; its bright centre about 15% up from the bottom edge. A blackened copper kettle hangs over it, a few split logs are stacked beside it. Its warm light spills over the floorboards in front and up the plaster around it.
+- at about 50–62%: a low oak bookcase on the floor; its bottom shelves are full of big leather-bound books, some standing, some lying in stacks, rolled scrolls and maps in a few cubbies; a small brass lantern with a candle stands on top.
+- at about 68–78%: an iron-bound wooden travelling chest on the floor, a folded dark-red travelling cloak on its lid, a walking staff leaning against the wall beside it, a wicker basket of rolled maps.
+- at the right edge, about 88%: the lower part of a deep, round-topped plank door in shadow (plain dark oak, iron studs and hinges; NOT green, no round brass knob in the centre), half lost in the dark.
+- higher on the wall (rarely seen, keep it quiet): one plain shelf with a few jars and bottles, bunches of dried herbs hanging from the beam, a faded hand-drawn map pinned to the plaster, a small round-topped window with leaded panes and a deep blue night outside.
+
+LIGHT AND COLOUR: lit only by the fire and a little warm candlelight: amber and orange glows, deep warm umber shadows. The whole picture is DARK and calm (low mid-tones); the brightest thing is the small fire; nothing else comes close to it. Warm, muted palette: honey ochre, terracotta, umber, oak brown, dusty red and muted sage in a few book spines, brass; the only cool note is the small deep-blue window. No saturated colours, no pure black, no bright white. All four edges and corners fall off softly into warm darkness (a gentle vignette), so the picture's edges never show as edges.
+
+AVOID: people, animals, faces; any text, letters, numbers or runes (book spines and maps stay plain); a round green door or anything copied from a film set; modern objects; strong perspective; a visible ceiling; lens flare, light rays, sparkles, smoke; hard sharp edges; busy detail.

@@ -1,0 +1,467 @@
+{
+  "_about": "Written by scripts/sfx/picks.mjs on 2026-10-25T23:23:39.342Z. Motifs: from picks-motif.json. Library: the user's library export picks-library.json (2026-10-25T20:16:17.460Z). The mix lives in prototypes/book/sound.js (LEVELS); gainDb here only trims a file. Redo2: ribbon-silk, quill-rewrite, cover-open, room-bed from picks-redo2.json. Themes from picks-themes.json. Redo3: mh-bed-tower, mh-bed-square-evening, mh-bed-orchard-evening, db-bed-evening, db-bed-dusk, db-bed-deepdusk, db-bed-night, bell-intro-theme, bell-ending-theme from picks-redo3.json.",
+  "choice-motif": {
+    "kind": "oneshot",
+    "bus": "music",
+    "mono": false,
+    "note": "Set 'mix' (picks-motif.json): every take starred anywhere, all in D. The first choice of a tale plays t02 (starred in all three lists), the last t01 (the user's W4 in set 2), those between t07, t08, t04 (t04 starred raw; its F sharp version was not chosen).",
+    "takes": [
+      {
+        "file": "choice-motif/choice-motif--sfx-v3-t02.wav",
+        "tune": "D",
+        "role": "first"
+      },
+      {
+        "file": "choice-motif/choice-motif--sfx-v3-t07.wav",
+        "tune": "D",
+        "role": "middle"
+      },
+      {
+        "file": "choice-motif/choice-motif--sfx-v3-t08.wav",
+        "tune": "D",
+        "role": "middle"
+      },
+      {
+        "file": "choice-motif/choice-motif--sfx-v3-t04.wav",
+        "tune": "D",
+        "role": "middle"
+      },
+      {
+        "file": "choice-motif/choice-motif--sfx-v3-t01.wav",
+        "tune": "D",
+        "role": "last"
+      }
+    ]
+  },
+  "page-turn": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "page-turn-a/page-turn-a--sfx-v2-t01.wav",
+      "page-turn-a/page-turn-a--sfx-v2-t03.wav",
+      "page-turn-a/page-turn-a--sfx-v2-t04.wav",
+      "page-turn-c/page-turn-c--sfx-v2-t01.wav",
+      "page-turn-c/page-turn-c--sfx-v2-t03.wav"
+    ]
+  },
+  "page-settle": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "page-settle/page-settle--sfx-v2-t01.wav",
+      "page-settle/page-settle--sfx-v2-t03.wav",
+      {
+        "file": "page-settle/page-settle--sfx-v2-t01.wav",
+        "rate": 0.965,
+        "tilt": -1.5,
+        "derived": true
+      }
+    ]
+  },
+  "page-held": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "page-held/page-held--sfx-v2-t01.wav",
+      "page-held/page-held--sfx-v2-t03.wav",
+      "page-held/page-held--sfx-v2-t04.wav"
+    ]
+  },
+  "riffle-leaf": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      {
+        "file": "riffle/riffle--sfx-v2-t03.wav",
+        "slice": {
+          "max": 8,
+          "len": 0.42
+        }
+      }
+    ]
+  },
+  "riffle-land": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "riffle-land/riffle-land--sfx-v2-t01.wav",
+      "riffle-land/riffle-land--sfx-v2-t02.wav"
+    ]
+  },
+  "ribbon-silk": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "note": "redo2 (2026-10-25T21:19:52.031Z): new generation as picked, plain chain",
+    "takes": [
+      {
+        "file": "ribbon-silk-r2a/ribbon-silk-r2a--sfx-v3-t01.wav",
+        "plain": true
+      }
+    ]
+  },
+  "seal-press": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "seal-press/seal-press--sfx-v2-t04.wav",
+      "seal-press/seal-press--sfx-v2-t05.wav",
+      {
+        "file": "seal-press/seal-press--sfx-v2-t04.wav",
+        "rate": 0.965,
+        "tilt": -1.5,
+        "derived": true
+      },
+      {
+        "file": "seal-press/seal-press--sfx-v2-t05.wav",
+        "rate": 1.035,
+        "tilt": 1,
+        "derived": true
+      }
+    ]
+  },
+  "quill-rewrite": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "note": "redo2 (2026-10-25T21:19:52.031Z): new generation as picked, plain chain",
+    "takes": [
+      {
+        "file": "quill-rewrite-r2a/quill-rewrite-r2a--sfx-v2-t02.wav",
+        "plain": true
+      }
+    ]
+  },
+  "clasp": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "clasp/clasp--sfx-v2-t02.wav",
+      {
+        "file": "clasp/clasp--sfx-v2-t02.wav",
+        "rate": 0.965,
+        "tilt": -1.5,
+        "derived": true
+      }
+    ]
+  },
+  "pages-return": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "pages-return/pages-return--sfx-v2-t01.wav",
+      "pages-return/pages-return--sfx-v2-t02.wav"
+    ]
+  },
+  "cover-open": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "note": "redo2 (2026-10-25T21:19:52.031Z): new generation as picked, plain chain",
+    "takes": [
+      {
+        "file": "cover-open-r2a/cover-open-r2a--sfx-v2-t01.wav",
+        "plain": true
+      }
+    ]
+  },
+  "cover-land": {
+    "kind": "oneshot",
+    "bus": "sfx",
+    "takes": [
+      "cover-land/cover-land--sfx-v2-t02.wav",
+      {
+        "file": "cover-land/cover-land--sfx-v2-t02.wav",
+        "rate": 0.965,
+        "tilt": -1.5,
+        "derived": true
+      }
+    ]
+  },
+  "room-bed": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo2 (2026-10-25T21:19:52.031Z): new generation as picked, plain chain",
+    "takes": [
+      {
+        "file": "room-bed-r2a/room-bed-r2a--sfx-v3-t02.wav",
+        "plain": true
+      }
+    ]
+  },
+  "candle-sputter": {
+    "kind": "oneshot",
+    "bus": "amb",
+    "takes": [
+      {
+        "file": "candle-sputter/candle-sputter--sfx-v2-t02.wav",
+        "slice": {
+          "max": 4,
+          "len": 0.6
+        }
+      }
+    ]
+  },
+  "db-breath-sleep": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-breath-sleep/db-breath-sleep--sfx-v2-t03.wav",
+      "db-breath-sleep/db-breath-sleep--sfx-v2-t04.wav"
+    ]
+  },
+  "db-bed-evening": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "db-bed-evening-r3a/db-bed-evening-r3a--sfx-v3-t01.wav"
+    ]
+  },
+  "db-huff": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-huff/db-huff--sfx-v2-t04.wav"
+    ]
+  },
+  "db-sigh": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-sigh/db-sigh--sfx-v2-t03.wav"
+    ]
+  },
+  "db-peeps": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-peeps/db-peeps--sfx-v2-t03.wav"
+    ]
+  },
+  "db-bed-dusk": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "db-bed-dusk-r3b/db-bed-dusk-r3b--sfx-v3-t01.wav"
+    ]
+  },
+  "db-mice": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-mice/db-mice--sfx-v2-t02.wav"
+    ]
+  },
+  "db-pennant": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-pennant/db-pennant--sfx-v2-t01.wav"
+    ]
+  },
+  "db-nibble": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-nibble/db-nibble--sfx-v2-t02.wav"
+    ]
+  },
+  "db-warm-breath": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "db-warm-breath/db-warm-breath--sfx-v2-t02.wav"
+    ]
+  },
+  "db-bed-deepdusk": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "db-bed-deepdusk-r3a/db-bed-deepdusk-r3a--sfx-v2-t01.wav"
+    ]
+  },
+  "db-bed-night": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "db-bed-night-r3a/db-bed-night-r3a--sfx-v2-t01.wav"
+    ]
+  },
+  "db-owl": {
+    "kind": "oneshot",
+    "bus": "amb",
+    "takes": [
+      "db-owl/db-owl--sfx-v2-t01.wav"
+    ]
+  },
+  "mh-finch": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "mh-finch/mh-finch--sfx-v2-t01.wav",
+      "mh-finch/mh-finch--sfx-v2-t02.wav"
+    ]
+  },
+  "mh-bed-square-evening": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "mh-bed-square-evening-r3a/mh-bed-square-evening-r3a--sfx-v3-t01.wav"
+    ]
+  },
+  "mh-mare": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "mh-mare/mh-mare--sfx-v2-t04.wav"
+    ]
+  },
+  "mh-bed-orchard-evening": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "mh-bed-orchard-evening-r3a/mh-bed-orchard-evening-r3a--sfx-v3-t01.wav"
+    ]
+  },
+  "mh-bed-orchard-dusk": {
+    "kind": "bed",
+    "bus": "amb",
+    "takes": [
+      "mh-bed-orchard-dusk/mh-bed-orchard-dusk--sfx-v2-t01.wav"
+    ]
+  },
+  "mh-bronze": {
+    "kind": "oneshot",
+    "bus": "story",
+    "mono": false,
+    "takes": [
+      "mh-bronze/mh-bronze--sfx-v3-t03.wav"
+    ]
+  },
+  "mh-rivets": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "mh-rivets/mh-rivets--sfx-v2-t02.wav"
+    ]
+  },
+  "mh-bed-night": {
+    "kind": "bed",
+    "bus": "amb",
+    "takes": [
+      "mh-bed-night/mh-bed-night--sfx-v2-t03.wav"
+    ]
+  },
+  "mh-finch-stir": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "mh-finch-stir/mh-finch-stir--sfx-v2-t01.wav"
+    ]
+  },
+  "mh-bell": {
+    "kind": "oneshot",
+    "bus": "story",
+    "mono": false,
+    "takes": [
+      {
+        "file": "mh-bell/mh-bell--sfx-v3-t04.wav",
+        "fromHz": 581.5,
+        "tune": "D"
+      },
+      {
+        "file": "mh-bell/mh-bell--sfx-v3-t08.wav",
+        "fromHz": 1486.9,
+        "tune": "D"
+      }
+    ]
+  },
+  "mh-bell-far": {
+    "kind": "oneshot",
+    "bus": "story",
+    "mono": false,
+    "takes": [
+      {
+        "file": "mh-bell/mh-bell--sfx-v3-t04.wav",
+        "fromHz": 581.5,
+        "tune": "D",
+        "fx": "far"
+      }
+    ]
+  },
+  "mh-hum": {
+    "kind": "oneshot",
+    "bus": "story",
+    "mono": false,
+    "takes": [
+      "mh-hum/mh-hum--sfx-v3-t03.wav"
+    ]
+  },
+  "mh-chicks": {
+    "kind": "oneshot",
+    "bus": "story",
+    "takes": [
+      "mh-chicks/mh-chicks--sfx-v2-t01.wav"
+    ]
+  },
+  "dragon-intro-theme": {
+    "kind": "music",
+    "bus": "music",
+    "note": "themes (2026-10-25T22:10:41.328Z)",
+    "takes": [
+      {
+        "file": "dragon-intro-a/dragon-intro-a--music-v2-5-t01.mp3",
+        "tailFade": 2.5
+      }
+    ]
+  },
+  "dragon-ending-theme": {
+    "kind": "music",
+    "bus": "music",
+    "note": "themes (2026-10-25T22:10:41.328Z)",
+    "takes": [
+      "dragon-ending-b/dragon-ending-b--music-v2-t01.mp3"
+    ]
+  },
+  "bell-intro-theme": {
+    "kind": "music",
+    "bus": "music",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      {
+        "file": "bell-intro-r3c/bell-intro-r3c--music-v2-t01.mp3",
+        "trim": [
+          0,
+          10.62
+        ],
+        "tailFade": 1
+      }
+    ]
+  },
+  "bell-ending-theme": {
+    "kind": "music",
+    "bus": "music",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      {
+        "file": "bell-ending-r3c/bell-ending-r3c--music-v2-5-t01.mp3",
+        "trim": [
+          0,
+          12.75
+        ],
+        "tailFade": 0.8
+      }
+    ]
+  },
+  "mh-bed-tower": {
+    "kind": "bed",
+    "bus": "amb",
+    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "takes": [
+      "mh-bed-tower-r3a/mh-bed-tower-r3a--sfx-v2-t01.wav"
+    ]
+  }
+}

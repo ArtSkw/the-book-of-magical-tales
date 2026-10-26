@@ -1,0 +1,9 @@
+REFS: pentiment-margins-1.png, pentiment-margins-2.png, pentiment-stylesheet.png, tone-dragon-bridge-p4.png
+SIZE: 1536x1024, landscape — but compose the motif as a LOW, WIDE horizontal band across the middle of the canvas (about a third of the height), with transparent space above and below.
+
+STYLE: marginal decoration from a late-medieval illuminated manuscript, drawn exactly in the manner of the margins in the game Pentiment (see the attached Pentiment page references: the berry vines, flower tendrils, birds and small beasts around the miniatures). Fine, confident near-black brown ink line (#2b1d14) with delicate hairline tendrils and tiny curls; light transparent watercolour washes in a restrained, muted palette (sage and olive greens, madder red berries, soft cornflower blue, ochre, warm browns), with natural mottling; small touches of burnished gold leaf as dots or tiny leaves (#c9972b). Airy and SUBTLE: thin stems, lots of empty space between motifs, nothing heavy or crowded — it must sit quietly beside text on a page and never compete with the main illustration. Same tone as the attached tone references. Never photographic, never 3D, never digital-airbrush. Absolutely no text, letters, numbers or signatures.
+FORMAT: TRANSPARENT BACKGROUND (alpha channel, PNG). Only the ink-and-wash motif is opaque; everything else — including the paper — is fully transparent: no parchment colour, no background, no frame, no shadow.
+
+MOTIF: a slender oak sprig running left to right with lobed oak leaves and a few acorns in their cups, fine curling tendrils, two or three gold-leaf dots — and a small brown wren perched on it, tail up, looking back over its shoulder.
+
+REFERENCE ROLES: the Pentiment pages define the line, wash, palette and lightness of the marginalia; the tone reference defines colour balance; never copy a motif exactly.
