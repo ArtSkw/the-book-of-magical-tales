@@ -1,24 +1,42 @@
 # Tale Template
 
-Use this template when adding a new tale to `stories.js`.
+Use this template when adding a new tale to the book.
 
-For the full production process, follow `docs/NEW_STORY_WORKFLOW.md`. This template is the story data and quality checklist used during that workflow.
+For the full production process, follow `docs/NEW_STORY_WORKFLOW.md`. This template is the story data, the book's rules and the quality checklist used during that workflow.
 
-Every tale should follow the project rules in `BRIEF.md`:
+The tone and values come from `BRIEF.md`. Where the brief describes the original 2D app (CSS animations, tap-to-animate illustrations, a 2D layout), the 3D book has replaced it; the rules below are the current ones.
 
-- 9-10 pages, preferably 10.
-- 3 short paragraphs per page.
-- Choice pages on pages 2, 4, 6, and 8.
-- Every page needs `title`, `body`, `choices`.
+## Book Rules
+
+`npm run validate:stories` checks every rule marked ✓, for English and Polish alike.
+
+- ✓ 9-10 pages, preferably 10.
+- ✓ 3 short paragraphs per page.
+- ✓ Choice pages on pages 2, 4, 6, and 8, each with exactly **2** options.
+- ✓ Every page needs `title`, `body`, `choices` (an empty array on pages without a choice); every choice needs `id`, `label`, `response`.
+- ✓ A choice label fits on one line of the wax-seal tab: at most **38 characters**. A response fits in two lines: at most **120 characters**.
+- ✓ Exactly one page has `ending: true`: the last one. It has no choices and its last paragraph is `"The end."` in English and `"Koniec."` in Polish.
+- ✓ Every page with `echoes` also has `paragraphByChoice` variants that replace at least two paragraphs for each possible choice.
+- ✓ 3-4 curiosity notes per tale (`curiosityNote` or `curiosityNoteByChoice`), each body at most **220 characters** (four lines under the picture). Three is the minimum; add a fourth only when the story has a genuinely worthwhile topic.
+- ✓ A page has a choice **or** a curiosity note, never both: under the picture there is room for one or the other. In practice notes sit on the odd consequence pages (1, 3, 5, 7, 9).
+- ✓ Every picture the tale's spread manifest (`src/book/pages.js`) names exists under `public/`, spelled exactly (GitHub Pages is case-sensitive).
 - Every page needs a distinct illustration composition. Page 1 can be a cover-like wide tableau; later pages should vary between close-ups, medium scenes, detail vignettes, low views, object-focused images, group scenes, and final tableaux.
-- Page 10 should be the ending page, have no choices, and end with `"Koniec."` in Polish and `"The end."` in English.
-- Every page's pictures, each choice variant included, are listed in the tale's spread manifest in `src/book/pages.js`, and the tale with its ribbon in `src/book/tales.js`; `npm run validate:stories` checks that every picture exists under `public/`.
+- The picture's format follows the page: a page with a choice or a note gets a framed **5:4 plate** with the choices or the note under it; a page with neither gets a **2:3 portrait**. The ending page runs its text across both pages, with a closing emblem instead of a picture. Plan compositions for the right format from the start.
 - Choices should be kind, valid, nonviolent, and softly acknowledged later.
-- Every consequence page with `echoes` should also include `paragraphByChoice` variants that replace at least two paragraphs for each possible choice.
-- Each tale should include 3-4 optional `curiosityNote` entries, shown as "Czy wiesz, że...?" / "Did you know...?" popovers. Three is the minimum; add a fourth only when the story has a genuinely worthwhile topic.
-- Do not add retired discussion-prompt fields, explicit value-label fields, or choice-based value-label maps. The app no longer uses them.
+- Do not add retired discussion-prompt fields, explicit value-label fields, choice-based value-label maps, or the 2D app's art and animation fields (`art*`, `cue*`, `visual*`, `illustration`). The book does not use them.
 - Keep middle pages grounded in action, sensory detail, practical causes, and visible consequences. Save explicit value summary for the final page.
 - Every tale should be written Polish-first, then adapted into English. Polish should define the read-aloud rhythm, folk-tale warmth, page titles, and emotional pacing; English should preserve the same structure and image beats while reading naturally.
+
+## How The Book Shows The Data
+
+- **Title spread** (before page 1): the epigraph on the left (`epigraph` in `src/book/tales.js`), on the right the book's name, the tale's `title` and `kicker`, and the title emblem.
+- **Page:** the left page carries only the title and the text (and a small marginal ornament, the `tailpiece`, when there is room), the right page the picture. The text is sized to fit the left page, so keep paragraphs short.
+- **Echo** (`echoes`): one short italic line inserted after the first paragraph, e.g. *"The book remembered the gentle ringing."* It is the visible cue that an earlier choice mattered; `paragraphByChoice` carries the real change in the prose.
+- **Choice:** two tabs with wax seals under the plate. The chosen seal is pressed and its `response` is written in under the tabs. The reader cannot turn on until they have chosen.
+- **Curiosity note:** under the plate, titled "Did you know...?" / "Czy wiesz, że...?". `curiosityNoteByChoice` lets the note itself depend on an earlier choice.
+- **Ending page:** the text runs over both pages: the first half with the closing emblem under it on the left, the rest with a small ornament and the "Begin again" button on the right.
+- **Ribbon:** each tale has a silk ribbon in the book (colour and an embroidered motif) that opens its title spread.
+- `shortTitle` is still required by the validator but no longer shown.
 
 ## New Tale Production Checklist
 
@@ -27,22 +45,24 @@ Use this checklist before considering a tale ready for review:
 - [ ] Story seed is defined: place, problem, core value direction, medieval detail, fantasy detail, educational hook, and emotional arc.
 - [ ] Polish version is drafted first and uses the current Polish tales as the tone reference.
 - [ ] Page titles describe concrete story moments rather than abstract translated phrases.
-- [ ] Tale has preferably 10 pages, or more only when the story truly needs it.
+- [ ] Tale has preferably 10 pages.
 - [ ] Every page has 3 short read-aloud paragraphs.
-- [ ] Choice pages are balanced and every choice is kind, valid, nonviolent, and softly acknowledged later.
-- [ ] Every consequence page changes at least two prose paragraphs with `paragraphByChoice`, with only a short branch note as the visible cue.
+- [ ] Choice pages are balanced, have 2 options each, and every choice is kind, valid, nonviolent, and softly acknowledged later.
+- [ ] Every consequence page changes at least two prose paragraphs with `paragraphByChoice`, with only a short echo line as the visible cue.
 - [ ] Middle pages do not over-explain the moral; values are shown through what characters notice, decide, repair, carry, wait for, or protect.
 - [ ] The final page ends clearly with `"Koniec."` in Polish and `"The end."` in English.
-- [ ] 3-4 curiosity notes are included, with 3 as the minimum and 4 only for a genuinely worthwhile topic.
+- [ ] 3-4 curiosity notes are included, on pages without a choice, with 3 as the minimum and 4 only for a genuinely worthwhile topic.
 - [ ] English is adapted after Polish, preserving meaning and page beats while reading naturally.
-- [ ] Placeholder-art layout pass is complete in both languages before final images are generated.
-- [ ] Every page and choice variant has an illustration brief with a distinct composition.
-- [ ] High-resolution images have been reviewed for story accuracy, style match, continuity, and calm readability.
-- [ ] CSS living details are page-specific and do not reuse one generic animation across the whole tale.
-- [ ] Any story-specific sounds are curated, softly faded, optional, and tied only to intended interactions.
-- [ ] `npm run validate:stories` passes.
-- [ ] `npm run build` passes.
-- [ ] Owner review is complete before pushing the new tale to Git.
+- [ ] The tale's set bible (`docs/pilot/SET_BIBLE_<tale-id>.md`) holds its cast, place, story state and colour script.
+- [ ] Layout pass with draft pictures is complete in both languages before final images are generated.
+- [ ] Every page and choice variant has an illustration brief with a distinct composition in the right format (plate 5:4 or portrait 2:3).
+- [ ] High-resolution images have been reviewed for story accuracy, style match, continuity, anatomy, and calm readability.
+- [ ] Every picture has a short Polish and English `alt` text in `src/book/pages.js`.
+- [ ] Title emblem, epigraph and ribbon are set in `src/book/tales.js`.
+- [ ] The tale's sound script is in `src/book/soundscape.js`: one bed per place and time, at most two quiet spot sounds per page, an intro and an ending theme.
+- [ ] The book has been read through in both languages, every choice path, on a tablet, a phone (upright and sideways) and a desktop.
+- [ ] `npm run validate:stories`, `npm run build` and `npm run sfx:check` pass.
+- [ ] Owner review is complete before the tale goes to `main`.
 
 ## Story Planning Pass
 
@@ -53,21 +73,23 @@ Before writing the JS object, outline:
 - **Developmental focus:** responsive listening, emotional naming, co-regulation, cooperation, repair, gratitude, patience, courage, honesty, or stewardship.
 - **Educational thread:** what the child learns through action, not exposition.
 - **Final reflection:** what changed, what was repaired, and what the tale leaves the child remembering.
-- **Illustration rhythm:** one distinct composition per page, with the focal subject and camera scale named before image generation.
+- **Illustration rhythm:** one distinct composition per page, with the focal subject, camera scale and format (plate or portrait) named before image generation.
+- **Places and times:** where each page happens and at what time of day. This colour script drives the grading of the pictures and the sound beds.
 - **Curiosity hooks:** three concrete topics from the tale, such as a craft, animal, plant, medieval object, village custom, food, weather sign, or old belief.
 - **Bilingual voice:** the Polish source wording first, then the English adaptation approach, including any names or terms that should remain consistent.
 
 ## Curiosity Note Pass
 
-After drafting the story, choose 3-4 pages for optional curiosity notes:
+After drafting the story, choose 3-4 pages without a choice for curiosity notes:
 
 - Tie every note to something visible or mentioned on that page.
-- Keep each note short, warm, and wonder-based rather than encyclopedic.
+- Keep each note short, warm, and wonder-based rather than encyclopedic: at most 220 characters in each language.
 - Use 3 notes as the default. Add a fourth only when research or story content provides a truly interesting, child-friendly hook.
 - Prefer real-world details children can imagine: mills, bridges, bells, birds, reeds, orchards, candles, village work, tools, food, or old customs.
 - Avoid frightening historical facts, violence, disease, punishment, or anything that pulls the tale out of its gentle mood.
 - Write the Polish note first, then adapt it into natural English.
-- Do not add notes to every page; rarity should make the button feel like a small discovery.
+- Do not add notes to every page; rarity should make each note feel like a small discovery.
+- When a consequence page shows a different object depending on the choice, the note can follow it with `curiosityNoteByChoice`.
 
 ## Polish-First Writing Pass
 
@@ -83,7 +105,8 @@ When adding or rewriting a tale:
 - Avoid gendered second-person phrases when possible. Prefer neutral wording such as "Po tym wyborze..." or "Dzięki temu...".
 - Add 3-4 curiosity notes per tale, written as short wonder-sparking facts tied to concrete page content.
 - Adapt into English second, preserving meaning and page beats without copying Polish syntax too literally.
-- Check both language versions against the current book layout after the pass.
+- When a picture shows something slightly differently from the text and the picture is better, change the text (the dragon's "pebble" became a "stone").
+- Check both language versions in the book after the pass.
 
 ## 10-Page Rhythm
 
@@ -98,7 +121,11 @@ When adding or rewriting a tale:
 9. **Resolution:** repair, understanding, return, comfort, or protection.
 10. **Reflection and ending:** final choice is acknowledged, the tale gathers its main values, and it ends with `"Koniec."` in Polish and `"The end."` in English.
 
-## Copyable JS Skeleton
+## Copyable Skeletons
+
+### English story: `stories.js`
+
+The English text and the shared structure (choice ids, which pages have echoes, notes and the ending).
 
 ```js
 {
@@ -115,7 +142,7 @@ When adding or rewriting a tale:
         "Paragraph three: concrete consequence, next action, or setup for what matters."
       ],
       choices: [],
-      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
+      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic (max 220 characters)." },
     },
     {
       title: "Page Two Choice",
@@ -146,8 +173,8 @@ When adding or rewriting a tale:
       ],
       echoes: {
         1: {
-          "choice-a": "Because of that choice, the book remembered action A.",
-          "choice-b": "Because of that choice, the book remembered action B."
+          "choice-a": "The book remembered action A.",
+          "choice-b": "The book remembered action B."
         }
       },
       paragraphByChoice: {
@@ -172,18 +199,9 @@ When adding or rewriting a tale:
         "Paragraph three."
       ],
       choices: [
-        {
-          id: "choice-c",
-          label: "Kind action C",
-          response: "Immediate gentle response for choice C."
-        },
-        {
-          id: "choice-d",
-          label: "Kind action D",
-          response: "Immediate gentle response for choice D."
-        }
+        { id: "choice-c", label: "Kind action C", response: "Immediate gentle response for choice C." },
+        { id: "choice-d", label: "Kind action D", response: "Immediate gentle response for choice D." }
       ],
-      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
     },
     {
       title: "Page Five Consequence",
@@ -194,83 +212,27 @@ When adding or rewriting a tale:
       ],
       echoes: {
         3: {
-          "choice-c": "Because you chose action C, a helper or detail changes.",
-          "choice-d": "Because you chose action D, a different helper or detail changes."
+          "choice-c": "Because of action C, a helper or detail changes.",
+          "choice-d": "Because of action D, a different helper or detail changes."
+        }
+      },
+      paragraphByChoice: {
+        3: {
+          "choice-c": { 0: "...", 2: "..." },
+          "choice-d": { 0: "...", 2: "..." }
         }
       },
       choices: [],
-    },
-    {
-      title: "Page Six Choice",
-      body: [
-        "Paragraph one.",
-        "Paragraph two.",
-        "Paragraph three."
-      ],
-      choices: [
-        {
-          id: "choice-e",
-          label: "Kind action E",
-          response: "Immediate gentle response for choice E."
-        },
-        {
-          id: "choice-f",
-          label: "Kind action F",
-          response: "Immediate gentle response for choice F."
-        }
-      ],
-      curiosityNote: { title: "Did you know...?", body: "Short curiosity note tied to this page topic." },
-    },
-    {
-      title: "Page Seven Understanding",
-      body: [
-        "Paragraph one.",
-        "Paragraph two.",
-        "Paragraph three."
-      ],
-      echoes: {
-        5: {
-          "choice-e": "Because you chose action E, understanding deepens this way.",
-          "choice-f": "Because you chose action F, understanding deepens that way."
+      // a note that follows the choice made on page 4 (or a plain curiosityNote)
+      curiosityNoteByChoice: {
+        3: {
+          "choice-c": { title: "Did you know...?", body: "A note about what action C brought into the scene." },
+          "choice-d": { title: "Did you know...?", body: "A note about what action D brought into the scene." }
         }
       },
-      choices: [],
     },
-    {
-      title: "Page Eight Final Choice",
-      body: [
-        "Paragraph one.",
-        "Paragraph two.",
-        "Paragraph three."
-      ],
-      choices: [
-        {
-          id: "choice-g",
-          label: "Final gentle gesture G",
-          response: "Immediate gentle response for gesture G."
-        },
-        {
-          id: "choice-h",
-          label: "Final gentle gesture H",
-          response: "Immediate gentle response for gesture H."
-        }
-      ],
-    },
-    {
-      title: "Page Nine Resolution",
-      body: [
-        "Paragraph one.",
-        "Paragraph two.",
-        "Paragraph three."
-      ],
-      echoes: {
-        7: {
-          "choice-g": "Because you chose gesture G, the resolution reflects it.",
-          "choice-h": "Because you chose gesture H, the resolution reflects it."
-        }
-      },
-      choices: [],
-    },
+    // pages 6-9 follow the same pattern: 6 and 8 are choice pages, 7 and 9 consequence pages
+    // (echoes 5 / 7 with paragraphByChoice), notes on 7 and/or 9
     {
       title: "Page Ten Ending",
       body: [
@@ -280,8 +242,14 @@ When adding or rewriting a tale:
       ],
       echoes: {
         7: {
-          "choice-g": "Because you chose gesture G, the final page remembers it.",
-          "choice-h": "Because you chose gesture H, the final page remembers it."
+          "choice-g": "The final page remembers gesture G.",
+          "choice-h": "The final page remembers gesture H."
+        }
+      },
+      paragraphByChoice: {
+        7: {
+          "choice-g": { 0: "...", 1: "..." },
+          "choice-h": { 0: "...", 1: "..." }
         }
       },
       choices: [],
@@ -289,4 +257,85 @@ When adding or rewriting a tale:
     }
   ]
 }
+```
+
+### Polish text: `locales.js` (`storyTranslations.pl["new-tale-id"]`)
+
+The same pages in the same order. A translated field replaces the English one; choices are merged option by option, so they carry no `id`; echoes, `paragraphByChoice` and notes use the same page keys and choice ids as `stories.js`.
+
+```js
+"new-tale-id": {
+  shortTitle: "Tytuł na wstążkę",
+  title: "Pełny tytuł opowieści",
+  kicker: "Opowieść o ...",
+  pages: [
+    {
+      title: "Tytuł pierwszej strony",
+      body: ["Akapit pierwszy.", "Akapit drugi.", "Akapit trzeci."],
+      curiosityNote: { title: "Czy wiesz, że...?", body: "Krótka ciekawostka (do 220 znaków)." },
+    },
+    {
+      title: "Strona z wyborem",
+      body: ["...", "...", "..."],
+      choices: [
+        { label: "Życzliwe działanie A", response: "Łagodna odpowiedź na wybór A." },
+        { label: "Życzliwe działanie B", response: "Łagodna odpowiedź na wybór B." }
+      ],
+    },
+    // ...
+    {
+      title: "Zakończenie",
+      body: ["...", "...", "Koniec."],
+      echoes: { 7: { "choice-g": "...", "choice-h": "..." } },
+      paragraphByChoice: { 7: { "choice-g": { 0: "...", 1: "..." }, "choice-h": { 0: "...", 1: "..." } } },
+    }
+  ]
+}
+```
+
+### Pictures: `src/book/pages.js`
+
+One entry per spread; the field reference is the comment at the top of the file. A page whose picture depends on a choice names the choice page in `variantFrom` and keys `images` by choice id.
+
+```js
+const NT = `${V}/new-tale-id`;
+
+export const newTaleSpreads = [
+  { page: 0, layout: "title", images: { default: img(`${NT}/title.webp`, "Opis medalionu.", "The medallion described.") } },
+  { page: 1, tailpiece: `${OR}/oak-wren.webp`, images: { default: img(`${NT}/p1.webp`, "Co widać na obrazku.", "What the picture shows.") } },
+  { page: 2, tailpiece: `${OR}/reeds-dragonfly.webp`, images: { default: img(`${NT}/p2.webp`, "...", "...") } },
+  {
+    page: 3, tailpiece: `${OR}/fleuron.webp`, variantFrom: 2,
+    images: {
+      "choice-a": img(`${NT}/p3-choice-a.webp`, "...", "..."),
+      "choice-b": img(`${NT}/p3-choice-b.webp`, "...", "..."),
+    },
+  },
+  // ...
+  {
+    page: 10, layout: "vignette", variantFrom: 8, secondary: img(`${OR}/fleuron.webp`, "Ozdobnik.", "An ornament."),
+    images: {
+      "choice-g": img(`${NT}/p10-choice-g.webp`, "...", "..."),
+      "choice-h": img(`${NT}/p10-choice-h.webp`, "...", "..."),
+    },
+  },
+];
+```
+
+### Binding: `src/book/tales.js`
+
+The book has four ribbons; a new tale takes the slot of a placeholder (`tale-three`, `tale-four`) and keeps its ribbon, or gets a colour and motif of its own (`flame | bell | star | trefoil`).
+
+```js
+{
+  id: "new-tale-id",
+  ...fromStories("new-tale-id"),
+  ribbon: { color: "#857c40", motif: "star" }, // weld, a yellow-green ochre
+  available: true,
+  spreads: newTaleSpreads,
+  epigraph: {
+    pl: { lines: ["„Pierwszy wers,", "drugi wers.”"], author: "Autor", work: "Dzieło", note: "tłum. własne" },
+    en: { lines: ["“First line,", "second line.”"], author: "Author", work: "Work" },
+  },
+},
 ```
