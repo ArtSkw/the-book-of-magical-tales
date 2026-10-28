@@ -801,7 +801,9 @@ export const sounds = {
         "file": "moonhill-bell/mh-bed-night",
         "dur": 22,
         "ch": 2,
-        "from": "mh-bed-night/mh-bed-night--sfx-v2-t03.wav"
+        "from": "mh-bed-night-r4a/mh-bed-night-r4a--sfx-v2-t01.wav",
+        "lufs": -23.9,
+        "tp": -3
       }
     ]
   },
@@ -947,11 +949,11 @@ export const sounds = {
     "variants": [
       {
         "file": "music/bell-intro-theme",
-        "dur": 10.578,
+        "dur": 15.921,
         "ch": 2,
-        "from": "bell-intro-r3c/bell-intro-r3c--music-v2-t01.mp3",
+        "from": "bell-intro-r4b/bell-intro-r4b--music-v2-t01.mp3",
         "lufs": -20,
-        "tp": -18.2
+        "tp": -8.7
       }
     ]
   },

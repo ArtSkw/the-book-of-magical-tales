@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
     <style>
-      /* Listening sheets for the book's sounds (scripts/sfx/). ?sheet=library | motif | phase0 reads
+      /* Listening sheets for the book's sounds (scripts/sfx/). ?sheet=redo4 | redo3 | ... | library reads
          local-assets/sfx/sheets/<name>.json, written by sheets.mjs. Audio loads only when played;
          the waveforms are drawn from peaks measured beforehand. Served by the Vite dev server;
          nothing here ships with the book. */
@@ -63,7 +63,7 @@
   </head>
   <body>
     <main>
-      <nav class="sheets small"><a href="?sheet=redo3">Nowe tła i motywy dzwonu</a><a href="?sheet=themes">Motywy opowieści</a><a href="?sheet=redo2">Nowe nagrania</a><a href="?sheet=redo">Poprawki (odrzucone)</a><a href="?sheet=library">Cała biblioteka</a><a href="?sheet=motif">Motyw wyboru</a><a href="?sheet=phase0">Faza 0 (zakończona)</a></nav>
+      <nav class="sheets small"><a href="?sheet=redo4">Nowe otwarcie dzwonu i nocny plac</a><a href="?sheet=redo3">Nowe tła i motywy dzwonu</a><a href="?sheet=themes">Motywy opowieści</a><a href="?sheet=redo2">Nowe nagrania</a><a href="?sheet=redo">Poprawki (odrzucone)</a><a href="?sheet=library">Cała biblioteka</a><a href="?sheet=motif">Motyw wyboru</a><a href="?sheet=phase0">Faza 0 (zakończona)</a></nav>
       <h1 id="title">Odsłuch dźwięków</h1>
       <p id="intro" class="muted small"></p>
       <div class="panel controls">
@@ -302,11 +302,12 @@
           allTakes.push(t);
           const warn = (t.warn || []).map((w) => `<span class="w">${esc(w)}</span>`).join("");
           const good = (t.good || []).map((w) => `<span class="g">${esc(w)}</span>`).join("");
+          const info = (t.info || []).map((w) => `<span>${esc(w)}</span>`).join("");
           const row = el(`<div class="take">
             <button class="play">▶ ${esc(t.label)}</button>
             <canvas title="kliknij, żeby odtworzyć od tego miejsca"></canvas>
             <button class="pick">★ Wybieram</button>
-            <div class="meta"><span class="badge model">${esc(MODEL[t.tag] || t.tag || "")}${t.take ? ` t${String(t.take).padStart(2, "0")}` : ""}</span><span>${num((t.dur ?? 0).toFixed(2))} s</span>${t.pitch ? `<span>${esc(t.pitch)}</span>` : ""}${t.mine ? `<span class="g">twój wybór z fazy 0</span>` : ""}${t.recommended && !t.mine && !t.role ? `<span>wstępnie wybrane</span>` : ""}${warn}${good}${t.credits ? `<span>${t.credits} kr.</span>` : ""}</div>
+            <div class="meta">${t.tag || t.take ? `<span class="badge model">${esc(MODEL[t.tag] || t.tag || "")}${t.take ? ` t${String(t.take).padStart(2, "0")}` : ""}</span>` : ""}<span>${num((t.dur ?? 0).toFixed(2))} s</span>${t.pitch ? `<span>${esc(t.pitch)}</span>` : ""}${t.mine ? `<span class="g">twój wybór z fazy 0</span>` : ""}${t.recommended && !t.mine && !t.role ? `<span>wstępnie wybrane</span>` : ""}${warn}${good}${info}${t.credits ? `<span>${t.credits} kr.</span>` : ""}</div>
           </div>`);
           c.querySelector(".takes").append(row);
           t.canvas = row.querySelector("canvas");

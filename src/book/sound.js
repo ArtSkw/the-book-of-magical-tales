@@ -10,7 +10,10 @@
 // - Over the bed, at most one foreground sound at any moment: a page turn (or riffle), a choice, a
 //   theme, a language rewrite, or one spot sound. Nothing fires as a page lands; a page's spot sounds
 //   come some seconds after it has settled, and wait while anything else is sounding. A turn stops
-//   them (and fades a theme out). A theme lowers the bed while it plays.
+//   them. A theme lowers the bed while it plays; a tale's opening theme rings on to its end across
+//   the turns of its tale, with the place of its first page rising beneath it (soundscape.js, the
+//   opening), and fades only for another tale, "Begin again" or the sound turned off; a closing
+//   theme fades with a turn.
 // - Every control clicks with the same warm click (the clasp's); a choice is the soft press of the
 //   wax seal and, in the same breath, the harp in D.
 //
@@ -51,6 +54,7 @@ const SPOT_DB = -15; // any other spot sound
 export const BED_DB = { place: -18, room: -22, themeDuck: -6 };
 const BED_FADE = 9; // s: the crossfade of a new place or time of day
 const THEME_COOLDOWN = 120; // s before a tale's theme plays again for the same page
+const THEME_FADE = 2; // s: a theme giving way (another tale, "Begin again", a turn off the last page)
 const TONAL = new Set(["choice-motif", "motif-end", "mh-bell", "mh-bell-far", "mh-bronze", "mh-hum", "dragon-intro-theme", "dragon-ending-theme", "bell-intro-theme", "bell-ending-theme"]);
 const MAX_VOICES = { "page-turn": 2, "quill-rewrite": 1, "choice-motif": 2, "motif-end": 1, "riffle-leaf": 6 };
 const BUSES = ["ui", "sfx", "story", "music", "amb"];
@@ -79,6 +83,8 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     on: Boolean(enabled), ctx: null, unlocked: false, master: null, buses: {}, ducks: {},
     files: new Map(), // file -> { buffer, bytes, last, promise }
     bags: new Map(), voices: [], bed: null, spot: null, spots: [], spotVoices: [], theme: null, themesHeard: new Map(),
+    opening: null, // a tale's opening: { tale, bed, risen, timer } while its theme sounds
+    fading: [], // debug only: voices fading out, { id, g, until (context s), fade }
     fgUntil: 0, // until when a foreground sound plays (performance seconds)
     history: [], // debug only: every sound started, { t (performance s), id, file }
     lastInput: now(), idle: false, hold: 0, queue: [], lanes: 0, attached: false,
@@ -334,12 +340,16 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       S.history.push({ t: +(now() + (at - ctx.currentTime)).toFixed(3), id, file: v.file });
       if (S.history.length > 400) S.history.shift();
     }
-    const voice = { id, src, g, end: at + buffer.duration / src.playbackRate.value };
+    const voice = { id, src, g, end: at + buffer.duration / src.playbackRate.value, keep: Boolean(o.keep) };
     src.onended = () => (S.voices = S.voices.filter((x) => x !== voice));
-    // per-sound and overall limits: the oldest gives way, quickly faded
+    // per-sound and overall limits: the oldest gives way, quickly faded (never a theme: it rings on
+    // under the turns, and gives way only as playTheme / stopTheme say)
     const same = S.voices.filter((x) => x.id === id);
     if (same.length >= (MAX_VOICES[id] || 3)) fadeOut(same[0], 0.03);
-    if (S.voices.length >= 16) fadeOut(S.voices[0], 0.03);
+    if (S.voices.length >= 16) {
+      const oldest = S.voices.find((x) => !x.keep);
+      if (oldest) fadeOut(oldest, 0.03);
+    }
     S.voices.push(voice);
     return voice;
   }
@@ -352,6 +362,10 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       voice.src.stop(t + fade + 0.05);
     } catch {}
     S.voices = S.voices.filter((x) => x !== voice);
+    if (debug && voice.end > t) {
+      S.fading = S.fading.filter((x) => x.until > t);
+      S.fading.push({ id: voice.id, g: voice.g, until: Math.min(voice.end, t + fade), fade });
+    }
   }
   // A bus steps back for a while: down by `db` from `at` s, held, then back.
   function duck(bus, db, { at = 0, attack = 0.05, hold = 0.6, release = 0.5 } = {}) {
@@ -488,24 +502,69 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
   }
 
   // ---------------------------------------------------------------- themes
-  // A tale's theme: the first of `ids` that is mastered, from `when` s; the bed steps back for it.
-  function playTheme(ids, when, key) {
+  // A tale's theme: the first of `ids` that is mastered, from `when` s; the bed steps back for it
+  // (themeDuck) and the spot sounds wait for it. `ring`: it rings on to its end across the turns of
+  // tale `tale` (an opening theme). Returns whether it plays.
+  const THEME_LATE = 2; // s a theme still loading may start late
+  function playTheme(ids, when, key, { tale = null, ring = false } = {}) {
     const id = ids.find((x) => MANIFEST[x]);
-    if (!id) return;
+    if (!id) return false;
     const last = S.themesHeard.get(key) || -1e9;
-    if (now() - last < THEME_COOLDOWN) return;
+    if (now() - last < THEME_COOLDOWN) return false;
+    if (S.theme) stopTheme(); // another theme still sounding gives way
+    const h = play(id, { when, late: THEME_LATE, keep: true });
+    if (!h) return false;
     S.themesHeard.set(key, now());
     const dur = MANIFEST[id].variants[0].dur || 10;
-    S.theme = play(id, { when, late: 2 });
+    S.theme = { h, id, tale, ring, at: S.ctx.currentTime + 0.005 + when, dur };
     foreground(when + dur + 1);
     duck("amb", BED_DB.themeDuck, { at: Math.max(0, when - 0.5), attack: 1.5, hold: Math.max(0.5, dur - 2), release: 3 });
-    log("theme", id);
+    log("theme", id, ring ? "(rings on)" : "");
+    return true;
   }
-  function stopTheme() {
+  // how long the theme still sounds (s; while it is still loading, as long as it may still start)
+  function themeLeft() {
+    const T = S.theme;
+    if (!T || T.h.cancelled || !S.ctx) return 0;
+    const t = S.ctx.currentTime;
+    if (T.h.voice) return Math.max(0, T.h.voice.end - t);
+    return t <= T.at + THEME_LATE ? T.at + T.dur - t : 0;
+  }
+  // the theme gives way: faded over `fade` s, the bed back up, the spot sounds no longer held for it
+  function stopTheme(fade = THEME_FADE) {
+    clearOpening();
     if (!S.theme) return;
-    S.theme.stop(1.5);
+    const sounding = themeLeft() > 0;
+    S.theme.h.stop(fade);
     S.theme = null;
-    unduck("amb", 2);
+    if (!sounding) return;
+    S.fgUntil = Math.min(S.fgUntil, now() + fade);
+    unduck("amb", Math.max(2, fade));
+    log("theme fades", `${fade} s`);
+  }
+  // The opening of a tale (soundscape.js): `spec.at` s into its theme (which starts `when` s from
+  // now) the place of its first page rises beneath it over `spec.rise` s, taking over from the
+  // hearth; the theme's duck keeps it under the music until the theme ends, then it settles.
+  function startOpening(tale, spec, when) {
+    clearOpening();
+    if (!spec?.bed || !MANIFEST[spec.bed]) return;
+    const op = { tale, bed: spec.bed, risen: false, timer: 0 };
+    const rise = () => {
+      if (S.opening !== op) return;
+      // the reader has gone on into the tale (that page's bed is already set), or no theme came
+      if (S.spot?.tale !== tale || S.spot?.page || themeLeft() <= 0) return;
+      if (!ready()) return void (op.timer = setTimeout(rise, 1000)); // a hidden tab: once it is back
+      op.risen = true;
+      stopSpots(0.5); // the room's candle gives way to the place
+      setBed(op.bed, spec.rise);
+      log("opening: the place rises", op.bed);
+    };
+    op.timer = setTimeout(rise, (when + spec.at) * 1000);
+    S.opening = op;
+  }
+  function clearOpening() {
+    if (S.opening) clearTimeout(S.opening.timer);
+    S.opening = null;
   }
 
   // ---------------------------------------------------------------- the book's events
@@ -533,6 +592,7 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
         g.setValueAtTime(g.value, t);
         g.linearRampToValueAtTime(0, t + 0.3);
         stopSpots(0.2);
+        stopTheme(0.3); // with the master: it does not pick up mid-phrase when the sound comes back
         setTimeout(() => !S.on && S.ctx.suspend().catch(() => {}), 450); // a silent book costs no battery
       }
     },
@@ -552,12 +612,13 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       input();
       play("clasp", { bus: "ui" });
     },
-    // a leaf turns: only its own quiet sound; the page's spot sounds and a theme give way to it
+    // a leaf turns: only its own quiet sound; the page's spot sounds give way to it, and a closing
+    // theme (an opening one rings on to its end: the reader is still in its tale)
     pageTurn(dir = 1, { reduced = false } = {}) {
       input();
       busy(1.3);
       stopSpots(0.3);
-      stopTheme();
+      if (!S.theme?.ring) stopTheme();
       if (reduced) play("page-settle");
       else play("page-turn", { pan: 0.25 * dir, panTo: -0.25 * dir, panDur: 0.9 });
       foreground(1.3);
@@ -585,12 +646,14 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       }
     },
     // the leaves fly to another tale (or back to a tale's beginning): R = the riffle of main.js
-    // ({ starts, durs, dir, total }); `reduced`: a crossfade instead
-    riffle({ starts = [0.14], durs = [1.1], dir = 1, total = 1.3, reduced = false, silk = true } = {}) {
+    // ({ starts, durs, dir, total }), `tale` the tale it goes to, `restart` for "Begin again";
+    // `reduced`: a crossfade instead. The theme gives way, but for an opening theme whose reader goes
+    // back to its own title spread: that one rings on.
+    riffle({ starts = [0.14], durs = [1.1], dir = 1, total = 1.3, reduced = false, silk = true, tale = null, restart = false } = {}) {
       input();
       busy(total + 0.4);
       stopSpots(0.3);
-      stopTheme();
+      if (restart || !S.theme?.ring || S.theme.tale !== tale) stopTheme();
       foreground(total + 0.5);
       if (silk) play("ribbon-silk");
       if (reduced) return void play("pages-return", { gainDb: -3 });
@@ -608,11 +671,14 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       play("ribbon-silk");
     },
     button: () => api.click(),
-    // "Start over": the click of the clasp, then the leaves riffle back to the tale's title
+    // "Start over": the click of the clasp, then the leaves riffle back to the tale's title (the
+    // theme, an opening one too, gives way: the tale begins again)
     startOver(R = null) {
       api.click();
-      if (R) api.riffle({ ...R, silk: false });
+      if (R) api.riffle({ ...R, silk: false, restart: true });
       else {
+        stopSpots(0.3);
+        stopTheme();
         play("pages-return", { when: 0.15 });
         foreground(1.2);
       }
@@ -631,25 +697,43 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       play("cover-land");
     },
     // a spread has come to rest: its bed carries on, or crosses over to the new place's (slowly,
-    // from now); its spot sounds are scheduled; a title spread or a tale's last page has its theme
+    // from now); its spot sounds are scheduled; a title spread or a tale's last page has its theme,
+    // a title spread's opening theme its place rising beneath it (startOpening)
     arrive({ tale, page, resolved = {}, how = "turn" } = {}) {
       S.spot = { tale, page, resolved };
       if (!S.on || !supported) return;
+      // another tale's theme still sounding (riffle() fades it; this is only a guard)
+      if (S.theme && S.theme.tale !== tale && themeLeft() > 0) stopTheme();
       const scene = sceneFor(tale, page, resolved);
-      setBed(scene.bed, how === "load" ? 3 : BED_FADE);
-      scheduleSpots(scene.spots);
-      if (scene.theme && how !== "load") playTheme(scene.theme, page ? 1.2 : 0.6, `${tale}|${page}`);
+      const op = S.opening?.tale === tale && themeLeft() > 0 ? S.opening : null;
+      if (!page && op) {
+        // back on the title spread while its opening still sounds: the theme rings on (not started
+        // again), the place it has drawn the reader into stays; no room spots under it
+        setBed(op.bed, BED_FADE);
+        op.risen = true;
+        scheduleSpots([]);
+      } else {
+        setBed(scene.bed, how === "load" ? 3 : BED_FADE);
+        scheduleSpots(scene.spots);
+        const when = page ? 1.2 : 0.6;
+        if (scene.theme && how !== "load" && playTheme(scene.theme, when, `${tale}|${page}`, { tale, ring: scene.ring }) && scene.opening) startOpening(tale, scene.opening, when);
+      }
       enqueue(taleIds(tale));
     },
     // for review and QA (window.__sound with ?sound=debug; main.js shows it on screen)
     state: () => ({
       on: S.on, unlocked: S.unlocked, context: S.ctx?.state || "none", format: null, idle: S.idle,
+      at: S.spot ? { tale: S.spot.tale, page: S.spot.page } : null, // the spread last come to rest
       bed: S.bed?.loop || null, bedPending: Boolean(S.bed?.pending && !S.bed?.g), room: S.bed?.loop === ROOM.loop,
-      theme: S.theme && !S.theme.cancelled ? S.theme.id : null,
+      bedSince: S.bed?.since ? +S.bed.since.toFixed(2) : null, // when its loop started (a bed carried on keeps it)
+      theme: themeLeft() > 0 ? S.theme.id : null, // only while it sounds
+      themeLeft: +themeLeft().toFixed(1), themeTale: themeLeft() > 0 ? S.theme.tale : null,
+      opening: S.opening ? { tale: S.opening.tale, bed: S.opening.bed, risen: S.opening.risen } : null,
       foreground: +Math.max(0, S.fgUntil - now()).toFixed(1),
       spots: S.spots.filter((sp) => sp.due).map((sp) => ({ id: sp.id, in: +(sp.due - now()).toFixed(1), plays: sp.plays, max: sp.max })),
-      mixer: S.ctx ? { master: gainDb(S.master.gain.value), duck: Object.fromEntries(BUSES.map((b) => [b, gainDb(S.ducks[b].gain.value)])), bedLevel: S.bed?.g ? gainDb(S.bed.g.gain.value) : null, prePeakDb: S.meter ? +S.meter.pre.toFixed(1) : null, peakDb: S.meter ? +S.meter.post.toFixed(1) : null, limiterThreshold: LIMITER.threshold } : null,
+      mixer: S.ctx ? { master: gainDb(S.master.gain.value), duck: Object.fromEntries(BUSES.map((b) => [b, gainDb(S.ducks[b].gain.value)])), bedLevel: S.bed?.g ? gainDb(S.bed.g.gain.value) : null, themeDb: S.theme?.h.voice && themeLeft() > 0 ? gainDb(S.theme.h.voice.g.gain.value) : null, prePeakDb: S.meter ? +S.meter.pre.toFixed(1) : null, peakDb: S.meter ? +S.meter.post.toFixed(1) : null, limiterThreshold: LIMITER.threshold } : null,
       voices: S.voices.map((v) => v.id),
+      fading: S.ctx ? S.fading.filter((x) => x.until > S.ctx.currentTime).map((x) => ({ id: x.id, db: gainDb(x.g.gain.value), fade: x.fade, left: +(x.until - S.ctx.currentTime).toFixed(2) })) : [],
       decodedMB: +([...S.files.values()].reduce((a, f) => a + f.bytes, 0) / 1048576).toFixed(1), files: S.files.size,
       queued: S.queue.length, decoded: debug ? [...S.files.entries()].filter(([, f]) => f.buffer).map(([k]) => k) : undefined,
     }),

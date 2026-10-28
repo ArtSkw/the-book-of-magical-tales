@@ -1,7 +1,7 @@
 // The study around the book: a worn oak desk with a woven runner, a candle in a brass
 // chamberstick (real light, glow, flicker), props with real geometry (quill in an inkwell,
 // dried lavender, brass vessels, a small chest, a sealed letter), the chamber behind the desk
-// (painted wall, floor, a hearth's glow) and dust in the candle light.
+// (painted wall with a living hearth, floor, the hearth's glow) and dust in the candle light.
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeometry.js";
 
@@ -838,8 +838,10 @@ function makeDeskBase(wood, env, tex, top) {
 // is painted rather than built: the wall is a painting (tex.chamberWall, prompts/room-wall.txt,
 // softly out of focus); the floor is drawn here, small on purpose, so the GPU's magnification
 // blurs it like depth of field. Both are unlit (they carry their own light), dim, and fade into
-// the dark at their edges. A soft glow over the hearth and its pool on the floor flicker with a
-// slower fire than the candle's, and the whole room comes up with the candle as the veil lifts.
+// the dark at their edges. The painting's own fire is alive (see "the living hearth": its flames
+// lick and sway, its embers glow, sparks rise, the stone round it flickers), a soft glow over the
+// hearth and its pool on the floor flicker with it, a slower fire than the candle's, and the whole
+// room comes up with the candle as the veil lifts.
 // Until the painting exists, the wall is drawn here too (the same layout, in plain shapes).
 export const FLOOR = -2.8;
 const WALL_Z = -5.4;
@@ -873,7 +875,9 @@ function softTex(w, h, soft, draw) {
 // instead (four bilinear taps, weighted; GPU Gems 2, ch. 20) is smooth to its second derivative,
 // so the magnified painting melts like a lens out of focus. The level of detail is taken from
 // the plain texture coordinates (textureGrad), so the taps' per-texel jumps never pick a blurrier
-// mip along the grid; with dithering, the long dark gradients never band.
+// mip along the grid; with dithering, the long dark gradients never band. (textureSmoothGrad
+// takes those gradients from the caller: the hearth samples its painting a little off its place,
+// in a branch, where the GPU's own derivatives are undefined.)
 const BSPLINE = /* glsl */ `
 vec4 bsplineW(float v) {
   vec4 n = vec4(1.0, 2.0, 3.0, 4.0) - v;
@@ -881,9 +885,8 @@ vec4 bsplineW(float v) {
   float x = s.x, y = s.y - 4.0 * s.x, z = s.z - 4.0 * s.y + 6.0 * s.x;
   return vec4(x, y, z, 6.0 - x - y - z) / 6.0;
 }
-vec4 textureSmooth(sampler2D t, vec2 uv) {
+vec4 textureSmoothGrad(sampler2D t, vec2 uv, vec2 gx, vec2 gy) {
   vec2 size = vec2(textureSize(t, 0));
-  vec2 gx = dFdx(uv), gy = dFdy(uv);
   vec2 st = uv * size - 0.5;
   vec2 f = fract(st);
   st -= f;
@@ -895,6 +898,9 @@ vec4 textureSmooth(sampler2D t, vec2 uv) {
   vec4 s2 = textureGrad(t, o.xw, gx, gy), s3 = textureGrad(t, o.yw, gx, gy);
   float sx = s.x / (s.x + s.y), sy = s.z / (s.z + s.w);
   return mix(mix(s3, s2, sx), mix(s1, s0, sx), sy);
+}
+vec4 textureSmooth(sampler2D t, vec2 uv) {
+  return textureSmoothGrad(t, uv, dFdx(uv), dFdy(uv));
 }`;
 function smoothSampled(mat) {
   mat.dithering = true;
@@ -905,6 +911,198 @@ function smoothSampled(mat) {
   };
   mat.customProgramCacheKey = () => "smooth-sampled";
   return mat;
+}
+
+// ---- the living hearth
+// The painting's own fire is brought to life in the wall's shader, so it stays part of the
+// painting: as soft, as dim and as out of focus as the rest of it, with no draw of its own. A small
+// mask (textures/room_fire.webp, 128 px, baked from the painting by bake_room_fire.py) says where:
+// the flames (R, ramped from the logs to the tips), the embers (G) and the stone, the hearth's step
+// and the boards the fire lights (B). In the flames the painting is sampled a little off its place
+// by noise rising through them, so tongues lick upwards and the fire sways most at its tips, the
+// logs hardly at all, the kettle and the andirons never; brighter tongues run up through it, and
+// a flame's colour follows its heat (yellower as it flares, redder as it sinks). The embers glow
+// and fade where they lie; the stone and the floor before the hearth brighten and dim with the
+// fire, the light shifting a little from side to side. A few sparks rise from the sides of the
+// fire and round the kettle. All of it is noise, never a loop, and follows the frame's time, so a
+// frozen review frame (still=1&t=) is the same every time.
+// One flicker (hearthFlicker) drives the flames' and the stone's brightness, the glow over the
+// hearth and its pool on the floor: whatever the fire lights, it lights together. (The candle on
+// the desk keeps its own quicker flicker, main.js: two flames never beat as one.)
+// A weak device (createRoom `weak`) keeps the flicker only: the same breathing light, nothing
+// licking or rising, no noise in its shader (a cheaper program, ~10 % over the plain wall's).
+// Reduced motion: a slow, shallow breath, nothing moving.
+const FIRE = { u: 64 / 1536, v: 0, w: 512 / 1536, h: 512 / 1024 }; // the painting's rectangle the mask covers (bake_room_fire.py)
+const HEARTH_GLSL = /* glsl */ `
+uniform sampler2D uFireMask;
+uniform vec4 uFireRect;
+uniform float uTime;
+uniform float uFire;  // the hearth's flicker, about 1 (hearthFlicker)
+uniform float uEmber; // a slow breath of the embers, 0..1, when nothing else moves
+uniform float uLick;  // 1: the flames move; 0: they only breathe (reduced motion)
+uniform vec2 uFireTilt; // the fire's light leaning to one side, per texel from its heart
+uniform vec3 uSparks[3]; // where the sparks are (texels) and how bright (hearthSparks)
+uniform float uFireOn; // 0 -> 1 as the mask comes in
+float hHash(vec2 p) {
+  vec3 q = fract(vec3(p.xyx) * 0.1031);
+  q += dot(q, q.yzx + 33.33);
+  return fract((q.x + q.y) * q.z);
+}
+float hNoise(vec2 p) {
+  vec2 i = floor(p), f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(mix(hHash(i), hHash(i + vec2(1.0, 0.0)), f.x), mix(hHash(i + vec2(0.0, 1.0)), hHash(i + vec2(1.0, 1.0)), f.x), f.y);
+}
+// noise that changes where it lies, never drifting (the embers)
+float hBreath(vec2 p, float t) {
+  float i = floor(t);
+  return mix(hNoise(p + i * 17.31), hNoise(p + (i + 1.0) * 17.31), smoothstep(0.0, 1.0, t - i));
+}
+// a flame's colour follows its heat: yellower as it flares, redder as it sinks (k^(1, 1.3, 1.8),
+// to within 1 % over the flicker's range)
+vec3 hHeat(float k) {
+  return k * (1.0 + vec3(0.0, 0.3, 0.8) * (k - 1.0));
+}
+#ifdef HEARTH_LICK
+// where in the painting a flame's texel is taken from, in texels (xy): broad tongues and finer
+// licks rising through the fire at their own pace, mostly from below (the flame reaching up); z:
+// how far a tongue reaches here, which also brightens it
+vec3 hLick(vec2 s, float t) {
+  float a = hNoise(vec2(s.x / 15.0, s.y / 20.0 - t * 2.2));
+  float b = hNoise(vec2(s.x / 7.0 + 17.0, s.y / 10.0 - t * 4.6));
+  float c = hNoise(vec2(s.x / 18.0 + 41.0, s.y / 15.0 - t * 2.7));
+  return vec3((a - 0.5) * 5.0 + (b - 0.5) * 1.6, -(c - 0.4) * 6.5, c);
+}
+// the sparks, soft as the painting is (sigma ~1.7 texels)
+vec3 hSparks(vec2 s) {
+  float acc = 0.0;
+  for (int i = 0; i < 3; i++) {
+    vec2 d = s - uSparks[i].xy;
+    acc += exp(-dot(d, d) * 0.17) * uSparks[i].z;
+  }
+  return vec3(1.0, 0.42, 0.12) * acc;
+}
+#endif`;
+// the painting's map, sampled smooth (smoothSampled), its hearth alive
+const HEARTH_MAP = /* glsl */ `
+#ifdef USE_MAP
+  vec2 hUv = vMapUv;
+  vec2 hGx = dFdx(hUv), hGy = dFdy(hUv);
+  vec2 hTex = vec2(textureSize(map, 0));
+  vec2 hS = hUv * hTex; // the painting's texels, y up
+  vec3 hM = textureLod(uFireMask, (hUv - uFireRect.xy) / uFireRect.zw, 0.0).rgb * uFireOn;
+  float hK = uFire;
+  #ifdef HEARTH_LICK
+  if (hM.r * uLick > 0.004) {
+    vec3 hD = hLick(hS, uTime);
+    hUv += hD.xy * (hM.r * uLick) / hTex;
+    hK += (hD.z - 0.5) * 0.5 * hM.r * uLick;
+  }
+  #endif
+  vec4 hC = textureSmoothGrad(map, hUv, hGx, hGy);
+  if (hM.r + hM.g + hM.b > 0.004) {
+    float hL = dot(hC.rgb, vec3(0.2126, 0.7152, 0.0722));
+    float hFlame = smoothstep(0.03, 0.3, hL) * smoothstep(0.0, 0.25, hM.r);
+    float hE = uEmber;
+    #ifdef HEARTH_LICK
+    if (hM.g * uLick > 0.004) hE = hBreath(hS / vec2(9.0, 6.0), uTime * 0.45);
+    #endif
+    hC.rgb *= mix(vec3(1.0), hHeat(hK), hFlame);
+    hC.rgb *= mix(vec3(1.0), hHeat(1.0 + (uFire - 1.0) * 0.5 + (hE - 0.5) * 0.5), hM.g);
+    hC.rgb *= mix(vec3(1.0), hHeat(1.0 + (uFire - 1.0) * 0.9 + dot(hS - vec2(292.0, 224.0), uFireTilt)), hM.b);
+  }
+  #ifdef HEARTH_LICK
+  if (uLick > 0.0 && abs(hS.x - 292.0) < 95.0 && hS.y > 235.0 && hS.y < 362.0) hC.rgb += hSparks(hS) * uFireOn; // where they fly
+  #endif
+  diffuseColor *= hC;
+#endif`;
+// the wall's material: the painting sampled smooth, its hearth alive (`lick`: the flames move;
+// without it, a weak device's wall, they only breathe). Returns the uniforms the chamber drives.
+function livingHearth(mat, mask, lick) {
+  const uniforms = {
+    uFireMask: { value: mask },
+    uFireRect: { value: new THREE.Vector4(FIRE.u, FIRE.v, FIRE.w, FIRE.h) },
+    uTime: { value: 0 },
+    uFire: { value: 1 },
+    uEmber: { value: 0.5 },
+    uLick: { value: lick ? 1 : 0 },
+    uFireTilt: { value: new THREE.Vector2() },
+    uSparks: { value: [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()] },
+    uFireOn: { value: 0 },
+  };
+  mat.dithering = true;
+  if (lick) mat.defines = { HEARTH_LICK: "" };
+  mat.onBeforeCompile = (shader) => {
+    Object.assign(shader.uniforms, uniforms);
+    shader.fragmentShader = shader.fragmentShader
+      .replace("#include <common>", `#include <common>\n${BSPLINE}\n${HEARTH_GLSL}`)
+      .replace("#include <map_fragment>", HEARTH_MAP);
+  };
+  mat.customProgramCacheKey = () => `living-hearth-${lick ? "lick" : "calm"}`;
+  return uniforms;
+}
+// The mask comes on its own, a few KB, as an image three keeps (so a lost GL context gives it back
+// like the rest); until it is in, the wall is the plain painting (an empty mask) and the hearth
+// comes alive over a second as it arrives.
+function loadFireMask(onLoad) {
+  const url = `${import.meta.env.BASE_URL || "/"}assets/book3d/textures/room_fire.webp`;
+  new THREE.TextureLoader().load(
+    url,
+    (t) => {
+      t.colorSpace = THREE.NoColorSpace; // data, not colour
+      t.generateMipmaps = false;
+      t.minFilter = THREE.LinearFilter;
+      onLoad(t);
+    },
+    undefined,
+    () => console.warn("[book] the hearth's mask did not load; the fire stays painted")
+  );
+  const empty = new THREE.DataTexture(new Uint8Array(4), 1, 1);
+  empty.needsUpdate = true;
+  return empty;
+}
+// The hearth's flicker: smooth noise in time at a few rates, about 1 on average, never repeating;
+// slower and deeper than the candle's. Reduced motion: a slow, shallow breath.
+const hash1 = (i) => {
+  const s = Math.sin(i * 127.1 + 311.7) * 43758.5453;
+  return s - Math.floor(s);
+};
+function noise1(x) {
+  const i = Math.floor(x);
+  const f = x - i;
+  return hash1(i) + (hash1(i + 1) - hash1(i)) * f * f * (3 - 2 * f);
+}
+function hearthFlicker(t, motion) {
+  if (!motion) return 1 + 0.06 * (noise1(t * 0.3) - 0.5);
+  return 1 + 0.2 * (noise1(t * 1.4) - 0.5) + 0.12 * (noise1(t * 3.6 + 17) - 0.5) + 0.06 * (noise1(t * 8.3 + 41) - 0.5);
+}
+// The sparks (the wall's shader draws them, uSparks): three slots of uneven length, a spark in most
+// (some stay dark: no rhythm to count), each rising from a side of the fire and out round the
+// kettle as it fades; one passing behind the kettle is hidden by it. In the painting's texels, y up.
+const smooth01 = (a, b, x) => {
+  const k = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return k * k * (3 - 2 * k);
+};
+function hearthSparks(t, out, on) {
+  for (let i = 0; i < out.length; i++) {
+    const ph = t / (2.3 + 0.83 * i) + i * 0.37;
+    const n = Math.floor(ph);
+    const l = (ph - n) / 0.62; // a spark lives the first 62 % of its slot
+    // (no array per spark: this runs every frame)
+    const r3 = hash1(n * 73.156 + i * 52.235 + 9);
+    if (!on || l >= 1 || r3 < 0.3) {
+      out[i].set(0, 0, 0);
+      continue;
+    }
+    const r1 = hash1(n * 12.9898 + i * 78.233);
+    const r2 = hash1(n * 39.3468 + i * 11.135 + 5);
+    const side = r1 < 0.5 ? -1 : 1;
+    const x = 292 + side * (30 + r2 * 18 + l * l * 28) + Math.sin(l * 7 + r1 * 6.3) * 3;
+    const y = 248 + l * (50 + r3 * 50);
+    const behind = smooth01(0.85, 1.1, Math.hypot((x - 287) / 52, (y - 298) / 47));
+    // brightest once clear of the flames, against the dark brick
+    out[i].set(x, y, smooth01(0, 0.2, l) * (1 - l) ** 1.3 * (0.45 + 0.55 * r2) * behind);
+  }
 }
 
 function softGlow(size = 128) {
@@ -1166,9 +1364,10 @@ function wallSketch() {
   });
 }
 
-function makeChamber(tex) {
+function makeChamber(tex, weak) {
   const group = new THREE.Group();
-  const flat = (map) => smoothSampled(new THREE.MeshBasicMaterial({ map, color: new THREE.Color(ROOM.dim, ROOM.dim, ROOM.dim), fog: false }));
+  const basic = (map) => new THREE.MeshBasicMaterial({ map, color: new THREE.Color(ROOM.dim, ROOM.dim, ROOM.dim), fog: false });
+  const flat = (map) => smoothSampled(basic(map));
   // the floor, from the wall to well in front of the desk
   const [fx0, fx1, fz0, fz1] = [-7, 11, WALL_Z, 4.6];
   const floor = new THREE.Mesh(new THREE.PlaneGeometry(fx1 - fx0, fz1 - fz0), flat(floorTexture(fx0, fx1, fz0, fz1)));
@@ -1176,7 +1375,23 @@ function makeChamber(tex) {
   floor.position.set((fx0 + fx1) / 2, FLOOR, (fz0 + fz1) / 2);
   const wallTex = tex.chamberWall || wallSketch();
   wallTex.colorSpace = THREE.SRGBColorSpace;
-  const wall = new THREE.Mesh(new THREE.PlaneGeometry(WALL.x1 - WALL.x0, WALL.h), flat(wallTex));
+  // the painting's hearth comes alive (see "the living hearth"); the sketch keeps its drawn fire
+  const wallMat = basic(wallTex);
+  const fire = { at: null, early: false, updated: false };
+  const hearth = tex.chamberWall
+    ? livingHearth(
+        wallMat,
+        loadFireMask((mask) => {
+          hearth.uFireMask.value.dispose();
+          hearth.uFireMask.value = mask;
+          fire.at = performance.now();
+          fire.early = !fire.updated; // in before the first frame: alive from it
+        }),
+        !weak
+      )
+    : null;
+  if (!hearth) smoothSampled(wallMat);
+  const wall = new THREE.Mesh(new THREE.PlaneGeometry(WALL.x1 - WALL.x0, WALL.h), wallMat);
   wall.position.set((WALL.x0 + WALL.x1) / 2, FLOOR + WALL.lift + (0.5 - WALL.floor) * WALL.h, WALL_Z);
   // the fire: its glow on the wall and its pool on the floor, both additive
   const glowTex = softGlow();
@@ -1191,13 +1406,25 @@ function makeChamber(tex) {
   group.add(floor, wall, fireGlow, firePool);
   const mats = [floor.material, wall.material];
   const base = { glow: fireGlow.material.opacity, pool: firePool.material.opacity };
-  // t: seconds; light: the room's share of the candle coming up (the intro), 0..1
+  // t: seconds (frozen for review: still=1&t=); light: the room's share of the candle coming up
+  // (the intro), 0..1; motion: false with reduced motion
   function update(t, light = 1, motion = true) {
-    const f = motion ? 1 + 0.07 * Math.sin(t * 2.3) + 0.05 * Math.sin(t * 5.9 + 1.1) + 0.03 * Math.sin(t * 13.1 + 2.3) : 1;
+    const f = hearthFlicker(t, motion);
     const k = ROOM.dim * (0.45 + 0.55 * light);
     for (const m of mats) m.color.setScalar(k);
     fireGlow.material.opacity = base.glow * f * light;
     firePool.material.opacity = base.pool * f * light;
+    if (hearth) {
+      fire.updated = true;
+      hearth.uTime.value = t;
+      hearth.uFire.value = f;
+      hearth.uEmber.value = noise1(t * (motion ? 0.45 : 0.15) + 7);
+      hearth.uLick.value = motion && !weak ? 1 : 0;
+      // the light on the stone leans as the fire does: ~±3 % across the hearth
+      hearth.uFireTilt.value.set(motion ? (noise1(t * 0.9 + 3) - 0.5) * 0.0004 : 0, motion ? (f - 1) * 0.0002 : 0);
+      hearthSparks(t, hearth.uSparks.value, motion && !weak);
+      hearth.uFireOn.value = fire.at === null ? 0 : fire.early ? 1 : Math.min(1, (performance.now() - fire.at) / 1200);
+    }
   }
   return { group, update, painted: Boolean(tex.chamberWall) };
 }
@@ -1263,8 +1490,9 @@ function mirrorRoom(root, env) {
 // ---------- assembly ----------
 // `props`: loadProps(...) started by the caller. Those already in are placed now; place(name, obj)
 // sets one that comes later (the caller compiles its materials first, so it never stalls a frame).
-// `shadowSize`: the candle's shadow map (smaller on a weak GPU, main.js).
-export function createRoom({ renderer, scene, tex, parchmentImg, props = {}, shadowSize = 2048 }) {
+// `shadowSize`: the candle's shadow map (smaller on a weak GPU, main.js). `weak`: a weak device
+// (main.js): the hearth only breathes, nothing in it moves (see "the living hearth").
+export function createRoom({ renderer, scene, tex, parchmentImg, props = {}, shadowSize = 2048, weak = false }) {
   const env = makeEnvironment(renderer);
   scene.environment = env;
   scene.environmentIntensity = 0.32;
@@ -1287,7 +1515,7 @@ export function createRoom({ renderer, scene, tex, parchmentImg, props = {}, sha
   scene.add(makeDeskBase(wood, env, tex, { x: 2.3, z0: -1.77, z1: 1.53, y0: -0.14 }));
 
   // the room behind the desk (see "the chamber")
-  const chamber = makeChamber(tex);
+  const chamber = makeChamber(tex, weak);
   scene.add(chamber.group);
 
   // lights: candle key (shadows), candle glow (falloff), warm fill, a breath of moonlight

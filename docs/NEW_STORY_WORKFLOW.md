@@ -205,7 +205,7 @@ The sound script is in `src/book/soundscape.js` (its header explains the design)
 
 - **Places:** one continuous bed per place and time of day, as in the colour script. It runs on across pages and changes, with a slow crossfade, only where the place or the time does.
 - **Pages:** each page names its place and up to two quiet spot sounds of what is in it (a breath, a bird, the bell). They are first heard some seconds after the page has settled, and rarely again. No sound fires as a page lands.
-- **Themes:** an opening theme on the tale's title spread and an ending theme on its last page, kin to each other, in D or a key with D in it (the choice harp is in D). For this book: warm folk instruments, not courtly music.
+- **Themes:** an opening theme on the tale's title spread and an ending theme on its last page, kin to each other, in D or a key with D in it (the choice harp is in D). For this book: warm folk instruments, not courtly music. The opening theme opens the tale like a film: some seconds in, the bed of page 1 rises beneath it, and it plays on to its natural end while the reader turns into the first pages, so it should be calm and die away on its own (no cut-off ending).
 - A spot or theme whose file is not mastered yet is skipped, so the tale works before its sounds are done.
 
 Sounds are generated with ElevenLabs by the tools in `scripts/sfx/`:

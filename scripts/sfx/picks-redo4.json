@@ -1,0 +1,30 @@
+{
+  "sheet": "redo4",
+  "exportedAt": "2026-10-28T21:09:58.900Z",
+  "verdict": {},
+  "general": "",
+  "sounds": {
+    "bell-intro-theme": {
+      "picked": [
+        {
+          "file": "raw/bell-intro-r4b/bell-intro-r4b--music-v2-t01.mp3",
+          "model": "music-v2",
+          "role": "bell-intro-r4b"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    },
+    "mh-bed-night": {
+      "picked": [
+        {
+          "file": "raw/mh-bed-night-r4a/mh-bed-night-r4a--sfx-v2-t01.wav",
+          "model": "sfx-v2",
+          "role": "mh-bed-night-r4a"
+        }
+      ],
+      "ship": 1,
+      "note": ""
+    }
+  }
+}

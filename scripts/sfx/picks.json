@@ -1,5 +1,5 @@
 {
-  "_about": "Written by scripts/sfx/picks.mjs on 2026-10-25T23:23:39.342Z. Motifs: from picks-motif.json. Library: the user's library export picks-library.json (2026-10-25T20:16:17.460Z). The mix lives in prototypes/book/sound.js (LEVELS); gainDb here only trims a file. Redo2: ribbon-silk, quill-rewrite, cover-open, room-bed from picks-redo2.json. Themes from picks-themes.json. Redo3: mh-bed-tower, mh-bed-square-evening, mh-bed-orchard-evening, db-bed-evening, db-bed-dusk, db-bed-deepdusk, db-bed-night, bell-intro-theme, bell-ending-theme from picks-redo3.json.",
+  "_about": "Written by scripts/sfx/picks.mjs on 2026-10-28T21:10:54.250Z. Motifs: from picks-motif.json. Library: the user's library export picks-library.json (2026-10-25T20:16:17.460Z). The mix lives in src/book/sound.js (LEVELS); gainDb here only trims a file. Redo2: ribbon-silk, quill-rewrite, cover-open, room-bed from picks-redo2.json. Themes from picks-themes.json. Redo3: mh-bed-tower, mh-bed-square-evening, mh-bed-orchard-evening, db-bed-evening, db-bed-dusk, db-bed-deepdusk, db-bed-night, bell-intro-theme, bell-ending-theme from picks-redo3.json. Redo4: bell-intro-theme, mh-bed-night from picks-redo4.json.",
   "choice-motif": {
     "kind": "oneshot",
     "bus": "music",
@@ -351,8 +351,9 @@
   "mh-bed-night": {
     "kind": "bed",
     "bus": "amb",
+    "note": "redo4 (2026-10-28T21:09:58.900Z)",
     "takes": [
-      "mh-bed-night/mh-bed-night--sfx-v2-t03.wav"
+      "mh-bed-night-r4a/mh-bed-night-r4a--sfx-v2-t01.wav"
     ]
   },
   "mh-finch-stir": {
@@ -429,16 +430,9 @@
   "bell-intro-theme": {
     "kind": "music",
     "bus": "music",
-    "note": "redo3 (2026-10-25T23:21:02.557Z)",
+    "note": "redo4 (2026-10-28T21:09:58.900Z)",
     "takes": [
-      {
-        "file": "bell-intro-r3c/bell-intro-r3c--music-v2-t01.mp3",
-        "trim": [
-          0,
-          10.62
-        ],
-        "tailFade": 1
-      }
+      "bell-intro-r4b/bell-intro-r4b--music-v2-t01.mp3"
     ]
   },
   "bell-ending-theme": {
