@@ -12,8 +12,20 @@
 //   sound.js holds them back while anything else sounds (a turn, a choice, a theme).
 // - Each tale has two themes: an opening one on its title spread and a closing one on its last
 //   page, kin to each other (same instruments and key, in D or a key with D in it, so the D harp of
-//   the choices sits with them). Until the user picks the new themes only the shared closing motif
-//   ships; a theme or a spot whose file is not mastered (sounds.js) is simply skipped.
+//   the choices sits with them). A theme or a spot whose file is not mastered (sounds.js) is simply
+//   skipped, and a theme heard is not played again for the same page for a while.
+// - The opening, like a film's (2026-10-26, after the user read the book with sound): the tale's
+//   theme starts on its title spread over the hearth, and some seconds in (OPENING) the place of its
+//   first page rises beneath the music, slowly taking over from the hearth; while the theme sounds
+//   the bed stays several dB under its reading level (the theme lowers it), so the music leads. The
+//   theme is never cut by a turn: it rings on to its natural end while the reader goes on into the
+//   tale, the place bed simply carrying on into page 1 (no restart, no new crossfade) and settling
+//   to its reading level as the music ends. Spot sounds wait for it, so page 1's first comes after
+//   it. Back on the title spread while it still sounds, nothing starts again. If it ends with the
+//   reader still on the title spread, the place stays there, at its reading level. It gives way,
+//   with a gentle fade, only to another tale (a ribbon), "Begin again", or the sound turned off (a
+//   hidden tab fades everything and resumes it). A closing theme gives way to any turn. No theme
+//   (not mastered, heard a moment ago, or a tale opened straight at a later page): the beds as above.
 //
 // A new tale: add its places and pages here (and its files to scripts/sfx), nothing in sound.js.
 
@@ -22,6 +34,8 @@ export const ROOM = { loop: "room-bed", spots: [{ id: "candle-sputter", first: [
 
 // A spot: an id, or { id, first: [s, s] after the page lands, again: [s, s] | null, max plays, db }.
 const SPOT = { first: [6, 20], again: [45, 120], max: 2 };
+// The opening: the first page's place rises under the theme `at` s after the theme starts, over `rise` s.
+export const OPENING = { at: 5, rise: 8 };
 
 export const TALES = {
   "dragon-bridge": {
@@ -75,11 +89,16 @@ const norm = (s) => ({ ...SPOT, ...(typeof s === "string" ? { id: s } : s) });
 const first = (v) => [].concat(v || []);
 
 // What a spread sounds like: { bed (a loop id), spots: [{ id, first, again, max, db }], theme (an id
-// list, the first mastered one plays) | null, key } for tale `taleId`, story page `page` (0 = its
-// title spread), `resolved` = { choicePage: choiceId } (main.js resolved()).
+// list, the first mastered one plays) | null, ring (the theme rings on across the turns of its tale),
+// opening ({ bed, at, rise }: the place rising under an opening theme) | null, key } for tale
+// `taleId`, story page `page` (0 = its title spread), `resolved` = { choicePage: choiceId } (main.js
+// resolved()).
 export function sceneFor(taleId, page, resolved = {}) {
   const T = TALES[taleId];
-  if (!T || !page) return { bed: ROOM.loop, spots: ROOM.spots.map(norm), theme: page ? null : first(T?.themes?.intro), key: `${taleId}|${page}` };
+  if (!T || !page) {
+    const opening = !page && T?.places[T.pages[1]?.place] ? { bed: T.places[T.pages[1].place], ...OPENING } : null;
+    return { bed: ROOM.loop, spots: ROOM.spots.map(norm), theme: page ? null : first(T?.themes?.intro), ring: true, opening, key: `${taleId}|${page}` };
+  }
   const P = T.pages[page] || {};
   let spots = P.spots || [];
   let variant = "";
@@ -87,7 +106,7 @@ export function sceneFor(taleId, page, resolved = {}) {
     variant = resolved[P.variantFrom] || Object.keys(spots)[0];
     spots = spots[variant] || Object.values(spots)[0] || [];
   }
-  return { bed: T.places[P.place] || ROOM.loop, spots: spots.slice(0, 2).map(norm), theme: P.ending ? first(T.themes?.ending) : null, key: `${taleId}|${page}|${variant}` };
+  return { bed: T.places[P.place] || ROOM.loop, spots: spots.slice(0, 2).map(norm), theme: P.ending ? first(T.themes?.ending) : null, ring: false, opening: null, key: `${taleId}|${page}|${variant}` };
 }
 
 // Every id a tale may play, to load it ahead (sound.js preloadTale).

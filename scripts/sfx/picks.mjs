@@ -7,6 +7,9 @@
 //   node scripts/sfx/picks.mjs --redo2 <export.json>            the new generations picked on ?sheet=redo2
 //                                                               (picks-redo2.json is read when present):
 //                                                               each ships as generated, one take, no variants
+//   node scripts/sfx/picks.mjs --redo3 <export.json>            ?sheet=redo3 (picks-redo3.json when present)
+//   node scripts/sfx/picks.mjs --redo4 <export.json>            ?sheet=redo4: the Bell's opening theme and its
+//                                                               night bed (picks-redo4.json when present)
 //   then: node scripts/sfx/master.mjs
 //
 // - The choice motif and the ending motif are fixed here, from the motif sheet (picks-motif.json,
@@ -34,6 +37,9 @@ const DEFAULT_THEMES = path.join(ROOT, "scripts/sfx/picks-themes.json");
 // the new beds of both tales and the Bell's folk themes picked on ?sheet=redo3 (picks-redo3.json)
 const DEFAULT_REDO3 = path.join(ROOT, "scripts/sfx/picks-redo3.json");
 const redo3Arg = arg("redo3") || (existsSync(DEFAULT_REDO3) ? DEFAULT_REDO3 : null);
+// the Bell's calmer opening theme and its night square with the villagers, picked on ?sheet=redo4
+const DEFAULT_REDO4 = path.join(ROOT, "scripts/sfx/picks-redo4.json");
+const redo4Arg = arg("redo4") || (existsSync(DEFAULT_REDO4) ? DEFAULT_REDO4 : null);
 const themesArg = arg("themes") || (existsSync(DEFAULT_THEMES) ? DEFAULT_THEMES : null);
 const redo2Arg = arg("redo2") || (existsSync(DEFAULT_REDO2) ? DEFAULT_REDO2 : null);
 const manifest = JSON.parse(await readFile(path.join(ROOT, "scripts/sfx/manifest.json"), "utf8"));
@@ -199,6 +205,24 @@ if (redo3Arg) {
     else out[id] = { kind: "bed", bus: "amb", note: `redo3 (${ex.exportedAt})`, takes: [f] };
   }
   out._about += ` Redo3: ${Object.keys(ex.sounds).filter((k) => ex.sounds[k].picked?.length).join(", ")} from ${path.basename(redo3Arg)}.`;
+}
+// Redo 4: the Bell's opening theme (calmer, more mysterious) and the night bed of its last pages (the
+// villagers waiting on the square) replace those two, each as generated: the theme through the music
+// chain (all six takes die away on their own before the 16 s, so no trim or tail fade), the bed
+// through the bed chain. Only a new take (role bell-intro-r4a/b/c, mh-bed-night-r4a/b/c) replaces a
+// sound; a star on a comparison row ("Obecny", the closing theme, the harp) changes nothing.
+if (redo4Arg) {
+  const ex = JSON.parse(await readFile(path.resolve(redo4Arg), "utf8"));
+  const took = [];
+  for (const id of ["bell-intro-theme", "mh-bed-night"]) {
+    const v = ex.sounds?.[id];
+    const p = v?.picked?.find((x) => /-r4[abc]$/.test(x.role || ""));
+    if (!p) continue;
+    const f = rel(p.file);
+    out[id] = id === "bell-intro-theme" ? { kind: "music", bus: "music", note: `redo4 (${ex.exportedAt})`, takes: [f] } : { kind: "bed", bus: "amb", note: `redo4 (${ex.exportedAt})`, takes: [f] };
+    took.push(id);
+  }
+  out._about += ` Redo4: ${took.join(", ") || "nothing new"} from ${path.basename(redo4Arg)}.`;
 }
 await writeFile(path.join(ROOT, "scripts/sfx/picks.json"), JSON.stringify(out, null, 2) + "\n");
 const n = Object.keys(out).filter((k) => !k.startsWith("_")).length;

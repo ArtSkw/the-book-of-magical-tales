@@ -14,7 +14,7 @@
 // For review and deterministic screenshots, in the dev server only (import.meta.env.DEV; a
 // deployed book ignores them):
 //   choice=lantern|bread   choice made on page 4
-//   still=1             no intro, time frozen at t (candle, dust) — for screenshots
+//   still=1             no intro, time frozen at t (candle, dust, hearth) — for screenshots
 //   t=3                 frozen time in seconds (with still=1)
 //   turn=0.45           freeze a page turn at this progress (from `spread` to the next one)
 //   dir=-1              with turn: show the backwards turn instead
@@ -44,9 +44,9 @@
 //   gate=0              no "tap to open" gate: the intro plays on its own (as with actions=)
 //   dpr=1.5             pin the canvas resolution
 import * as THREE from "three";
-import { createBook, thicknessFor, sideProfile, leafSwing, W, D, SQUARE, HINGE } from "./book.js";
+import { createBook, thicknessFor, sideProfile, leafSwing, W, D, BT, SQUARE, HINGE } from "./book.js";
 import { createRoom, loadProps, CANDLE } from "./room.js";
-import { createPageArtist, makeGrain, PAGE_ASPECT, PAGE_UNITS_W, TEXT_MARGINS } from "./pageArt.js";
+import { createPageArtist, makeGrain, PAGE_ASPECT, PAGE_UNITS_W, PAGE_UNITS_H, TEXT_MARGINS } from "./pageArt.js";
 import { allImageSources, spreadImage, normaliseImage } from "./pages.js";
 import { storyFor, ui } from "./story.js";
 import { bindTales, taleUi } from "./tales.js";
@@ -871,25 +871,26 @@ const memCompact = () => coarse.matches && window.innerHeight > window.innerWidt
 const TMP = new THREE.Vector3();
 
 // Fits a desk rectangle into the viewport for a camera tilted `tilt` rad from vertical (towards +z).
+// Its corners are taken on the desk and `rect.y` over it; `rect.pts` (world points) stand in for
+// them where what is framed is no box (the paper of the open pages, see paperPose).
 function fitPose(rect, tilt, ndc) {
-  const target = new THREE.Vector3((rect.x0 + rect.x1) / 2, 0.06, (rect.z0 + rect.z1) / 2);
+  const pts = rect.pts || [];
+  if (!rect.pts) for (const x of [rect.x0, rect.x1]) for (const z of [rect.z0, rect.z1]) for (const y of [0.0, rect.y ?? 0.12]) pts.push(new THREE.Vector3(x, y, z));
+  let [x0, x1, z0, z1] = [Infinity, -Infinity, Infinity, -Infinity];
+  for (const p of pts) [x0, x1, z0, z1] = [Math.min(x0, p.x), Math.max(x1, p.x), Math.min(z0, p.z), Math.max(z1, p.z)];
+  const target = new THREE.Vector3((x0 + x1) / 2, 0.06, (z0 + z1) / 2);
   const dir = new THREE.Vector3(0, Math.cos(tilt), Math.sin(tilt));
   let dist = 3.5;
-  const corners = [
-    [rect.x0, rect.z0], [rect.x1, rect.z0], [rect.x0, rect.z1], [rect.x1, rect.z1],
-  ];
   const cam = camera.clone();
   for (let it = 0; it < 24; it++) {
     cam.position.copy(target).addScaledVector(dir, dist);
     cam.lookAt(target);
     cam.updateMatrixWorld(true);
     let minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
-    for (const [x, z] of corners) {
-      for (const y of [0.0, rect.y ?? 0.12]) {
-        TMP.set(x, y, z).project(cam);
-        minX = Math.min(minX, TMP.x); maxX = Math.max(maxX, TMP.x);
-        minY = Math.min(minY, TMP.y); maxY = Math.max(maxY, TMP.y);
-      }
+    for (const p of pts) {
+      TMP.copy(p).project(cam);
+      minX = Math.min(minX, TMP.x); maxX = Math.max(maxX, TMP.x);
+      minY = Math.min(minY, TMP.y); maxY = Math.max(maxY, TMP.y);
     }
     const sx = (maxX - minX) / (ndc.x1 - ndc.x0);
     const sy = (maxY - minY) / (ndc.y1 - ndc.y0);
@@ -935,8 +936,15 @@ function fitPoints(points, dir, ndc, target0) {
 }
 
 // The reading frame brings the book as close as the corner controls allow: the open book fills the
-// space between the top and bottom controls (measured, in CSS px), so on a tablet the body text
-// is as large as it can be without the font growing, and no control ever sits on the book.
+// space between the top and bottom controls (measured, in CSS px), and no control sits on it.
+// Where that leaves the body text of the spread under EASY_PX (a tablet on its side, a small
+// laptop window), the spread comes closer still, only as far as the type needs and at the most
+// until the paper of both pages comes to FULL px from the screen's edges (past the safe areas):
+// the boards' rim, the brass corners and the clasps run off the sides, and off the head and the
+// tail where the screen is the wider, the ribbons last of all (spreadPose, paperPose). The corner
+// controls then lie over the boards, the desk or a blank corner of the paper, never over the
+// print, which keeps to the pages' wide margins. Between the frames the spread grows evenly, so a
+// resize never jumps it.
 // FRAME is a thin margin in world units round the boards: x (each side), head, tail; the
 // ribbons' cut ends lie in the strip under the tail, beside the page controls.
 // The text column frame (column mode) is the page's full height, head and tail, and the column
@@ -947,6 +955,11 @@ const FRAME = {
   column: { pad: 0.022, head: 0.01, tail: 0.012 },
 };
 const GAP = 10; // px between a control and the book
+// body text (CSS px, at REF_BODY as pickMode measures it: the screen decides, never the tale)
+// under which the spread comes closer than the controls allow
+const EASY_PX = 24;
+const FULL = 10; // px between the screen's edges and the paper, at the closest
+const TAILS = 0.085; // the ribbons' cut ends past the boards' tail (ribbons.js: TAIL + 0.07, give or take 0.01)
 // the screen's safe areas (a notch, rounded corners), read once per resize from CSS
 const safeProbe = document.createElement("div");
 safeProbe.style.cssText = "position:fixed;left:0;top:0;visibility:hidden;pointer-events:none;padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)";
@@ -1013,7 +1026,111 @@ function readingPose(view = state.view, mode = layout.mode) {
     return fitPose(rect, THREE.MathUtils.degToRad(10), ndc);
   }
   const f = FRAME.landscape;
-  return fitPose({ x0: -bx - f.x, x1: bx + f.x, z0: -bz - f.head, z1: bz + f.tail, y: 0.04 }, THREE.MathUtils.degToRad(12), ndc);
+  return spreadPose({ x0: -bx - f.x, x1: bx + f.x, z0: -bz - f.head, z1: bz + f.tail, y: 0.04 }, THREE.MathUtils.degToRad(12), ndc);
+}
+// The spread's frame (see "the reading frame"): the one between the controls (`ndc`), or, while
+// its type reads under EASY_PX, one further along the way to the closest: first to the paper
+// filling the screen with the ribbons whole under the tail, then on to the paper filling it with
+// the ribbons cut at the boards' edge (paperPose). The way is taken only as far as brings the type
+// to EASY_PX or, short of that, to the size the closest frame gives. On a screen about as tall as
+// wide (a desktop window) the boards stay whole, as they always do upright: there the way ends at
+// the frame between the controls, and from there to 5:4 it reaches further and further.
+function spreadPose(rect, tilt, ndc) {
+  const calm = fitPose(rect, tilt, ndc);
+  const px = (pose) => (REF_BODY / 1000) * W * pxPerUnit(poseCamera(pose), "right");
+  const p0 = px(calm);
+  if (p0 >= EASY_PX) return calm;
+  const wide = clamp01((window.innerWidth / window.innerHeight - 1) / 0.25);
+  if (wide === 0) return calm;
+  const stops = [calm, ...[true, false].map((ends) => mixPose(calm, paperPose(tilt, ends), wide))];
+  const at = (k) => (k <= 1 ? mixPose(stops[0], stops[1], k) : mixPose(stops[1], stops[2], k - 1));
+  const want = Math.min(px(stops[2]), EASY_PX);
+  if (want < p0 + 0.05) return calm;
+  let [lo, hi] = [0, 2];
+  for (let it = 0; it < 12; it++) {
+    const mid = (lo + hi) / 2;
+    if (px(at(mid)) >= want - 0.02) hi = mid;
+    else lo = mid;
+  }
+  return at(hi);
+}
+// A frame a share k of the way from one pose to another of the same tilt: the book only comes
+// closer and moves across, every point on screen in both stays on screen between them.
+function mixPose(a, b, k) {
+  return { pos: a.pos.clone().lerp(b.pos, k), target: a.target.clone().lerp(b.target, k), dist: a.dist + (b.dist - a.dist) * k };
+}
+// The paper of both pages, for the thinnest and the thickest page block a side ever has (the left
+// one on a tale's first spread, the right one), so that one frame holds every spread: along the
+// head and the tail every few samples of the page's profile, the fore-edges running straight
+// between their corners.
+let paperPts = null;
+function paperOutline() {
+  if (paperPts) return paperPts;
+  paperPts = [];
+  for (const h of thicknessFor(0, 2)) {
+    const prof = sideProfile(h);
+    const n = prof.xs.length - 1;
+    const samples = Array.from({ length: Math.ceil(n / 4) }, (_, k) => 4 * k).concat(n);
+    for (const s of [-1, 1]) for (const i of samples) for (const z of [-D / 2, D / 2]) paperPts.push(new THREE.Vector3(s * prof.xs[i], prof.ys[i], z));
+  }
+  return paperPts;
+}
+// The print nearest the right page's outer corners, where the corner controls sit: the outer edge
+// of the text column (pageArt.js TEXT_MARGINS), from the capitals of a running head (21 units on a
+// baseline at 62; on the right page only where a closing text runs on) down to the foot of the
+// frame round a full-page picture (122 units over the page's foot, the frame 20 more). Plates,
+// choices and notes keep inside the column; the folio keeps to the middle of the foot.
+const PRINT = { u: PAGE_UNITS_W - TEXT_MARGINS.outer, head: 46, foot: PAGE_UNITS_H - 102 };
+let printPts = null;
+function printCorners() {
+  if (printPts) return printPts;
+  printPts = { head: [], foot: [] };
+  for (const h of thicknessFor(0, 2)) {
+    const prof = sideProfile(h);
+    printPts.head.push(pagePoint("right", PRINT.u, PRINT.head, prof));
+    printPts.foot.push(pagePoint("right", PRINT.u, PRINT.foot, prof));
+  }
+  return printPts;
+}
+// The closest frame of the spread: the paper of both pages FULL px inside the screen's edges (past
+// the safe areas), and under the tail the ribbons down to their cut ends (`ends`) or only across
+// the boards' square, so that a ribbon is still there to be touched. Where a corner control would
+// then lie over the print, the paper keeps clear of it on that side (by GAP), the book moving away
+// from it or, with no room to move, standing back a little. The print coming out from beside the
+// control (GAP clear of it already) is held off by a share of that, all of it once it reaches the
+// control, so that as the screen grows the frame never jumps.
+function paperPose(tilt, ends) {
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+  const pts = [...paperOutline(), new THREE.Vector3(0, ends ? 0 : BT, ends ? BOUNDS.z + TAILS : BOUNDS.z)];
+  const ndc = { x0: -1 + (2 * (FULL + safe.left)) / w, x1: 1 - (2 * (FULL + safe.right)) / w, y0: -1 + (2 * (FULL + safe.bottom)) / h, y1: 1 - (2 * (FULL + safe.top)) / h };
+  const [top, bottom] = els.chrome;
+  const print = printCorners();
+  const screen = (p, cam) => (TMP.copy(p).project(cam), [((TMP.x + 1) / 2) * w, ((1 - TMP.y) / 2) * h]);
+  const share = (x, c) => clamp01((x - c.offsetLeft + 3 * GAP) / (2 * GAP));
+  let pose = fitPose({ pts }, tilt, ndc);
+  for (let it = 0; it < 4; it++) {
+    const cam = poseCamera(pose);
+    // how far the print runs under each control (px), and where the framed points reach now
+    let under = 0, over = 0, y0 = Infinity, y1 = -Infinity;
+    for (const p of print.head) {
+      const [x, y] = screen(p, cam);
+      under = Math.max(under, (top.offsetTop + top.offsetHeight + GAP - y) * share(x, top));
+    }
+    for (const p of print.foot) {
+      const [x, y] = screen(p, cam);
+      over = Math.max(over, (y - bottom.offsetTop + GAP) * share(x, bottom));
+    }
+    if (under < 0.5 && over < 0.5) break;
+    for (const p of pts) {
+      const y = screen(p, cam)[1];
+      [y0, y1] = [Math.min(y0, y), Math.max(y1, y)];
+    }
+    if (under >= 0.5) ndc.y1 = Math.min(ndc.y1, 1 - (2 * (y0 + under)) / h);
+    if (over >= 0.5) ndc.y0 = Math.max(ndc.y0, -1 + (2 * (h - y1 + over)) / h);
+    pose = fitPose({ pts }, tilt, ndc);
+  }
+  return pose;
 }
 
 // ---------------------------------------------------------------- pan reading
@@ -1057,9 +1174,8 @@ function panBoxes() {
 // A point of a page given in page units (as pageArt draws it), in world space.
 // Past its edges (a frame grown round a part) the page runs on flat: over the spine onto the
 // other page, past the fore-edge onto the desk.
-function pagePoint(side, u, v) {
+function pagePoint(side, u, v, prof = profileOf(side)) {
   const a = ((side === "right" ? u : PAGE_UNITS_W - u) / PAGE_UNITS_W) * W; // arc from the spine
-  const prof = profileOf(side);
   const n = prof.xs.length - 1;
   const [x, y] = a <= 0 ? [a, prof.ys[0]] : a >= W ? [prof.xs[n] + a - W, prof.ys[n]] : arcPoint(prof, a);
   return new THREE.Vector3(side === "right" ? x : -x, y, -D / 2 + (v / (PAGE_UNITS_W * PAGE_ASPECT)) * D);
@@ -2168,7 +2284,8 @@ function openTale(i, waited = false) {
   }
   taleWait.i = -1;
   const now = performance.now() / 1000;
-  if (startRiffle(i, now)) sound.riffle(state.riffle || { reduced: true, total: 0.6 }); // the silk, then the leaves
+  // the silk, then the leaves (an opening theme rings on if the reader goes back to its own title)
+  if (startRiffle(i, now)) sound.riffle({ ...(state.riffle || { reduced: true, total: 0.6 }), tale: tales[i].id });
   else if (!busy()) {
     // already there: a small acknowledging tug
     tug.press = i;
@@ -2729,7 +2846,7 @@ async function init() {
   closeArt(loaded.book.cover); // baked: its pixels go (retitleCover decodes it again)
   ribbons = createRibbons({ tales, book });
   book.root.add(ribbons.group);
-  room = createRoom({ renderer, scene, tex: { wood: loaded.wood, ...loaded.room }, parchmentImg: loaded.parchment, props, shadowSize: LOW ? 1024 : 2048 });
+  room = createRoom({ renderer, scene, tex: { wood: loaded.wood, ...loaded.room }, parchmentImg: loaded.parchment, props, shadowSize: LOW ? 1024 : 2048, weak: LOW });
   room.base = { key: room.key.intensity, glow: room.glow.intensity };
   for (const [name, p] of Object.entries(loaded.props)) if (!(name in props)) p.then((obj) => placeLate(name, obj));
 
@@ -2831,6 +2948,8 @@ if (Q.perf) {
     body: () => artist.lastBodySize,
     textBox: () => (layout.mode === "pan" ? panStops().textBox : null),
     regions: (side) => cache.get(keyOf(state.tale, state.spread, side))?.regions || [],
+    // the turning leaf's vertices (world x, y, z in a row), while one is in the air
+    leaf: () => (book.leaves[0].group.visible ? Array.from(book.leaves[0].pos.array) : null),
     toScreen: (side, u, v) => {
       const p = pagePoint(side, u, v).project(camera);
       return [((p.x + 1) / 2) * window.innerWidth, ((1 - p.y) / 2) * window.innerHeight];

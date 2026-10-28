@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Builds the listening sheets that scripts/sfx/review.html shows (?sheet=library | motif | phase0):
+// Builds the listening sheets that scripts/sfx/review.html shows (?sheet=redo4 | redo3 | themes |
+// redo2 | redo | library | motif | phase0):
 // every take analysed (lib.mjs analyse, cached in local-assets/sfx/analysis.json), a suggested pick
 // pre-starred per sound (technical checks only: clean start, natural end, no clipping, steady beds,
 // pitch in D for the musical sounds; nobody has listened to them), and the choice-motif candidates
@@ -479,7 +480,7 @@ const refTake3 = (rel, label, flags) => {
   const { m, warn, good } = flags(rel);
   return { file: rel, role: "ref", label, tag: "", dur: m.dur, M: m.M, I: m.I, TP: m.TP, peaks: m.peaks, warn, good, recommended: false };
 };
-const promptsOf = (base, letters) => letters.map((k) => byId.get(`${base}-r3${k}`) && `${k.toUpperCase()}: ${byId.get(`${base}-r3${k}`).text}`).filter(Boolean).join("  ·  ");
+const promptsOf = (base, letters, round = "r3") => letters.map((k) => byId.get(`${base}-${round}${k}`) && `${k.toUpperCase()}: ${byId.get(`${base}-${round}${k}`).text}`).filter(Boolean).join("  ·  ");
 const shipFrom = (id) => (await_sounds[id]?.variants?.[0]?.from ? `raw/${await_sounds[id].variants[0].from}` : null);
 const { sounds: await_sounds } = await import(path.join(ROOT, "src/book/sounds.js"));
 async function bedItem(base, label, where, letters, refs = []) {
@@ -512,6 +513,95 @@ const redo3Sheet = {
   ],
 };
 
+// ---------------------------------------------------------------- redo 4: the Bell's opening, calmer; its night square alive
+// New generations only (manifest bell-intro-r4a/b/c, mh-bed-night-r4a/b/c, set redo4), raw and
+// level-matched, labelled by prompt and model, nothing pre-starred. Beside them, for comparison, what
+// the book plays now ("Obecny": its shipped master, local-assets/sfx/master), and by the opening the
+// closing theme it must be kin to and the harp of the choices. Measured and flagged as in redo 3,
+// none hidden; for the themes also the key against the D of the harp, the notes it ends on where the
+// music still sounds (the 2.5 s before it falls 20 dB under its loudest: a take that dies away early
+// ends in a tail too quiet to read; a semitone beside the strongest note is its leakage, left out),
+// when it sets in and when it has died away; for the beds also how uneven they are and how far their
+// events stand out (the people, a dog) over the ambience. A comparison row is a shipped master: only
+// its key and last notes (its trim and tail fade were made in mastering).
+const PL = (k = "") => k.replace(/^([A-G]#?) major$/, (_, n) => `${n.replace("#", "♯")}-dur`).replace(/^([A-G]#?) minor$/, (_, n) => `${n.toLowerCase().replace("#", "♯")}-moll`);
+const sec = (x) => `${num(x.toFixed(1))} s`;
+const num = (v) => String(v).replace(".", ",");
+const PC12 = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+function theme4(rel, { shipped = false } = {}) {
+  const key = `${rel}|${statSync(path.join(SFX, rel)).size}|r4`;
+  if (!r3cache[key]) {
+    const abs = path.join(SFX, rel);
+    const { mono, sr } = readPcm(abs);
+    const hop = Math.floor(sr * 0.1), lv = [];
+    for (let s = 0; s + hop <= mono.length; s += hop) { let e = 0; for (let i = s; i < s + hop; i++) e += mono[i] * mono[i]; lv.push(10 * Math.log10(e / hop + 1e-12)); }
+    const pk = Math.max(...lv);
+    const lastAbove = (db) => (lv.length - 1 - [...lv].reverse().findIndex((v) => v > pk + db)) * 0.1;
+    const end = Math.max(2.5, lastAbove(-20));
+    const tmp = path.join(SFX, "r4-win.wav");
+    ff("-i", abs, "-af", `atrim=start=${Math.max(0, end - 2.5)}:end=${end}`, "-c:a", "pcm_f32le", tmp);
+    r3cache[key] = { key: keyOf(abs).key, final: keyOf(tmp).final, in: lv.findIndex((v) => v > pk - 20) * 0.1, out: lastAbove(-40) };
+  }
+  const K = r3cache[key], m = metricsOf(rel, { id: "redo4-theme" });
+  const warn = [], good = [], info = [];
+  if (/^D (major|minor)$/.test(K.key)) good.push(PL(K.key)); else warn.push(`${PL(K.key)}: nie na D, z harfą wyborów mniej spokojnie`);
+  const top = K.final.split(" ");
+  const fin = top.filter((n, i) => !i || ![1, 11].includes((PC12.indexOf(n) - PC12.indexOf(top[0]) + 12) % 12));
+  (fin.includes("D") ? good : warn).push(`na końcu: ${fin.map((n) => n.replace("#", "♯")).join(", ")}${fin.includes("D") ? "" : " (bez D)"}`);
+  if (shipped) {
+    info.push("po masteringu, jak w książce");
+    return { m, warn, good, info };
+  }
+  if (K.in > 1.5) info.push(`wchodzi powoli: głośniej od ${sec(K.in)}`);
+  if (m.endDb > -45) warn.push("nie wybrzmiewa do końca");
+  else good.push(`wybrzmiewa do ciszy (${sec(K.out)})`);
+  if (m.M < -26) info.push(`ciche nagranie: w książce +${Math.round(-20 - m.M)} dB`);
+  if (m.clipped > 10) warn.push("przester");
+  return { m, warn, good, info };
+}
+function bed4(rel, { shipped = false } = {}) {
+  const f = bedFlags(rel), m = f.m;
+  const warn = [...f.warn], good = [...f.good], info = [];
+  // a shipped master is already at the bed level: its raise says nothing
+  if (shipped) for (const list of [warn, good]) for (let i = list.length - 1; i >= 0; i--) if (/głośność w normie|za ciche/.test(list[i])) list.splice(i, 1);
+  if (shipped) info.push("po masteringu, jak w książce");
+  if (m.LRA > 8) warn.push(`nierówna głośność (LRA ${Math.round(m.LRA)})`);
+  if (m.M - m.I > 8) info.push(`zdarzenia do +${Math.round(m.M - m.I)} dB nad tłem`);
+  if (m.widthDb < -20) info.push("prawie mono");
+  return { m, warn, good, info };
+}
+async function newTakes4(base, flags) {
+  const out = [];
+  for (const k of ["a", "b", "c"]) {
+    const id = `${base}-r4${k}`;
+    for (const t of await takesOf(id)) {
+      const { m, warn, good, info } = flags(t.file);
+      out.push({ file: t.file, tag: t.tag, take: t.take, role: id, label: `${k.toUpperCase()} · ${MODEL3[t.tag] || t.tag}`, credits: t.credits, dur: m.dur, M: m.M, I: m.I, TP: m.TP, peaks: m.peaks, warn, good, info, recommended: false });
+    }
+  }
+  return out;
+}
+// a comparison row (a shipped master); `role` "ref" is the one the book plays now in this slot
+const ref4 = (rel, label, role, flags) => {
+  if (!existsSync(path.join(SFX, rel))) return null;
+  const { m, warn, good, info } = flags(rel);
+  return { file: rel, role, label, tag: "", dur: m.dur, M: m.M, I: m.I, TP: m.TP, peaks: m.peaks, warn, good, info, recommended: false };
+};
+const OBECNY = "Obecny (tak gra teraz w książce)";
+const redo4Sheet = {
+  name: "redo4", title: "Odsłuch: nowe otwarcie dzwonu i nocny plac",
+  intro: "Nowe nagrania do „Dzwonu z Księżycowego Wzgórza”: spokojniejszy, bardziej tajemniczy motyw otwarcia i nowe tło ostatnich stron (8–10), czyli nocny plac, na którym ludzie czekają na naprawiony dzwon. Wszystkie surowe, tylko wyrównane głośnością; etykieta mówi, z którego opisu (A, B, C; pełne opisy pod „Prompt”) i z którego modelu. Obok, dla porównania, „Obecny”: to, co gra teraz w książce. Przy motywie także zakończenie dzwonu, które zostaje (nowe otwarcie ma być z nim spokrewnione), i harfa z wyborów w D. Pod każdą wersją pomiary: przy motywach tonacja, ostatni akord, kiedy muzyka wchodzi i kiedy cichnie; przy tłach stały ton, czy nagranie nie jest za ciche (powyżej +18 dB jego własny szum zaczyna być słyszalny), nierówna głośność, przester. Nic nie jest zaznaczone: wybierz po jednym do każdego i pobierz wybory. Tła grają w pętli; sprawdź „Szew pętli” i „Pod moim głosem”. W książce motyw otwarcia gra teraz do końca, także po przewróceniu strony, a po kilku sekundach pod muzyką cicho wchodzi tło pierwszej strony.",
+  base: "", showModels: true, context,
+  sections: [
+    { title: "Dzwon z Księżycowego Wzgórza", groups: [{ items: [
+      { id: "bell-intro-theme", label: "Motyw otwarcia (strona tytułowa)", where: "Spokojniej i bardziej tajemniczo niż obecny: wolno, cicho, jakby ktoś zaczynał opowieść przy świecy, powoli wciągając w historię. Ludowo (flet, lutnia, piszczałka, fidel, lira korbowa), bez harfy, na D (doryckiej, molowej lub durowej), z otwartym akordem D na końcu. Około 16 s. Dla porównania obecny motyw, zakończenie dzwonu (zostaje) i harfa z wyborów.", ship: 1, kind: "music", lengthMs: byId.get("bell-intro-r4a")?.lengthMs, prompt: promptsOf("bell-intro", ["a", "b", "c"], "r4"), tools: [],
+        takes: [...(await newTakes4("bell-intro", theme4)), ref4("master/bell-intro-theme.wav", OBECNY, "ref", (rel) => theme4(rel, { shipped: true })), ref4("master/bell-ending-theme.wav", "Zakończenie dzwonu (zostaje)", "ref-ending", (rel) => theme4(rel, { shipped: true })), ref4("master/choice-motif-1.wav", "Harfa z wyborów (D)", "ref-harp", (rel) => ({ m: metricsOf(rel, { id: "choice-motif" }), warn: [], good: ["D, jak przy wyborze"], info: [] }))].filter(Boolean) },
+      { id: "mh-bed-night", label: "Plac nocą: ludzie czekają na dzwon (strony 8–10)", where: "Nocny plac miasteczka, na którym zebrali się ludzie: ciche rozmowy, czasem stłumiony śmiech dziecka, kroki na bruku, skrzypnięcie ławki lub latarni, świerszcze, nocny wiatr; trochę życia, ale wciąż noc i spokój. Dla porównania obecne tło (śpiąca wioska, sam wiatr i świerszcze).", ship: 1, kind: "sfx", loop: true, tools: ["loop"], prompt: promptsOf("mh-bed-night", ["a", "b", "c"], "r4"), seconds: byId.get("mh-bed-night-r4a")?.seconds,
+        takes: [...(await newTakes4("mh-bed-night", (rel) => bed4(rel))), ref4("master/mh-bed-night.wav", OBECNY, "ref", (rel) => bed4(rel, { shipped: true }))].filter(Boolean) },
+    ] }] },
+  ],
+};
+
 // ---------------------------------------------------------------- phase 0 (kept for the record)
 const ab0 = [...new Set(manifest.sets.ab0.map((e) => e.id))];
 const takeTag = (model) => ({ eleven_text_to_sound_v2: "sfx-v2", eleven_text_to_sound_v3: "sfx-v3", music_v2: "music-v2", music_v2_5: "music-v2-5" })[model];
@@ -522,10 +612,11 @@ const phase0Sheet = {
 };
 
 await mkdir(SHEETS, { recursive: true });
-for (const s of [library, motifSheet, phase0Sheet, redoSheet, redo2Sheet, themesSheet, redo3Sheet]) await writeFile(path.join(SHEETS, `${s.name}.json`), JSON.stringify({ ...s, builtAt: new Date().toISOString() }));
+for (const s of [library, motifSheet, phase0Sheet, redoSheet, redo2Sheet, themesSheet, redo3Sheet, redo4Sheet]) await writeFile(path.join(SHEETS, `${s.name}.json`), JSON.stringify({ ...s, builtAt: new Date().toISOString() }));
 await writeFile(cacheFile, JSON.stringify(cache));
 console.log(`redo2: ${redo2Items.map((it) => `${it.id} ${it.takes.length}`).join(", ")}${Object.values(dropped).flat().length ? `; dropped ${Object.entries(dropped).map(([k, v]) => v.length ? `${k}: ${v.join(", ")}` : "").filter(Boolean).join(" | ")}` : ""}`);
 console.log(`themes: ${themeItems.map((it) => `${it.id} ${it.takes.length}`).join(", ")}`);
 console.log(`redo3: ${redo3Sheet.sections.flatMap((sec) => sec.groups[0].items).map((it) => `${it.id} ${it.takes.filter((t) => t.role !== "ref").length}+${it.takes.filter((t) => t.role === "ref").length} ref`).join(", ")}`);
+console.log(`redo4: ${redo4Sheet.sections.flatMap((sec) => sec.groups[0].items).map((it) => `${it.id} ${it.takes.filter((t) => !t.role?.startsWith("ref")).length}+${it.takes.filter((t) => t.role?.startsWith("ref")).length} ref`).join(", ")}`);
 console.log(`library: ${library.stats.takes} takes, ${library.stats.credits} credits by the cost headers${library.stats.missing.length ? `, NO TAKES for ${library.stats.missing.join(", ")}` : ""}`);
 console.log(`motif: ${cands.length} candidates; set 1 ${setA.map((t) => `t${t.take}`).join(" ")}; set 2 ${setB.map((t) => `t${t.take} ${t.role.split(" · ")[1].split(" ")[0]} (${t.semis >= 0 ? "+" : ""}${t.semis})`).join(", ")}`);

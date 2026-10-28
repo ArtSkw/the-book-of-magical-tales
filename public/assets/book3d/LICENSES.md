@@ -44,6 +44,7 @@ work as textures; no lettering was generated, all text is set at runtime in EB G
 | `textures/runner_diff.webp` (1024×768) | generated: woven medieval tapestry runner (madder red, ochre, indigo); made to tile left–right by cross-fading the ends |
 | `textures/feather.webp` (256×1113, alpha) | generated: a single quill feather on flat black; alpha keyed from the black background |
 | `textures/room_wall.webp` (1536×1024) | generated: the far wall of the chamber behind the desk, a hearth, shelves and a door (`prototypes/prompts/room-wall.txt`); blurred out of focus, darkened towards its edges by `prototypes/book/tools/bake_room.py` |
+| `textures/room_fire.webp` (128×128, lossless) | derived from `room_wall.webp` with numpy/PIL (`prototypes/book/tools/bake_room_fire.py`): where its hearth's flames (R), embers (G) and firelit stone and floor (B) are, for the wall's shader to bring the fire to life (`room.js`, "the living hearth") |
 
 Baked procedurally with numpy/PIL (the brown leather above as grain):
 
