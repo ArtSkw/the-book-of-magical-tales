@@ -544,7 +544,8 @@ async function loadAll() {
 }
 
 // ---------------------------------------------------------------- page textures
-const pageSize = { w: 1024, h: 1413 };
+// `column`: the pages are drawn for column mode (see updatePageSize)
+const pageSize = { w: 1024, h: 1413, column: false };
 const cache = new Map();
 let artist = null;
 // current + previous + next spread = 6 pages: enough for an instant turn either way, and bounded
@@ -554,7 +555,7 @@ let artist = null;
 const maxCache = () => (memCompact() ? 4 : 6);
 const choiceKey = (t = state.tale) => (story(t)?.CHOICE_PAGES || []).map((p) => choicesOf(t)[p] || "-").join(",");
 const keyOf = (t, i, side) => `${tales[t].id}|${i}|${side}|${state.lang}|${choiceKey(t)}|${pageSize.h}`;
-const ctxFor = (t = state.tale) => ({ tale: tales[t].id, spreads: tales[t].spreads, lang: state.lang, choices: choicesOf(t), resolved: resolved(t) });
+const ctxFor = (t = state.tale) => ({ tale: tales[t].id, spreads: tales[t].spreads, lang: state.lang, choices: choicesOf(t), resolved: resolved(t), column: pageSize.column });
 
 function getPage(t, i, side) {
   const key = keyOf(t, i, side);
@@ -860,7 +861,7 @@ function placeTip() {
 // How the book is read on this screen (layout.mode, chosen by pickMode below): "spread", the
 // whole open book; "single", one page at a time, the camera gliding across the spread before the
 // leaf turns; "column", the same on a phone held upright, framing only the text column of the
-// page (its margins run off the sides) at the page's full height; "pan", a phone on its side, a
+// page (its margins run off the sides) at the height of its print; "pan", a phone on its side, a
 // part of a spread at a time (see "pan reading"). `portrait()` is true while the book is read one
 // page at a time (single, column or pan).
 const layout = { mode: null };
@@ -947,12 +948,18 @@ function fitPoints(points, dir, ndc, target0) {
 // resize never jumps it.
 // FRAME is a thin margin in world units round the boards: x (each side), head, tail; the
 // ribbons' cut ends lie in the strip under the tail, beside the page controls.
-// The text column frame (column mode) is the page's full height, head and tail, and the column
-// of type between its margins with `pad` of paper either side, as arc length along the page.
+// The text column frame (column mode) is the column of type between the page's margins, `pad` of
+// paper either side as arc length along the page (none: the column itself comes to the screen's
+// side margins), at the height of the page's print: from just over the running head's capitals
+// (about 47 units under the head) to just under the folio (about 44 over the tail), the blank
+// paper beyond them (`head`, `tail` short of the edges) left to lie under the controls. Everything
+// a page prints keeps within its column (a plate's frame or a drop cap's sprig a little into the
+// margin, where the camera's tilt leaves the column room), so the type reads as large as the
+// screen's width or height allows.
 const FRAME = {
   landscape: { x: 0.006, head: 0.004, tail: 0.004 },
   portrait: { x: 0.03, head: 0.008, tail: 0.012, spine: 0.04 },
-  column: { pad: 0.022, head: 0.01, tail: 0.012 },
+  column: { pad: 0, head: 0.03, tail: 0.03 },
 };
 const GAP = 10; // px between a control and the book
 // body text (CSS px, at REF_BODY as pickMode measures it: the screen decides, never the tale)
@@ -1009,7 +1016,7 @@ function columnRect(view) {
   const to = (1 - TEXT_MARGINS.outer / PAGE_UNITS_W) * W + f.pad;
   const [xa, ya] = arcPoint(prof, from);
   const [xb, yb] = arcPoint(prof, to);
-  return { x0: Math.min(sgn * xa, sgn * xb), x1: Math.max(sgn * xa, sgn * xb), z0: -D / 2 - f.head, z1: D / 2 + f.tail, y: Math.max(ya, yb) };
+  return { x0: Math.min(sgn * xa, sgn * xb), x1: Math.max(sgn * xa, sgn * xb), z0: -D / 2 + f.head, z1: D / 2 - f.tail, y: Math.max(ya, yb) };
 }
 function readingPose(view = state.view, mode = layout.mode) {
   const bx = BOUNDS.x;
@@ -1145,8 +1152,8 @@ function paperPose(tilt, ends) {
 // (back: on the previous spread's last); a choice still to be made holds the last stop, as the
 // gate holds the leaf. Between stops the camera glides as it does across a spread in portrait.
 const PAN = {
-  px: 16.5, // body text at the least, CSS px (the band of type a stop holds is sized for it)
-  maxPx: 17.5, // ... and at the most (a short band is framed with more of the page round it)
+  px: 17.5, // body text at the least, CSS px (the band of type a stop holds is sized for it)
+  maxPx: 18.5, // ... and at the most (a short band is framed with more of the page round it)
   pad: 26, // page units of paper round a band of type
   frame: 24, // ... round a part framed whole
   up: 1.35, // a part framed whole comes at most this much closer than the type
@@ -1424,8 +1431,13 @@ function moveCamera(to, dur, now) {
   cam.dur = dur;
 }
 
-// Page-texture resolution: about one texel per device pixel of the page at rest.
+// Page-texture resolution: about one texel per device pixel of the page at rest. And whether the
+// pages are set for column mode, where the camera frames only the text column and a page's choices
+// are set larger (pageArt.js choicesBlock). True when the pages must be drawn again.
 function updatePageSize() {
+  const column = layout.mode === "column";
+  const relaid = column !== pageSize.column;
+  pageSize.column = column;
   const pose = readingPose(state.view);
   const c = camera.clone();
   c.position.copy(pose.pos);
@@ -1441,7 +1453,7 @@ function updatePageSize() {
     pageSize.w = Math.round(h / PAGE_ASPECT);
     return true;
   }
-  return false;
+  return relaid;
 }
 
 // ---------------------------------------------------------------- DOM: chrome + mirror
@@ -1484,8 +1496,10 @@ function syncChrome() {
   // pan reading: a gilt dot for every stop of the spread, the one in view lit
   const dots = layout.mode === "pan" && book ? panStops(state.tale, state.turning?.to ?? state.spread).map((_, k) => `<i${k === state.stop ? ' class="on"' : ""}></i>`).join("") : "";
   if (els.stops.innerHTML !== dots) els.stops.innerHTML = dots;
-  els.prev.disabled = state.spread === 0;
-  els.next.disabled = state.spread === spreads().length - 1;
+  // on the first and the last spread the arrows rest only once nothing is left that way: read one
+  // page at a time, the spread's other page (in pan, its other stops) is still to come
+  els.prev.disabled = state.spread === 0 && !moreOfSpread(-1);
+  els.next.disabled = state.spread === spreads().length - 1 && !moreOfSpread(1);
   // held at a choice, the next arrow rests dimmed but stays a button: a press shows why
   const held = nextHeld();
   els.next.setAttribute("aria-disabled", String(held));
@@ -1495,6 +1509,17 @@ function syncChrome() {
   els.langGroup.dataset.lang = state.lang;
   els.langGroup.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.lang === state.lang)));
   syncSound();
+}
+// Whether, read one page at a time, the spread holds more on its way (dir: 1 on, -1 back): the
+// other page in portrait, the next or the previous stop in pan (as go() moves before it turns).
+function moreOfSpread(dir) {
+  if (layout.mode === "pan") {
+    const n = book ? panStops(state.tale, state.turning?.to ?? state.spread).length : 1;
+    const k = clamp(state.stop, 0, n - 1);
+    return dir > 0 ? k < n - 1 : k > 0;
+  }
+  if (portrait()) return state.view === (dir > 0 ? "left" : "right");
+  return false;
 }
 // The sound toggle: a round plaque beside the language, pressed while the book has sound.
 function syncSound() {
@@ -2786,12 +2811,12 @@ function resize() {
   // the page controls sit beside the ribbons in landscape and under the page in portrait
   document.documentElement.dataset.layout = portrait() ? "portrait" : "landscape";
   if (!book) return;
-  syncChrome(); // turned to portrait, the next arrow may glide across the spread first
   // a leaf in the air (a turn, a riffle, a crossfade) holds its textures; the new size is taken
   // up when it lands
   if (busy()) refit.pending = true;
   else refitPages();
   if (layout.mode === "pan" && !state.turning && !state.fade && !state.riffle) panRestop(anchor);
+  syncChrome(); // turned to portrait (or the stops cut anew), the next arrow may move within the spread first
   if (!state.intro || state.intro.done) {
     cam.pose = readingPose();
     cam.to = null;

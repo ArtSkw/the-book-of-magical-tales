@@ -39,8 +39,20 @@ export const TEXT_MARGINS = M;
 // 5:4 (art exported at 1280x1024, cropped from the 1536x1024 generation), the width of the text
 // column. pad = room above and below the picture for its gilded frame, gap = to the block under
 // it, safe = kept free at the foot whatever the language. At this size the longest choice block
-// (labels <= 38 chars, responses <= 120) and a note up to 280 chars still fit (validate-stories.js).
+// (labels <= 38 chars, responses <= 120) and a note up to 280 chars still fit (validate-stories.js);
+// on a phone held upright, where the print under it is set larger (COLUMN_PRINT), the plate gives
+// up some of its height to it.
 const PLATE = { aspect: 5 / 4, pad: 40, gap: 34, safe: 24 };
+// Read on a phone held upright, the camera frames only the page's text column (main.js, column
+// mode) and the small print would read a size or two under the body beside it. There a choice's
+// label is set larger (x label: about the body's size on screen, an average 38-character label
+// still to a line), the prompt over the choices and the response under them nearly as large
+// (x hint, a 120-character response then in three lines), and a note under a plate as large as
+// the label (x note); the plate gives them the room (choicesBlock, noteBlock). The line at the
+// foot of a title page that invites the turn comes to the label's size too (x begin), and the
+// tale's subtitle over it stays a little larger than that line (x kicker); the clasp that starts
+// a tale again on its last page comes up to a thumb's size (x clasp).
+const COLUMN_PRINT = { label: 1.08, hint: 1.03, note: 1.14, begin: 1.33, kicker: 1.1, clasp: 1.15 };
 
 // Polish typography: never leave a one-letter word at the end of a line.
 const glueOrphans = (s) => s.replace(/(^|[\s(„"])([aiouwzAIOUWZ])\s+/g, "$1$2 ");
@@ -968,18 +980,23 @@ function headingBlock(text, size) {
   };
 }
 
-// Choice tabs with wax seals. `reserve` is the longest response: its room is kept under the
-// tabs, so choosing never reflows the page. `anim` ({ from, capture }) is a choice being made:
+// Choice tabs with wax seals. `reserve` is the longest response: its room (or that of whichever
+// response takes the most lines) is kept under the tabs, so choosing never reflows the page.
+// `anim` ({ from, capture }) is a choice being made:
 // the page is drawn once without the block, and `anim.draw(g, p)` then paints only the block at
 // progress p (0..1) – the chosen seal pressed in, a gold wash spreading from it across its tab,
 // its ring traced round, the previous choice fading back and its response rewritten. With
 // `anim.glint` nothing is chosen: the reader tried to turn on past the choice, and the seals
 // glow once, one after another (`anim.calm`: reduced motion, they only glow, never swell).
 // `anim.levels` ({ id: 0..1 }, drawn at p = 1) is the pointer resting on seals (main.js eases it).
-function choicesBlock({ options, selectedId, hint, size, hits, pageId, response, reserve = null, anim = null }) {
+// `column`: the page is read by its text column on a phone, its print set larger (COLUMN_PRINT)
+// and its rows taller.
+function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, response, reserve = null, anim = null, column = false }) {
+  const size = column ? Math.round(base * COLUMN_PRINT.label) : base;
   const rowH = Math.round(size * 2.5);
   const gap = Math.round(size * 0.45);
-  const hintSize = Math.round(size * 0.84);
+  const sealR = rowH * 0.36;
+  const hintSize = Math.round(base * (column ? COLUMN_PRINT.hint : 0.84));
   const fromResponse = anim ? options.find((o) => o.id === anim.from)?.response || null : null;
   let cache = null;
   const layout = (ctx, width) => {
@@ -989,9 +1006,11 @@ function choicesBlock({ options, selectedId, hint, size, hits, pageId, response,
     const lines = (text) => (text ? wrap(ctx, glueOrphans(text), () => width - 20) : []);
     const respLines = lines(response);
     const fromLines = lines(fromResponse);
-    const respRows = Math.max(respLines.length, lines(reserve).length);
+    const respRows = Math.max(respLines.length, lines(reserve).length, ...options.map((o) => lines(o.response).length));
     ctx.font = font(600, size);
-    const labelLines = options.map((o) => wrap(ctx, glueOrphans(o.label), () => width - rowH * 1.25 - 30));
+    // a label has its tab from past the seal (see paint) to the tab's end, kept as far from the end
+    // as from the seal
+    const labelLines = options.map((o) => wrap(ctx, glueOrphans(o.label), () => width - 2 * sealR - 60));
     const rows = labelLines.map((ls) => Math.max(rowH, ls.length * size * 1.18 + size * 0.9));
     const height = hintLines.length * hintSize * 1.35 + (hintLines.length ? 16 : 0) + rows.reduce((a, b) => a + b, 0) + gap * (options.length - 1) + (respRows ? 18 + respRows * hintSize * 1.35 : 0);
     cache = { width, hintLines, respLines, fromLines, labelLines, rows, height };
@@ -1031,7 +1050,6 @@ function choicesBlock({ options, selectedId, hint, size, hits, pageId, response,
       const q = anim?.glint && !now ? clamp01((k - stagger * i) / (1 - stagger * (options.length - 1))) : 0;
       const glint = Math.pow(Math.sin(Math.PI * q), 1.5);
       const glow = Math.max(glint, 0.55 * hover);
-      const sealR = rowH * 0.36;
       const bx = x + sealR + 6;
       const tw = width - sealR - 8;
       // vellum tab with gold edge
@@ -1086,7 +1104,10 @@ function choicesBlock({ options, selectedId, hint, size, hits, pageId, response,
         glow,
         swell: anim?.calm ? 0 : glint,
       });
-      hits.push({ x, y: cy, w: width, h, action: { type: "choice", id: o.id } });
+      // a row answers a touch half way across the gap either side of it: two rows meet in the
+      // middle of the gap between them, and no strip there lets a tap through to the page (in
+      // portrait, a turn: refused before a choice, its cue lighting the first seal first)
+      hits.push({ x, y: cy - gap / 2, w: width, h: h + gap, action: { type: "choice", id: o.id } });
       cy += h + gap;
     });
     if (L.respLines.length || L.fromLines.length) {
@@ -1368,7 +1389,7 @@ function textBox(side) {
 
 // Where the blocks of the page being drawn went (drawPage returns them): { role, x, y, w, h } in
 // page units, role = the block's `role` or its kind (text, image, choices, note, clasp), plus the
-// parts compose places itself (picture, title, medallion, epigraph). main.js frames them one by
+// parts compose places itself (picture, title, medallion, begin, epigraph). main.js frames them one by
 // one when a phone held sideways reads a spread a part at a time (?mode=pan).
 let REGIONS = null;
 // Stacks blocks top-down (or centred) in a box.
@@ -1640,7 +1661,7 @@ export function createPageArtist({ parchment, grain, images }) {
       const lines = wrap(g, meta.title, () => box.w - 40);
       lines.forEach((line, i) => g.fillText(line, cx, 350 + i * 84));
       let y = 350 + (lines.length - 1) * 84;
-      g.font = font(400, 40, true);
+      g.font = font(400, Math.round(40 * (state.column ? COLUMN_PRINT.kicker : 1)), true);
       g.fillStyle = C.rubric;
       g.fillText(meta.kicker, cx, y + 76);
       g.restore();
@@ -1655,15 +1676,20 @@ export function createPageArtist({ parchment, grain, images }) {
         g.restore();
         REGIONS?.push({ role: "medallion", x: cx0(box) - w / 2, y: y + 150, w, h });
       }
+      // the invitation to turn, with a fleuron under it
+      // (set larger on a phone, it keeps as far from a tall medallion's foot by sitting a little lower)
+      const begin = Math.round(30 * (state.column ? COLUMN_PRINT.begin : 1));
+      const by = 1150 + (begin - 30);
       g.save();
       g.textAlign = "center";
-      g.font = font(400, 30, true);
+      g.font = font(400, begin, true);
       g.fillStyle = C.inkSoft;
-      g.fillText(L.turnToBegin, cx0(box), 1150);
+      g.fillText(L.turnToBegin, cx0(box), by);
       g.font = font(400, 34);
       g.fillStyle = C.rubric;
-      g.fillText("❧", cx0(box), 1206);
+      g.fillText("❧", cx0(box), by + 56);
       g.restore();
+      REGIONS?.push({ role: "begin", x: box.x, y: by - begin, w: box.w, h: by + 66 - (by - begin) });
       hits.push({ x: PAGE_UNITS_W * 0.55, y: 1050, w: PAGE_UNITS_W * 0.45, h: 250, action: { type: "next" } });
     } else if (desc.type === "taleNote") {
       g.save();
@@ -1733,9 +1759,9 @@ export function createPageArtist({ parchment, grain, images }) {
       const under = [];
       if (desc.choice) {
         const resp = desc.choice.selectedId ? desc.choice.options.find((o) => o.id === desc.choice.selectedId)?.response : null;
-        under.push(choicesBlock({ ...desc.choice, hint: L.choiceHint, size: 37, hits, pageId: spread.page, response: resp, reserve: longestResponse(desc.choice), anim: opts.seal }));
+        under.push(choicesBlock({ ...desc.choice, hint: L.choiceHint, size: 37, hits, pageId: spread.page, response: resp, reserve: longestResponse(desc.choice), anim: opts.seal, column: state.column }));
       }
-      const note = desc.note ? noteBlock(desc.note, 35) : null;
+      const note = desc.note ? noteBlock(desc.note, Math.round(35 * (state.column ? COLUMN_PRINT.note : 1))) : null;
       if (note) under.push(note);
       // the picture takes the room the blocks under it leave; it only ever gets smaller than the
       // full plate if a page's text outgrows the content limits, so nothing runs off the page
@@ -1777,7 +1803,7 @@ export function createPageArtist({ parchment, grain, images }) {
     if (desc.choice) {
       const longest = longestResponse(desc.choice);
       const selected = desc.choice.selectedId ? desc.choice.options.find((o) => o.id === desc.choice.selectedId)?.response : null;
-      const cb = choicesBlock({ ...desc.choice, hint: L.choiceHint, size: Math.round(size * 0.88), hits, pageId: spread.page, response: reserve ? longest : selected, reserve: longest, anim });
+      const cb = choicesBlock({ ...desc.choice, hint: L.choiceHint, size: Math.round(size * 0.88), hits, pageId: spread.page, response: reserve ? longest : selected, reserve: longest, anim, column: state.column });
       cb.gapBefore = Math.round(size * 0.95);
       blocks.push(cb);
     }
@@ -1803,10 +1829,11 @@ export function createPageArtist({ parchment, grain, images }) {
 
   // One body size per tale (per language), so type never jumps: not between its spreads, and not
   // when the reader changes a choice. A choice rewrites later pages, so every way each spread can
-  // read is measured, and the size that fits them all is kept whatever is chosen.
+  // read is measured, and the size that fits them all is kept whatever is chosen. (Read by its
+  // column on a phone, a text page's choices measure taller, see choicesBlock: a size of its own.)
   const uniformCache = new Map();
   function uniformSize(g, state) {
-    const key = `${state.tale}|${state.lang}`;
+    const key = `${state.tale}|${state.lang}|${state.column ? "column" : ""}`;
     if (uniformCache.has(key)) return uniformCache.get(key);
     let size = SIZES[0];
     for (const spread of state.spreads) {
@@ -1828,7 +1855,7 @@ export function createPageArtist({ parchment, grain, images }) {
     let remaining = box.h - heightOf(g, blocks, box.w);
     // the last page closes with a gilded clasp that starts the tale again, under the text and its
     // closing ornament; its room is set aside first, so the ornament is sized round it
-    let clasp = desc.restart ? claspBlock({ label: L.restartStory, size, hits }) : null;
+    let clasp = desc.restart ? claspBlock({ label: L.restartStory, size: Math.round(size * (state.column ? COLUMN_PRINT.clasp : 1)), hits }) : null;
     const claspGap = Math.round(size * 1.5);
     if (clasp && clasp.measure() + claspGap + 40 < remaining) remaining -= clasp.measure() + claspGap;
     else clasp = null;
@@ -1849,7 +1876,7 @@ export function createPageArtist({ parchment, grain, images }) {
       }
     }
     if (desc.note && remaining > 260) {
-      const nb = noteBlock(desc.note, Math.round(size * 0.78));
+      const nb = noteBlock(desc.note, Math.round(size * 0.78 * (state.column ? COLUMN_PRINT.note : 1)));
       const h = nb.measure(g, box.w);
       if (h + 40 < remaining) {
         nb.gapBefore = 44;
