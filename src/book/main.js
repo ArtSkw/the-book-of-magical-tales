@@ -1505,7 +1505,6 @@ function syncSound() {
   els.sound.title = on ? L.soundOn : L.soundOff;
   els.gate.setAttribute("aria-label", L.openBook);
   els.gate.querySelector(".label").textContent = L.openBook;
-  els.gate.querySelector(".hint").textContent = fineHover.matches ? L.clickToBegin : L.tapToBegin;
 }
 
 // One real button per available tale (keyboard and screen readers); unavailable tales are not

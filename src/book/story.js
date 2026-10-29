@@ -93,8 +93,6 @@ export const ui = {
     langLabel: "Język",
     illustration: "Ilustracja",
     openBook: "Otwórz księgę", // the gate's gilt button (and its name for screen readers)
-    tapToBegin: "Dotknij, aby zacząć", // ... the line under it on a touch screen
-    clickToBegin: "Kliknij, aby zacząć", // ... and with a mouse
     glLost: "Księga potrzebuje chwili…", // the WebGL context was lost
     reload: "Odśwież", // ... and the button that reloads at the same page
   },
@@ -116,8 +114,6 @@ export const ui = {
     langLabel: "Language",
     illustration: "Illustration",
     openBook: "Open the book",
-    tapToBegin: "Tap to begin",
-    clickToBegin: "Click to begin",
     glLost: "The book needs a moment…",
     reload: "Reload",
   },
