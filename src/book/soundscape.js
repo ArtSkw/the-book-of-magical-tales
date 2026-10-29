@@ -35,7 +35,7 @@ export const ROOM = { loop: "room-bed", spots: [{ id: "candle-sputter", first: [
 // A spot: an id, or { id, first: [s, s] after the page lands, again: [s, s] | null, max plays, db }.
 const SPOT = { first: [6, 20], again: [45, 120], max: 2 };
 // The opening: the first page's place rises under the theme `at` s after the theme starts, over `rise` s.
-export const OPENING = { at: 5, rise: 8 };
+const OPENING = { at: 5, rise: 8 };
 
 export const TALES = {
   "dragon-bridge": {

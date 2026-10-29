@@ -83,7 +83,8 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     on: Boolean(enabled), ctx: null, unlocked: false, master: null, buses: {}, ducks: {},
     files: new Map(), // file -> { buffer, bytes, last, promise }
     bags: new Map(), voices: [], bed: null, spot: null, spots: [], spotVoices: [], theme: null, themesHeard: new Map(),
-    opening: null, // a tale's opening: { tale, bed, risen, timer } while its theme sounds
+    want: null, // the bed where the reader is calls for, kept while the sound is off (restartBed brings it up)
+    opening: null, // a tale's opening: { tale, bed, risen, timer, due (context s) } while its theme sounds
     fading: [], // debug only: voices fading out, { id, g, until (context s), fade }
     fgUntil: 0, // until when a foreground sound plays (performance seconds)
     history: [], // debug only: every sound started, { t (performance s), id, file }
@@ -292,8 +293,9 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     return Math.max(0, Math.min((bed ? -24 : -20) - v.lufs, HEADROOM - (v.tp ?? -1) - level));
   }
   // play(id, { when (s from now), gainDb, pan, panTo, panDur, rate, slot, bus, late (s a late load
-  // may still start) }) -> a handle { stop(fade), dur } (also for a sound still loading), or null
-  // (sound off, not unlocked yet, unknown id)
+  // may still start) }) -> a handle { stop(fade), dur, started } (also for a sound still loading;
+  // `started` resolves with its voice once it is started, `at` the context time it sounds from, or
+  // with null if it never starts), or null (sound off, not unlocked yet, unknown id)
   function play(id, o = {}) {
     const entry = MANIFEST[id];
     if (!entry || !ready()) return null;
@@ -304,13 +306,15 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     if (!f?.buffer) {
       // not decoded yet: start when it is, if that is still close enough to when it was meant
       const late = o.late ?? (entry.bus === "music" ? 1.2 : 0.06);
-      load(v.file).then((buffer) => {
+      handle.started = load(v.file).then((buffer) => {
         if (buffer && !handle.cancelled && S.ctx.currentTime <= at + late) handle.voice = start(id, entry, v, buffer, Math.max(at, S.ctx.currentTime + 0.005), o);
+        return handle.voice;
       });
       return handle;
     }
     f.last = now();
     handle.voice = start(id, entry, v, f.buffer, at, o);
+    handle.started = Promise.resolve(handle.voice);
     return handle;
   }
   function start(id, entry, v, buffer, at, o) {
@@ -340,7 +344,7 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
       S.history.push({ t: +(now() + (at - ctx.currentTime)).toFixed(3), id, file: v.file });
       if (S.history.length > 400) S.history.shift();
     }
-    const voice = { id, src, g, end: at + buffer.duration / src.playbackRate.value, keep: Boolean(o.keep) };
+    const voice = { id, src, g, at, end: at + buffer.duration / src.playbackRate.value, keep: Boolean(o.keep) };
     src.onended = () => (S.voices = S.voices.filter((x) => x !== voice));
     // per-sound and overall limits: the oldest gives way, quickly faded (never a theme: it rings on
     // under the turns, and gives way only as playTheme / stopTheme say)
@@ -427,6 +431,7 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
   // the bed `loop` (an id of sounds.js); the same one carries on untouched, another crosses over
   // in `fade` seconds (the old one fading out as the new one fades in)
   function setBed(loop, fade = BED_FADE) {
+    S.want = loop || null;
     if ((S.bed?.loop || null) === (loop || null)) return;
     const token = ++bedToken;
     stopLoop(S.bed, fade);
@@ -434,18 +439,26 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     if (!S.bed) return;
     const level = loop === ROOM.loop ? BED_DB.room : BED_DB.place;
     load(filesOf(loop)[0], true).then(() => {
-      if (token !== bedToken || !ready()) return;
+      // the sound turned off or not unlocked yet: restartBed brings it up then. A tab hidden while it
+      // loaded does not hold it back: the context is suspended, it fades in once the tab is back
+      if (token !== bedToken || !S.on || !S.unlocked) return;
       const L = loopSource(loop, level, fade);
       if (L) S.bed = { ...L, loop, since: now() };
     });
     log("bed", loop, `${fade} s`);
   }
-  // the bed (and the spot sounds) of where the reader is, started now (the first touch, sound back on)
+  // the bed (and the spot sounds) of where the reader is, brought up now (the first touch, sound back
+  // on): the one playing carries on if it is still the one wanted; one the reader has left while the
+  // sound was off gives way at once (under the master coming back up), never left under the new one
   function restartBed(fade = 3) {
     const scene = S.spot ? sceneFor(S.spot.tale, S.spot.page, S.spot.resolved) : { bed: ROOM.loop, spots: [] };
-    S.bed = null;
-    setBed(scene.bed, fade);
-    scheduleSpots(scene.spots);
+    const want = S.want || scene.bed;
+    if (S.bed?.loop !== want || !S.bed.g) {
+      stopLoop(S.bed, 0.3); // a bed still loading has nothing to stop: it is simply asked for again
+      S.bed = null;
+    }
+    setBed(want, fade);
+    scheduleSpots(want === scene.bed ? scene.spots : []); // no room spots under an opening's place
   }
   function checkIdle() {
     if (S.idle || !S.ctx || now() - S.lastInput < IDLE_AFTER) return;
@@ -516,9 +529,28 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     if (!h) return false;
     S.themesHeard.set(key, now());
     const dur = MANIFEST[id].variants[0].dur || 10;
-    S.theme = { h, id, tale, ring, at: S.ctx.currentTime + 0.005 + when, dur };
+    const T = (S.theme = { h, id, tale, ring, at: S.ctx.currentTime + 0.005 + when, dur });
+    // the bed steps back from just before the theme sounds (context time `from`) to just before its end
+    const duckFrom = (from) => {
+      const at = Math.max(0, from - 0.5 - S.ctx.currentTime);
+      duck("amb", BED_DB.themeDuck, { at, attack: 1.5, hold: Math.max(0.5, from + dur - 1 - (S.ctx.currentTime + at + 1.5)), release: 3 });
+    };
     foreground(when + dur + 1);
-    duck("amb", BED_DB.themeDuck, { at: Math.max(0, when - 0.5), attack: 1.5, hold: Math.max(0.5, dur - 2), release: 3 });
+    duckFrom(T.at);
+    // A theme still loading starts once decoded (up to THEME_LATE s late) or never: the floor and the
+    // duck follow it from when it actually sounds (the opening too, startOpening); one that never
+    // comes gives way at once, the bed as it would be without a theme.
+    h.started.then((voice) => {
+      if (S.theme !== T) return; // it has given way meanwhile (stopTheme saw to the bed)
+      if (!voice) {
+        log("theme never came", id);
+        return stopTheme(0);
+      }
+      if (voice.at - T.at < 0.05) return; // on time
+      T.at = voice.at;
+      foreground(voice.end - S.ctx.currentTime + 1);
+      duckFrom(voice.at);
+    });
     log("theme", id, ring ? "(rings on)" : "");
     return true;
   }
@@ -531,36 +563,46 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     return t <= T.at + THEME_LATE ? T.at + T.dur - t : 0;
   }
   // the theme gives way: faded over `fade` s, the bed back up, the spot sounds no longer held for it
+  // (whether it was sounding, still loading or already over: its duck was set as it was asked for,
+  // and a duck already released is only ramped from where it is to where it is)
   function stopTheme(fade = THEME_FADE) {
     clearOpening();
     if (!S.theme) return;
-    const sounding = themeLeft() > 0;
     S.theme.h.stop(fade);
     S.theme = null;
-    if (!sounding) return;
     S.fgUntil = Math.min(S.fgUntil, now() + fade);
     unduck("amb", Math.max(2, fade));
     log("theme fades", `${fade} s`);
   }
-  // The opening of a tale (soundscape.js): `spec.at` s into its theme (which starts `when` s from
-  // now) the place of its first page rises beneath it over `spec.rise` s, taking over from the
-  // hearth; the theme's duck keeps it under the music until the theme ends, then it settles.
-  function startOpening(tale, spec, when) {
+  // The opening of a tale (soundscape.js): `spec.at` s into its theme (S.theme, just asked for), as
+  // it actually sounds (one still loading starts late), the place of its first page rises beneath it
+  // over `spec.rise` s, taking over from the hearth; the theme's duck keeps it under the music until
+  // the theme ends, then it settles. A theme that never comes: no rise (playTheme stops it).
+  function startOpening(tale, spec) {
     clearOpening();
-    if (!spec?.bed || !MANIFEST[spec.bed]) return;
-    const op = { tale, bed: spec.bed, risen: false, timer: 0 };
+    const T = S.theme;
+    if (!T || !spec?.bed || !MANIFEST[spec.bed]) return;
+    const op = { tale, bed: spec.bed, risen: false, timer: 0, due: 0 };
     const rise = () => {
       if (S.opening !== op) return;
-      // the reader has gone on into the tale (that page's bed is already set), or no theme came
+      // the reader has gone on into the tale (that page's bed is already set), or the theme is over
       if (S.spot?.tale !== tale || S.spot?.page || themeLeft() <= 0) return;
-      if (!ready()) return void (op.timer = setTimeout(rise, 1000)); // a hidden tab: once it is back
+      // a hidden tab (or a context iOS has interrupted): once it is back
+      if (!ready() || S.ctx.state !== "running") return void (op.timer = setTimeout(rise, 1000));
+      // its moment in the music (context time: a hidden tab pauses the music, and the wait with it)
+      const wait = op.due - S.ctx.currentTime;
+      if (wait > 0.05) return void (op.timer = setTimeout(rise, wait * 1000));
       op.risen = true;
       stopSpots(0.5); // the room's candle gives way to the place
       setBed(op.bed, spec.rise);
       log("opening: the place rises", op.bed);
     };
-    op.timer = setTimeout(rise, (when + spec.at) * 1000);
     S.opening = op;
+    T.h.started.then((voice) => {
+      if (S.opening !== op || !voice) return;
+      op.due = voice.at + spec.at;
+      rise();
+    });
   }
   function clearOpening() {
     if (S.opening) clearTimeout(S.opening.timer);
@@ -584,7 +626,7 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
           g.cancelScheduledValues(t);
           g.setValueAtTime(g.value, t);
           g.linearRampToValueAtTime(1, t + 0.6);
-          if (!S.bed?.g) restartBed(2);
+          restartBed(2); // where the reader is now: turns, tales, "Begin again" while it was off
         }
       } else if (S.ctx) {
         const g = S.master.gain, t = S.ctx.currentTime;
@@ -701,7 +743,8 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     // a title spread's opening theme its place rising beneath it (startOpening)
     arrive({ tale, page, resolved = {}, how = "turn" } = {}) {
       S.spot = { tale, page, resolved };
-      if (!S.on || !supported) return;
+      // the sound off (no theme, no opening then): only the bed it calls for is noted, nothing loads
+      if (!S.on || !supported) return void (S.want = sceneFor(tale, page, resolved).bed);
       // another tale's theme still sounding (riffle() fades it; this is only a guard)
       if (S.theme && S.theme.tale !== tale && themeLeft() > 0) stopTheme();
       const scene = sceneFor(tale, page, resolved);
@@ -716,7 +759,7 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
         setBed(scene.bed, how === "load" ? 3 : BED_FADE);
         scheduleSpots(scene.spots);
         const when = page ? 1.2 : 0.6;
-        if (scene.theme && how !== "load" && playTheme(scene.theme, when, `${tale}|${page}`, { tale, ring: scene.ring }) && scene.opening) startOpening(tale, scene.opening, when);
+        if (scene.theme && how !== "load" && playTheme(scene.theme, when, `${tale}|${page}`, { tale, ring: scene.ring }) && scene.opening) startOpening(tale, scene.opening);
       }
       enqueue(taleIds(tale));
     },
