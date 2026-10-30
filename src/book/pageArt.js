@@ -1058,11 +1058,11 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
       ctx.fill();
       if (sel > 0) {
         ctx.save();
-        if (now && wash < 1) {
+        if (now && sel < 1) {
           // gold leaf laid from the seal rightwards, its leading edge soft
           ctx.clip();
           const feather = 90;
-          const edge = bx - sealR + (tw + sealR + feather) * wash;
+          const edge = bx - sealR + (tw + sealR + feather) * sel;
           const g = ctx.createLinearGradient(edge - feather, 0, edge, 0);
           g.addColorStop(0, GOLD.fill);
           g.addColorStop(1, GOLD.clear);
@@ -1071,7 +1071,7 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
           // light catching the fresh leaf just behind its edge, gone as it settles
           const sheen = ctx.createLinearGradient(edge - feather * 2, 0, edge, 0);
           sheen.addColorStop(0, "rgba(255,240,190,0)");
-          sheen.addColorStop(0.6, `rgba(255,240,190,${0.55 * (1 - wash)})`);
+          sheen.addColorStop(0.6, `rgba(255,240,190,${0.55 * (1 - sel)})`);
           sheen.addColorStop(1, "rgba(255,240,190,0)");
           ctx.fillStyle = sheen;
           ctx.fillRect(Math.max(bx, edge - feather * 2), cy, feather * 2, h);
