@@ -1703,6 +1703,7 @@ function retitleCover(lang) {
 }
 
 function go(dir) {
+  if (!book) return; // the desk still loading: nothing to turn yet
   if (state.intro && !state.intro.done) return skipIntro();
   if (busy()) return;
   const now = performance.now() / 1000;
@@ -2326,6 +2327,7 @@ const raycaster = new THREE.Raycaster();
 const ndc = new THREE.Vector2();
 const MIN_HIT = 44; // CSS px, the least a printed control answers to (as the corner controls)
 function pick(clientX, clientY) {
+  if (!book) return null; // the desk still loading: a pointer moving over the loader finds no page
   ndc.set((clientX / window.innerWidth) * 2 - 1, -(clientY / window.innerHeight) * 2 + 1);
   raycaster.setFromCamera(ndc, camera);
   const hit = raycaster.intersectObjects([book.leftPage, book.rightPage], false)[0];
