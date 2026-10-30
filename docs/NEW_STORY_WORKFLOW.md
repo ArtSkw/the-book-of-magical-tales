@@ -226,7 +226,7 @@ Read the whole tale in the dev server, in both languages and on every choice pat
 - a phone upright, and sideways (the book is read by panning across the spread)
 - a desktop
 
-Check that pictures load, choices hold the page until made, a changed choice rewrites the later pages, the sound follows the places, and "Begin again" returns to the title spread.
+Check that pictures load, choices hold the page until made and stay sealed when you go back, each path rewrites the later pages (start over, or use `choices=` in a deep link, to read the other one), the sound follows the places, and "Begin again" returns to the title spread.
 
 ## 12. Review-Ready Handoff
 

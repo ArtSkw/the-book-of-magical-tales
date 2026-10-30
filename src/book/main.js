@@ -199,7 +199,7 @@ const resolved = (t = state.tale) => {
 };
 // A spread that asks the reader to choose holds the book open there until they have: no turn,
 // tap, swipe, key or link goes on past it (back is always free; a ribbon only ever opens a
-// tale's title spread). A choice changed later keeps the ones made after it, as story.js does.
+// tale's title spread). A choice once sealed stays until the tale is started over (see choose).
 const awaitsChoice = (t = state.tale, i = state.spread) => {
   const page = tales[t].spreads[i]?.page;
   return Boolean(page && story(t)?.CHOICE_PAGES.includes(page) && !choicesOf(t)[page]);
@@ -1588,7 +1588,7 @@ function syncMirror() {
     <h2>${esc(L.pageCount(s.page, story().PAGE_COUNT))}: ${esc(t.title)}</h2>
     ${t.paragraphs.map((p) => `<p>${esc(p.text)}</p>`).join("")}
     ${img ? `<figure><figcaption>${esc(L.illustration)}: ${esc(alt(img))}</figcaption></figure>` : ""}
-    ${t.choices.length ? `<div class="choices" role="group" aria-label="${esc(L.choose)}">${t.choices.map((c) => `<button type="button" data-choice="${esc(c.id)}" aria-pressed="${selected === c.id}">${esc(c.label)}</button>`).join("")}</div>` : ""}
+    ${t.choices.length ? `<div class="choices" role="group" aria-label="${esc(L.choose)}">${t.choices.map((c) => `<button type="button" data-choice="${esc(c.id)}" aria-pressed="${selected === c.id}"${selected ? ' aria-disabled="true"' : ""}>${esc(c.label)}</button>`).join("")}</div>` : ""}
     ${selected ? `<p>${esc(t.choices.find((c) => c.id === selected)?.response || "")}</p>` : t.choices.length ? `<p>${esc(L.turnsAfterChoice)}</p>` : ""}
     ${t.ending ? `<div class="choices"><button type="button" data-choice="restart">${esc(L.restartStory)}</button></div>` : ""}
     ${t.note ? `<aside><h3>${esc(t.note.title)}</h3><p>${esc(t.note.body)}</p></aside>` : ""}
@@ -1600,11 +1600,15 @@ const busy = () => Boolean(state.turning || state.fade || state.riffle);
 // Where the reader is, as the sound script (soundscape.js) knows it: the tale, its story page, the choices.
 const soundSpot = (t = state.tale, i = state.spread) => ({ tale: tales[t].id, page: tales[t].spreads[i]?.page ?? 0, resolved: resolved(t) });
 
+// A choice is sealed for good: going back to its page, the reader finds it made; the other seal
+// no longer answers at all (its row still takes the touch, so it never turns the page), and a
+// press on the chosen one only makes it glow once (no words, no tone). Only "Start over" (the
+// clasp on the tale's last page) breaks the seals.
 function choose(id) {
   if (id === "restart") return restart();
   const page = spreads()[state.spread].page;
-  if (!page || state.choices[page] === id) return;
-  const from = state.choices[page] || null;
+  if (!page) return;
+  if (state.choices[page]) return state.choices[page] === id ? glintSeals() : undefined;
   const shown = [book.leftMat.map, book.rightMat.map];
   const held = nextHeld();
   state.choices[page] = id;
@@ -1614,7 +1618,7 @@ function choose(id) {
   syncChrome();
   syncMirror();
   prefetch();
-  sealChoice(from);
+  sealChoice();
   if (held) wakeNext();
   // wax, the response written in, then the harp: the first and the last choice of a tale have their own
   const pages = story().CHOICE_PAGES;
@@ -1873,9 +1877,9 @@ const choiceSide = () => {
   return ["left", "right"].find((s) => plan[s]?.choice) || null;
 };
 // A choice: the page is drawn once without its choice block, then only the block, frame by frame.
-function sealChoice(from) {
+function sealChoice() {
   if (Q.reduced) return;
-  sealMoment({ from }, SEAL, Q.sealAt);
+  sealMoment({ fresh: true }, SEAL, Q.sealAt);
 }
 // A turn refused at a choice not made yet: the seals waiting for it glow once (see "the gate").
 // It only glows, nothing moves, so it stays with reduced motion. `delay`: the camera comes first.
@@ -1921,14 +1925,14 @@ function paintSeal(S, p) {
   S.draw(g, p);
   S.tex.needsUpdate = true;
 }
-// Desktop: the seal under the pointer warms a little, and one dimmed beside a choice already made
-// brightens, a hint that it can still be chosen. A page moment held while the pointer stays; each
+// Desktop: the seal under the pointer warms a little while the choice is still to be made (a
+// sealed one no longer answers the pointer). A page moment held while the pointer stays; each
 // seal's warmth eases in and out on its own (`levels`, read by the choice block as it draws).
 const HOVER = 0.18; // s
 function hoverSeal(id) {
   if (state.seal?.levels) return void (state.seal.want = id);
   if (!id || state.seal || state.ink || state.resist) return;
-  const anim = { from: state.choices[spreads()[state.spread].page] || null, levels: {} };
+  const anim = { levels: {} };
   sealMoment(anim, HOVER, null);
   if (state.seal?.draw === anim.draw) Object.assign(state.seal, { levels: anim.levels, want: id, tick: performance.now() / 1000 });
 }
@@ -2412,11 +2416,12 @@ renderer.domElement.addEventListener("pointermove", (e) => {
     return;
   }
   const p = pick(e.clientX, e.clientY);
-  const seal = p?.region?.action.type === "choice" && p.region.action.id !== "restart" ? p.region.action.id : null;
+  const sealed = Boolean(state.choices[spreads()[state.spread].page]);
+  const seal = p?.region?.action.type === "choice" && p.region.action.id !== "restart" && !sealed ? p.region.action.id : null;
   if (!busy()) hoverSeal(seal);
-  // a held leaf's edge does not invite a turn (a tap there still shows why)
+  // a held leaf's edge does not invite a turn (a tap there still shows why), nor a sealed choice
   const edge = !portrait() && p?.fromSpine > 0.68 && !(p.side === "right" && nextHeld());
-  const active = p && (p.region || edge);
+  const active = p && ((p.region && !(sealed && p.region.action.type === "choice" && p.region.action.id !== "restart")) || edge);
   renderer.domElement.style.cursor = active ? "pointer" : "default";
 });
 window.addEventListener("keydown", (e) => {

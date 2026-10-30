@@ -4,6 +4,14 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-10-30: a choice is sealed for good.** Once made, a choice cannot be
+  changed by going back to its page; only "Start over" on the tale's last page
+  clears the choices. The reader should feel the tale answer a decision and
+  live with it, as in a classic role-playing game. The other seal no longer
+  answers a click or a touch at all; pressing the chosen one only makes it glow
+  once (no words, no tone). Rejected: re-choosing at will, which made the
+  choices feel like a toggle; a glow answering a press on the other seal.
+
 - **2026-10-21: production sound via ElevenLabs.** The Openverse placeholder
   sounds were removed as not good enough. Sound was then made with the author's
   ElevenLabs account through `scripts/sfx/`.
