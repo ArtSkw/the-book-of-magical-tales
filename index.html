@@ -402,6 +402,7 @@
            as the page comes to rest */
         opacity: 0; visibility: hidden;
         -webkit-tap-highlight-color: transparent;
+        cursor: pointer; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
       }
       #clasp.shown { opacity: 1; visibility: visible; transition: opacity 0.35s var(--ease-out); }
       /* hover with a little give: once under the pointer, the button reaches 8 px further, so the
@@ -581,7 +582,7 @@
     <div id="stage" aria-hidden="true"></div>
     <!-- raised over the printed clasp on a tale's last page (main.js); screen readers and the
          keyboard use the restart button in the mirror instead -->
-    <button type="button" id="clasp" aria-hidden="true" tabindex="-1"></button>
+    <div id="clasp" aria-hidden="true"></div>
     <div id="vignette"></div>
     <!-- the gate: the closed book waits under a veil for the gesture that opens it, with sound
          (main.js, "intro"); its words and name follow the book's language (syncChrome). First in

@@ -295,10 +295,13 @@ function loadImage(src, priority = "auto") {
 // that spread and its neighbours jump the queue (prefetch).
 const art = { map: new Map(), jobs: new Map(), queue: [], active: 0, get: (src) => art.map.get(src) };
 const ART_PARALLEL = 3; // background downloads at a time; a picture wanted now starts at once
+// A picture that fails (a server's passing 503) is asked for again after these many seconds; until
+// it comes, its page shows the placeholder, and artArrived draws it in when it does.
+const ART_RETRY = [2, 6, 20];
 function artJob(src) {
   let j = art.jobs.get(src);
   if (!j) {
-    j = { src, started: false, done: false };
+    j = { src, started: false, done: false, tries: 0 };
     j.promise = new Promise((r) => (j.resolve = r));
     art.jobs.set(src, j);
   }
@@ -307,12 +310,14 @@ function artJob(src) {
 function startArt(j, urgent) {
   j.started = true;
   art.active++;
-  loadImage(asset(j.src), urgent ? "high" : "low").then(async (img) => {
+  // a retry asks past any cached failure
+  loadImage(asset(j.src) + (j.tries ? `?retry=${j.tries}` : ""), urgent ? "high" : "low").then(async (img) => {
     // decoded before any page draws it, so drawing a page never stalls on it
     if (img) await img.decode?.().catch(() => {});
     art.active--;
     j.done = true;
     if (img) art.map.set(j.src, img);
+    else if (j.tries < ART_RETRY.length) setTimeout(() => startArt(j, true), ART_RETRY[j.tries++] * 1000);
     else console.warn(`[book] could not load ${j.src}`);
     j.resolve(img);
     if (img) artArrived(j.src);
@@ -2110,7 +2115,7 @@ function wakeNext() {
 
 // ---------------------------------------------------------------- the clasp
 // The page prints the clasp that starts a tale again (pageArt.js), so it turns with its leaf.
-// While the page lies still, a real button (#clasp, index.html) is raised over the print, the same
+// While the page lies still, a real control (#clasp, index.html) is raised over the print, the same
 // plate laid onto the page as the camera sees it (its corners taken through the camera each
 // frame), so it can rise, warm and be pressed like the controls on the desk. Whatever moves or
 // redraws the page puts it away until the page is still again.
@@ -2468,6 +2473,8 @@ els.mirror.addEventListener("click", (e) => {
   if (b) choose(b.dataset.choice);
 });
 // the raised clasp; a keyboard user on its line in the mirror sees it rise as under the pointer
+// a div, not a button: hidden from assistive tech (the mirror holds the real "Start over"), it must
+// never take focus, or the browser blocks its aria-hidden
 els.clasp.addEventListener("click", () => choose("restart"));
 els.clasp.addEventListener("touchstart", () => {}, { passive: true }); // lets iOS show :active
 els.mirror.addEventListener("focusin", (e) => els.clasp.classList.toggle("focus", Boolean(e.target.closest('button[data-choice="restart"]'))));
