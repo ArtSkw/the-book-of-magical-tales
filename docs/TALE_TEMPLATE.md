@@ -61,7 +61,7 @@ Use this checklist before considering a tale ready for review:
 - [ ] Title emblem, epigraph and ribbon are set in `src/book/tales.js`.
 - [ ] The tale's sound script is in `src/book/soundscape.js`: one bed per place and time, at most two quiet spot sounds per page, an intro and an ending theme.
 - [ ] The book has been read through in both languages, every choice path, on a tablet, a phone (upright and sideways) and a desktop.
-- [ ] `npm run validate:stories`, `npm run build` and `npm run sfx:check` pass.
+- [ ] `npm run validate:stories`, `npm run check:pages`, `npm run build` and `npm run sfx:check` pass.
 - [ ] Owner review is complete before the tale goes to `main`.
 
 ## Story Planning Pass

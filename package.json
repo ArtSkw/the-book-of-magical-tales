@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "validate:stories": "node validate-stories.js",
+    "check:pages": "node scripts/check-pages.mjs",
     "sfx:gen": "node --env-file=.env scripts/sfx/generate.mjs",
     "sfx:index": "node scripts/sfx/generate.mjs --index",
     "sfx:review": "vite --port 5193 --strictPort",
