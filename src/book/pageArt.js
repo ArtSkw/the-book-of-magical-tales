@@ -982,12 +982,13 @@ function headingBlock(text, size) {
 
 // Choice tabs with wax seals. `reserve` is the longest response: its room (or that of whichever
 // response takes the most lines) is kept under the tabs, so choosing never reflows the page.
-// `anim` ({ from, capture }) is a choice being made:
+// `anim` ({ fresh, capture }) is a choice being made:
 // the page is drawn once without the block, and `anim.draw(g, p)` then paints only the block at
 // progress p (0..1) – the chosen seal pressed in, a gold wash spreading from it across its tab,
-// its ring traced round, the previous choice fading back and its response rewritten. With
+// its ring traced round, the other seal dimming and the response written in. With
 // `anim.glint` nothing is chosen: the reader tried to turn on past the choice, and the seals
-// glow once, one after another (`anim.calm`: reduced motion, they only glow, never swell).
+// glow once, one after another (`anim.calm`: reduced motion, they only glow, never swell); with a
+// choice made, only its seal glows: the reader pressed it again, the choice already sealed.
 // `anim.levels` ({ id: 0..1 }, drawn at p = 1) is the pointer resting on seals (main.js eases it).
 // `column`: the page is read by its text column on a phone, its print set larger (COLUMN_PRINT)
 // and its rows taller.
@@ -997,7 +998,6 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
   const gap = Math.round(size * 0.45);
   const sealR = rowH * 0.36;
   const hintSize = Math.round(base * (column ? COLUMN_PRINT.hint : 0.84));
-  const fromResponse = anim ? options.find((o) => o.id === anim.from)?.response || null : null;
   let cache = null;
   const layout = (ctx, width) => {
     if (cache && cache.width === width) return cache;
@@ -1005,7 +1005,6 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
     const hintLines = hint ? wrap(ctx, hint, () => width) : [];
     const lines = (text) => (text ? wrap(ctx, glueOrphans(text), () => width - 20) : []);
     const respLines = lines(response);
-    const fromLines = lines(fromResponse);
     const respRows = Math.max(respLines.length, lines(reserve).length, ...options.map((o) => lines(o.response).length));
     ctx.font = font(600, size);
     // a label has its tab from past the seal (see paint) to the tab's end, kept as far from the end
@@ -1013,7 +1012,7 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
     const labelLines = options.map((o) => wrap(ctx, glueOrphans(o.label), () => width - 2 * sealR - 60));
     const rows = labelLines.map((ls) => Math.max(rowH, ls.length * size * 1.18 + size * 0.9));
     const height = hintLines.length * hintSize * 1.35 + (hintLines.length ? 16 : 0) + rows.reduce((a, b) => a + b, 0) + gap * (options.length - 1) + (respRows ? 18 + respRows * hintSize * 1.35 : 0);
-    cache = { width, hintLines, respLines, fromLines, labelLines, rows, height };
+    cache = { width, hintLines, respLines, labelLines, rows, height };
     return cache;
   };
   const PLAIN = { fill: "rgba(255,247,226,0.6)", stroke: [150, 110, 50, 0.85] };
@@ -1035,19 +1034,18 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
     options.forEach((o, i) => {
       const h = L.rows[i];
       const now = selectedId === o.id;
-      const was = anim ? anim.from === o.id : now;
-      // how chosen the tab looks: the new choice washes in from its seal, the old one fades back
-      const wash = now ? (was ? 1 : easeOut(clamp01(k / 0.75))) : 0;
-      const back = was && !now ? 1 - easeOut(clamp01(k / 0.6)) : 0;
-      const sel = Math.max(wash, back);
+      const was = anim?.fresh ? false : now;
+      // how chosen the tab looks: the new choice washes in from its seal
+      const sel = now ? (was ? 1 : easeOut(clamp01(k / 0.75))) : 0;
       const dimTo = selectedId && !now ? 1 : 0;
-      const dimFrom = anim ? (anim.from && !was ? 1 : 0) : dimTo;
-      // under the pointer (desktop): a seal not chosen warms a little, a dimmed one brightens
+      const dimFrom = anim?.fresh ? 0 : dimTo;
+      // under the pointer (desktop, a choice still to be made): a seal warms a little
       const hover = anim?.levels && !now ? easeOut(anim.levels[o.id] || 0) : 0;
-      const dim = (dimFrom + (dimTo - dimFrom) * e) * (1 - 0.6 * hover);
-      // a seal still to be chosen: each glows in turn, a little after the one above it
+      const dim = dimFrom + (dimTo - dimFrom) * e;
+      // a seal still to be chosen: each glows in turn, a little after the one above it (a choice
+      // made: only its own seal, at once)
       const stagger = 0.16;
-      const q = anim?.glint && !now ? clamp01((k - stagger * i) / (1 - stagger * (options.length - 1))) : 0;
+      const q = anim?.glint && (selectedId ? now : !now) ? clamp01((k - stagger * (selectedId ? 0 : i)) / (1 - stagger * (options.length - 1))) : 0;
       const glint = Math.pow(Math.sin(Math.PI * q), 1.5);
       const glow = Math.max(glint, 0.55 * hover);
       const bx = x + sealR + 6;
@@ -1100,7 +1098,7 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
         // pressed in quickly and let go, the ring traced round once the wax has taken
         press: now && !was ? Math.sin(Math.PI * clamp01(k / 0.55)) : 0,
         sweep: now && !was ? easeOut(clamp01((k - 0.12) / 0.8)) : 1,
-        ring: now ? 1 : back,
+        ring: now ? 1 : 0,
         glow,
         swell: anim?.calm ? 0 : glint,
       });
@@ -1110,19 +1108,11 @@ function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, res
       hits.push({ x, y: cy - gap / 2, w: width, h: h + gap, action: { type: "choice", id: o.id } });
       cy += h + gap;
     });
-    if (L.respLines.length || L.fromLines.length) {
+    if (L.respLines.length) {
       cy += 18 - gap;
       ctx.font = font(SMALL_WEIGHT, hintSize, true);
-      const rewritten = anim && fromResponse !== response;
-      if (rewritten && L.fromLines.length && k < 0.35) {
-        ctx.save();
-        ctx.globalAlpha = 1 - easeOut(k / 0.35);
-        ctx.fillStyle = C.inkHint;
-        L.fromLines.forEach((line, j) => ctx.fillText(line, x + 20, cy + hintSize * 0.8 + j * hintSize * 1.35));
-        ctx.restore();
-      }
       // the response is written in after the seal, line after line
-      const write = rewritten ? easeOut(clamp01((k - 0.22) / 0.78)) * L.respLines.length : L.respLines.length;
+      const write = anim?.fresh ? easeOut(clamp01((k - 0.22) / 0.78)) * L.respLines.length : L.respLines.length;
       L.respLines.forEach((line, j) => inkText(ctx, line, x + 20, cy + hintSize * 0.8 + j * hintSize * 1.35, clamp01(write - j), C.inkHint));
     }
     ctx.restore();

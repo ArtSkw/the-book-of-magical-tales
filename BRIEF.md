@@ -228,7 +228,7 @@ Interactions as built:
 
 - Turn the page: tap or swipe it, use the arrows, or the keyboard's arrow keys.
 - Touch a tale's ribbon to open it.
-- Choose by pressing one of two wax seals; the page waits until a choice is made.
+- Choose by pressing one of two wax seals; the page waits until a choice is made. A sealed choice stays until the tale is started over, as in a role-playing game: going back to its page shows it made; the other seal no longer answers, and pressing the chosen one only makes it glow.
 - Switch the language: the open spread is rewritten in ink.
 - Turn sound on or off.
 - Read a short "Did you know...?" note under the picture on 3-4 pages per tale.
