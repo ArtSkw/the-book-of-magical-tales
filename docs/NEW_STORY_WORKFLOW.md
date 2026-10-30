@@ -102,6 +102,7 @@ Run:
 
 ```bash
 npm run validate:stories
+npm run check:pages
 npm run build
 npm run dev
 ```
@@ -234,6 +235,7 @@ Before owner review, run:
 
 ```bash
 npm run validate:stories
+npm run check:pages
 npm run build
 npm run sfx:check
 ```

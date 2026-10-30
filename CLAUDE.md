@@ -35,12 +35,13 @@ rules (`~/.claude/CLAUDE.md`) apply too.
 
 ```bash
 npm run validate:stories   # page counts, choices, endings, fit, every picture exists
+npm run check:pages        # every page and choice moment draws without throwing
 npm run build
 npm run sfx:check          # when sound changed
 npm run dev                # http://127.0.0.1:5173/the-book-of-magical-tales/
 ```
 
-CI runs `validate:stories` and `build` before every deploy. A deep link goes
+CI runs `validate:stories`, `check:pages` and `build` before every deploy. A deep link goes
 straight to a page: `?tale=<id>&spread=5&choices=a,b,c,d&lang=en&intro=0`.
 The dev-only review switches are listed at the top of `src/book/main.js`.
 Show UI changes as screenshots in the book: tablet upright and sideways, phone,

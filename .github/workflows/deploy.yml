@@ -35,6 +35,9 @@ jobs:
       - name: Validate stories
         run: npm run validate:stories
 
+      - name: Draw every page
+        run: npm run check:pages
+
       - name: Build
         run: npm run build
 
