@@ -31,11 +31,13 @@
 // (pennant), p5-bread 0.2 (mill), p6 0.4, p7-crumbs 0.45 (Oliwia to the dragon's head), p7-warm-path 0.85
 // (cradle), p8 0.4 (pennant, lit inn), p9-name-promise 0.7 (pennant, five villagers),
 // p9-wave-goodnight 0.5. Moonhill p7-thank-bell 0.45 (Janina's pointing hand, the baker's basket).
+// Forest p7-give-sack 0.94 (Marcin carving the post), p9-make-way 0.8 (the stag's antlers to Dobrochna).
 // Tailpieces are the shared marginal ornaments, so each tale gets plants and small beasts, not one motif.
 
 const V = "/assets/illustrations/v2";
 const DB = `${V}/dragon-bridge`;
 const MH = `${V}/moonhill-bell`;
+const FO = `${V}/forest-oath`;
 const OR = `${V}/ornaments`;
 const img = (src, pl, en) => ({ src, alt: { pl, en } });
 
@@ -125,6 +127,32 @@ export const moonhillSpreads = [
       "ring-gently": img(`${MH}/p10-ring-gently.webp`, "Złoty medalion: w dzwonnicy pod sierpem księżyca naprawiony dzwon, a na nim rzędem siedzą srebrne ćmy jak trzy gwiazdki.", "A gold medallion: the mended bell in its belfry under a crescent moon, with silver moths sitting on it in a row like three little stars."),
       "share-song": img(`${MH}/p10-share-song.webp`, "Złoty medalion: na gałęzi gruszy pisklęta zięb przez sen śpiewają melodię, która płynie do nich złotymi nutkami od dzwonnicy.", "A gold medallion: on the pear branch the finch chicks, half asleep, sing back the tune drifting to them in little gold notes from the belfry."),
     },
+  },
+];
+
+// Tale three. Until the author approves the first variant of each page, the second variant of a
+// choice shows the first one's picture (REVIEW: replace with p3-call-back, p5-show-tracks,
+// p7-gather-forest, p9-help-fawn, p10-help-fawn once they are generated).
+const p3FollowPiglets = img(`${FO}/p3-follow-piglets.webp`, "Świnki wbiegają przez dziurę w płocie Dębowego Kąta do Marcina; Oliwia klęczy z pustą miseczką po żołędziu na dłoni.", "The piglets trot through the gap in the Oak Corner's fence to Marcin; Oliwia kneels with an empty acorn cup in her palm.");
+const p5AskKindly = img(`${FO}/p5-ask-kindly.webp`, "Marcin z ręką na piersi mówi prawdę, Oliwia trzyma go za rękę, Dobrochna kładzie mu dłoń na ramieniu, a Gustaw stawia słupek z gwiazdką.", "Marcin, a hand on his chest, tells the truth; Oliwia holds his hand, Dobrochna rests hers on his shoulder, and Gustaw sets the star post upright.");
+const p7GiveSack = img(`${FO}/p7-give-sack.webp`, "Oliwia i Dobrochna sypią żołędzie przez płot, Koniczynka niesie worek Marcina, Gustaw wstawia nową żerdź, a Marcin wycina gwiazdkę na nowym słupku.", "Oliwia and Dobrochna pour acorns over the fence, Koniczynka carries Marcin's sack, Gustaw fits a new rail, and Marcin carves a star on the new post.");
+const p9MakeWay = img(`${FO}/p9-make-way.webp`, "Jeleń z gwiazdką idzie ścieżką, mgła rozstępuje się przed nim, a za nim idą Oliwia i Marcin ręka w rękę, Gustaw z Koniczynką i Dobrochna; łanie skubią żołędzie w Kącie.", "The star stag walks down the path as the mist parts before it; behind it come Oliwia and Marcin hand in hand, Gustaw with Koniczynka, and Dobrochna; the hinds graze on acorns in the Corner.");
+const p10MakeWay = img(`${FO}/p10-make-way.webp`, "Złoty medalion: w Dębowym Kącie w południe łania z jelonkiem skubią żołędzie, jeleń z gwiazdką stoi obok, a na nowym słupku płotu widać wyciętą gwiazdkę.", "A gold medallion: in the Oak Corner at noon the doe and her fawn graze on acorns, the star stag stands beside them, and the fence's new post carries a carved star.");
+
+export const forestSpreads = [
+  { page: 0, layout: "title", images: { default: img(`${FO}/title.webp`, "Złoty medalion: jeleń ze złotą gwiazdką wychodzi z mgły między dębami, w ramce z liści dębu i żołędzi.", "A gold medallion: the stag with a gold star steps out of the mist between oaks, in a border of oak leaves and acorns.") } },
+  { page: 1, tailpiece: `${OR}/hedgehog-clover.webp`, images: { default: img(`${FO}/p1.webp`, "Świt we mgle na polanie węglarki: Dobrochna, Gustaw z Koniczynką i Oliwia patrzą na trzy świnki, które wybiegają z mgły; w mchu leżą puste miseczki po żołędziach i ślady racic.", "Dawn in the mist at the charcoal clearing: Dobrochna, Gustaw with Koniczynka and Oliwia watch three piglets trot out of the mist; empty acorn cups and little hoofprints lie in the moss.") } },
+  { page: 2, tailpiece: `${OR}/oak-wren.webp`, images: { default: img(`${FO}/p2.webp`, "Świnki nastawiają uszy ku wołaniu z mgły, Oliwia kuca obok nich, a Dobrochna nasłuchuje z dłonią przy uchu.", "The piglets prick their ears toward a call in the mist; Oliwia crouches beside them and Dobrochna listens with a hand cupped to her ear.") } },
+  { page: 3, tailpiece: `${OR}/strawberry-snail.webp`, variantFrom: 2, images: { "follow-piglets": p3FollowPiglets, "call-back": p3FollowPiglets } },
+  { page: 4, tailpiece: `${OR}/columbine-hare.webp`, images: { default: img(`${FO}/p4.webp`, "Zawstydzony Marcin przy złamanym płocie; Oliwia bierze go za rękę, a świnki chowają się za jego nogami.", "Ashamed, Marcin stands by the broken fence; Oliwia takes his hand while the piglets hide behind his legs.") } },
+  { page: 5, tailpiece: `${OR}/owl-hazel.webp`, variantFrom: 4, images: { "ask-kindly": p5AskKindly, "show-tracks": p5AskKindly } },
+  { page: 6, tailpiece: `${OR}/fleuron.webp`, images: { default: img(`${FO}/p6.webp`, "Dobrochna opiera dłoń o słupek z gwiazdką; Marcin, Oliwia i Gustaw patrzą na świnki, które w szronie znajdują tylko puste miseczki.", "Dobrochna rests her hand on the star post; Marcin, Oliwia and Gustaw watch the piglets find only empty cups in the frost.") } },
+  { page: 7, tailpiece: `${OR}/oak-wren.webp`, variantFrom: 6, images: { "give-sack": p7GiveSack, "gather-forest": p7GiveSack } },
+  { page: 8, tailpiece: `${OR}/strawberry-snail.webp`, images: { default: img(`${FO}/p8.webp`, "Z mgły wychodzi jeleń ze złotą gwiazdką i łania; jelonek utknął za złamanym konarem, a wszyscy patrzą z zachwytem.", "Out of the mist step the stag with a gold star and the doe; the fawn is stuck behind a fallen branch, and everyone watches in wonder.") } },
+  { page: 9, tailpiece: `${OR}/hedgehog-clover.webp`, variantFrom: 8, images: { "make-way": p9MakeWay, "help-fawn": p9MakeWay } },
+  {
+    page: 10, layout: "vignette", variantFrom: 8, secondary: img(`${OR}/fleuron.webp`, "Ozdobnik.", "An ornament."),
+    images: { "make-way": p10MakeWay, "help-fawn": p10MakeWay },
   },
 ];
 

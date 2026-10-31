@@ -51,7 +51,8 @@ BRIGHTER = (" This tale moves from mist toward full day: never darker than the t
 m.TIME.update({
     "mist": "TIME (colour script): just before dawn on an October morning, and the mist has not lifted: soft milky pearl-grey and pale blue light, calm and gentle; the far trees fade to pale grey-blue shapes behind flat bands of mist; the sky between the crowns a flat pale pearl wash. Gentle and quiet, never dark, gloomy or black; the figures keep their full colours and crisp ink lines." + BRIGHTER + " Rime frost on the tips of the grass. NO DISTANT VIEW (p1 first take showed a sunny valley): behind the nearest oak trunks the forest disappears into the mist — no valley, lake, far hills or far trees; the sky between the crowns is flat pale pearl-grey, never blue, with no sunlight.",
     "dawn": "TIME (colour script): dawn, but the forest is still drowned in milky mist (the stag has not come): the mist is a little brighter and warmer than before dawn, a faint pale-cream glow inside it, the far trunks still fading into pale grey; no sky visible, no sun, no sunlight patches, no cast shadows; muted colours; the figures keep their colours and crisp lines." + BRIGHTER + " Frost whitens the tips of the grass.",
-    "morning": "TIME (colour script): late morning; only a few flat patches of mist remain low between the far trunks; the oak leaves are ochre, russet and gold; warm, even light, soft flat patches of sunlight on the moss; pale blue sky between the crowns." + BRIGHTER,
+    # 2026-10-31: the stag has not come yet on p7-p8, so no sun and no blue sky (law of magic); first p7 take came out sunny and orange
+    "morning": "TIME (colour script): late morning, but the stag has not come yet, so the mist has not lifted: the mist is thinner and brighter, a warm pale cream, lying in flat bands between the farther trunks; NO SKY VISIBLE — between the crowns only pale cream mist; no sun, no sunlight patches, no cast shadows; soft even light. The oak leaves are muted ochre, russet and dull gold, softened by the mist — never bright or saturated orange." + BRIGHTER,
     "day": "TIME (colour script): bright noon, the brightest picture of the tale: the mist is gone except for the last flat pale bands rolling away at the far edges; the oaks are golden and ochre in full sun, the sky a clear pale blue between the crowns; warm, bright and joyful, but still the same muted manuscript palette — never saturated, never a glowing sky, no sun rays.",
 })
 NEG = "no text, letters or numbers; no smoke, steam or glow from the kiln; no fire, torch, lantern or candle; no light rays or beams; no birds, dogs or other animals; no conifers or poplars"
@@ -120,7 +121,7 @@ page("fo-p6", "plate", "dawn", ["dobrochna", "marcin", "oliwia", "gustaw", "pigl
 # 2026-10-31 cold check of give-sack a: from outside, the acorns fell on our side, by the piglets; so the camera is INSIDE the Corner
 P7_CAMERA = ("CAMERA: eye level, INSIDE the Oak Corner on its moss, looking SOUTH at its south fence from within. Landscape framing (a 5:4 plate; everything important in the middle four-fifths): the fence runs across the middle of the picture; the people stand OUTSIDE it, on the far side, working along it and leaning over the rail toward us; the acorns they give fall over the rail onto the moss of the Corner on OUR side, in the foreground, where they lie scattered in the leaves; big old oak trunks of the Corner at the picture's edges and the forest beyond the people; the three piglets asleep in a heap in the leaves OUTSIDE the fence, behind the people, beside the mare's hooves.")
 for var, desc, who in [
-    ("give-sack", "Koniczynka stands at the left with Marcin's open hemp sack slung across her back over the red caparison; Oliwia scoops acorns from it in her two hands and scatters them over the rail onto the moss inside; Dobrochna tips a small basket of her own acorns over the rail beside her. In the centre Gustaw fits a fresh pale rail into place. At the right Marcin kneels at the NEW PALE POST and carves a four-pointed star near its top with a small wood chisel, his tongue between his teeth, proud.",
+    ("give-sack", "Koniczynka stands at the left with Marcin's open hemp sack slung across her back over the red caparison; Oliwia scoops acorns from it in her two hands and scatters them over the rail onto the moss inside; Dobrochna tips a small basket of her own acorns over the rail beside her. In the centre Gustaw fits a fresh pale rail into place. At the right Marcin kneels facing the NEW PALE POST, his left hand on the post and the edge of a small wood chisel set against its face near the top, where a four-pointed star is HALF-CARVED (only two of its four points cut so far, fresh pale chips on the ground); his tongue between his teeth, proud. The chisel touches the post; he holds nothing else.",
      ["mare", "oliwia", "dobrochna", "gustaw", "marcin", "piglets"]),
     ("gather-forest", "Everyone has gathered acorns from the whole forest: Oliwia pours acorns over the rail from the flap of her satchel, Dobrochna from her gathered-up apron; the three piglets nose acorns out of the leaves by the fence; Koniczynka stands at the left without a load. In the centre Gustaw fits a fresh pale rail into place. At the right Marcin kneels at the NEW PALE POST and carves a four-pointed star near its top with a small wood chisel, proud.",
      ["mare", "oliwia", "dobrochna", "gustaw", "marcin", "piglets"]),
@@ -129,8 +130,8 @@ for var, desc, who in [
          P7_CAMERA if var == "give-sack" else P7_CAMERA.replace("asleep in a heap in the leaves OUTSIDE the fence, behind the people, beside the mare's hooves", "OUTSIDE the fence, nosing acorns out of the leaves at the people's feet"),
          f"SCENE (page 7, the oath kept, variant {var}): {desc} Acorns lie on the moss inside the Corner. Every old grey post shows its small carved four-pointed star near the top. Late morning: patches of mist low between the far trunks, ochre oak leaves, soft light; no blue sky yet (the stag has not come), only pale milky mist between the far trunks.",
          "\"Together they gave the Corner back its acorns and mended the fence. Marcin carved a new star on the new post.\"",
-         "Oliwia, Dobrochna, Gustaw, Marcin: exactly four people; one mare; exactly three piglets; one new pale post with one star; exactly two rails.",
-         NEG + "; the chisel is a small woodworking tool, never a knife or weapon; no deer yet.")
+         "Oliwia, Dobrochna, Gustaw, Marcin: exactly four people; one mare; exactly three piglets OUTSIDE the fence; one new pale post with one half-carved star; exactly two new rails.",
+         NEG + "; the chisel is a small woodworking tool, never a knife or weapon; Marcin is not whittling anything in his hands; no deer yet; no blue sky; no sunlight; no bright orange foliage.")
 
 # p8 — FOLLOWING, plate, choice: make-way / help-fawn (unresolved)
 page("fo-p8", "plate", "morning", ["gustaw", "oliwia", "marcin", "dobrochna", "stag", "doe", "herd"], ["corner", "branch"], ["mended"],
@@ -141,7 +142,9 @@ page("fo-p8", "plate", "morning", ["gustaw", "oliwia", "marcin", "dobrochna", "s
      NEG + "; no halo, glow, rays or sparkles around the stag or its star; the stag is calm, never rearing; no second stag; the people do not bow or kneel.")
 
 # p9 — WIDE, portrait (rhyme with p1), variants from p8
-P9_CAMERA = ("CAMERA: a visual rhyme with page 1 — at the clearing's north edge, standing height, looking NORTH up the path between the big oaks, now in bright noon. Landscape framing (a 5:4 plate; everything important in the middle four-fifths): the corner of the earth kiln mound at the lower left; the path winding up the picture; the stag in the middle of the picture walking down the path toward us, its face, antlers and star clearly visible; the people following behind it, faces visible; far up the path at the top, small, the mended fence of the Oak Corner.")
+# 2026-10-31 make-wayb: a frontal camera put the stag side by side with the children, no mist, far hills; now a side view
+# make-wayc: a side view put everyone in one long row wider than the 5:4 crop; now depth instead of a row
+P9_CAMERA = ("CAMERA: standing height, at the edge of the path, at bright noon. Landscape framing (a 5:4 plate): the path CURVES from the background at the upper right toward the foreground at the lower left. The stag walks down the path in the LEFT-CENTRE middle ground toward the lower left, in calm three-quarter view, its face, antlers and the small gold star on its brow clearly visible; it is the size of a real red deer stag, its back lower than the mare's. Just ahead of it, at the left, the LAST flat pale band of mist parts to both sides like a curtain; behind it the golden oaks stand in warm sun. FARTHER BACK UP THE CURVING PATH, at the right of centre, smaller with distance, the people follow CLOSE TOGETHER as one compact group, overlapping: Oliwia and Marcin hand in hand in front, Gustaw leading Koniczynka and Dobrochna just behind them; between the stag and the children an empty stretch of path. Everything, the stag's antlers and every figure, sits well inside the middle four-fifths of the width; the outer side strips hold only oak trunks and bracken. Small in the background, the mended fence of the Oak Corner with its star posts.")
 for var, desc in [
     ("make-way", "They made way for the deer: far up the path the herd — the doe, the fawn and two hinds — grazes on the acorns inside the mended Corner. The stag walks down the path toward the clearing, calm and unhurried, and where it walks the last flat bands of mist roll back to both sides and the golden oaks stand in full sun."),
     ("help-fawn", "They helped the fawn: the big branch now lies along the edge of the trail far up the path, and the fawn trots close beside its mother just behind the stag, safe; two hinds graze inside the mended Corner. The stag walks down the path toward the clearing, calm and unhurried, and where it walks the last flat bands of mist roll back to both sides and the golden oaks stand in full sun."),
@@ -151,7 +154,7 @@ for var, desc in [
          f"SCENE (page 9, the morning comes, variant {var}): {desc} Behind the stag, at a respectful distance, Oliwia walks hand in hand with Marcin; with her other hand she tucks one acorn in its cup into her satchel. Gustaw walks beside them leading Koniczynka; Dobrochna follows with her rake over her shoulder, smiling; the three piglets trot along at Marcin's heels. Everyone is smiling, faces turned toward the sun.",
          "\"The stag walked on, and wherever it went the mist parted. Hand in hand, step by step, they followed it into the bright noon. Oliwia kept one acorn to plant by the next road.\"",
          "Oliwia, Marcin, Gustaw, Dobrochna: exactly four people; one mare; exactly three piglets; one stag with one small gold star; the doe, the fawn and two hinds small in the distance" + (" (the fawn and doe near the stag)" if var == "help-fawn" else "") + "; one acorn in Oliwia's hand.",
-         NEG + "; no sun rays; no halo around the stag; nobody touches the deer; no mist hiding anyone.")
+         NEG + "; no sun rays; no halo around the stag; nobody touches the deer; nobody walks beside the stag; no mist hiding anyone; no distant hills, valley or open landscape; no clouds; only small pale blue patches of sky between the crowns; no saturated orange.")
 
 
 
@@ -295,8 +298,8 @@ mist_first("fo-p4", "fo-p4c", "the children Marcin and Oliwia holding hands, the
 mist_first("fo-p5-ask-kindly", "fo-p5-ask-kindlyb")  # a new 5:4 plate (the note sits under it), not a fix of the portrait take
 mist_first("fo-p6", "fo-p6b")
 # pages with a "Did you know" note (5, 7, 9) are 5:4 plates: new takes, not fixes of the portrait first takes
-m.REVISION["fo-p7-give-sack"] = "fo-p7-give-sackb"
-m.REVISION["fo-p9-make-way"] = "fo-p9-make-wayb"
+m.REVISION["fo-p7-give-sack"] = "fo-p7-give-sackc"  # b: Marcin whittled in his hands, star already cut; sunny orange
+m.REVISION["fo-p9-make-way"] = "fo-p9-make-wayd"  # b: stag beside children; c: one long row, too wide
 
 
 if __name__ == "__main__":
