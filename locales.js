@@ -457,9 +457,9 @@ export const storyTranslations = {
         {
           title: "Poranek, który nie przyszedł",
           body: [
-            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Dobrochny, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel.",
-            "Rano słońce powinno wyjrzeć zza dębów, ale las tonął w mlecznej mgle i ptaki milczały. „Jeleń nie przyszedł” – zdziwiła się Dobrochna. „Co rano przechodzi tędy jeleń z gwiazdką między rogami. Gdzie przejdzie, mgła się rozwiewa i mogę wieźć węgiel do kuźni”.",
-            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi. „Sprawdźmy, skąd przyszły” – powiedziała Dobrochna. „Ręka w rękę, krok za krokiem”."
+            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Agaty, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel.",
+            "Rano słońce powinno wyjrzeć zza dębów, ale las tonął w mlecznej mgle i ptaki milczały. „Jeleń nie przyszedł” – zdziwiła się Agata. „Co rano przechodzi tędy jeleń z gwiazdką między rogami. Gdzie przejdzie, mgła się rozwiewa i mogę wieźć węgiel do kuźni”.",
+            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi. „Sprawdźmy, skąd przyszły” – powiedziała Agata. „Ręka w rękę, krok za krokiem”."
           ],
           curiosityNote: {
             title: "Czy wiesz, że...?",
@@ -485,18 +485,18 @@ export const storyTranslations = {
           ],
         },
         {
-          title: "Dębowy Kąt",
+          title: "Matecznik",
           bodyByChoice: {
             1: {
               "follow-piglets": [
-                "Prosiaczki poprowadziły wszystkich między wielkie, stare dęby. Drewniany płot leżał tam na ziemi, zwalony przez burzę. „To Dębowy Kąt” – szepnęła Dobrochna. „Tu nie wolno wpuszczać świń”.",
+                "Prosiaczki poprowadziły wszystkich do wielkich, starych dębów za drewnianym płotem. Furtka w płocie leżała na ziemi, wyłamana przez burzę. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne” – szepnęła Agata. „Tu nie wolno wpuszczać świń”.",
                 "Wszędzie walały się puste czapeczki żołędzi. Przy płocie stał chłopiec z kijem pasterskim i patrzył na nich wystraszony. To był Marcin, świniopas z Dąbrówki.",
-                "„Nasi dziadkowie obiecali, że żołędzie z Kąta są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Dobrochna. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+                "„Nasi dziadkowie obiecali, że żołędzie z Matecznika są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Agata. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
               ],
               "call-back": [
                 "Oliwia zawołała: „Tutaj jesteśmy!”. Z mgły wyszedł Marcin, mały świniopas z Dąbrówki. Prosiaczki obiegły go i pognały z powrotem między wielkie, stare dęby, a wszyscy za nimi.",
-                "Drewniany płot leżał tam na ziemi, zwalony przez burzę, a wszędzie walały się puste czapeczki żołędzi. „To Dębowy Kąt” – szepnęła Dobrochna, a Marcin spuścił głowę.",
-                "„Nasi dziadkowie obiecali, że żołędzie z Kąta są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Dobrochna. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+                "Furtka w drewnianym płocie leżała na ziemi, wyłamana przez burzę, a wszędzie walały się puste czapeczki żołędzi. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne” – szepnęła Agata, a Marcin spuścił głowę.",
+                "„Nasi dziadkowie obiecali, że żołędzie z Matecznika są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Agata. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
               ]
             }
           },
@@ -504,7 +504,7 @@ export const storyTranslations = {
         {
           title: "Marcin milczy",
           body: [
-            "Marcin od razu się odezwał. „Burza zwaliła płot” – powiedział szybko. „W nocy grzmiało i wiało”. O prosiaczkach nie wspomniał ani słowem, choć ocierały mu się o nogi.",
+            "Marcin od razu się odezwał. „Burza wyłamała furtkę” – powiedział szybko. „W nocy grzmiało i wiało”. O prosiaczkach nie wspomniał ani słowem, choć ocierały mu się o nogi.",
             "Oliwia widziała, że Marcin się boi. Podeszła i wzięła go za rękę. „Ręka w rękę, krok za krokiem” – szepnęła. „Razem coś wymyślimy”.",
             "Marcin ścisnął jej dłoń, ale wciąż patrzył w ziemię."
           ],
@@ -514,7 +514,7 @@ export const storyTranslations = {
               response: "Oliwia łagodnie zapyta Marcina, co się wydarzyło tej nocy."
             },
             {
-              label: "Pokaż mu delikatnie ślady",
+              label: "Pokaż Marcinowi ślady raciczek",
               response: "Oliwia pokaże Marcinowi odciski raciczek w mchu, bez słowa wyrzutu."
             }
           ],
@@ -525,13 +525,13 @@ export const storyTranslations = {
             3: {
               "ask-kindly": [
                 "Oliwia zapytała łagodnie: „Co się stało tej nocy, Marcinie?”. Marcin zamrugał, a potem wszystko opowiedział.",
-                "Burza zwaliła płot, a jego prosiaczki weszły do Kąta i zjadły jeleniom żołędzie. „Bałem się powiedzieć” – wyszeptał. „Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Kątem prawie nic nie ma”.",
-                "„Dobrze, że nam powiedziałeś”. Dobrochna pogładziła go po ramieniu. Gustaw podniósł zwalony słupek z wyciętą gwiazdką, znakiem dawnej przysięgi."
+                "Przez wyłamaną furtkę jego prosiaczki weszły do Matecznika i zjadły jeleniom żołędzie. „Bałem się powiedzieć” – wyszeptał. „Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Matecznikiem prawie nic nie ma”.",
+                "„Dobrze, że nam powiedziałeś”. Agata pogładziła go po ramieniu. Gustaw podniósł z ziemi wyłamaną furtkę, żeby ją obejrzeć. Na jej pękniętej poprzeczce widniała wycięta gwiazdka, znak dawnej przysięgi."
               ],
               "show-tracks": [
                 "Oliwia przykucnęła i pokazała Marcinowi małe odciski raciczek w mchu, tuż obok pustych czapeczek. Nic nie powiedziała, tylko się do niego uśmiechnęła.",
-                "Marcin westchnął i wszystko opowiedział. Burza zwaliła płot, a jego prosiaczki weszły do Kąta i zjadły jeleniom żołędzie. „Bałem się powiedzieć. Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Kątem prawie nic nie ma”.",
-                "„Dobrze, że nam powiedziałeś”. Dobrochna pogładziła go po ramieniu. Gustaw podniósł zwalony słupek z wyciętą gwiazdką, znakiem dawnej przysięgi."
+                "Marcin westchnął i wszystko opowiedział. Przez wyłamaną furtkę jego prosiaczki weszły do Matecznika i zjadły jeleniom żołędzie. „Bałem się powiedzieć. Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Matecznikiem prawie nic nie ma”.",
+                "„Dobrze, że nam powiedziałeś”. Agata pogładziła go po ramieniu. Gustaw podniósł z ziemi wyłamaną furtkę, żeby ją obejrzeć. Na jej pękniętej poprzeczce widniała wycięta gwiazdka, znak dawnej przysięgi."
               ]
             }
           },
@@ -543,7 +543,7 @@ export const storyTranslations = {
         {
           title: "Chudy rok",
           body: [
-            "Dobrochna popatrzyła na słupek z gwiazdką. „Obiecaliśmy jeleniom te żołędzie” – powiedziała cicho. „Ale prosiaczki też muszą coś jeść”.",
+            "Agata popatrzyła na pękniętą gwiazdkę. „Obiecaliśmy jeleniom te żołędzie” – powiedziała cicho. „Ale prosiaczki też muszą coś jeść”.",
             "Marcin miał w swoim szałasie worek żołędzi, zebranych dla prosiaczków na zimę. Las był wielki, ale żołędzi leżało w nim niewiele.",
             "Oliwia pomyślała o jeleniach, które muszą się najeść przed zimą. Na trawie bielił się już szron po pierwszym przymrozku."
           ],
@@ -554,7 +554,7 @@ export const storyTranslations = {
             },
             {
               label: "Zbierzcie żołędzie w całym lesie",
-              response: "Wszyscy pójdą szukać żołędzi po całym lesie, żeby zanieść je do Kąta."
+              response: "Wszyscy pójdą szukać żołędzi po całym lesie, żeby zanieść je do Matecznika."
             }
           ],
         },
@@ -563,14 +563,14 @@ export const storyTranslations = {
           bodyByChoice: {
             5: {
               "give-sack": [
-                "Marcin długo milczał. „Obiecali to nasi dziadkowie, to i ja dotrzymam” – powiedział i pobiegł po worek. Koniczynka zaniosła go na grzbiecie do Kąta, a Dobrochna dosypała żołędzi ze swojego zapasu.",
+                "Marcin długo milczał. „Obiecali to nasi dziadkowie, to i ja dotrzymam” – powiedział i pobiegł po worek. Koniczynka zaniosła go na grzbiecie do Matecznika, a Agata dosypała żołędzi ze swojego zapasu.",
                 "„Twoim prosiaczkom też coś znajdziemy” – obiecała. „We wsi każdy da garść owsa”. Kiedy rozsypywali żołędzie pod starymi dębami, Marcin powtarzał: „Ręka w rękę, krok za krokiem”.",
-                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął dłutkiem nową gwiazdkę, znak odnowionej przysięgi."
+                "Gustaw z Agatą zbili nową furtkę, a Marcin wyciął dłutkiem na jej poprzeczce gwiazdkę, taką samą jak na starej furtce. Tak odnowili dawną przysięgę."
               ],
               "gather-forest": [
                 "Wszyscy rozeszli się po lesie, ale nie za daleko, żeby słyszeć się nawzajem. Szukali żołędzi w mchu i pod liśćmi, a prosiaczki węszyły najpilniej ze wszystkich.",
-                "Pod bukami prosiaczki znalazły bukiew, trójkątne orzeszki, i zajadały się nią z zapałem. „To dla nich, a żołędzie dla jeleni” – ucieszył się Marcin. „Ręka w rękę, krok za krokiem” – powtarzał, kiedy znosili pełne garście do Kąta.",
-                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął dłutkiem nową gwiazdkę, znak odnowionej przysięgi."
+                "Pod bukami prosiaczki znalazły bukiew, trójkątne orzeszki, i zajadały się nią z zapałem. „To dla nich, a żołędzie dla jeleni” – ucieszył się Marcin. „Ręka w rękę, krok za krokiem” – powtarzał, kiedy znosili pełne garście do Matecznika.",
+                "Gustaw z Agatą zbili nową furtkę, a Marcin wyciął dłutkiem na jej poprzeczce gwiazdkę, taką samą jak na starej furtce. Tak odnowili dawną przysięgę."
               ]
             }
           },
@@ -588,12 +588,12 @@ export const storyTranslations = {
           ],
           choices: [
             {
-              label: "Zróbcie jeleniom przejście",
-              response: "Wszyscy odsuną się od Kąta, żeby jelenie mogły najpierw zjeść."
+              label: "Cofnijcie się, łania go poprowadzi",
+              response: "Wszyscy cicho cofną się pod drzewa i dadzą łani czas, żeby sama pomogła jelonkowi."
             },
             {
-              label: "Odsuńcie gałąź jelonkowi",
-              response: "Gustaw spokojnie odsunie gałąź, a Oliwia cicho zanuci, żeby maluch się nie bał."
+              label: "Niech Koniczynka odciągnie gałąź",
+              response: "Gustaw obwiąże liną dalszy koniec gałęzi, a Koniczynka powoli odciągnie ją na bok."
             }
           ],
         },
@@ -602,13 +602,13 @@ export const storyTranslations = {
           bodyByChoice: {
             7: {
               "make-way": [
-                "Wszyscy cofnęli się pod drzewa. Łania wróciła po jelonka i poprowadziła go dookoła gałęzi, a potem stado weszło do Kąta i zaczęło wyjadać żołędzie spod liści.",
+                "Wszyscy cicho cofnęli się pod drzewa. Po chwili łania wróciła po jelonka, trąciła go nosem i poprowadziła dookoła gałęzi. Potem całe stado weszło przez nową furtkę do Matecznika.",
                 "Kiedy jelenie się najadły, jeleń z gwiazdką ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
                 "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
               ],
               "help-fawn": [
-                "Gustaw podszedł powoli do gałęzi i odsunął ją, nie patrząc jelonkowi w oczy. Oliwia nuciła cichutko, a jelonek przemknął do mamy i przywarł do jej boku.",
-                "Jeleń z gwiazdką popatrzył na nich spokojnie i poprowadził stado do Kąta. Potem ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
+                "Gustaw ostrożnie obwiązał liną dalszy koniec gałęzi, a Koniczynka powoli odciągnęła ją na bok. Nikt nie podchodził do jelonka. Maluch sam przemknął do mamy i przywarł do jej boku.",
+                "Jeleń z gwiazdką popatrzył na nich spokojnie i poprowadził stado przez nową furtkę do Matecznika. Potem ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
                 "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
               ]
             }
@@ -619,27 +619,27 @@ export const storyTranslations = {
           },
         },
         {
-          title: "Gwiazdka na słupku",
+          title: "Gwiazdka na furtce",
           body: [
-            "W południe cały Dębowy Bór lśnił złotem. Na polanie Dobrochny gotowała się zupa, prosiaczki spały w cieniu, a w Kącie pasły się jelenie.",
-            "Od tamtej pory w Dąbrówce mówią przy słupku z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha.",
+            "W południe cały Dębowy Bór lśnił złotem. Na polanie Agaty gotowała się zupa, prosiaczki spały w cieniu, a w Mateczniku pasły się jelenie.",
+            "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha.",
             "Koniec."
           ],
           paragraphByChoice: {
             7: {
               "make-way": {
-                0: "W południe cały Dębowy Bór lśnił złotem. Na polanie Dobrochny gotowała się zupa, prosiaczki spały w cieniu, a w Kącie pasły się jelenie."
+                0: "W południe cały Dębowy Bór lśnił złotem. Na polanie Agaty gotowała się zupa, prosiaczki spały w cieniu, a w Mateczniku pasły się jelenie."
               },
               "help-fawn": {
-                0: "W południe cały Dębowy Bór lśnił złotem. Na polanie Dobrochny gotowała się zupa, prosiaczki spały w cieniu, a w Kącie najmniejszy jelonek nie odstępował mamy na krok."
+                0: "W południe cały Dębowy Bór lśnił złotem. Na polanie Agaty gotowała się zupa, prosiaczki spały w cieniu, a w Mateczniku najmniejszy jelonek nie odstępował mamy na krok."
               }
             },
             5: {
               "give-sack": {
-                1: "Od tamtej pory w Dąbrówce mówią przy słupku z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha."
+                1: "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha."
               },
               "gather-forest": {
-                1: "Od tamtej pory w Dąbrówce mówią przy słupku z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. I każdej jesieni wieś zbiera żołędzie dla Kąta, ręka w rękę."
+                1: "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. I każdej jesieni wieś zbiera żołędzie dla Matecznika, ręka w rękę."
               }
             }
           },

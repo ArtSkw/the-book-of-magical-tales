@@ -4,6 +4,19 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-10-31: "Leśna przysięga" after the author's first reading.** (1) The charcoal burner is
+  Agata, not Dobrochna (too foreign for today's children); the deer's place is the Matecznik /
+  the Heartwood, the folk "heart of the forest" where animals are safe, not the "Dębowy Kąt"
+  (too generic, a third "oak" name). (2) The oath's star is on ONE thing: the gate's crossbar.
+  The storm broke the gate, the piglets went in through it, the heroes find the cracked star,
+  build a new gate and Marcin carves the star again; the rest of the fence is plain. Rejected:
+  a star on every post, then one new post with a new star (no reason for it to be special).
+  (3) A choice label says one concrete act: "Pokaż Marcinowi ślady raciczek", not "show him
+  gently". (4) The two options of a choice must be different kinds of action: p8 is "step
+  back, the hind will lead it" (trust the animal's nature) or "pull the branch away with
+  Koniczynka" (practical help); rejected "make way" / "move the branch", which were one act.
+  Choice ids stay; the pictures with fence stars are regenerated.
+
 - **2026-10-31: one type scale by role.** The pages used 17 different sizes (eight of them
   between 30 and 38) and six separate phone multipliers; the same element had one size under a
   plate and another on a text page. Now every text has a role on one modular scale (house body
