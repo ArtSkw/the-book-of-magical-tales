@@ -41,7 +41,7 @@ embroidered star (`src/book/tales.js`, `tale-three`).
 |---|---|
 | Law of magic | Wherever the stag with a star between its antlers walks at dawn, the mist parts and the day comes into the forest, as long as the forest's oath is kept. The star glows before the antlers can be seen. |
 | Creatures and folklore | Piglets and deer (real roles: the pigs ate the Corner's acorns; the deer need them for winter) · the star stag (original, rooted in folk tales of a white stag that guides the lost) · the forest oath of Dąbrówka, the star carved on the Corner's fence posts |
-| The world beyond the page | The first charcoal burners, led out of the mist by the stag, made the oath; Dobrochna's grandfather saw the stag twice |
+| The world beyond the page | The first charcoal burners came to Dębowy Bór in a year when the mist never lifted; the stag brought them the morning, and they made the oath in thanks. Dobrochna's grandfather saw the stag twice |
 | Newcomer | The heroes spent the night at Dobrochna's charcoal clearing; at dawn she tells them why the mist should lift (the stag) and why it has not |
 | Mystery and clues | Why does the stag not come? Clues: empty acorn cups and small cloven hoofprints in the moss (p1 picture first), three piglets out of the mist, a broken post with a carved star |
 | Stakes and a gentle clock | The morning has not come to the forest; the deer need acorns before the first frost (the rime on the grass is the reminder) |
