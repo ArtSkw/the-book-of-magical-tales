@@ -1270,7 +1270,7 @@ function noteBlock(note, size) {
       const k = ctx.getTransform().a || 1;
       const off = 4000;
       ctx.save();
-      ctx.shadowColor = "rgba(255,249,231,0.6)";
+      ctx.shadowColor = "rgba(255,249,231,0.4)";
       ctx.shadowBlur = 16 * k;
       ctx.shadowOffsetX = off * k;
       roundRect(ctx, x + 6 - off, y + 6, width - 12, L.height - 12, 16);
@@ -1279,8 +1279,8 @@ function noteBlock(note, size) {
       ctx.restore();
       // a light wash over it, brightest by the rule, fading towards the far corner
       const wash = ctx.createLinearGradient(x, y, x + width, y + L.height);
-      wash.addColorStop(0, "rgba(255,251,238,0.38)");
-      wash.addColorStop(1, "rgba(255,251,238,0.04)");
+      wash.addColorStop(0, "rgba(255,251,238,0.24)");
+      wash.addColorStop(1, "rgba(255,251,238,0.03)");
       roundRect(ctx, x, y, width, L.height, 16);
       ctx.fillStyle = wash;
       ctx.fill();
