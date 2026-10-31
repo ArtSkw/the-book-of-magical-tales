@@ -43,6 +43,9 @@ export const TEXT_MARGINS = M;
 // on a phone held upright, where the print under it is set a step larger (PHONE_LIFT), the plate
 // gives up some of its height to it.
 const PLATE = { aspect: 5 / 4, pad: 40, gap: 34, safe: 24 };
+// a tale's gold medallion: the title emblem on its title page, and at most this wide the closing
+// emblem on its last spread, so the pair match
+const MEDALLION_W = 520;
 // ---------- type scale ----------
 // Every kind of text on a page has a role, and every role is a step of one modular scale: the
 // house body (42 page units) times a major second (1.125) per step. Hierarchy comes as much from
@@ -1305,12 +1308,13 @@ function noteBlock(note, column) {
   };
 }
 
-function imageBlock(img, entry, { mode, maxH, aspect, parchment }) {
-  // mode: "plate" (framed miniature) | "vignette" (transparent spot image, no frame)
+function imageBlock(img, entry, { mode, maxH, aspect, parchment, large = false }) {
+  // mode: "plate" (framed miniature) | "vignette" (transparent spot image, no frame);
+  // large: a closing emblem alone on its page, as wide as the title page's medallion
   const box = (width) => {
     if (mode === "vignette") {
       const ar = img ? img.naturalWidth / img.naturalHeight : 1.4;
-      let w = Math.min(width * 0.82, 560);
+      let w = large ? Math.min(width * 0.94, MEDALLION_W) : Math.min(width * 0.82, 560);
       let h = w / ar;
       if (h > maxH) {
         h = maxH;
@@ -1561,13 +1565,18 @@ export function createPageArtist({ parchment, grain, images }) {
       out.left = { type: "text", t, paragraphs: t.paragraphs, title: true, note: null, tailpiece: normaliseImage(spread.tailpiece) };
       out.right = { type: "plate", image, choice, note: t.note };
     } else {
-      // vignette: text runs over both pages
-      const n = t.paragraphs.length;
-      const split = Math.ceil(n / 2);
-      // on a tale's last spread the closing emblem takes the roomier left page, clear of the restart button
-      const [vl, vr] = t.ending ? [image, normaliseImage(spread.secondary)] : [normaliseImage(spread.secondary), image];
-      out.left = { type: "text", t, paragraphs: t.paragraphs.slice(0, split), title: true, vignette: vl, emblem: t.ending };
-      out.right = { type: "text", t, paragraphs: t.paragraphs.slice(split), title: false, choice, vignette: vr, cont: true, restart: t.ending };
+      // a tale's last spread: the whole text, "The end" and an ornament on the left; the closing
+      // emblem on its own page on the right, as large as a page allows, with the clasp that
+      // starts the tale again under it
+      if (t.ending) {
+        out.left = { type: "text", t, paragraphs: t.paragraphs, title: true, vignette: normaliseImage(spread.secondary) };
+        out.right = { type: "text", t, paragraphs: [], title: false, choice, vignette: image, emblem: true, cont: true, restart: true };
+      } else {
+        // vignette: text runs over both pages
+        const split = Math.ceil(t.paragraphs.length / 2);
+        out.left = { type: "text", t, paragraphs: t.paragraphs.slice(0, split), title: true, vignette: normaliseImage(spread.secondary) };
+        out.right = { type: "text", t, paragraphs: t.paragraphs.slice(split), title: false, choice, vignette: image, cont: true };
+      }
     }
     return out;
   }
@@ -1685,7 +1694,7 @@ export function createPageArtist({ parchment, grain, images }) {
       const img = getImg(desc.image);
       REGIONS?.push({ role: "title", x: box.x, y: 140, w: box.w, h: y + 100 - 140 });
       if (img) {
-        const w = 520;
+        const w = MEDALLION_W;
         const h = (w * img.naturalHeight) / img.naturalWidth;
         g.save();
         g.globalCompositeOperation = "multiply";
@@ -1879,13 +1888,13 @@ export function createPageArtist({ parchment, grain, images }) {
     if (vEntry) {
       const img = getImg(vEntry);
       if (img && remaining > 200) {
-        // the closing emblem of a tale gets the room a spot image would leave empty
-        const vb = imageBlock(img, vEntry, { mode: "vignette", maxH: Math.min(remaining - 60, desc.emblem ? 760 : 470) });
+        // the closing emblem of a tale has a page of its own (with the clasp under it)
+        const vb = imageBlock(img, vEntry, { mode: "vignette", maxH: Math.min(remaining - 60, desc.emblem ? 900 : 470), large: desc.emblem });
         vb.role = desc.emblem ? "emblem" : "vignette";
         const h = vb.measure(g, box.w);
-        // sit the spot image in the optical middle of the free space, not glued to the text
-        // (with the clasp under it, the pair may sit lower: level with the emblem opposite)
-        vb.gapBefore = Math.max(30, Math.min(clasp ? 320 : 170, (remaining - h) / 2.6));
+        // a spot image sits in the optical middle of the room under the text, not glued to it (an
+        // emblem alone on its page is centred with the clasp by the stack below)
+        vb.gapBefore = Math.max(30, Math.min(170, (remaining - h) / 2.6));
         blocks.push(vb);
         remaining -= h + vb.gapBefore;
       }
@@ -1910,7 +1919,7 @@ export function createPageArtist({ parchment, grain, images }) {
     }
     if (clasp) {
       // right under the ornament; with none, in the optical middle of the free space
-      const after = blocks[blocks.length - 1].kind === "image";
+      const after = blocks[blocks.length - 1]?.kind === "image"; // nothing above it: an emblem still loading
       clasp.gapBefore = after ? claspGap : Math.max(claspGap, Math.min(170, (remaining + claspGap) / 2.6));
       blocks.push(clasp);
     }
@@ -1921,7 +1930,8 @@ export function createPageArtist({ parchment, grain, images }) {
       real.gapBefore = blocks[i].gapBefore;
       blocks[i] = real;
     }
-    stack(g, blocks, box, { gap: 24 });
+    // an emblem alone on its page: it and the clasp under it are centred on the page together
+    stack(g, blocks, box, { gap: 24, align: desc.emblem && !desc.paragraphs.length ? "center" : "top" });
   }
 
   // A printed page for the leaves that fly past while the book riffles to a tale: Phaedrus'
