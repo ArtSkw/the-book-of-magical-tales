@@ -28,7 +28,7 @@ rules (`~/.claude/CLAUDE.md`) apply too.
   list, §1.8a continuity) and `docs/pilot/SET_BIBLE_<tale>.md`. The prompt
   rules are encoded in `prototypes/prompts/_build_a2.py`, the source of truth.
 - **Sound:** the header of `src/book/soundscape.js`, workflow §10
-- **UI and motion polish:** `docs/pilot/ux-refs/`
+- **UI and motion polish:** `docs/pilot/ux-refs/`; type sizes by role: `docs/TYPE_SCALE.md`
 - **Past decisions and rejected directions:** `docs/DECISIONS.md`
 
 ## How to verify

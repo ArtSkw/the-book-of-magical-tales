@@ -14,7 +14,7 @@ The tone and values come from `BRIEF.md`; how sentences, choices and wonder are 
 - ✓ 3 short paragraphs per page (in `body`, or in each option of `bodyByChoice`).
 - ✓ Choice pages on pages 2, 4, 6, and 8, each with exactly **2** options.
 - ✓ Every page needs `title`, `body`, `choices` (an empty array on pages without a choice); every choice needs `id`, `label`, `response`.
-- ✓ A choice label fits on one line of the wax-seal tab: at most **38 characters**. A response fits in two lines: at most **120 characters**.
+- ✓ A choice label fits on one line of the wax-seal tab: at most **38 characters**. A response fits in two lines: at most **110 characters** (sizes: `docs/TYPE_SCALE.md`).
 - ✓ Exactly one page has `ending: true`: the last one. It has no choices and its last paragraph is `"The end."` in English and `"Koniec."` in Polish.
 - ✓ The page after a choice page (3, 5, 7, 9) is written whole for each option in `bodyByChoice`; it needs no shared `body`. Echo lines (`echoes`) are retired.
 - ✓ An earlier choice may come back as single paragraphs (`paragraphByChoice`), every option covered, each paragraph rewritten by one choice at most, never on top of that choice's own whole page; the ending's last paragraph stays "The end." / "Koniec.".

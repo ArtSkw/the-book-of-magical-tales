@@ -4,6 +4,15 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-10-31: one type scale by role.** The pages used 17 different sizes (eight of them
+  between 30 and 38) and six separate phone multipliers; the same element had one size under a
+  plate and another on a text page. Now every text has a role on one modular scale (house body
+  42, ratio 1.125): display, title, body, quote, label, small, caption, caps. Only the body is
+  fitted per tale; on a phone, label and small print go one step up. The interface has four
+  tokens. The note is `small` (33), a step under the labels. Rejected: keeping today's values
+  as named tokens only (no hierarchy); a screen-pixel floor before it can be measured on devices.
+  Table: `docs/TYPE_SCALE.md`.
+
 - **2026-10-31: the "Did you know" note reads as a gloss.** Its body was small italic
   in a light brown on a darker tint, hard to read. Now: upright in the main ink, one step of
   the body scale under the small print of the choices (35 against 37), a rubric rule at its left like a manuscript gloss,

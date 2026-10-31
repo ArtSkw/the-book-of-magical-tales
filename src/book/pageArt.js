@@ -39,20 +39,26 @@ export const TEXT_MARGINS = M;
 // 5:4 (art exported at 1280x1024, cropped from the 1536x1024 generation), the width of the text
 // column. pad = room above and below the picture for its gilded frame, gap = to the block under
 // it, safe = kept free at the foot whatever the language. At this size the longest choice block
-// (labels <= 38 chars, responses <= 120) and a note up to 280 chars still fit (validate-stories.js);
-// on a phone held upright, where the print under it is set larger (COLUMN_PRINT), the plate gives
-// up some of its height to it.
+// (labels <= 38 chars, responses <= 110) and a note up to 280 chars still fit (validate-stories.js);
+// on a phone held upright, where the print under it is set a step larger (PHONE_LIFT), the plate
+// gives up some of its height to it.
 const PLATE = { aspect: 5 / 4, pad: 40, gap: 34, safe: 24 };
+// ---------- type scale ----------
+// Every kind of text on a page has a role, and every role is a step of one modular scale: the
+// house body (42 page units) times a major second (1.125) per step. Hierarchy comes as much from
+// weight, italic, small capitals and colour, so the steps stay close, as in a printed book. Only a
+// tale's body text is fitted (SIZES, so its longest page fits); every other role keeps its size
+// whatever the tale, the layout or the language, and the content limits in validate-stories.js
+// are measured at these sizes. The table of roles: docs/TYPE_SCALE.md.
+const TYPE = { base: 42, ratio: 1.125 };
+const ROLE_STEP = { display: 5, title: 3, body: 0, quote: -1, label: -1, small: -2, caption: -4, caps: -5 };
 // Read on a phone held upright, the camera frames only the page's text column (main.js, column
-// mode) and the small print would read a size or two under the body beside it. There a choice's
-// label is set larger (x label: about the body's size on screen, an average 38-character label
-// still to a line), the prompt over the choices and the response under them nearly as large
-// (x hint, a 120-character response then in three lines), and a note under a plate as large as
-// the label (x note); the plate gives them the room (choicesBlock, noteBlock). The line at the
-// foot of a title page that invites the turn comes to the label's size too (x begin), and the
-// tale's subtitle over it stays a little larger than that line (x kicker); the clasp that starts
-// a tale again on its last page comes up to a thumb's size (x clasp).
-const COLUMN_PRINT = { label: 1.08, hint: 1.03, note: 1.14, begin: 1.33, kicker: 1.1, clasp: 1.15 };
+// mode) and the print under the body would read a size small: there labels and small print go one
+// step up. The plate gives them the room (choicesBlock, noteBlock).
+const PHONE_LIFT = new Set(["label", "small"]);
+const typeSize = (role, column = false) => Math.round(TYPE.base * TYPE.ratio ** (ROLE_STEP[role] + (column && PHONE_LIFT.has(role) ? 1 : 0)));
+// the lines of a tale's title: the display size with a tight book leading
+const TITLE_LEAD = Math.round(typeSize("display") * 1.13);
 
 // Polish typography: never leave a one-letter word at the end of a line.
 const glueOrphans = (s) => s.replace(/(^|[\s(„"])([aiouwzAIOUWZ])\s+/g, "$1$2 ");
@@ -990,14 +996,14 @@ function headingBlock(text, size) {
 // glow once, one after another (`anim.calm`: reduced motion, they only glow, never swell); with a
 // choice made, only its seal glows: the reader pressed it again, the choice already sealed.
 // `anim.levels` ({ id: 0..1 }, drawn at p = 1) is the pointer resting on seals (main.js eases it).
-// `column`: the page is read by its text column on a phone, its print set larger (COLUMN_PRINT)
+// `column`: the page is read by its text column on a phone, its print a step larger (PHONE_LIFT)
 // and its rows taller.
-function choicesBlock({ options, selectedId, hint, size: base, hits, pageId, response, reserve = null, anim = null, column = false }) {
-  const size = column ? Math.round(base * COLUMN_PRINT.label) : base;
+function choicesBlock({ options, selectedId, hint, hits, pageId, response, reserve = null, anim = null, column = false }) {
+  const size = typeSize("label", column);
   const rowH = Math.round(size * 2.5);
   const gap = Math.round(size * 0.45);
   const sealR = rowH * 0.36;
-  const hintSize = Math.round(base * (column ? COLUMN_PRINT.hint : 0.84));
+  const hintSize = typeSize("small", column);
   let cache = null;
   const layout = (ctx, width) => {
     if (cache && cache.width === width) return cache;
@@ -1151,10 +1157,10 @@ function platePath(x, y, w, h, r) {
 // hand), centred under the text between two fine rules. While the page lies still the book raises
 // a real button over it (main.js, "the clasp"), drawn to this same measure; the print is what
 // turns with the leaf.
-function claspBlock({ label, size, hits }) {
-  const h = Math.round(size * 1.85);
+function claspBlock({ label, column, hits }) {
+  const fontSize = typeSize("small", column);
+  const h = Math.round(fontSize * 2.5);
   const r = h * 0.325; // the language plaque's corner: 13 px on its 40 px height
-  const fontSize = Math.round(size * 0.74);
   const track = fontSize * 0.02;
   let cache = null;
   const layout = (ctx) => {
@@ -1243,10 +1249,9 @@ const longestResponse = (choice) => choice.options.reduce((a, o) => (o.response?
 
 // A "Did you know" note as a gloss in a manuscript's margin: a rubric rule at its left, the
 // words upright in the main ink (italic at this size read too faintly), on a soft, lighter patch
-// of paper whose edges fade, under the title in red italic. Set one step of the body scale (SIZES,
-// 2 apart) under the small print of the choices (choicesBlock, 37): a note is the quietest text.
-function noteBlock(note, size) {
-  const fs = size;
+// of paper whose edges fade, under the title in red italic. Small print, a step under the labels.
+function noteBlock(note, column) {
+  const fs = typeSize("small", column);
   const lead = 1.38;
   const inner = 30;
   let cache = null;
@@ -1361,7 +1366,7 @@ function imageBlock(img, entry, { mode, maxH, aspect, parchment }) {
 
 function runningHead(ctx, text, side) {
   ctx.save();
-  ctx.font = font(CAPS_WEIGHT, 21);
+  ctx.font = font(CAPS_WEIGHT, typeSize("caps"));
   ctx.fillStyle = C.rubric;
   ctx.globalAlpha = 0.92;
   ctx.textAlign = "center";
@@ -1376,7 +1381,7 @@ function folio(ctx, n, side) {
   ctx.save();
   const cx = side === "left" ? (M.outer + PAGE_UNITS_W - M.gutter) / 2 : (M.gutter + PAGE_UNITS_W - M.outer) / 2;
   const y = PAGE_UNITS_H - 58;
-  ctx.font = font(400, 26);
+  ctx.font = font(400, typeSize("caption"));
   ctx.fillStyle = C.inkSoft;
   ctx.textAlign = "center";
   ctx.fillText(String(n), cx, y + 9);
@@ -1446,11 +1451,10 @@ function trackedText(ctx, text, cx, y, track) {
 // one page; a page left with no room for them closes with a small ornament), and runs on over
 // the foot of the page, never leaving its last line alone at the head of the next; after the
 // last fable they begin again. Returns the items of page `page`, in page units.
-const FILLER_SIZE = 42;
 function fillerLayout(g, page) {
-  const size = FILLER_SIZE;
+  const size = typeSize("body");
   const lineH = size * 1.42;
-  const headSize = Math.round(size * 1.36);
+  const headSize = typeSize("title");
   const headH = headSize * 1.12;
   const initial = Math.round(2 * lineH + size * 0.72);
   const indent = initial + size * 0.42;
@@ -1624,7 +1628,7 @@ export function createPageArtist({ parchment, grain, images }) {
       g.save();
       g.textAlign = "center";
       const cx = box.x + box.w / 2;
-      let size = 38;
+      let size = typeSize("quote");
       g.font = font(400, size, true);
       const widest = Math.max(...lines.map((l) => g.measureText(l).width));
       if (widest > box.w - 40) size = Math.floor((size * (box.w - 40)) / widest);
@@ -1639,7 +1643,7 @@ export function createPageArtist({ parchment, grain, images }) {
       g.fillStyle = C.rubric;
       if (E) {
         g.globalAlpha = 0.92;
-        g.font = font(CAPS_WEIGHT, 22);
+        g.font = font(CAPS_WEIGHT, typeSize("caps"));
         const credit = `${E.author} · ${E.work}`.toUpperCase();
         let y = last + 86 + 66;
         // one line if it fits the column, else the author over the work
@@ -1648,14 +1652,14 @@ export function createPageArtist({ parchment, grain, images }) {
           y += 34;
         }
         if (E.note) {
-          g.font = font(SMALL_WEIGHT, 21, true);
+          g.font = font(SMALL_WEIGHT, typeSize("caps"), true);
           g.fillStyle = C.inkSoft;
           g.globalAlpha = 0.78;
           g.fillText(E.note, cx, y + 2);
         }
         REGIONS?.push({ role: "epigraph", x: box.x, y: first - 120, w: box.w, h: y + (E.note ? 30 : 0) - (first - 120) });
       } else {
-        g.font = font(400, 22);
+        g.font = font(400, typeSize("caps"));
         g.globalAlpha = 0.7;
         g.fillText("EX LIBRIS", cx, 1120);
         REGIONS?.push({ role: "epigraph", x: box.x, y: first - 120, w: box.w, h: 1140 - (first - 120) });
@@ -1665,16 +1669,16 @@ export function createPageArtist({ parchment, grain, images }) {
       g.save();
       g.textAlign = "center";
       const cx = box.x + box.w / 2;
-      g.font = font(400, 26);
+      g.font = font(400, typeSize("caption"));
       g.fillStyle = C.rubric;
       g.fillText(L.bookTitle.toUpperCase().split("").join(" "), cx, 190);
       ornamentRule(g, cx, 236, 300);
-      g.font = font(600, 74);
+      g.font = font(600, typeSize("display"));
       g.fillStyle = C.ink;
       const lines = wrap(g, meta.title, () => box.w - 40);
-      lines.forEach((line, i) => g.fillText(line, cx, 350 + i * 84));
-      let y = 350 + (lines.length - 1) * 84;
-      g.font = font(400, Math.round(40 * (state.column ? COLUMN_PRINT.kicker : 1)), true);
+      lines.forEach((line, i) => g.fillText(line, cx, 350 + i * TITLE_LEAD));
+      let y = 350 + (lines.length - 1) * TITLE_LEAD;
+      g.font = font(400, typeSize("body"), true);
       g.fillStyle = C.rubric;
       g.fillText(meta.kicker, cx, y + 76);
       g.restore();
@@ -1691,14 +1695,14 @@ export function createPageArtist({ parchment, grain, images }) {
       }
       // the invitation to turn, with a fleuron under it
       // (set larger on a phone, it keeps as far from a tall medallion's foot by sitting a little lower)
-      const begin = Math.round(30 * (state.column ? COLUMN_PRINT.begin : 1));
-      const by = 1150 + (begin - 30);
+      const begin = typeSize("small", state.column);
+      const by = 1150 + (begin - typeSize("small"));
       g.save();
       g.textAlign = "center";
       g.font = font(400, begin, true);
       g.fillStyle = C.inkSoft;
       g.fillText(L.turnToBegin, cx0(box), by);
-      g.font = font(400, 34);
+      g.font = font(400, typeSize("small"));
       g.fillStyle = C.rubric;
       g.fillText("❧", cx0(box), by + 56);
       g.restore();
@@ -1709,9 +1713,9 @@ export function createPageArtist({ parchment, grain, images }) {
       g.textAlign = "center";
       const cx = box.x + box.w / 2;
       ornamentRule(g, cx, 560, 260);
-      g.font = font(400, 36, true);
+      g.font = font(400, typeSize("quote"), true);
       g.fillStyle = C.inkSoft;
-      taleUi[state.lang].placeholderNote.split("\n").forEach((line, i) => g.fillText(line, cx, 650 + i * 52));
+      taleUi[state.lang].placeholderNote.split("\n").forEach((line, i) => g.fillText(line, cx, 650 + i * Math.round(typeSize("quote") * 1.42)));
       ornamentRule(g, cx, 790, 160);
       g.restore();
     } else if (desc.type === "taleTitle") {
@@ -1719,16 +1723,16 @@ export function createPageArtist({ parchment, grain, images }) {
       g.save();
       g.textAlign = "center";
       const cx = box.x + box.w / 2;
-      g.font = font(400, 26);
+      g.font = font(400, typeSize("caption"));
       g.fillStyle = C.rubric;
-      g.fillText(L.bookTitle.toUpperCase().split("").join(" "), cx, 190);
+      g.fillText(L.bookTitle.toUpperCase().split("").join("\u200a"), cx, 190);
       ornamentRule(g, cx, 236, 300);
-      g.font = font(600, 74);
+      g.font = font(600, typeSize("display"));
       g.fillStyle = C.ink;
       const lines = wrap(g, T.title[state.lang], () => box.w - 40);
-      lines.forEach((line, i) => g.fillText(line, cx, 350 + i * 84));
-      const y = 350 + (lines.length - 1) * 84;
-      g.font = font(400, 40, true);
+      lines.forEach((line, i) => g.fillText(line, cx, 350 + i * TITLE_LEAD));
+      const y = 350 + (lines.length - 1) * TITLE_LEAD;
+      g.font = font(400, typeSize("body"), true);
       g.fillStyle = C.rubric;
       g.fillText(T.kicker[state.lang], cx, y + 76);
       // the tale's ribbon colour as a small painted lozenge between gold rules
@@ -1745,10 +1749,10 @@ export function createPageArtist({ parchment, grain, images }) {
       g.lineWidth = 5;
       g.stroke();
       ornamentRule(g, cx, ly + 110, 220);
-      g.font = font(400, 30, true);
+      g.font = font(400, typeSize("small"), true);
       g.fillStyle = C.inkSoft;
       g.fillText(taleUi[state.lang].placeholderHint, cx, 1150);
-      g.font = font(400, 34);
+      g.font = font(400, typeSize("small"));
       g.fillStyle = C.rubric;
       g.fillText("❧", cx, 1206);
       g.restore();
@@ -1772,9 +1776,9 @@ export function createPageArtist({ parchment, grain, images }) {
       const under = [];
       if (desc.choice) {
         const resp = desc.choice.selectedId ? desc.choice.options.find((o) => o.id === desc.choice.selectedId)?.response : null;
-        under.push(choicesBlock({ ...desc.choice, hint: L.choiceHint, size: 37, hits, pageId: spread.page, response: resp, reserve: longestResponse(desc.choice), anim: opts.seal, column: state.column }));
+        under.push(choicesBlock({ ...desc.choice, hint: L.choiceHint, hits, pageId: spread.page, response: resp, reserve: longestResponse(desc.choice), anim: opts.seal, column: state.column }));
       }
-      const note = desc.note ? noteBlock(desc.note, Math.round(35 * (state.column ? COLUMN_PRINT.note : 1))) : null;
+      const note = desc.note ? noteBlock(desc.note, state.column) : null;
       if (note) under.push(note);
       // the picture takes the room the blocks under it leave; it only ever gets smaller than the
       // full plate if a page's text outgrows the content limits, so nothing runs off the page
@@ -1805,7 +1809,7 @@ export function createPageArtist({ parchment, grain, images }) {
   function textBlocks(desc, size, state, hits, vineSide, spread, reserve = true, anim = null) {
     const L = ui[state.lang];
     const blocks = [];
-    if (desc.title) blocks.push(headingBlock(desc.t.title, Math.round(size * 1.36)));
+    if (desc.title) blocks.push(headingBlock(desc.t.title, typeSize("title")));
     desc.paragraphs.forEach((p, i) => {
       const b = paragraphBlock(p.text, { size, drop: desc.title && i === 0, vineSide, sprig: desc.title && i === 0 ? sprigOf(spread.taleId || state.tale, state.spreads, spread.page) : null });
       b.gapBefore = i === 0 && desc.title ? Math.round(size * 0.7) : Math.round(size * 0.42);
@@ -1814,7 +1818,7 @@ export function createPageArtist({ parchment, grain, images }) {
     if (desc.choice) {
       const longest = longestResponse(desc.choice);
       const selected = desc.choice.selectedId ? desc.choice.options.find((o) => o.id === desc.choice.selectedId)?.response : null;
-      const cb = choicesBlock({ ...desc.choice, hint: L.choiceHint, size: Math.round(size * 0.88), hits, pageId: spread.page, response: reserve ? longest : selected, reserve: longest, anim, column: state.column });
+      const cb = choicesBlock({ ...desc.choice, hint: L.choiceHint, hits, pageId: spread.page, response: reserve ? longest : selected, reserve: longest, anim, column: state.column });
       cb.gapBefore = Math.round(size * 0.95);
       blocks.push(cb);
     }
@@ -1866,7 +1870,7 @@ export function createPageArtist({ parchment, grain, images }) {
     let remaining = box.h - heightOf(g, blocks, box.w);
     // the last page closes with a gilded clasp that starts the tale again, under the text and its
     // closing ornament; its room is set aside first, so the ornament is sized round it
-    let clasp = desc.restart ? claspBlock({ label: L.restartStory, size: Math.round(size * (state.column ? COLUMN_PRINT.clasp : 1)), hits }) : null;
+    let clasp = desc.restart ? claspBlock({ label: L.restartStory, column: state.column, hits }) : null;
     const claspGap = Math.round(size * 1.5);
     if (clasp && clasp.measure() + claspGap + 40 < remaining) remaining -= clasp.measure() + claspGap;
     else clasp = null;
@@ -1887,7 +1891,7 @@ export function createPageArtist({ parchment, grain, images }) {
       }
     }
     if (desc.note && remaining > 260) {
-      const nb = noteBlock(desc.note, Math.round(size * 0.78 * (state.column ? COLUMN_PRINT.note : 1)));
+      const nb = noteBlock(desc.note, state.column);
       const h = nb.measure(g, box.w);
       if (h + 40 < remaining) {
         nb.gapBefore = 44;
