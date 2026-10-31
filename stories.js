@@ -587,12 +587,12 @@ export const stories = [
             "give-sack": [
               "Marcin was silent for a long while. “Our grandparents made that promise, so I’ll keep it too,” he said, and ran to fetch the sack. Koniczynka carried it to the Corner on her back, and Dobrochna added acorns from her own store.",
               "“We’ll find something for your piglets too,” she promised. “Everyone in the village will give a handful of oats.” As they scattered the acorns under the old oaks, Marcin kept saying, “Hand in hand, step by step.”",
-              "Gustaw and Dobrochna put the fence back up. On the last post, Marcin used his knife to carve a new star, the sign of the oath made new."
+              "Gustaw and Dobrochna put the fence back up. On the last post, Marcin carved a new star with a little chisel, the sign of the oath made new."
             ],
             "gather-forest": [
               "Everyone spread out through the forest, but not too far, so they could still hear one another. They hunted for acorns in the moss and under the leaves, and the piglets sniffed hardest of all.",
               "Under the beech trees the piglets found beechnuts, little three-sided nuts, and gobbled them up. “Those are for them, and the acorns are for the deer,” said Marcin happily. “Hand in hand, step by step,” he kept saying as they carried full handfuls to the Corner.",
-              "Gustaw and Dobrochna put the fence back up. On the last post, Marcin used his knife to carve a new star, the sign of the oath made new."
+              "Gustaw and Dobrochna put the fence back up. On the last post, Marcin carved a new star with a little chisel, the sign of the oath made new."
             ]
           }
         },

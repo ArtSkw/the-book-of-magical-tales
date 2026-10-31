@@ -123,7 +123,7 @@ P7_CAMERA = ("CAMERA: eye level, INSIDE the Oak Corner on its moss, looking SOUT
 for var, desc, who in [
     ("give-sack", "Koniczynka stands at the left with Marcin's open hemp sack slung across her back over the red caparison; Oliwia scoops acorns from it in her two hands and scatters them over the rail onto the moss inside; Dobrochna tips a small basket of her own acorns over the rail beside her. In the centre Gustaw fits a fresh pale rail into place. At the right Marcin kneels facing the NEW PALE POST, his left hand on the post and the edge of a small wood chisel set against its face near the top, where a four-pointed star is HALF-CARVED (only two of its four points cut so far, fresh pale chips on the ground); his tongue between his teeth, proud. The chisel touches the post; he holds nothing else.",
      ["mare", "oliwia", "dobrochna", "gustaw", "marcin", "piglets"]),
-    ("gather-forest", "Everyone has gathered acorns from the whole forest: Oliwia pours acorns over the rail from the flap of her satchel, Dobrochna from her gathered-up apron; the three piglets nose acorns out of the leaves by the fence; Koniczynka stands at the left without a load. In the centre Gustaw fits a fresh pale rail into place. At the right Marcin kneels at the NEW PALE POST and carves a four-pointed star near its top with a small wood chisel, proud.",
+    ("gather-forest", "Everyone has gathered acorns from the whole forest: Oliwia pours acorns over the rail from the flap of her satchel, Dobrochna from her gathered-up apron; the three piglets nose acorns out of the leaves by the fence; Koniczynka stands at the left without a load. In the centre Gustaw fits a fresh pale rail into place. At the right Marcin kneels facing the NEW PALE POST, his left hand on the post and the edge of a small wood chisel set against its face near the top, where a four-pointed star is HALF-CARVED (only two of its four points cut so far, fresh pale chips on the ground), proud. The chisel touches the post; he holds nothing else.",
      ["mare", "oliwia", "dobrochna", "gustaw", "marcin", "piglets"]),
 ]:
     page(f"fo-p7-{var}", "plate", "morning", who, ["corner"], ["mended"],
@@ -300,6 +300,22 @@ mist_first("fo-p6", "fo-p6b")
 # pages with a "Did you know" note (5, 7, 9) are 5:4 plates: new takes, not fixes of the portrait first takes
 m.REVISION["fo-p7-give-sack"] = "fo-p7-give-sackc"  # b: Marcin whittled in his hands, star already cut; sunny orange
 m.REVISION["fo-p9-make-way"] = "fo-p9-make-wayd"  # b: stag beside children; c: one long row, too wide
+
+
+# 2026-10-31 author: p8 shows ONE new pale post, as on p7 (fo-p8b had two). Fix from fo-p8b.
+fix("fo-p8", "fo-p8c", "camera, the four people, their poses and faces, the stag, the doe, the fawn, the two faint hinds, the fallen branch, the trail, the mist bands, the oaks, the light and colours, the old grey fence posts and the rails",
+    "the fence has exactly ONE new pale post with a carved star (the one nearest the trail, where the snapped post stood); every other post is an OLD GREY weathered post with its old small star.",
+    "Exactly one new pale post; every other post old and grey.", "no second pale post")
+
+# Second variants (author approved the first variants 2026-10-31): each keeps its approved sibling's camera,
+# place, light and colours (the sibling's take is the composition reference) and changes only the scene.
+SIBLING = "the people and animals and what they do, exactly as described in SCENE above."
+mist_first("fo-p3-call-back", "fo-p3-call-back")
+fix("fo-p3-call-back", "fo-p3-call-back", "camera, the two framing oak trunks, the broken fence with its star posts and fallen rails, the empty cups, Oliwia kneeling with the cup and her pose, Gustaw, Dobrochna and Koniczynka outside the fence, the mist, light and colours", SIBLING)
+mist_first("fo-p5-show-tracks", "fo-p5-show-tracks")
+fix("fo-p5-show-tracks", "fo-p5-show-tracks", "camera, the Corner's oaks and fence, Gustaw setting the star post upright, Dobrochna's hand on Marcin's shoulder, the snapped stump and fallen rails, the mist, light and colours", SIBLING)
+fix("fo-p7-gather-forest", "fo-p7-gather-forest", "camera, the fence with the new pale rails and the new pale post, Gustaw fitting the rail, Marcin kneeling and carving the half-cut star with the chisel, Dobrochna and Oliwia at the rail, Koniczynka at the left, the acorns on the moss, the light and colours", SIBLING + " Koniczynka carries NO sack.", neg="no sack; no basket")
+fix("fo-p9-help-fawn", "fo-p9-help-fawn", "camera, the curving path, the stag and its pose, the group of people following far behind it and their poses, the mended Corner in the background, the parting mist, light and colours", SIBLING + " The doe and the fawn walk just behind the stag, between it and the people, with an empty stretch of path before the children.")
 
 
 if __name__ == "__main__":

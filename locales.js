@@ -565,12 +565,12 @@ export const storyTranslations = {
               "give-sack": [
                 "Marcin długo milczał. „Obiecali to nasi dziadkowie, to i ja dotrzymam” – powiedział i pobiegł po worek. Koniczynka zaniosła go na grzbiecie do Kąta, a Dobrochna dosypała żołędzi ze swojego zapasu.",
                 "„Twoim prosiaczkom też coś znajdziemy” – obiecała. „We wsi każdy da garść owsa”. Kiedy rozsypywali żołędzie pod starymi dębami, Marcin powtarzał: „Ręka w rękę, krok za krokiem”.",
-                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął nożykiem nową gwiazdkę, znak odnowionej przysięgi."
+                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął dłutkiem nową gwiazdkę, znak odnowionej przysięgi."
               ],
               "gather-forest": [
                 "Wszyscy rozeszli się po lesie, ale nie za daleko, żeby słyszeć się nawzajem. Szukali żołędzi w mchu i pod liśćmi, a prosiaczki węszyły najpilniej ze wszystkich.",
                 "Pod bukami prosiaczki znalazły bukiew, trójkątne orzeszki, i zajadały się nią z zapałem. „To dla nich, a żołędzie dla jeleni” – ucieszył się Marcin. „Ręka w rękę, krok za krokiem” – powtarzał, kiedy znosili pełne garście do Kąta.",
-                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął nożykiem nową gwiazdkę, znak odnowionej przysięgi."
+                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął dłutkiem nową gwiazdkę, znak odnowionej przysięgi."
               ]
             }
           },
