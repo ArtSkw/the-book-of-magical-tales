@@ -11,7 +11,8 @@ m.REVISION.update({"mh-p1": "mh-p1c", "mh-p6": "mh-p6c", "mh-p8": "mh-p8c",  # 2
                    "mh-p10-ring-gently": "mh-p10-ring-gentlyc",  # 2026-10-21 review: moths on the rivets
                    "mh-p9-ring-gently": "mh-p9-ring-gentlyc",
                    "mh-p5-move-slowly": "mh-p5-move-slowlyb", "mh-p5-lullaby": "mh-p5-lullabyc"})  # p5: portraits, not vignettes; lullaby b broke the tower (two belfries)  # 2026-10-21 user review: rope hung outside the tower; sound drawn as extra moons
-m.REVISION.update({"mh-p3-ask-elders": "mh-p3-ask-eldersb",  # 2026-10-24 user review: Janina held two sticks (leaning AND pointing)
+m.REVISION.update({"mh-p7-thank-bell": "mh-p7-thank-bellb",  # 2026-10-31: new scene (turning the bell); a: people at the canvas edges, a church spire in the window
+                   "mh-p3-ask-elders": "mh-p3-ask-eldersb",  # 2026-10-24 user review: Janina held two sticks (leaning AND pointing)
                    "mh-p5-move-slowly": "mh-p5-move-slowlyc",  # the carpenter's leg melted into the trunk
                    "mh-p5-lullaby": "mh-p5-lullabyd", "mh-p9-share-song": "mh-p9-share-songd"})  # share-song d: c hung the rope outside the tower, belfry off-model  # the tune drawn as a gold rope; p9 b: cypresses, finch asleep instead of listening
 # One way to draw a tune everywhere (user, 2026-10-24): airy gold notes, never a ribbon that reads as a second rope.
@@ -126,12 +127,12 @@ page("mh-p7-invite-smith", "plate", "deepdusk", ["smith", "carpenter", "baker", 
      "blacksmith, carpenter, baker, Oliwia; one bell; exactly three rivets.",
      "no text; no fire or forge flames.")
 
-page("mh-p7-thank-bell", "plate", "deepdusk", ["smith", "carpenter", "baker", "oliwia", "janina"], ["belfry"], ["rivets"],
-     "CAMERA: inside the belfry, eye level, the group in a circle around the bell.",
-     "SCENE (page 7, \"The Village Mends the Bell\", variant thank-bell — the bell's name remembered): by candlelight and moonlight, the villagers — Grandmother Janina, the baker, the carpenter, the blacksmith and Oliwia — gently lay their hands on the bell, eyes half closed, smiling, whispering its name together. Oliwia holds a linen cloth. On the rim, the three small rivets already shine across the old crack.",
-     "\"By candlelight and moonlight, Grandmother Janina remembered the bell's name. Everyone laid their hands on the bell and whispered its name together, and the bronze trembled warmly, as if waking up.\"",
-     "five people; one bell; exactly three rivets.",
-     "no text; no fire.")
+page("mh-p7-thank-bell", "plate", "deepdusk", ["gustaw", "carpenter", "baker", "oliwia", "janina"], ["belfry"], [],
+     "CAMERA: inside the belfry, eye level, a little further back than a close group shot, so the bell, the oak beam (yoke) it hangs from and the two iron straps that hold it are all clearly visible, with the group gathered CLOSE around the bell. COMPOSITION: all five people stand within the middle three quarters of the width — Grandmother Janina just left of the bell (her face and her pointing hand well inside the picture, never at the edge), the baker just right of the carpenter (his whole basket inside the picture); the outer eighth of the canvas on each side holds only walls, windows and candles.",
+     "SCENE (page 7, \"A Night in the Belfry\", variant thank-bell — the bell's name and its old rhyme remembered, 2026-10-31): Grandmother Janina has remembered the rhyme that says a hoarse bell must be turned toward the mountains. Gustaw and the carpenter, one on each side of the bell, have loosened the two iron straps on the oak beam and are turning the whole bell a quarter round on its beam, slowly and carefully, both with their hands flat on the bronze — a calm, practical effort, not a struggle. Grandmother Janina stands close with her walking stick, one hand raised toward the arched window that shows the far mountains (north-west), as if saying 'that way', smiling. Oliwia holds up the lantern so they can see the hair-thin crack on the rim, which is now turning away from us to the side. The baker stands by the ladder hatch holding a basket of oat rolls covered with a cloth. Candles on the floor planks, the thin crescent moon in an arched window.",
+     "\"Gustaw and the carpenter loosened the fittings and turned Evensong toward the mountains. The baker brought warm oat rolls with honey for the long night's work.\"",
+     "Gustaw, the carpenter, the baker, Grandmother Janina, Oliwia: exactly five people; one bell; one oak beam; NO rivets on the bell; one short hair-thin crack only.",
+     "no text; no letters or inscription on the bell; no rivets; no fire or forge; no tools striking the bell; the blacksmith is not here; nobody at the left or right edge; through the windows only far mountains, dark hills, round-crowned trees and the night sky — no village, no church, no tower or spire, no pointed trees.")
 
 page("mh-p8", "plate", "deepdusk", ["oliwia", "gustaw", "mare", "villagers"], ["square", "tower"], ["rivets"],
      "CAMERA: low in the square, behind the children, looking up at the tower. Landscape framing with everything important in the middle four-fifths of the width: the children's heads and shoulders in the foreground, the tower in the centre rising to near the top edge, the moon beside it, the top of the pear tree at the right of centre. The attached TOWER REFERENCE (a crop of an approved page of this book) shows exactly how this tower looks: SQUARE in plan with flat stone faces and sharp corners, a square timber-framed belfry with round-arched openings, a red-tiled pyramid roof and the crescent weathervane — match it closely (ignore the rope and the man in that crop).",
