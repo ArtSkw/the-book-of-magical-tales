@@ -1241,14 +1241,20 @@ function claspBlock({ label, size, hits }) {
 
 const longestResponse = (choice) => choice.options.reduce((a, o) => (o.response?.length > (a?.length || 0) ? o.response : a), "");
 
+// A "Did you know" note as a gloss in a manuscript's margin: a rubric rule at its left, the
+// words upright in the main ink (italic at this size read too faintly), on a soft, lighter patch
+// of paper whose edges fade, under the title in red italic. Set as large as the small print under
+// the choices (choicesBlock, 37), so a page's small print is one size.
 function noteBlock(note, size) {
-  const inner = 28;
+  const fs = size + 2;
+  const lead = 1.38;
+  const inner = 30;
   let cache = null;
   const layout = (ctx, width) => {
     if (cache && cache.width === width) return cache;
-    ctx.font = font(400, size, true);
+    ctx.font = font(400, fs);
     const lines = wrap(ctx, glueOrphans(note.body), () => width - inner * 2);
-    cache = { width, lines, height: size * 1.3 + 14 + lines.length * size * 1.36 + inner * 1.4 };
+    cache = { width, lines, height: fs * 1.3 + 14 + lines.length * fs * lead + inner * 1.4 };
     return cache;
   };
   return {
@@ -1258,20 +1264,37 @@ function noteBlock(note, size) {
     draw(ctx, x, y, width) {
       const L = layout(ctx, width);
       ctx.save();
-      roundRect(ctx, x, y, width, L.height, 10);
-      ctx.fillStyle = "rgba(150,110,60,0.07)";
+      // the lighter patch: a rounded shape drawn off the page and only its blurred shadow cast back
+      // onto it, so the edge fades the same in every browser (no canvas filter); the shadow works
+      // in device pixels, so the offset and blur follow the page's scale
+      const k = ctx.getTransform().a || 1;
+      const off = 4000;
+      ctx.save();
+      ctx.shadowColor = "rgba(255,249,231,0.6)";
+      ctx.shadowBlur = 16 * k;
+      ctx.shadowOffsetX = off * k;
+      roundRect(ctx, x + 6 - off, y + 6, width - 12, L.height - 12, 16);
+      ctx.fillStyle = "#000";
       ctx.fill();
-      ctx.strokeStyle = "rgba(150,42,31,0.45)";
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([2, 6]);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.font = font(600, size * 0.95, true);
+      ctx.restore();
+      // a light wash over it, brightest by the rule, fading towards the far corner
+      const wash = ctx.createLinearGradient(x, y, x + width, y + L.height);
+      wash.addColorStop(0, "rgba(255,251,238,0.38)");
+      wash.addColorStop(1, "rgba(255,251,238,0.04)");
+      roundRect(ctx, x, y, width, L.height, 16);
+      ctx.fillStyle = wash;
+      ctx.fill();
+      // the rubric rule
+      ctx.globalAlpha = 0.75;
       ctx.fillStyle = C.rubric;
-      ctx.fillText(note.title, x + inner, y + inner * 0.7 + size * 0.85);
-      ctx.font = font(400, size, true);
-      ctx.fillStyle = C.inkSoft;
-      L.lines.forEach((line, i) => ctx.fillText(line, x + inner, y + inner * 0.7 + size * 1.3 + 14 + size * 0.8 + i * size * 1.36));
+      ctx.fillRect(x + 8, y + inner * 0.6, 3, L.height - inner * 1.2);
+      ctx.globalAlpha = 1;
+      ctx.font = font(600, fs * 0.95, true);
+      ctx.fillStyle = C.rubric;
+      ctx.fillText(note.title, x + inner, y + inner * 0.7 + fs * 0.85);
+      ctx.font = font(400, fs);
+      ctx.fillStyle = C.ink;
+      L.lines.forEach((line, i) => ctx.fillText(line, x + inner, y + inner * 0.7 + fs * 1.3 + 14 + fs * 0.8 + i * fs * lead));
       ctx.restore();
     },
   };
