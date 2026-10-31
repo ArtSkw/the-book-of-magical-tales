@@ -63,7 +63,13 @@ history and payoffs; Kipling, Donaldson, Potter, Hutchins and Sendak for read-al
    child can predict it, join in aloud and retell the tale. It is short (a child can say it with
    the parent, about five words), comes from the plot (a call, a custom, a sound, a request), and
    its meaning grows through the tale; it is never a composed maxim. Good: „Bim-bam, do domu!”,
-   „Powoli i cicho, przy moście śpią myszki”, „We mgle stań i czekaj”.
+   „Powoli i cicho, przy moście śpią myszki”, „Ręka w rękę, krok za krokiem”.
+
+13. **Worry is never faced alone.** A young child must never be asked to imagine being lost,
+   left or alone in the unknown. Uncertainty in a tale is always shared: someone who knows the
+   way, a hand to hold, a warm animal, a plan. Mist, dark or a strange place can be mysterious,
+   never threatening, and the tale's tension comes from a mystery to solve or someone to help,
+   not from the heroes' own fear.
 
 ## 2. Choices change the page, not one line
 
