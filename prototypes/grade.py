@@ -8,7 +8,7 @@ location sheet: it is a layout reference and its colours are washed out), then
 applies the page's time-of-day step from the colour script, so changes in light
 come from the story, not from the generator.
 
-Usage: grade.py <in.png> <out.png> [--time evening|dusk|deepdusk|night]
+Usage: grade.py <in.png> <out.png> [--time day|evening|dusk|deepdusk|night|mist|dawn|morning]
                 [--anchor refs/tone-x.png:dusk ...] [--strength 0.8]
 Each anchor names the story time it was approved at, so its time step is
 removed before matching and steps never compound.
@@ -28,6 +28,10 @@ TIME = {
     "dusk": (-7, 0, -4),        # p4–p7: cold, misty
     "deepdusk": (-13, 1, -9),   # p8
     "night": (-20, 2, -15),     # p9–p10
+    # The Forest Oath runs the other way, from mist to full day (p9 uses "day").
+    "mist": (-4, -1, -6),       # forest p1–p3: pre-dawn mist, pearl-grey and blue
+    "dawn": (-2, 1, -2),        # forest p4–p6: mist thinning, warm patches on the ground
+    "morning": (-1, 1, 1),      # forest p7–p8: late morning, ochre leaves
 }
 
 M = np.array([[0.4124, 0.3576, 0.1805], [0.2126, 0.7152, 0.0722], [0.0193, 0.1192, 0.9505]])
