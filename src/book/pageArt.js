@@ -1243,10 +1243,10 @@ const longestResponse = (choice) => choice.options.reduce((a, o) => (o.response?
 
 // A "Did you know" note as a gloss in a manuscript's margin: a rubric rule at its left, the
 // words upright in the main ink (italic at this size read too faintly), on a soft, lighter patch
-// of paper whose edges fade, under the title in red italic. Set as large as the small print under
-// the choices (choicesBlock, 37), so a page's small print is one size.
+// of paper whose edges fade, under the title in red italic. Set one step of the body scale (SIZES,
+// 2 apart) under the small print of the choices (choicesBlock, 37): a note is the quietest text.
 function noteBlock(note, size) {
-  const fs = size + 2;
+  const fs = size;
   const lead = 1.38;
   const inner = 30;
   let cache = null;

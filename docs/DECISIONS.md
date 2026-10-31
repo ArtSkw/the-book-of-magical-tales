@@ -5,8 +5,8 @@ re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
 - **2026-10-31: the "Did you know" note reads as a gloss.** Its body was small italic
-  in a light brown on a darker tint, hard to read. Now: upright in the main ink at the size
-  of the small print under the choices (37), a rubric rule at its left like a manuscript gloss,
+  in a light brown on a darker tint, hard to read. Now: upright in the main ink, one step of
+  the body scale under the small print of the choices (35 against 37), a rubric rule at its left like a manuscript gloss,
   on a soft lighter patch of paper with feathered edges and gently rounded corners; the red
   italic title stays. Rejected: a heavier italic (C), a solid pasted-in slip (E).
 
