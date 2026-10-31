@@ -4,19 +4,23 @@ Use this template when adding a new tale to the book.
 
 For the full production process, follow `docs/NEW_STORY_WORKFLOW.md`. This template is the story data, the book's rules and the quality checklist used during that workflow.
 
-The tone and values come from `BRIEF.md`. Where the brief describes the original 2D app (CSS animations, tap-to-animate illustrations, a 2D layout), the 3D book has replaced it; the rules below are the current ones.
+The tone and values come from `BRIEF.md`; how sentences, choices and wonder are written comes from `docs/WRITING_BIBLE.md`. Where the brief describes the original 2D app (CSS animations, tap-to-animate illustrations, a 2D layout), the 3D book has replaced it; the rules below are the current ones.
 
 ## Book Rules
 
 `npm run validate:stories` checks every rule marked ✓, for English and Polish alike.
 
 - ✓ 9-10 pages, preferably 10.
-- ✓ 3 short paragraphs per page.
+- ✓ 3 short paragraphs per page (in `body`, or in each option of `bodyByChoice`).
 - ✓ Choice pages on pages 2, 4, 6, and 8, each with exactly **2** options.
 - ✓ Every page needs `title`, `body`, `choices` (an empty array on pages without a choice); every choice needs `id`, `label`, `response`.
 - ✓ A choice label fits on one line of the wax-seal tab: at most **38 characters**. A response fits in two lines: at most **120 characters**.
 - ✓ Exactly one page has `ending: true`: the last one. It has no choices and its last paragraph is `"The end."` in English and `"Koniec."` in Polish.
-- ✓ Every page with `echoes` also has `paragraphByChoice` variants that replace at least two paragraphs for each possible choice.
+- ✓ The page after a choice page (3, 5, 7, 9) is written whole for each option in `bodyByChoice`; it needs no shared `body`. Echo lines (`echoes`) are retired.
+- ✓ An earlier choice may come back as single paragraphs (`paragraphByChoice`), every option covered, each paragraph rewritten by one choice at most, never on top of that choice's own whole page; the ending's last paragraph stays "The end." / "Koniec.".
+- ✓ The translation carries every text field the English page has (`body`, `bodyByChoice`, `paragraphByChoice`, notes), or English would show.
+- ✓ The first paragraph of every page and variant opens with a letter (it carries the illuminated initial): start with narration, not dialogue.
+- ✓ The book never appears inside a tale ("księga", "book"); more than one "jakby" / "as if" on a page is a warning.
 - ✓ 3-4 curiosity notes per tale (`curiosityNote` or `curiosityNoteByChoice`), each body at most **220 characters** (four lines under the picture). Three is the minimum; add a fourth only when the story has a genuinely worthwhile topic.
 - ✓ A page has a choice **or** a curiosity note, never both: under the picture there is room for one or the other. In practice notes sit on the odd consequence pages (1, 3, 5, 7, 9).
 - ✓ Every picture the tale's spread manifest (`src/book/pages.js`) names exists under `public/`, spelled exactly (GitHub Pages is case-sensitive).
@@ -31,7 +35,7 @@ The tone and values come from `BRIEF.md`. Where the brief describes the original
 
 - **Title spread** (before page 1): the epigraph on the left (`epigraph` in `src/book/tales.js`), on the right the book's name, the tale's `title` and `kicker`, and the title emblem.
 - **Page:** the left page carries only the title and the text (and a small marginal ornament, the `tailpiece`, when there is room), the right page the picture. The text is sized to fit the left page, so keep paragraphs short.
-- **Echo** (`echoes`): one short italic line inserted after the first paragraph, e.g. *"The book remembered the gentle ringing."* It is the visible cue that an earlier choice mattered; `paragraphByChoice` carries the real change in the prose.
+- **After a choice:** the next page is the chosen option's own page (`bodyByChoice`), with that option's picture. An earlier choice can return later as one paragraph (`paragraphByChoice`). There is no echo line.
 - **Choice:** two tabs with wax seals under the plate. The chosen seal is pressed and its `response` is written in under the tabs. The reader cannot turn on until they have chosen.
 - **Curiosity note:** under the plate, titled "Did you know...?" / "Czy wiesz, że...?". `curiosityNoteByChoice` lets the note itself depend on an earlier choice.
 - **Ending page:** the text runs over both pages: the first half with the closing emblem under it on the left, the rest with a small ornament and the "Begin again" button on the right.
@@ -48,7 +52,9 @@ Use this checklist before considering a tale ready for review:
 - [ ] Tale has preferably 10 pages.
 - [ ] Every page has 3 short read-aloud paragraphs.
 - [ ] Choice pages are balanced, have 2 options each, and every choice is kind, valid, nonviolent, and softly acknowledged later.
-- [ ] Every consequence page changes at least two prose paragraphs with `paragraphByChoice`, with only a short echo line as the visible cue.
+- [ ] The tale card (`docs/WRITING_BIBLE.md`, §3) is filled in before drafting.
+- [ ] Every page after a choice is written whole for each option, every path is a real, different way through, and at least one earlier choice returns later (usually in the ending).
+- [ ] Every page passes the questions of the writing bible, §5: why is this here, where did it come from, what does it change next.
 - [ ] Middle pages do not over-explain the moral; values are shown through what characters notice, decide, repair, carry, wait for, or protect.
 - [ ] The final page ends clearly with `"Koniec."` in Polish and `"The end."` in English.
 - [ ] 3-4 curiosity notes are included, on pages without a choice, with 3 as the minimum and 4 only for a genuinely worthwhile topic.
@@ -96,7 +102,8 @@ After drafting the story, choose 3-4 pages without a choice for curiosity notes:
 When adding or rewriting a tale:
 
 - Draft the Polish version first as original children's folk-fantasy prose.
-- Preserve page count, paragraph count, choice IDs, choice meaning, echoes, and illustration alignment when adapting into English.
+- Preserve page count, paragraph count, choice IDs, choice meaning, payoffs, and illustration alignment when adapting into English.
+- Follow `docs/WRITING_BIBLE.md`: every detail has a reason or a payoff, every action a visible cause, magic is a rule of the world, the book never appears inside the tale, one comparison per page at most.
 - Use warm, clear, read-aloud Polish phrasing with oral rhythm and occasional soft repetition.
 - Use grounded, descriptive story movement: concrete actions, practical reasons, sensory details, and visible consequences.
 - Avoid frequent morals, metaphors, and abstract summaries in the middle of the tale. Let the final page carry the clear value reflection.
@@ -125,7 +132,7 @@ When adding or rewriting a tale:
 
 ### English story: `stories.js`
 
-The English text and the shared structure (choice ids, which pages have echoes, notes and the ending).
+The English text and the shared structure (choice ids, which pages are rewritten by which choice, notes and the ending).
 
 ```js
 {
@@ -166,27 +173,11 @@ The English text and the shared structure (choice ids, which pages have echoes, 
     },
     {
       title: "Page Three Consequence",
-      body: [
-        "Paragraph one.",
-        "Paragraph two.",
-        "Paragraph three."
-      ],
-      echoes: {
+      // the whole page, once per option of the choice on page 2 (0-based key 1)
+      bodyByChoice: {
         1: {
-          "choice-a": "The book remembered action A.",
-          "choice-b": "The book remembered action B."
-        }
-      },
-      paragraphByChoice: {
-        1: {
-          "choice-a": {
-            0: "Paragraph one rewritten to include the result of action A.",
-            1: "Paragraph two rewritten to carry action A into the scene."
-          },
-          "choice-b": {
-            0: "Paragraph one rewritten to include the result of action B.",
-            1: "Paragraph two rewritten to carry action B into the scene."
-          }
+          "choice-a": ["Paragraph one as it happens after A.", "Paragraph two.", "Paragraph three."],
+          "choice-b": ["Paragraph one as it happens after B.", "Paragraph two.", "Paragraph three."]
         }
       },
       choices: [],
@@ -205,21 +196,10 @@ The English text and the shared structure (choice ids, which pages have echoes, 
     },
     {
       title: "Page Five Consequence",
-      body: [
-        "Paragraph one.",
-        "Paragraph two.",
-        "Paragraph three."
-      ],
-      echoes: {
+      bodyByChoice: {
         3: {
-          "choice-c": "Because of action C, a helper or detail changes.",
-          "choice-d": "Because of action D, a different helper or detail changes."
-        }
-      },
-      paragraphByChoice: {
-        3: {
-          "choice-c": { 0: "...", 2: "..." },
-          "choice-d": { 0: "...", 2: "..." }
+          "choice-c": ["...", "...", "..."],
+          "choice-d": ["...", "...", "..."]
         }
       },
       choices: [],
@@ -231,8 +211,9 @@ The English text and the shared structure (choice ids, which pages have echoes, 
         }
       },
     },
-    // pages 6-9 follow the same pattern: 6 and 8 are choice pages, 7 and 9 consequence pages
-    // (echoes 5 / 7 with paragraphByChoice), notes on 7 and/or 9
+    // pages 6-9 follow the same pattern: 6 and 8 are choice pages, 7 and 9 pages after a choice
+    // (bodyByChoice 5 / 7), notes on 7 and/or 9. A choice page may open with a paragraph that an
+    // earlier choice brings back: paragraphByChoice: { 5: { "choice-e": { 0: "..." }, ... } } on page 8
     {
       title: "Page Ten Ending",
       body: [
@@ -240,17 +221,10 @@ The English text and the shared structure (choice ids, which pages have echoes, 
         "Paragraph two.",
         "The end."
       ],
-      echoes: {
-        7: {
-          "choice-g": "The final page remembers gesture G.",
-          "choice-h": "The final page remembers gesture H."
-        }
-      },
+      // the ending: the last gesture opens it, the first choice returns in its closing saying
       paragraphByChoice: {
-        7: {
-          "choice-g": { 0: "...", 1: "..." },
-          "choice-h": { 0: "...", 1: "..." }
-        }
+        7: { "choice-g": { 0: "..." }, "choice-h": { 0: "..." } },
+        1: { "choice-a": { 1: "..." }, "choice-b": { 1: "..." } }
       },
       choices: [],
       ending: true
@@ -261,7 +235,7 @@ The English text and the shared structure (choice ids, which pages have echoes, 
 
 ### Polish text: `locales.js` (`storyTranslations.pl["new-tale-id"]`)
 
-The same pages in the same order. A translated field replaces the English one; choices are merged option by option, so they carry no `id`; echoes, `paragraphByChoice` and notes use the same page keys and choice ids as `stories.js`.
+The same pages in the same order. A translated field replaces the English one; choices are merged option by option, so they carry no `id`; `bodyByChoice`, `paragraphByChoice` and notes use the same page keys and choice ids as `stories.js`.
 
 ```js
 "new-tale-id": {
@@ -282,12 +256,15 @@ The same pages in the same order. A translated field replaces the English one; c
         { label: "Życzliwe działanie B", response: "Łagodna odpowiedź na wybór B." }
       ],
     },
+    {
+      title: "Strona po wyborze",
+      bodyByChoice: { 1: { "choice-a": ["...", "...", "..."], "choice-b": ["...", "...", "..."] } },
+    },
     // ...
     {
       title: "Zakończenie",
       body: ["...", "...", "Koniec."],
-      echoes: { 7: { "choice-g": "...", "choice-h": "..." } },
-      paragraphByChoice: { 7: { "choice-g": { 0: "...", 1: "..." }, "choice-h": { 0: "...", 1: "..." } } },
+      paragraphByChoice: { 7: { "choice-g": { 0: "..." }, "choice-h": { 0: "..." } }, 1: { "choice-a": { 1: "..." }, "choice-b": { 1: "..." } } },
     }
   ]
 }

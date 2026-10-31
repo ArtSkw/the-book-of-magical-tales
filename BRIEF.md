@@ -55,7 +55,7 @@ Prefer:
 
 ## Reframing Knightly Objects
 
-- **Sword:** ceremonial oath-blade; glows softly when a promise is kept or truth is spoken.
+- **Sword:** ceremonial oath-blade; it stays sheathed. Mention it only when the story uses it.
 - **Shield:** shelter from rain, wind, falling branches, sparks, or fear.
 - **Armor:** gives courage to enter unknown places and protect others.
 - **Banner:** gathers friends and helpers.
@@ -76,6 +76,8 @@ The app opens on:
 - A simple story selector represented as bookmarks, ribbons, or page tabs.
 
 The child and parent choose a story, turn pages, read together, and make small, kind choices that the tale remembers.
+
+The tales are stations of one journey: Gustaw and Oliwia travel on from tale to tale, and Oliwia's bag collects one keepsake from each. Every tale still reads on its own and in any order (`docs/WRITING_BIBLE.md`, §4).
 
 ## Scope Of The First Release
 
@@ -103,14 +105,14 @@ The two starter stories, as planned and as built:
 
 ## Story Generation Ruleset
 
-Use this ruleset for every new tale and every rewrite of an existing tale.
+Use this ruleset for every new tale and every rewrite of an existing tale. The sentence-level craft rules, the tale card and the checks are in `docs/WRITING_BIBLE.md`; where the two differ, the writing bible is the newer and wins.
 
 ### Creative North Star
 
 Stories should combine:
 
 - **Medieval life and material culture:** castles, bridges, bells, mills, workshops, guilds, market squares, herb gardens, scribes, maps, illuminated books, banners, horses, ferries, feast days, harvests, weather signs, tools, craft traditions, village duties, and road customs.
-- **Gentle fantasy wonder:** dragons, talking animals, hidden paths, lantern magic, old oaths, moonlit bells, forest spirits, tiny folk, enchanted maps, wise horses, sleeping giants, healing springs, star signs, and objects that awaken through kindness.
+- **Gentle fantasy wonder:** dragons, talking animals, hidden paths, lantern magic, old oaths, moonlit bells, forest spirits, tiny folk, enchanted maps, wise horses, sleeping giants, healing springs, star signs, and old magic with rules of its own.
 - **Classic high-fantasy values:** fellowship, humility, mercy, stewardship, loyalty, hospitality, courage in small people, respect for old wisdom, reverence for nature, hope in dark or confusing moments, and the idea that power is best used to protect.
 - **Universal family values:** love, patience, honesty, forgiveness, gratitude, cooperation, care for elders, care for younger or smaller beings, sibling/friendship repair, community responsibility, and respect for animals and the natural world.
 
@@ -172,7 +174,7 @@ Polish folk-tale prose should generally include:
 - **Oral rhythm:** sentences that sound good when spoken by a parent, with occasional soft repetitions such as "powoli, bardzo powoli", "cicho, najciszej jak umieli", or "nie od razu, tylko po chwili".
 - **Formulaic warmth:** gentle tale-like openings and closings without parodying archaic language. Prefer "Dawno temu..." only when it truly fits; otherwise use concrete openings like "Pod wieczór...", "Za młynem...", "Na starym moście...".
 - **Grounded Polish diction:** use natural words such as "wioska", "zagroda", "młyn", "izba", "siodło", "płótno", "bochenek", "dzwonnica", "sad", "ścieżka", "potok", and "łąka" where they fit the medieval-fantasy setting.
-- **Personified nature:** let rivers murmur, bells remember, wind carry news, trees listen, horses understand, and small animals matter.
+- **A living world, not animated objects:** rivers murmur and wind blows as they really do; animals and magical creatures may understand and feel; magic is a rule of the world, stated once and kept. Stones, trees, leaves and bells do not hear, want or remember (`docs/WRITING_BIBLE.md`, §1).
 - **Simple emotional naming:** use clear child-friendly feeling words: "zmartwiony", "stremowany", "dumny", "spokojniejszy", "zawstydzony", "wdzięczny", "odważny po cichu".
 - **Grounded causality:** make scenes work through concrete reasons and visible actions. Prefer "the pennant let the village know something important was happening" over symbolic or abstract explanation.
 - **Concrete kindness:** show values through actions: waiting, warming, covering from wind, calling a careful helper, sharing bread, repairing a crack, speaking softly, giving a small creature room.
@@ -216,11 +218,11 @@ Each page should have a relevant illustration or illustration variant. A 10-page
 
 The 10-page rhythm, with the choices on pages 2, 4, 6 and 8 and each tale ending in **"Koniec."** / **"The end."**, is in `docs/TALE_TEMPLATE.md`.
 
-Use mostly linear stories with soft branching. Choices should change details, helpers, dialogue, illustration details, curiosity echoes, or closing reflection while keeping every path kind and valid. Each consequence page should replace at least two body paragraphs through `paragraphByChoice`, so the selected choice feels woven into the prose rather than only mentioned in a highlighted note.
+Use mostly linear stories with soft branching. Choices should change details, helpers, dialogue, illustration details, curiosity notes, or closing reflection while keeping every path kind and valid. The page after a choice is written whole for each option (`bodyByChoice`), so the choice runs through the page, as a scene does in a role-playing game; an earlier choice may return later as one paragraph (`paragraphByChoice`). Every path is a real, different way through. Rules: `docs/WRITING_BIBLE.md`, §2.
 
 ## Page Data Shape
 
-The data shape of a tale, its pages, choices, echoes and curiosity notes, is in `docs/TALE_TEMPLATE.md`, with copyable skeletons.
+The data shape of a tale, its pages, choices, choice variants and curiosity notes, is in `docs/TALE_TEMPLATE.md`, with copyable skeletons.
 
 ## Interaction Ideas
 
@@ -255,8 +257,8 @@ When a child chooses an action, the next page or later resolution should visibly
 - Which small object is used.
 - Which illustration variant is shown.
 - Which concrete detail, helper, dialogue, or final reflection appears.
-- At least two prose paragraphs through `paragraphByChoice`.
-- A short, quiet branch note that signals the book remembered the earlier choice.
+- The whole next page, written for that choice (`bodyByChoice`).
+- A detail that comes back later, often in the ending (`paragraphByChoice`).
 
 All choices should remain kind, constructive, and valid. The story may rejoin the main path after a choice, but the child should feel that their decision mattered and changed the way the tale unfolded.
 

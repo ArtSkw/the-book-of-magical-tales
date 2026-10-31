@@ -1,6 +1,6 @@
-// Story text for the 3D book, resolved as the 2D edition of the site did it:
-// translation first, then paragraphByChoice replacements, then the echo line
-// (inserted after the first paragraph), for every choice page of every tale.
+// Story text for the 3D book: translation first; on the page after a choice the whole body is
+// that choice's own text (bodyByChoice); then single paragraphs that an earlier choice brings
+// back later (paragraphByChoice), for every choice page of every tale.
 import { stories } from "../../stories.js";
 import { storyTranslations, uiText } from "../../locales.js";
 
@@ -37,13 +37,12 @@ export function storyFor(id) {
     const index = pageNumber - 1;
     const base = story.pages[index];
     const tr = lang === "pl" ? storyPl.pages[index] || {} : {};
-    const body = [...(tr.body || base.body)];
+    const whole = byChoice(tr.bodyByChoice || base.bodyByChoice, choices)[0];
+    const body = [...(whole || tr.body || base.body)];
     for (const variant of byChoice(tr.paragraphByChoice || base.paragraphByChoice, choices)) {
       for (const [i, text] of Object.entries(variant)) body[Number(i)] = text;
     }
-    const echo = byChoice(tr.echoes || base.echoes, choices)[0] || null;
     const paragraphs = body.map((text) => ({ text, kind: "body" }));
-    if (echo) paragraphs.splice(1, 0, { text: echo, kind: "echo" });
     return {
       pageNumber,
       title: tr.title || base.title,
@@ -54,11 +53,11 @@ export function storyFor(id) {
     };
   }
 
-  // The choice pages whose choice rewrites this page (its paragraphs, echo line or note), e.g. [4].
+  // The choice pages whose choice rewrites this page (its text or its note), e.g. [4].
   function dependsOn(pageNumber) {
     const base = story.pages[pageNumber - 1] || {};
     const tr = storyPl.pages[pageNumber - 1] || {};
-    const maps = [base.paragraphByChoice, base.echoes, base.curiosityNoteByChoice, tr.paragraphByChoice, tr.echoes, tr.curiosityNoteByChoice];
+    const maps = [base.bodyByChoice, base.paragraphByChoice, base.curiosityNoteByChoice, tr.bodyByChoice, tr.paragraphByChoice, tr.curiosityNoteByChoice];
     return [...new Set(maps.flatMap((m) => Object.keys(m || {}).map((k) => Number(k) + 1)))];
   }
 

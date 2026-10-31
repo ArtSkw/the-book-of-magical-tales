@@ -23,7 +23,7 @@ rules (`~/.claude/CLAUDE.md`) apply too.
 ## What to read for the task
 
 - **Concept, values, nonviolence, story rules:** `BRIEF.md`
-- **A new tale or story text:** `docs/TALE_TEMPLATE.md`, then `docs/NEW_STORY_WORKFLOW.md`
+- **A new tale or story text:** `docs/WRITING_BIBLE.md` (craft rules, tale card, the journey), `docs/TALE_TEMPLATE.md`, then `docs/NEW_STORY_WORKFLOW.md`
 - **Illustrations:** `docs/pilot/MANUSCRIPT_BIBLE.md` (style A v2, the forbidden
   list, §1.8a continuity) and `docs/pilot/SET_BIBLE_<tale>.md`. The prompt
   rules are encoded in `prototypes/prompts/_build_a2.py`, the source of truth.

@@ -21,6 +21,10 @@ const MAX_CHOICE_RESPONSE = 120;
 const MAX_NOTE_BODY = 220;
 
 const errors = [];
+const TEXT_FIELDS = ["body", "bodyByChoice", "paragraphByChoice", "curiosityNote", "curiosityNoteByChoice"];
+const BOOK_WORDS = { en: /\bbook\b/i, pl: /\bksi[ęe]g|\bksi[ąa]żk/i };
+const AS_IF = { en: /\bas if\b|\bas though\b/gi, pl: /\bjakby\b/gi };
+const warnings = [];
 
 function addError(story, message) {
   errors.push(`${story.title}: ${message}`);
@@ -62,10 +66,11 @@ for (const story of stories) {
     const label = `page ${pageNumber}`;
 
     if (!page.title) addError(story, `${label} missing title`);
-    if (!Array.isArray(page.body)) {
-      addError(story, `${label} body must be an array`);
-    } else if (page.body.length !== EXPECTED_PARAGRAPHS) {
-      addError(story, `${label} expected ${EXPECTED_PARAGRAPHS} paragraphs, got ${page.body.length}`);
+    // a page after a choice has a whole body per option (bodyByChoice) and needs no shared body
+    if (!page.body && !page.bodyByChoice) {
+      addError(story, `${label} needs a body or a bodyByChoice`);
+    } else if (page.body && (!Array.isArray(page.body) || page.body.length !== EXPECTED_PARAGRAPHS)) {
+      addError(story, `${label} expected ${EXPECTED_PARAGRAPHS} paragraphs, got ${Array.isArray(page.body) ? page.body.length : "no array"}`);
     }
 
     if (!Array.isArray(page.choices)) addError(story, `${label} choices must be an array`);
@@ -97,46 +102,17 @@ for (const story of stories) {
       if (!choice.response) addError(story, `${choiceLabel} missing response`);
     });
 
-    for (const field of ["echoes", "paragraphByChoice", "curiosityNoteByChoice"]) {
+    if (page.echoes) {
+      addError(story, `${label} has echoes; the italic echo line is retired (docs/DECISIONS.md 2026-10-31): write the whole page per choice in bodyByChoice`);
+    }
+    for (const field of ["bodyByChoice", "paragraphByChoice", "curiosityNoteByChoice"]) {
       if (page[field] && !isPlainObject(page[field])) {
         addError(story, `${label} ${field} must be an object`);
       }
     }
-
-    if (page.echoes) {
-      for (const [sourcePage, variants] of Object.entries(page.echoes)) {
-        const paragraphVariants = page.paragraphByChoice?.[sourcePage];
-        if (!isPlainObject(paragraphVariants)) {
-          addError(story, `${label} paragraphByChoice missing variants for source page ${sourcePage}`);
-          continue;
-        }
-
-        for (const choiceId of Object.keys(variants)) {
-          const replacements = paragraphVariants[choiceId];
-          if (!isPlainObject(replacements)) {
-            addError(story, `${label} paragraphByChoice missing "${choiceId}" replacement`);
-            continue;
-          }
-
-          const changedIndexes = Object.keys(replacements);
-          if (changedIndexes.length < 2) {
-            addError(story, `${label} paragraphByChoice "${choiceId}" should replace at least two paragraphs`);
-          }
-
-          for (const [paragraphIndex, paragraph] of Object.entries(replacements)) {
-            const indexNumber = Number(paragraphIndex);
-            if (!Number.isInteger(indexNumber) || indexNumber < 0 || indexNumber >= EXPECTED_PARAGRAPHS) {
-              addError(story, `${label} paragraphByChoice "${choiceId}" has invalid paragraph index "${paragraphIndex}"`);
-            }
-            if (typeof paragraph !== "string" || !paragraph.trim()) {
-              addError(story, `${label} paragraphByChoice "${choiceId}" paragraph ${paragraphIndex} must be text`);
-            }
-          }
-        }
-      }
-    }
   });
 
+  checkChoiceText(story);
   const actualChoicePages = story.pages
     .map((page, index) => (page.choices.length ? index + 1 : null))
     .filter(Boolean);
@@ -146,6 +122,94 @@ for (const story of stories) {
   }
 
   checkBookLimits(story);
+}
+
+// How choices shape the text, in English (stories.js) and each translation (locales.js):
+// - the page right after a choice page is rewritten whole for each option (bodyByChoice), so the
+//   consequence of a choice runs through the page, not through one added line;
+// - an earlier choice may come back later as single paragraphs (paragraphByChoice), each paragraph
+//   owned by one choice at most, and never on top of a whole-page variant of the same choice;
+// - a translation carries every text field the English page has, or it would show English;
+// - the book is never a character or a narrator inside a tale, and ornamental "as if" is rare.
+
+function optionIds(story, sourceIndex) {
+  return (story.pages[sourceIndex]?.choices || []).map((c) => c.id);
+}
+
+function checkChoiceText(story) {
+  const languages = [["en", (i) => story.pages[i]], ...Object.entries(storyTranslations).map(([lang, tr]) => [lang, (i) => tr[story.id]?.pages?.[i] || {}])];
+  story.pages.forEach((base, index) => {
+    const pageNumber = index + 1;
+    const prevIsChoice = index > 0 && story.pages[index - 1].choices?.length && !base.ending;
+    for (const [lang, pageOf] of languages) {
+      const page = pageOf(index);
+      const label = `[${lang}] page ${pageNumber}`;
+      if (lang !== "en") {
+        for (const field of TEXT_FIELDS) {
+          if (base[field] && !page[field]) addError(story, `${label} misses ${field}; the English one would show`);
+        }
+      }
+      if (prevIsChoice) {
+        const whole = page.bodyByChoice?.[index - 1];
+        if (!isPlainObject(whole)) {
+          addError(story, `${label} follows a choice and needs bodyByChoice[${index - 1}], a whole page per option`);
+        } else {
+          for (const id of optionIds(story, index - 1)) {
+            const body = whole[id];
+            if (!Array.isArray(body) || body.length !== EXPECTED_PARAGRAPHS || body.some((p) => typeof p !== "string" || !p.trim())) {
+              addError(story, `${label} bodyByChoice "${id}" must be ${EXPECTED_PARAGRAPHS} paragraphs of text`);
+            }
+          }
+        }
+      }
+      for (const src of Object.keys(page.bodyByChoice || {})) {
+        if (!optionIds(story, Number(src)).length) addError(story, `${label} bodyByChoice source ${src} is not a choice page`);
+      }
+      const owner = {};
+      for (const [src, variants] of Object.entries(page.paragraphByChoice || {})) {
+        const ids = optionIds(story, Number(src));
+        if (!ids.length) addError(story, `${label} paragraphByChoice source ${src} is not a choice page`);
+        if (page.bodyByChoice?.[src]) addError(story, `${label} paragraphByChoice ${src} repeats a choice that already rewrites the whole page`);
+        for (const id of ids) {
+          if (!isPlainObject(variants?.[id])) addError(story, `${label} paragraphByChoice ${src} misses option "${id}"`);
+        }
+        for (const [id, replacements] of Object.entries(variants || {})) {
+          for (const [i, text] of Object.entries(replacements || {})) {
+            const n = Number(i);
+            if (!Number.isInteger(n) || n < 0 || n >= EXPECTED_PARAGRAPHS) addError(story, `${label} paragraphByChoice ${src}/${id} has invalid paragraph index "${i}"`);
+            if (typeof text !== "string" || !text.trim()) addError(story, `${label} paragraphByChoice ${src}/${id} paragraph ${i} must be text`);
+            if (owner[n] !== undefined && owner[n] !== src) addError(story, `${label} paragraph ${n} is rewritten by two choices (${owner[n]} and ${src})`);
+            owner[n] = src;
+          }
+        }
+      }
+      if (base.ending && Object.keys(owner).map(Number).includes(EXPECTED_PARAGRAPHS - 1)) {
+        addError(story, `${label} the ending's last paragraph must stay "The end." / "Koniec."`);
+      }
+      // the first paragraph carries the illuminated initial, so it opens with a letter, not a quote
+      const firsts = page.bodyByChoice ? Object.values(page.bodyByChoice).flatMap((v) => Object.values(v || {}).map((b) => b?.[0])) : [page.body?.[0]];
+      for (const v of Object.values(page.paragraphByChoice || {})) for (const r of Object.values(v || {})) if (r?.[0]) firsts.push(r[0]);
+      for (const t of firsts) {
+        if (typeof t === "string" && !/^\p{L}/u.test(t)) addError(story, `${label} opens with "${t.slice(0, 12)}…"; the initial needs a letter (start with narration, not dialogue)`);
+      }
+      // the text a reader can meet on this page, every variant
+      const texts = [page.title, ...(page.body || [])];
+      for (const v of Object.values(page.bodyByChoice || {})) for (const body of Object.values(v || {})) texts.push(...(body || []));
+      for (const v of Object.values(page.paragraphByChoice || {})) for (const r of Object.values(v || {})) texts.push(...Object.values(r || {}));
+      const bookWord = BOOK_WORDS[lang];
+      for (const t of texts) {
+        if (bookWord && typeof t === "string" && bookWord.test(t)) addError(story, `${label} names the book inside the tale: "${t.slice(0, 70)}…"`);
+      }
+      const asIf = AS_IF[lang];
+      if (asIf) {
+        const variants = page.bodyByChoice ? Object.values(page.bodyByChoice).flatMap((v) => Object.values(v || {})) : [page.body || []];
+        for (const body of variants) {
+          const n = body.join(" ").match(asIf)?.length || 0;
+          if (n > 1) warnings.push(`${story.title}: ${label} has ${n} "as if" comparisons; keep at most one, and only when it shows size, shape or sound`);
+        }
+      }
+    }
+  });
 }
 
 // The page rule of the 3D book (src/book/pages.js): the left page carries only text, the
@@ -238,6 +302,8 @@ function checkBookLimits(story) {
     });
   }
 }
+
+for (const warning of warnings) console.warn(`warning: ${warning}`);
 
 if (errors.length) {
   console.error("Story validation failed:");

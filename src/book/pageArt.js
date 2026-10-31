@@ -1784,9 +1784,7 @@ export function createPageArtist({ parchment, grain, images }) {
     const blocks = [];
     if (desc.title) blocks.push(headingBlock(desc.t.title, Math.round(size * 1.36)));
     desc.paragraphs.forEach((p, i) => {
-      const b = p.kind === "echo"
-        ? paragraphBlock(p.text, { size: Math.round(size * 0.92), italic: true, color: C.inkSoft })
-        : paragraphBlock(p.text, { size, drop: desc.title && i === 0, vineSide, sprig: desc.title && i === 0 ? sprigOf(spread.taleId || state.tale, state.spreads, spread.page) : null });
+      const b = paragraphBlock(p.text, { size, drop: desc.title && i === 0, vineSide, sprig: desc.title && i === 0 ? sprigOf(spread.taleId || state.tale, state.spreads, spread.page) : null });
       b.gapBefore = i === 0 && desc.title ? Math.round(size * 0.7) : Math.round(size * 0.42);
       blocks.push(b);
     });

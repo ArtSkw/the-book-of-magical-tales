@@ -30,8 +30,7 @@
 // 1 = right edge), chosen so every figure and story prop stays in: p2 0.5, p4 0.35, p5-lantern 1.0
 // (pennant), p5-bread 0.2 (mill), p6 0.4, p7-crumbs 0.45 (Oliwia to the dragon's head), p7-warm-path 0.85
 // (cradle), p8 0.4 (pennant, lit inn), p9-name-promise 0.7 (pennant, five villagers),
-// p9-wave-goodnight 0.5. Older 3:2 plates (Moonhill p7-thank-bell, until its own pass)
-// are cropped live by `focus`.
+// p9-wave-goodnight 0.5. Moonhill p7-thank-bell 0.45 (Janina's pointing hand, the baker's basket).
 // Tailpieces are the shared marginal ornaments, so each tale gets plants and small beasts, not one motif.
 
 const V = "/assets/illustrations/v2";
@@ -96,7 +95,7 @@ export const moonhillSpreads = [
       "ask-elders": img(`${MH}/p3-ask-elders.webp`, "Babcia Janina unosi laskę i pokazuje gałąź gruszy z zaplątaną liną, tuż obok gniazda zięb.", "Grandmother Janina raises her stick and points at the pear branch with the tangled rope, right beside the finches' nest."),
     },
   },
-  { page: 4, tailpiece: `${OR}/columbine-hare.webp`, images: { default: img(`${MH}/p4.webp`, "Cieśla cicho stawia drabinę, piekarz owija szczebel, Oliwia patrzy na gniazdo.", "The carpenter quietly sets the ladder, the baker wraps a rung, Oliwia watches the nest.") } },
+  { page: 4, tailpiece: `${OR}/columbine-hare.webp`, images: { default: img(`${MH}/p4.webp`, "Cieśla cicho stawia drabinę, piekarz owija płótnem jej nogi, Oliwia patrzy na ziębę w gnieździe.", "The carpenter quietly sets the ladder, the baker wraps its feet in cloth, Oliwia watches the finch on her nest.") } },
   {
     page: 5, tailpiece: `${OR}/owl-hazel.webp`, variantFrom: 4,
     images: {
@@ -109,7 +108,7 @@ export const moonhillSpreads = [
     page: 7, tailpiece: `${OR}/oak-wren.webp`, variantFrom: 6,
     images: {
       "invite-smith": img(`${MH}/p7-invite-smith.webp`, "Kowalka wbija nity, piekarz podaje bułeczki, Oliwia poleruje dzwon.", "The blacksmith sets the rivets, the baker passes rolls, Oliwia polishes the bell."),
-      "thank-bell": img(`${MH}/p7-thank-bell.webp`, "Mieszkańcy kładą dłonie na dzwonie i szepczą jego imię.", "The villagers lay their hands on the bell and whisper its name."),
+      "thank-bell": img(`${MH}/p7-thank-bell.webp`, "Gustaw i cieśla obracają dzwon na belce, babcia Janina wskazuje okno ku górom, Oliwia świeci latarnią, piekarz niesie kosz bułeczek.", "Gustaw and the carpenter turn the bell on its beam, Grandmother Janina points toward the mountains, Oliwia holds up the lantern, the baker carries a basket of rolls."),
     },
   },
   { page: 8, tailpiece: `${OR}/strawberry-snail.webp`, images: { default: img(`${MH}/p8.webp`, "Dzieci wstrzymują oddech, a zza chmury nad wieżą wygląda księżyc.", "The children hold their breath as the moon peeps out from a cloud beside the tower.") } },
@@ -123,7 +122,7 @@ export const moonhillSpreads = [
   {
     page: 10, layout: "vignette", variantFrom: 8, secondary: img(`${OR}/fleuron.webp`, "Ozdobnik.", "An ornament."),
     images: {
-      "ring-gently": img(`${MH}/p10-ring-gently.webp`, "Złoty medalion: w dzwonnicy pod sierpem księżyca naprawiony dzwon, a na jego trzech nitach siedzą srebrne ćmy jak trzy gwiazdki.", "A gold medallion: the mended bell in its belfry under a crescent moon, with silver moths sitting on its three rivets like three little stars."),
+      "ring-gently": img(`${MH}/p10-ring-gently.webp`, "Złoty medalion: w dzwonnicy pod sierpem księżyca naprawiony dzwon, a na nim rzędem siedzą srebrne ćmy jak trzy gwiazdki.", "A gold medallion: the mended bell in its belfry under a crescent moon, with silver moths sitting on it in a row like three little stars."),
       "share-song": img(`${MH}/p10-share-song.webp`, "Złoty medalion: na gałęzi gruszy pisklęta zięb przez sen śpiewają melodię, która płynie do nich złotymi nutkami od dzwonnicy.", "A gold medallion: on the pear branch the finch chicks, half asleep, sing back the tune drifting to them in little gold notes from the belfry."),
     },
   },
