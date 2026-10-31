@@ -1892,9 +1892,9 @@ export function createPageArtist({ parchment, grain, images }) {
         const vb = imageBlock(img, vEntry, { mode: "vignette", maxH: Math.min(remaining - 60, desc.emblem ? 900 : 470), large: desc.emblem });
         vb.role = desc.emblem ? "emblem" : "vignette";
         const h = vb.measure(g, box.w);
-        // an emblem alone on its page: it and the clasp sit together in the page's optical middle;
-        // a spot image sits in the optical middle of the room under the text, not glued to it
-        vb.gapBefore = desc.emblem && !blocks.length ? Math.max(30, (remaining - h) * 0.42) : Math.max(30, Math.min(170, (remaining - h) / 2.6));
+        // a spot image sits in the optical middle of the room under the text, not glued to it (an
+        // emblem alone on its page is centred with the clasp by the stack below)
+        vb.gapBefore = Math.max(30, Math.min(170, (remaining - h) / 2.6));
         blocks.push(vb);
         remaining -= h + vb.gapBefore;
       }
@@ -1930,7 +1930,8 @@ export function createPageArtist({ parchment, grain, images }) {
       real.gapBefore = blocks[i].gapBefore;
       blocks[i] = real;
     }
-    stack(g, blocks, box, { gap: 24 });
+    // an emblem alone on its page: it and the clasp under it are centred on the page together
+    stack(g, blocks, box, { gap: 24, align: desc.emblem && !desc.paragraphs.length ? "center" : "top" });
   }
 
   // A printed page for the leaves that fly past while the book riffles to a tale: Phaedrus'
