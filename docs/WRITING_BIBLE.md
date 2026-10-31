@@ -53,6 +53,18 @@ history and payoffs; Kipling, Donaldson, Potter, Hutchins and Sendak for read-al
    "what does that mean?", rewrite it. Heroes do not announce virtues or moods
    ("let's be kind"); they notice, ask, explain and propose.
 
+11. **Animals and creatures keep their nature.** Heroes do not give animals human social rituals
+   (bowing, titles, courtly thanks). Empathy for an animal means respecting what it is and needs:
+   quiet, distance, room to pass, the right food, its home. A wild animal is never approached or
+   touched for the scene's sake; a magical creature speaks through its own behaviour (the bridge
+   dragon's slow blink), not through human manners. Children learn something true: you give a deer
+   room, you do not walk up to it.
+12. **A refrain is something someone in the world would really say or do.** It exists so a young
+   child can predict it, join in aloud and retell the tale. It is short (a child can say it with
+   the parent, about five words), comes from the plot (a call, a custom, a sound, a request), and
+   its meaning grows through the tale; it is never a composed maxim. Good: „Bim-bam, do domu!”,
+   „Powoli i cicho, przy moście śpią myszki”, „We mgle stań i czekaj”.
+
 ## 2. Choices change the page, not one line
 
 - The page after a choice is written **whole, once per option** (`bodyByChoice`). The choice
@@ -96,7 +108,7 @@ every row, but an empty row is a decision, not an accident.
 | **Newcomer** | Gustaw and Oliwia arrive; locals explain their customs | The red pennant custom; the slow blink | Why the hill is "Moonhill" (the crescent weathervane); the rhyme |
 | **Mystery and clues** | One small mystery, 2–3 fair clues, one of them in a picture first | Tail round the stone (p1 picture), breath on the stone, the peep | Moths in the orchard (p1 picture), the rope gone from the tower, the windy afternoon |
 | **Stakes and a gentle clock** | Something real to lose, no fear | Market carts cross at dawn | The shepherd comes home by the bell; the mist is coming down |
-| **Refrain** | A short, concrete line said three times, the last time changed; it names an action and its reason (rule 10) | "Powoli i cicho, przy moście śpią myszki" (the promise, the night, the carts at dawn) | "Bim-bam, do domu!" (and the hoarse clank in between) |
+| **Refrain** | A short, natural line said three times, the last time changed; something a character would really say (rules 10, 12) | "Powoli i cicho, przy moście śpią myszki" (the promise, the night, the carts at dawn) | "Bim-bam, do domu!" (and the hoarse clank in between) |
 | **Joyful turn** | A moment of wonder right after it seemed not to work | The warm path / the cradle carried home | The first clear note after the hoarse clank |
 | **Origin** | Something in the world the child now "knows" the reason for | The saying at the inn; the copper scale in the wall | Three stars on Moonhill's arms; the finches' dawn song |
 | **Notice → understand → help** | The moment a hero says plainly what they understood about someone and why (rule 9) | Oliwia, p3: the dragon guards the mice because it can't tell anyone they live there | The carpenter, p4: if the finch takes fright, the chicks get cold, so the rope comes loose without a tug |

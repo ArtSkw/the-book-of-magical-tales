@@ -1,6 +1,6 @@
 # Seed — "Leśna przysięga" / "The Forest Oath" (tale three)
 
-Status: draft for the author's approval (2026-10-31). Concept from a Fable brainstorm, chosen by the
+Status: spine approved by the author (2026-10-31); the Polish draft comes next. Concept from a Fable brainstorm, chosen by the
 author with the theme moved from mending to **keeping one's word when it costs**. Rules:
 `docs/WRITING_BIBLE.md` (§3 spine and tale card, §4 journey). Ribbon: weld (yellow-green ochre),
 embroidered star (`src/book/tales.js`, `tale-three`).
@@ -42,7 +42,7 @@ embroidered star (`src/book/tales.js`, `tale-three`).
 | Newcomer | The heroes spent the night at Dobrochna's charcoal clearing; she told them the custom (stand and wait) |
 | Mystery and clues | Why does the stag not come? Clues: empty acorn cups and small cloven hoofprints in the moss (p1 picture first), three piglets out of the mist, a broken post with a carved star |
 | Stakes and a gentle clock | Lost in the mist; the deer need acorns before the first frost (the morning's rime on the grass is the reminder) |
-| Refrain | „Kto zabłądzi we mgle, niech stoi i czeka, bo jeleń szuka tych, co stoją” (last time changed: „…a dziś szukał nas”) — draft, to be tested against rule 10 |
+| Refrain | „We mgle stań i czekaj.” Dobrochna's advice to anyone lost (rule 12). p1: they stand and wait, the stag does not come; p8: they stand again and it comes; p10: Oliwia teaches it to Marcin, or the village repeats it |
 | Notice → understand → help | Oliwia, p3: the pigs were hungry, not bad; the deer left because their acorns were eaten; so we must give the Corner back what it lost and mend the fence |
 | Joyful turn | In the last mist a small gold star appears, then the antlers: the stag has come back |
 | Origin | Why the fence posts round the Corner carry a carved star, and the village saying |
@@ -66,9 +66,9 @@ Choices on pages 2, 4, 6, 8; every option a real, different way forward.
 | 4 | Marcin stammers that the storm broke the fence; he says nothing about his piglets. He is scared. | **Ask Marcin kindly** / **Show him the hoofprints gently** |
 | 5 | Marcin tells the truth: his pigs ate the acorns, because outside the Corner there are almost none this year. Nobody scolds him. Gustaw sets the broken post upright; the carved star faces them. | — |
 | 6 | The hard part: there are few acorns anywhere, and the pigs need them too. Keeping the oath will cost. | **Give the deer Marcin's sack of acorns** / **Gather acorns from the whole forest** |
-| 7 | *Sack:* Marcin decides himself; Koniczynka carries the sack to the Corner; Dobrochna adds her own share. *Gather:* everyone searches the forest floor, the piglets help sniff out acorns, and the Corner fills slowly. In both, Gustaw and Dobrochna mend the fence. | — |
-| 8 | The mist thins in patches; they stand still and wait as the custom says. A gold star appears in the mist, then antlers. | **Bow to the stag** / **Carve a new star on the post** |
-| 9 | The stag leads them to the forest's edge into bright noon; the deer come back to the Corner (variant per choice). Oliwia keeps one acorn to plant by the next road. | — |
+| 7 | *Sack:* Marcin decides himself; Koniczynka carries the sack to the Corner; Dobrochna adds her own share. *Gather:* everyone searches the forest floor, the piglets help sniff out acorns, and the Corner fills slowly. In both, Gustaw and Dobrochna mend the fence and Marcin carves a new star on the post, a sign of the renewed oath. | — |
+| 8 | The mist thins in patches; they stand still and wait as the custom says. A gold star appears in the mist, then antlers. | **Stand quietly at a distance** / **Make way for the deer to the Corner** |
+| 9 | *Distance:* the stag comes near by itself, looks at them, and leads them to the forest's edge into bright noon. *Make way:* they step aside; the stag leads the herd into the Corner to eat first, then comes back for the travellers. Oliwia keeps one acorn to plant by the next road. (Rule 11: no bowing, no touching; respect is quiet and room.) | — |
 | 10 | Ending: noon, soup at the clearing; the saying of Dąbrówka (first choice returns as a paragraph). „Koniec.” | — |
 
 **Colour script** (new for the book: it ends in full daylight): p1–3 pre-dawn mist, pearl-grey and
@@ -89,6 +89,5 @@ every year and grow new ones; oaks have "mast years", with many acorns one year 
 
 ## 5. Open questions for the author
 
-1. The refrain's wording (rule 10: a concrete action and its reason).
-2. The keepsake: an acorn to plant later (a promise carried forward), or Dobrochna's charcoal stick
-   (Oliwia draws the stag; one picture in a different technique).
+Answered 2026-10-31: the spine and the moral are approved; the refrain is „We mgle stań i czekaj”;
+the keepsake is the acorn; the p8 choice no longer has the heroes bow (rule 11).
