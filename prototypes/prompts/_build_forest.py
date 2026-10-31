@@ -333,12 +333,17 @@ for pid, rev, change in [
     ("fo-p5-show-tracks", "fo-p5-show-tracksb", "Gustaw no longer holds a post: in the same pose he lifts the broken GATE off the ground with both hands — three planks and a crossbar, the crossbar cracked through the middle of its carved star, the split star facing us; the fence behind is plain."),
     ("fo-p6", "fo-p6c", "The star post Agata touches becomes the broken GATE leaning against a plain gate post: Agata's hand rests on its crossbar, which is cracked through the middle of its carved star, the split star facing us; the other posts are plain."),
     ("fo-p7-give-sack", "fo-p7-give-sackd", "The new pale post becomes a NEW PALE GATE hung in the gateway (three pale planks and a crossbar); Gustaw holds it steady; Marcin, in the same pose, carves the half-finished star in the middle of the gate's crossbar; beside him the old broken grey gate with its cracked star leans against the fence; the old posts are plain grey, without stars."),
-    ("fo-p8", "fo-p8d", "The fence at the left: plain old grey posts and rails without stars, and in it one NEW PALE GATE with a freshly carved four-pointed star on its crossbar, where the new post was."),
+    ("fo-p8", "fo-p8d", "The fence at the left: plain old grey posts and rails without stars, and in it one NEW PALE GATE with a freshly carved four-pointed star on its crossbar, where the new post was. ALSO: Agata's rake is never left standing by itself or leaning on her: she HOLDS it, her free hand (the one not doing anything else) closed round the handle, the rake upright beside her."),
     ("fo-p9-make-way", "fo-p9-make-waye", "The small fence of the Heartwood in the background: plain posts without stars, and in its middle one new pale gate standing open, a small carved star on its crossbar."),
 ]:
     fix(pid, rev, FENCE_KEEP, GATE_FIX + change, neg=GATE_NEG)
     if pid.startswith(("fo-p3", "fo-p4", "fo-p5", "fo-p6")):
         MIST_FIRST.add(rev)
+# author 2026-10-31: on p2 the rake stood upright by itself while both her hands were busy elsewhere
+fix("fo-p2", "fo-p2c", "every person and animal, their poses, faces and costumes, Agata cupping her ear, the camera, the clearing, the oaks, the mist, the light and colours",
+    "Agata's rake: she HOLDS it upright in her other hand, the hand that was hanging at her side, her fingers closed round the handle; the rake no longer stands by itself.",
+    neg="no rake standing by itself; no tool leaning on nothing")
+MIST_FIRST.add("fo-p2c")
 # the siblings not generated yet: from their brother's new take (copied to <pid>-composition.png once accepted)
 fix("fo-p7-gather-forest", "fo-p7-gather-forestb", "camera, the fence and the NEW PALE GATE with the half-carved star, Gustaw holding the gate, Marcin kneeling and carving the star on its crossbar with the chisel, the old broken gate leaning beside him, Agata and Oliwia at the rail, Koniczynka at the left, the acorns on the moss, the light and colours", SIBLING + " Koniczynka carries NO sack.", neg="no sack; no basket; " + GATE_NEG)
 fix("fo-p9-help-fawn", "fo-p9-help-fawnb", "camera, the curving path, the stag and its pose, the group of people following far behind it and their poses, the Heartwood's plain fence with its open new gate in the background, the parting mist, light and colours", SIBLING + " The doe and the fawn walk just behind the stag, between it and the people, with an empty stretch of path before the children; far back, the oak branch lies pulled aside along the edge of the trail.", neg=GATE_NEG)
