@@ -132,7 +132,7 @@ export const moonhillSpreads = [
 
 // Tale three. The oath's star is carved on one thing only, the crossbar of the Matecznik's gate
 // (docs/DECISIONS.md). Until a choice's second picture is generated, it shows the first one's
-// (REVIEW: replace p7-gather-forest, p9-help-fawn, p10-help-fawn).
+// (REVIEW: replace p7-gather-forest and p10-help-fawn).
 const p3FollowPiglets = img(`${FO}/p3-follow-piglets.webp`, "Świnki wbiegają przez otwartą furtkę do Matecznika, gdzie stoi Marcin; wyłamana furtka z pękniętą gwiazdką leży w trawie, a Oliwia klęczy z pustą czapeczką żołędzia na dłoni.", "The piglets trot through the open gateway into the Heartwood, where Marcin stands; the broken gate with its cracked star lies in the grass, and Oliwia kneels with an empty acorn cup in her palm.");
 const p5AskKindly = img(`${FO}/p5-ask-kindly.webp`, "Marcin z ręką na piersi mówi prawdę, Oliwia trzyma go za rękę, Agata kładzie mu dłoń na ramieniu, a Gustaw podnosi wyłamaną furtkę z pękniętą gwiazdką.", "Marcin, a hand on his chest, tells the truth; Oliwia holds his hand, Agata rests hers on his shoulder, and Gustaw lifts the broken gate with its cracked star.");
 const p7GiveSack = img(`${FO}/p7-give-sack.webp`, "Oliwia i Agata sypią żołędzie przez płot, Koniczynka niesie worek Marcina, Gustaw trzyma nową furtkę, a Marcin wycina dłutkiem gwiazdkę na jej poprzeczce.", "Oliwia and Agata pour acorns over the fence, Koniczynka carries Marcin's sack, Gustaw holds the new gate, and Marcin carves a star on its crossbar with a chisel.");
@@ -149,7 +149,7 @@ export const forestSpreads = [
   { page: 6, tailpiece: `${OR}/fleuron.webp`, images: { default: img(`${FO}/p6.webp`, "Agata opiera dłoń o wyłamaną furtkę z pękniętą gwiazdką; Marcin, Oliwia i Gustaw patrzą na świnki, które w szronie znajdują tylko puste czapeczki.", "Agata rests her hand on the broken gate with its cracked star; Marcin, Oliwia and Gustaw watch the piglets find only empty cups in the frost.") } },
   { page: 7, tailpiece: `${OR}/oak-wren.webp`, variantFrom: 6, images: { "give-sack": p7GiveSack, "gather-forest": p7GiveSack } },
   { page: 8, tailpiece: `${OR}/strawberry-snail.webp`, images: { default: img(`${FO}/p8.webp`, "Z mgły wychodzi jeleń ze złotą gwiazdką i łania; jelonek utknął za złamanym konarem, a wszyscy patrzą z zachwytem przy nowej furtce.", "Out of the mist step the stag with a gold star and the doe; the fawn is stuck behind a fallen branch, and everyone watches in wonder by the new gate.") } },
-  { page: 9, tailpiece: `${OR}/hedgehog-clover.webp`, variantFrom: 8, images: { "make-way": p9MakeWay, "help-fawn": p9MakeWay } },
+  { page: 9, tailpiece: `${OR}/hedgehog-clover.webp`, variantFrom: 8, images: { "make-way": p9MakeWay, "help-fawn": img(`${FO}/p9-help-fawn.webp`, "Jeleń z gwiazdką prowadzi ścieżką łanię i jelonka, za nimi idą Oliwia i Marcin ręka w rękę, Gustaw z Koniczynką i Agata; odciągnięty konar leży z boku ścieżki, a w oddali stoi nowa furtka Matecznika.", "The star stag leads the doe and the fawn down the path, followed by Oliwia and Marcin hand in hand, Gustaw with Koniczynka, and Agata; the pulled-away branch lies at the side of the trail, and the Heartwood's new gate stands in the distance.") } },
   {
     page: 10, layout: "vignette", variantFrom: 8, secondary: img(`${OR}/fleuron.webp`, "Ozdobnik.", "An ornament."),
     images: { "make-way": p10MakeWay, "help-fawn": p10MakeWay },
