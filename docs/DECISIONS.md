@@ -4,6 +4,12 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-10-31: the "Did you know" note reads as a gloss.** Its body was small italic
+  in a light brown on a darker tint, hard to read. Now: upright in the main ink at the size
+  of the small print under the choices (37), a rubric rule at its left like a manuscript gloss,
+  on a soft lighter patch of paper with feathered edges and gently rounded corners; the red
+  italic title stays. Rejected: a heavier italic (C), a solid pasted-in slip (E).
+
 - **2026-10-31: heroes reason out loud, and refrains are concrete** (author's review of the
   dragon tale, p3). "Idźmy łagodnie" read as an order with no clear meaning. Heroes now
   show notice → understand → help in their own words (Oliwia: the dragon guards the mice
