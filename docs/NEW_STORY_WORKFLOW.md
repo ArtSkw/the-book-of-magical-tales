@@ -45,7 +45,7 @@ Draft:
 - story title and kicker (the one line under the title)
 - 10-page structure
 - 3 short paragraphs per page
-- choice pages with exactly 2 options each: short labels (at most 38 characters) and responses (at most 120)
+- choice pages with exactly 2 options each: short labels (at most 38 characters) and responses (at most 110)
 - the page after each choice written whole for every option (`bodyByChoice`), every path a real, different way through, and at least one earlier choice returning later as a paragraph (`paragraphByChoice`), usually in the ending
 - final page ending clearly with **"Koniec."**
 - 3-4 curiosity-note candidates, on pages without a choice, at most 220 characters each

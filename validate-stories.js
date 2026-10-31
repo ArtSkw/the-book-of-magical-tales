@@ -14,10 +14,10 @@ const MAX_CURIOSITY_NOTES = 4;
 
 // What fits under the 5:4 plate on a right page of the 3D book (src/book/pageArt.js, PLATE),
 // in every language: one line per choice label, at most two lines of response, a note of at most
-// four lines. Measured in EB Garamond at the book's sizes; checked for English and each translation.
+// four lines. Measured in EB Garamond at the book's sizes (docs/TYPE_SCALE.md: label 37, small 33); checked for English and each translation.
 const CHOICE_OPTIONS = 2;
 const MAX_CHOICE_LABEL = 38;
-const MAX_CHOICE_RESPONSE = 120;
+const MAX_CHOICE_RESPONSE = 110; // two lines at the `small` size (33): 117 characters at worst, measured
 const MAX_NOTE_BODY = 220;
 
 const errors = [];
