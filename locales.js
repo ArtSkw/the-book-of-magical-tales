@@ -448,6 +448,203 @@ export const storyTranslations = {
           },
         }
       ]
+    },
+    "forest-oath": {
+      shortTitle: "Leśna przysięga",
+      title: "Leśna przysięga",
+      kicker: "Opowieść o dotrzymanym słowie",
+      pages: [
+        {
+          title: "Poranek, który nie przyszedł",
+          body: [
+            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Dobrochny, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel.",
+            "Rano słońce powinno wyjrzeć zza dębów, ale las tonął w mlecznej mgle i ptaki milczały. „Jeleń nie przyszedł” – zdziwiła się Dobrochna. „Co rano przechodzi tędy jeleń z gwiazdką między rogami. Gdzie przejdzie, mgła się rozwiewa i mogę wieźć węgiel do kuźni”.",
+            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi. „Sprawdźmy, skąd przyszły” – powiedziała Dobrochna. „Ręka w rękę, krok za krokiem”."
+          ],
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "W mielerzu drewno nie płonie, tylko powoli tli się pod warstwą ziemi i darni, często przez kilkanaście dni. Tak dawniej robiono węgiel drzewny dla kuźni."
+          },
+        },
+        {
+          title: "Wołanie we mgle",
+          body: [
+            "Szli powoli, trzymając się za ręce, a Koniczynka stąpała tuż za nimi. Prosiaczki truchtały przodem i co chwilę się oglądały.",
+            "Nagle gdzieś we mgle ktoś zawołał: „Kropka! Łatka! Ryjek!”. Prosiaczki nastawiły uszu i stanęły.",
+            "„Ktoś ich szuka” – szepnęła Oliwia. „Ale one też dokądś nas prowadzą”."
+          ],
+          choices: [
+            {
+              label: "Idź dalej za prosiaczkami",
+              response: "Oliwia pójdzie za prosiaczkami tam, skąd przybiegły."
+            },
+            {
+              label: "Odpowiedz na wołanie",
+              response: "Oliwia zawoła w mgłę, żeby ten ktoś wiedział, gdzie są."
+            }
+          ],
+        },
+        {
+          title: "Dębowy Kąt",
+          bodyByChoice: {
+            1: {
+              "follow-piglets": [
+                "Prosiaczki poprowadziły wszystkich między wielkie, stare dęby. Drewniany płot leżał tam na ziemi, zwalony przez burzę. „To Dębowy Kąt” – szepnęła Dobrochna. „Tu nie wolno wpuszczać świń”.",
+                "Wszędzie walały się puste czapeczki żołędzi. Przy płocie stał chłopiec z kijem pasterskim i patrzył na nich wystraszony. To był Marcin, świniopas z Dąbrówki.",
+                "„Nasi dziadkowie obiecali, że żołędzie z Kąta są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Dobrochna. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+              ],
+              "call-back": [
+                "Oliwia zawołała: „Tutaj jesteśmy!”. Z mgły wyszedł Marcin, mały świniopas z Dąbrówki. Prosiaczki obiegły go i pognały z powrotem między wielkie, stare dęby, a wszyscy za nimi.",
+                "Drewniany płot leżał tam na ziemi, zwalony przez burzę, a wszędzie walały się puste czapeczki żołędzi. „To Dębowy Kąt” – szepnęła Dobrochna, a Marcin spuścił głowę.",
+                "„Nasi dziadkowie obiecali, że żołędzie z Kąta są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Dobrochna. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+              ]
+            }
+          },
+        },
+        {
+          title: "Marcin milczy",
+          body: [
+            "Marcin od razu się odezwał. „Burza zwaliła płot” – powiedział szybko. „W nocy grzmiało i wiało”. O prosiaczkach nie wspomniał ani słowem, choć ocierały mu się o nogi.",
+            "Oliwia widziała, że Marcin się boi. Podeszła i wzięła go za rękę. „Ręka w rękę, krok za krokiem” – szepnęła. „Razem coś wymyślimy”.",
+            "Marcin ścisnął jej dłoń, ale wciąż patrzył w ziemię."
+          ],
+          choices: [
+            {
+              label: "Zapytaj Marcina łagodnie",
+              response: "Oliwia łagodnie zapyta Marcina, co się wydarzyło tej nocy."
+            },
+            {
+              label: "Pokaż mu delikatnie ślady",
+              response: "Oliwia pokaże Marcinowi odciski raciczek w mchu, bez słowa wyrzutu."
+            }
+          ],
+        },
+        {
+          title: "Prawda o żołędziach",
+          bodyByChoice: {
+            3: {
+              "ask-kindly": [
+                "Oliwia zapytała łagodnie: „Co się stało tej nocy, Marcinie?”. Marcin zamrugał, a potem wszystko opowiedział.",
+                "Burza zwaliła płot, a jego prosiaczki weszły do Kąta i zjadły jeleniom żołędzie. „Bałem się powiedzieć” – wyszeptał. „Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Kątem prawie nic nie ma”.",
+                "„Dobrze, że nam powiedziałeś”. Dobrochna pogładziła go po ramieniu. Gustaw podniósł zwalony słupek z wyciętą gwiazdką, znakiem dawnej przysięgi."
+              ],
+              "show-tracks": [
+                "Oliwia przykucnęła i pokazała Marcinowi małe odciski raciczek w mchu, tuż obok pustych czapeczek. Nic nie powiedziała, tylko się do niego uśmiechnęła.",
+                "Marcin westchnął i wszystko opowiedział. Burza zwaliła płot, a jego prosiaczki weszły do Kąta i zjadły jeleniom żołędzie. „Bałem się powiedzieć. Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Kątem prawie nic nie ma”.",
+                "„Dobrze, że nam powiedziałeś”. Dobrochna pogładziła go po ramieniu. Gustaw podniósł zwalony słupek z wyciętą gwiazdką, znakiem dawnej przysięgi."
+              ]
+            }
+          },
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Dawniej jesienią pasterze pędzili świnie do dębowych lasów, żeby najadły się żołędzi. Dziki do dziś jesienią szukają żołędzi pod dębami."
+          },
+        },
+        {
+          title: "Chudy rok",
+          body: [
+            "Dobrochna popatrzyła na słupek z gwiazdką. „Obiecaliśmy jeleniom te żołędzie” – powiedziała cicho. „Ale prosiaczki też muszą coś jeść”.",
+            "Marcin miał w swoim szałasie worek żołędzi, zebranych dla prosiaczków na zimę. Las był wielki, ale żołędzi leżało w nim niewiele.",
+            "Oliwia pomyślała o jeleniach, które muszą się najeść przed zimą. Na trawie bielił się już szron po pierwszym przymrozku."
+          ],
+          choices: [
+            {
+              label: "Zapytaj Marcina o jego worek",
+              response: "Marcin sam zdecyduje, czy oddać jeleniom swój zapas żołędzi."
+            },
+            {
+              label: "Zbierzcie żołędzie w całym lesie",
+              response: "Wszyscy pójdą szukać żołędzi po całym lesie, żeby zanieść je do Kąta."
+            }
+          ],
+        },
+        {
+          title: "Nowa gwiazdka",
+          bodyByChoice: {
+            5: {
+              "give-sack": [
+                "Marcin długo milczał. „Obiecali to nasi dziadkowie, to i ja dotrzymam” – powiedział i pobiegł po worek. Koniczynka zaniosła go na grzbiecie do Kąta, a Dobrochna dosypała żołędzi ze swojego zapasu.",
+                "„Twoim prosiaczkom też coś znajdziemy” – obiecała. „We wsi każdy da garść owsa”. Kiedy rozsypywali żołędzie pod starymi dębami, Marcin powtarzał: „Ręka w rękę, krok za krokiem”.",
+                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął nożykiem nową gwiazdkę, znak odnowionej przysięgi."
+              ],
+              "gather-forest": [
+                "Wszyscy rozeszli się po lesie, ale nie za daleko, żeby słyszeć się nawzajem. Szukali żołędzi w mchu i pod liśćmi, a prosiaczki węszyły najpilniej ze wszystkich.",
+                "Pod bukami prosiaczki znalazły bukiew, trójkątne orzeszki, i zajadały się nią z zapałem. „To dla nich, a żołędzie dla jeleni” – ucieszył się Marcin. „Ręka w rękę, krok za krokiem” – powtarzał, kiedy znosili pełne garście do Kąta.",
+                "Gustaw z Dobrochną postawili płot na nowo. Na ostatnim słupku Marcin wyciął nożykiem nową gwiazdkę, znak odnowionej przysięgi."
+              ]
+            }
+          },
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Dęby nie rodzą co roku tyle samo żołędzi. Raz jest ich mnóstwo, a potem przez kilka lat znacznie mniej. Taki obfity rok leśnicy nazywają rokiem nasiennym."
+          },
+        },
+        {
+          title: "Gwiazdka we mgle",
+          body: [
+            "Kiedy skończyli, mgła zaczęła się przerzedzać. Między pniami błysnęła mała złota gwiazdka, a pod nią wyłoniły się rogi.",
+            "Jeleń wyszedł z mgły spokojnie, a za nim łanie i młode. Najmniejszy jelonek utknął za gałęzią zwaloną przez burzę i cichutko popiskiwał, bo nie mógł dojść do mamy.",
+            "Wszyscy stali bez ruchu, żeby nie spłoszyć jeleni. Oliwia ścisnęła rękę Marcina."
+          ],
+          choices: [
+            {
+              label: "Zróbcie jeleniom przejście",
+              response: "Wszyscy odsuną się od Kąta, żeby jelenie mogły najpierw zjeść."
+            },
+            {
+              label: "Odsuńcie gałąź jelonkowi",
+              response: "Gustaw spokojnie odsunie gałąź, a Oliwia cicho zanuci, żeby maluch się nie bał."
+            }
+          ],
+        },
+        {
+          title: "Dzień wraca do lasu",
+          bodyByChoice: {
+            7: {
+              "make-way": [
+                "Wszyscy cofnęli się pod drzewa. Łania wróciła po jelonka i poprowadziła go dookoła gałęzi, a potem stado weszło do Kąta i zaczęło wyjadać żołędzie spod liści.",
+                "Kiedy jelenie się najadły, jeleń z gwiazdką ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
+                "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
+              ],
+              "help-fawn": [
+                "Gustaw podszedł powoli do gałęzi i odsunął ją, nie patrząc jelonkowi w oczy. Oliwia nuciła cichutko, a jelonek przemknął do mamy i przywarł do jej boku.",
+                "Jeleń z gwiazdką popatrzył na nich spokojnie i poprowadził stado do Kąta. Potem ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
+                "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
+              ]
+            }
+          },
+          curiosityNote: {
+            title: "Czy wiesz, że...?",
+            body: "Samce jeleni co roku zrzucają poroże, zwykle pod koniec zimy, i od razu zaczyna im rosnąć nowe. Zrzucone poroże chętnie obgryzają leśne myszy, bo jest w nim dużo wapnia."
+          },
+        },
+        {
+          title: "Gwiazdka na słupku",
+          body: [
+            "W południe cały Dębowy Bór lśnił złotem. Na polanie Dobrochny gotowała się zupa, prosiaczki spały w cieniu, a w Kącie pasły się jelenie.",
+            "Od tamtej pory w Dąbrówce mówią przy słupku z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha.",
+            "Koniec."
+          ],
+          paragraphByChoice: {
+            7: {
+              "make-way": {
+                0: "W południe cały Dębowy Bór lśnił złotem. Na polanie Dobrochny gotowała się zupa, prosiaczki spały w cieniu, a w Kącie pasły się jelenie."
+              },
+              "help-fawn": {
+                0: "W południe cały Dębowy Bór lśnił złotem. Na polanie Dobrochny gotowała się zupa, prosiaczki spały w cieniu, a w Kącie najmniejszy jelonek nie odstępował mamy na krok."
+              }
+            },
+            5: {
+              "give-sack": {
+                1: "Od tamtej pory w Dąbrówce mówią przy słupku z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha."
+              },
+              "gather-forest": {
+                1: "Od tamtej pory w Dąbrówce mówią przy słupku z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. I każdej jesieni wieś zbiera żołędzie dla Kąta, ręka w rękę."
+              }
+            }
+          },
+        }
+      ]
     }
   }
 };

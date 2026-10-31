@@ -55,11 +55,15 @@ export const tales = [
     },
   },
   {
-    id: "tale-three",
-    title: { pl: "Opowieść trzecia", en: "The Third Tale" },
-    kicker: { pl: "Jeszcze niespisana", en: "Not yet written" },
+    // tale three: "Leśna przysięga" — not open until its pictures and spreads are in (pages.js)
+    id: "forest-oath",
+    ...fromStories("forest-oath"),
     ribbon: { color: "#857c40", motif: "star" }, // weld, a yellow-green ochre
     available: false,
+    epigraph: {
+      pl: { lines: ["„Co powiedziałem, to myślałem,", "a co myślałem, powiedziałem.", "Słoń jest wierny", "na sto procent!”"], author: "Dr. Seuss", work: "Horton wysiaduje jajo", note: "tłum. własne" },
+      en: { lines: ["“I meant what I said", "and I said what I meant.", "An elephant’s faithful", "one hundred per cent!”"], author: "Dr. Seuss", work: "Horton Hatches the Egg" },
+    },
   },
   {
     id: "tale-four",
