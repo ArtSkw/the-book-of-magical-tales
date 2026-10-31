@@ -4,6 +4,34 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-10-31: heroes reason out loud, and refrains are concrete** (author's review of the
+  dragon tale, p3). "Idźmy łagodnie" read as an order with no clear meaning. Heroes now
+  show notice → understand → help in their own words (Oliwia: the dragon guards the mice
+  because it cannot tell anyone they live there), and a refrain names an action and its reason
+  ("Powoli i cicho, przy moście śpią myszki"). Rules 9–10 in `docs/WRITING_BIBLE.md`.
+
+- **2026-10-31: the tales are one journey.** Gustaw and Oliwia travel on from tale to
+  tale; Oliwia's bag collects one keepsake per tale (a reed basket from the bridge, a
+  pear leaf from Moonhill), the same on every path. Every tale still reads alone and in any
+  order. Craft for wonder without animating objects: a law of magic, a world beyond the page,
+  a mystery with a clue in a picture, a gentle clock, a refrain, an origin
+  (`docs/WRITING_BIBLE.md`).
+
+- **2026-10-31: the tale text is rewritten for logic and craft.** The first
+  tales held details with no reason in the story (Gustaw's sword gleaming, the
+  baker's rolls, Oliwia's tummy), ornamental similes, and objects that "hear"
+  or "want". The cause was partly our own rules (BRIEF asked for "bells
+  remember, trees listen" and for echo lines saying "the book remembered").
+  Approved: (1) the book is not a character or a narrator inside a tale; it
+  stays only in the frame (dedication, title pages); (2) a choice rewrites the
+  whole consequence page for each path, the italic echo line goes, and an
+  earlier choice may return later as one concrete detail (most of all on the
+  ending); pictures still vary only on the choice just before them;
+  (3) the Moonhill page 6 choice "remember the bell's name" becomes a real,
+  different way to mend the bell, with new pictures as needed. Both languages
+  follow. Rejected: animating inert things for decoration; mid-tale morals;
+  a choice whose two paths end the same.
+
 - **2026-10-30: a choice is sealed for good.** Once made, a choice cannot be
   changed by going back to its page; only "Start over" on the tale's last page
   clears the choices. The reader should feel the tale answer a decision and

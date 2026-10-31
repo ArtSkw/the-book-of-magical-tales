@@ -152,7 +152,7 @@ Layouts (page rule, user 2026-10-21; it overrides the older page cards below): t
 
 ## 4. Scene cards — all 10 pages, every variant (15 images)
 
-Variant map (0-based data keys in `stories.js` / `locales.js`): page 3 ← `paragraphByChoice[1]` (p2: `ask` / `listen`); page 5 ← `[3]` (p4: `lantern` / `bread`); page 7 ← `[5]` (p6: `basket-maker` / `carry-together`); page 9 and page 10 ← `[7]` (p8: `name-promise` / `wave-goodnight`). Pages 1, 2, 4, 6, 8 have no variants; 2, 4, 6, 8 are the choice pages.
+Variant map (0-based data keys in `stories.js` / `locales.js`): page 3 ← `bodyByChoice[1]` (p2: `ask` / `listen`); page 5 ← `[3]` (p4: `lantern` / `bread`); page 7 ← `[5]` (p6: `crumbs` / `warm-path`); page 9 ← `bodyByChoice[7]` and page 10 ← `paragraphByChoice[7]` (p8: `name-promise` / `wave-goodnight`). Pages 1, 2, 4, 6, 8 have no picture variants; 2, 4, 6, 8 are the choice pages. The scene cards below are the pilot's record; the current story text is in `locales.js` and the story state in `SET_BIBLE_dragon-bridge.md`.
 
 Reading-path rhythm — path A (lantern · basket-maker · name-promise): WIDE → CLOSE → OTS → HIGH → FOLLOWING → SPOT → DETAIL → POV → WIDE → SPOT. Path B (bread · carry-together · wave-goodnight): WIDE → CLOSE → OTS → HIGH → LOW → SPOT → DETAIL → POV → WIDE → SPOT.
 

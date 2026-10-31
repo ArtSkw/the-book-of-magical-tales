@@ -23,6 +23,7 @@ Define:
 - **Educational hook:** a concrete thing a child can learn through the story rather than through explanation.
 - **Emotional arc:** how the characters move from worry/confusion to understanding, repair, safety, or belonging.
 - **Places and times:** where each page happens and how the light changes (evening, dusk, deep dusk, night). The pictures and the sound beds both follow it.
+- **Tale card:** fill in `docs/WRITING_BIBLE.md` §3 (law of magic, the world beyond the page, mystery and clues with one clue in a picture, stakes and a gentle clock, refrain, joyful turn, origin, voices, rich words, keepsake, return to warmth). The tale is a station of the journey (§4): where Gustaw and Oliwia arrive from, and which keepsake Oliwia takes on.
 
 ## 2. Polish-First Draft
 
@@ -33,7 +34,7 @@ Use the current Polish versions of **Smok na starym moście** and **Dzwon z Ksi�
 - natural read-aloud rhythm
 - warm folk-tale simplicity
 - concrete village and medieval details
-- grounded cause-and-effect rather than abstract metaphor
+- grounded cause-and-effect rather than abstract metaphor; every detail has a reason or a payoff (`docs/WRITING_BIBLE.md`)
 - gentle emotional naming
 - soft repetitions where they help the parent read aloud
 - page titles based on what actually happens in the scene
@@ -45,7 +46,7 @@ Draft:
 - 10-page structure
 - 3 short paragraphs per page
 - choice pages with exactly 2 options each: short labels (at most 38 characters) and responses (at most 120)
-- consequence echoes after choices, plus `paragraphByChoice` variants that replace at least two paragraphs on each affected page
+- the page after each choice written whole for every option (`bodyByChoice`), every path a real, different way through, and at least one earlier choice returning later as a paragraph (`paragraphByChoice`), usually in the ending
 - final page ending clearly with **"Koniec."**
 - 3-4 curiosity-note candidates, on pages without a choice, at most 220 characters each
 - an epigraph for the title spread (a short quotation, with author and work)
@@ -90,7 +91,7 @@ Add the story to the book before generating final images.
 
 Update:
 
-- `stories.js`: English text and the shared structure (choice ids, echoes, notes, ending)
+- `stories.js`: English text and the shared structure (choice ids, whole-page variants, returning paragraphs, notes, ending)
 - `locales.js`: the Polish text under `storyTranslations.pl["<tale-id>"]`
 - `src/book/pages.js`: the tale's spread manifest, one entry per spread (title spread, pages 1-10), with each choice variant and a Polish and English `alt` text
 - `src/book/tales.js`: the tale in a placeholder slot (`tale-three`, `tale-four`) with `available: true`, its `spreads`, `epigraph` and ribbon
