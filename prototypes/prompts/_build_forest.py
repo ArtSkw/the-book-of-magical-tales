@@ -344,6 +344,22 @@ fix("fo-p2", "fo-p2c", "every person and animal, their poses, faces and costumes
     "Agata's rake: she HOLDS it upright in her other hand, the hand that was hanging at her side, her fingers closed round the handle; the rake no longer stands by itself.",
     neg="no rake standing by itself; no tool leaning on nothing")
 MIST_FIRST.add("fo-p2c")
+# p2c kept the free-standing rake and gave Agata a bare stick: build on p2c and turn THAT stick into the rake
+fix("fo-p2", "fo-p2d", "every person and animal, their poses, faces and costumes, Agata cupping her ear with her right hand, her lowered left hand gripping the wooden handle, the camera, the clearing, the oaks, the mist, the light and colours",
+    "(1) The wooden handle Agata grips in her lowered left hand becomes her rake: the SAME handle, continuing up past her hand to a toothed rake head just above her shoulder; its foot rests on the ground by her boot. (2) The separate rake standing on its own to the right of Agata is REMOVED completely: in its place only misty oaks, ferns and fallen leaves. Agata has exactly ONE rake, the one in her hand.",
+    neg="no second rake; no rake standing by itself; no tool leaning on nothing; no bare stick")
+MIST_FIRST.add("fo-p2d")
+# second pass on the gate block: each from its own last take, one detail
+fix("fo-p6", "fo-p6d", "every person and animal, their poses, faces and costumes, Agata's hand on the gate and her rake, the broken gate leaning against the post, the fence, the camera, the mist, the light and colours",
+    "The star on the old gate's crossbar is CARVED into the grey wood (a cut groove, the same weathered grey-brown as the wood, no gold, no paint), and a CRACK splits the crossbar straight through the star: the star is broken in two halves by the crack.",
+    neg="no gold star; no painted star; no whole, unbroken star; no star on any post")
+MIST_FIRST.add("fo-p6d")
+fix("fo-p7-give-sack", "fo-p7-give-sacke", "every person and animal, their poses, faces and costumes, the new pale gate and its half-carved star, the old broken gate leaning at the right, the acorns, the camera, the light and colours",
+    "Marcin's tool is a small WOOD CHISEL, not a knife: a short wooden handle and a narrow straight steel shank ending in a flat, square cutting edge set against the star's groove; he pushes it with his hand like a carpenter.",
+    neg="no knife; no pointed blade; no whittling")
+fix("fo-p8", "fo-p8e", "every person and animal, their poses, faces and costumes, the fence and the new gate with its star, the old broken gate, the deer behind the fallen branch, the camera, the mist, the light and colours",
+    "Agata's hand that was resting on her chest now GRIPS the rake handle right beside it, her fingers closed round the wood at chest height; the rake's teeth rest on the ground. Her other hand hangs at her side.",
+    neg="no hand on her heart; no rake leaning on her with no hand on it; no rake standing by itself")
 # the siblings not generated yet: from their brother's new take (copied to <pid>-composition.png once accepted)
 fix("fo-p7-gather-forest", "fo-p7-gather-forestb", "camera, the fence and the NEW PALE GATE with the half-carved star, Gustaw holding the gate, Marcin kneeling and carving the star on its crossbar with the chisel, the old broken gate leaning beside him, Agata and Oliwia at the rail, Koniczynka at the left, the acorns on the moss, the light and colours", SIBLING + " Koniczynka carries NO sack.", neg="no sack; no basket; " + GATE_NEG)
 fix("fo-p9-help-fawn", "fo-p9-help-fawnb", "camera, the curving path, the stag and its pose, the group of people following far behind it and their poses, the Heartwood's plain fence with its open new gate in the background, the parting mist, light and colours", SIBLING + " The doe and the fawn walk just behind the stag, between it and the people, with an empty stretch of path before the children; far back, the oak branch lies pulled aside along the edge of the trail.", neg=GATE_NEG)

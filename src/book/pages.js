@@ -31,7 +31,7 @@
 // (pennant), p5-bread 0.2 (mill), p6 0.4, p7-crumbs 0.45 (Oliwia to the dragon's head), p7-warm-path 0.85
 // (cradle), p8 0.4 (pennant, lit inn), p9-name-promise 0.7 (pennant, five villagers),
 // p9-wave-goodnight 0.5. Moonhill p7-thank-bell 0.45 (Janina's pointing hand, the baker's basket).
-// Forest p7-give-sack 0.94 (Marcin carving the gate), p9-make-way 0.8 (the stag's antlers to Agata).
+// Forest p7-give-sack 0.94 (Marcin carving the gate), p9-make-way 0.82 (the stag's antlers to Agata).
 // Tailpieces are the shared marginal ornaments, so each tale gets plants and small beasts, not one motif.
 
 const V = "/assets/illustrations/v2";
