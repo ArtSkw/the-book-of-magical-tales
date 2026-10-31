@@ -23,6 +23,7 @@ Define:
 - **Educational hook:** a concrete thing a child can learn through the story rather than through explanation.
 - **Emotional arc:** how the characters move from worry/confusion to understanding, repair, safety, or belonging.
 - **Places and times:** where each page happens and how the light changes (evening, dusk, deep dusk, night). The pictures and the sound beds both follow it.
+- **Spine:** answer the five questions of `docs/WRITING_BIBLE.md` §3 (the problem and its cause, why it matters and to whom, why the heroes act, the values shown, the one thing to remember). The seed lives in `docs/pilot/SEED_<tale-id>.md` until the set bible takes it over.
 - **Tale card:** fill in `docs/WRITING_BIBLE.md` §3 (law of magic, the world beyond the page, mystery and clues with one clue in a picture, stakes and a gentle clock, refrain, joyful turn, origin, voices, rich words, keepsake, return to warmth). The tale is a station of the journey (§4): where Gustaw and Oliwia arrive from, and which keepsake Oliwia takes on.
 
 ## 2. Polish-First Draft

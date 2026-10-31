@@ -66,14 +66,32 @@ history and payoffs; Kipling, Donaldson, Potter, Hutchins and Sendak for read-al
 - **The response line under a seal states the intent, not the outcome** ("Oliwia will gently ask
   what it is guarding", not "a gentle question will give the dragon courage").
 
-## 3. Craft for wonder (the tale card)
+## 3. The spine, then the craft
 
-Fill this in before drafting, in Polish, and keep it with the set bible. A tale need not use
+Before the tale card, every tale answers five questions in plain words. If an answer is vague, the
+tale is not ready to draft. Every page and every choice must serve this spine.
+
+1. **The problem:** what is wrong, concretely, and what caused it (a cause the reader can follow).
+2. **Why it matters, and to whom:** who is affected (people, animals, nature) and what they need.
+3. **Why the heroes act:** what they notice and understand that makes them help; never "because
+   heroes help".
+4. **The values shown** (from `BRIEF.md`: kindness, understanding, compassion, respect for nature,
+   animals and other people, honesty, keeping one's word…): which ones, and in which actions.
+5. **The one thing to remember:** a single sentence a child could repeat after the last page. It is
+   never said in the middle of the tale; the last page carries it in the world's own words (a
+   saying, a custom, a sign).
+
+### The tale card
+
+
+
+Fill this in after the spine, before drafting, and keep it with the set bible. A tale need not use
 every row, but an empty row is a decision, not an accident.
 
 | Row | What it is | Dragon | Moonhill |
 |---|---|---|---|
 | **Law of magic** | One or two rules, stated once, never broken | Bridge dragons breathe warmth, not fire; warmed stone glows amber | Silver moths gather where something waits to be mended |
+| **Creatures and folklore** | The medieval world interweaves with the legendary and the folk: a real animal with a real role in the plot, a fantastic being or phenomenon rooted in folk tradition (original, with its own rules), and a village custom or belief that explains it | River mice in the parapet · a bridge dragon · the custom of the red pennant and the slow blink | A mare and a finch family · silver moths that circle what waits to be mended · the evening bell, its name and its rhyme |
 | **The world beyond the page** | One or two mentions of a larger world, never fully explained | Gustaw's grandfather's tales of bridge dragons; the basket maker's grandfather saw the slow blink | Grandmother Janina's girlhood; the bell's forgotten name and rhyme |
 | **Newcomer** | Gustaw and Oliwia arrive; locals explain their customs | The red pennant custom; the slow blink | Why the hill is "Moonhill" (the crescent weathervane); the rhyme |
 | **Mystery and clues** | One small mystery, 2–3 fair clues, one of them in a picture first | Tail round the stone (p1 picture), breath on the stone, the peep | Moths in the orchard (p1 picture), the rope gone from the tower, the windy afternoon |
@@ -97,7 +115,7 @@ reader needs to know.
 
 ## 5. Writing and checking
 
-1. Fill in the tale card (§3) and the story state in the set bible.
+1. Answer the spine (§3), fill in the tale card, and keep the story state in the set bible.
 2. Draft in Polish; read every page aloud. Then a full `miodkuj` audit (skill
    `anthropic-skills:miodkuj`, its whole workflow and quality gate) by an agent in a fresh
    context, not by the one who wrote the text.
