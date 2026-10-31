@@ -16,6 +16,10 @@ bibles and the prompt builders; this log keeps the why.
   back, the hind will lead it" (trust the animal's nature) or "pull the branch away with
   Koniczynka" (practical help); rejected "make way" / "move the branch", which were one act.
   Choice ids stay; the pictures with fence stars are regenerated.
+  Pictures (fresh-context review): the new gate has ONE design on every page (three pale planks
+  under one broad crossbar with the carved star); the old cracked gate shows only on p7 as
+  Marcin's pattern, so later pages hold one star; on p8 the branch must truly cut the fawn off
+  from the doe; Marcin carves with a mallet and chisel, so the tool cannot read as a knife.
 
 - **2026-10-31: one type scale by role.** The pages used 17 different sizes (eight of them
   between 30 and 38) and six separate phone multipliers; the same element had one size under a

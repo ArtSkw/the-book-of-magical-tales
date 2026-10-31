@@ -209,7 +209,7 @@ def emblem_prompt(pid, motif, ground, counts, extra_neg="", extra_refs=""):
 TITLE = ("the frontispiece emblem that opens the tale \"The Forest Oath\": inside the roundel, the head and neck of the star stag (match the attached character sheet: a red deer stag with a red-brown coat, darker neck mane, dark kind eyes, symmetrical pale bone-ochre antlers with five points each side) in calm three-quarter view, looking kindly at us from between two old oak trunks; on its brow between the bases of the antlers, " + STAR + "; below it a few flat pale pearl-grey bands of mist; one small oak twig with two acorns in the lower corner.",
          "inside it a deep muted blue pre-dawn ground (#2f4a73) scattered with tiny gold four-pointed stars, like the other emblems.")
 ENDINGS = {
-    "make-way": ("the closing emblem (the colophon) of the tale \"The Forest Oath\", the companion of its frontispiece: inside the roundel, the Heartwood at noon — a golden old oak, beneath it a short stretch of the low plain split-oak fence with a small new pale gate standing open, a freshly carved four-pointed star on its crossbar; behind the fence the doe and her small fawn graze on acorns in the moss, and the star stag stands beside them with its head raised, calm, the small gold star on its brow; a small flat gold sun disc in the sky, without rays.",
+    "make-way": ("the closing emblem (the colophon) of the tale \"The Forest Oath\", the companion of its frontispiece: inside the roundel, the Heartwood at noon — a golden old oak, beneath it a short stretch of the low plain split-oak fence with a small new gate standing open (three upright pale planks held by one broad crossbar across their tops, square-topped, no pickets, no brace), a four-pointed star carved in the centre of that crossbar; behind the fence the doe and her small fawn graze on acorns in the moss, and the star stag stands beside them with its head raised, calm: a red-brown stag with a darker brown neck mane and pale cream antlers, a crisp small gold four-pointed star on its brow; a small flat gold sun disc in the sky, without rays.",
                  "one stag with one small gold star; one doe; one fawn; one gate with one carved star; no star on any post; one sun disc."),
     "help-fawn": ("the closing emblem (the colophon) of the tale \"The Forest Oath\", the companion of its frontispiece: inside the roundel, under golden oaks at noon, the small fawn pressed close against its mother's side, safe, her head bent to it; the star stag stands behind them, calm, the small gold star on its brow; the storm-broken oak branch lies aside along the edge of the moss; a small flat gold sun disc in the sky, without rays.",
                   "one stag with one small gold star; one doe; one fawn; one branch lying aside; one sun disc."),
@@ -363,6 +363,42 @@ fix("fo-p8", "fo-p8e", "every person and animal, their poses, faces and costumes
 # the siblings not generated yet: from their brother's new take (copied to <pid>-composition.png once accepted)
 fix("fo-p7-gather-forest", "fo-p7-gather-forestb", "camera, the fence and the NEW PALE GATE with the half-carved star, Gustaw holding the gate, Marcin kneeling and carving the star on its crossbar with the chisel, the old broken gate leaning beside him, Agata and Oliwia at the rail, Koniczynka at the left, the acorns on the moss, the light and colours", SIBLING + " Koniczynka carries NO sack.", neg="no sack; no basket; " + GATE_NEG)
 fix("fo-p9-help-fawn", "fo-p9-help-fawnb", "camera, the curving path, the stag and its pose, the group of people following far behind it and their poses, the Heartwood's plain fence with its open new gate in the background, the parting mist, light and colours", SIBLING + " The doe and the fawn walk just behind the stag, between it and the people, with an empty stretch of path before the children; far back, the oak branch lies pulled aside along the edge of the trail.", neg=GATE_NEG)
+
+
+# Third pass after the fresh-context review (2026-11-01): one new-gate design everywhere (p7's),
+# the old gate only on p7 as Marcin's pattern, the fawn really cut off on p8, a mallet-and-chisel.
+NEW_GATE = ("the NEW GATE has one design on every page: three upright pale fresh-wood planks side by side, "
+            "held by ONE broad pale crossbar across their tops, and ONE four-pointed star carved in the centre "
+            "of that crossbar (a cut groove in the wood, not gold, not painted); square-topped planks, no pickets, "
+            "no diagonal brace, no ledged door")
+NO_OLD_GATE = "no old grey gate anywhere; exactly one gate and one carved star in the whole picture"
+def again(pid, old, new, keep, change, neg=""):
+    fix(pid, new, keep, change, neg=neg)
+    if old in MIST_FIRST:
+        MIST_FIRST.add(new)
+again("fo-p2", "fo-p2d", "fo-p2e", FENCE_KEEP + ", Agata holding her one rake",
+      "Gustaw's hand by the bridle holds ONLY the reins: no dagger, no knife, no blade anywhere in his hand or on his belt in view.",
+      neg="no dagger; no knife; no drawn blade")
+again("fo-p3-call-back", "fo-p3-call-backb", "fo-p3-call-backc", FENCE_KEEP + ", the open gateway and the broken gate lying flat",
+      "Marcin's switch is ONE single straight thin stick held in his lowered hand, its tip resting on the ground; no forked or second stick.",
+      neg="no forked stick; no stick standing by itself")
+again("fo-p5-ask-kindly", "fo-p5-ask-kindlyc", "fo-p5-ask-kindlyd", FENCE_KEEP + ", the broken gate Gustaw lifts with its cracked star",
+      "Gustaw's face is young and CLEAN-SHAVEN exactly as on the hero sheet: smooth cheeks and chin, no stubble, no beard, no wrinkles.",
+      neg="no stubble; no beard; no wrinkles on Gustaw")
+again("fo-p7-give-sack", "fo-p7-give-sacke", "fo-p7-give-sackf",
+      "every person and animal, their poses, faces and costumes, the new pale gate and its half-carved star, the acorns, the camera, the light and colours",
+      "(1) Marcin carves the star the carpenter's way: in one hand he holds a short flat-edged wood chisel set against the star's groove, in the other a small round wooden MALLET raised to tap its handle. (2) The OLD grey gate leaning at the right shows its star CRACKED in two by a split running through the crossbar. " + NEW_GATE + ".",
+      neg="no knife; no awl; no pointed blade; no whole star on the old gate")
+again("fo-p8", "fo-p8e", "fo-p8f",
+      "the people, their poses, faces and costumes, Agata gripping her rake, the stag and the doe and their poses, the fallen branch, the camera, the mist, the light and colours",
+      "(1) The fawn is CUT OFF from its mother by the fallen branch: the stag and the doe stand on the FAR side of the branch, and the small fawn stands alone on the NEAR side, between the branch and the people, looking back across the branch at the doe, who looks at it. (2) The old grey broken gate is REMOVED: there the plain fence continues. " + NEW_GATE + ".",
+      neg="no fawn beside the doe; " + NO_OLD_GATE)
+for pid, old, new, extra in [("fo-p9-make-way", "fo-p9-make-waye", "fo-p9-make-wayf", "The small fawn in the distance stands on the grass inside the fence, not on the gate. Behind the fence only deer, oaks and moss; no dark animal shape."),
+                        ("fo-p9-help-fawn", "fo-p9-help-fawnb", "fo-p9-help-fawnc", "")]:
+    again(pid, old, new,
+          "every person and animal, their poses, faces and costumes, the stag in front, the path, the camera, the light and colours",
+          "(1) The old grey broken gate leaning by the fence is REMOVED: there the plain fence continues. (2) " + NEW_GATE + ", standing open in the fence. " + extra,
+          neg=NO_OLD_GATE)
 
 
 if __name__ == "__main__":
