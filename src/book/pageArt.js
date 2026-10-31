@@ -43,6 +43,9 @@ export const TEXT_MARGINS = M;
 // on a phone held upright, where the print under it is set a step larger (PHONE_LIFT), the plate
 // gives up some of its height to it.
 const PLATE = { aspect: 5 / 4, pad: 40, gap: 34, safe: 24 };
+// a tale's gold medallion: the title emblem on its title page, and at most this wide the closing
+// emblem on its last spread, so the pair match
+const MEDALLION_W = 520;
 // ---------- type scale ----------
 // Every kind of text on a page has a role, and every role is a step of one modular scale: the
 // house body (42 page units) times a major second (1.125) per step. Hierarchy comes as much from
@@ -1307,11 +1310,11 @@ function noteBlock(note, column) {
 
 function imageBlock(img, entry, { mode, maxH, aspect, parchment, large = false }) {
   // mode: "plate" (framed miniature) | "vignette" (transparent spot image, no frame);
-  // large: a closing emblem alone on its page may take most of the column
+  // large: a closing emblem alone on its page, as wide as the title page's medallion
   const box = (width) => {
     if (mode === "vignette") {
       const ar = img ? img.naturalWidth / img.naturalHeight : 1.4;
-      let w = large ? Math.min(width * 0.94, 800) : Math.min(width * 0.82, 560);
+      let w = large ? Math.min(width * 0.94, MEDALLION_W) : Math.min(width * 0.82, 560);
       let h = w / ar;
       if (h > maxH) {
         h = maxH;
@@ -1691,7 +1694,7 @@ export function createPageArtist({ parchment, grain, images }) {
       const img = getImg(desc.image);
       REGIONS?.push({ role: "title", x: box.x, y: 140, w: box.w, h: y + 100 - 140 });
       if (img) {
-        const w = 520;
+        const w = MEDALLION_W;
         const h = (w * img.naturalHeight) / img.naturalWidth;
         g.save();
         g.globalCompositeOperation = "multiply";
