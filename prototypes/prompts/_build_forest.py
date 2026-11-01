@@ -619,6 +619,16 @@ again("fo-p3-follow-piglets", "fo-p3-follow-pigletsf", "fo-p3-follow-pigletsh", 
       neg="no three-plank gate; no five planks; no narrow planks")
 # Shipped: fo-p5-ask-kindlyk = i + the four planks from j (crossbar and star kept); fo-p3-follow-pigletsi = f + the whole four-plank gate from h.
 
+# Author 2026-11-01: on p4 the old gate's planks were narrow with wide gaps of grass between them, unlike p3.
+again("fo-p4", "fo-p4h", "fo-p4i", "everything except the planks of the broken gate lying in the grass",
+      "the OLD broken gate lying in the grass looks exactly like the attached OLD GATE DETAIL (fo-old-gate-setting.png, cut from page 3 "
+      "of this tale): EXACTLY FOUR BROAD weathered grey planks lying side by side, edge to edge, with only thin dark seams between them "
+      "and no grass showing between the planks; together they are about as long as the crossbar is wide. The crossbar and its split "
+      "carved star stay exactly as they are, in the same place.", neg="no narrow planks; no gaps of grass between the planks; no fifth plank")
+m.PAGES["fo-p4"]["extra_refs"] = list(dict.fromkeys(list(m.PAGES["fo-p4"]["extra_refs"]) + ["fo-old-gate-setting.png"]))
+# Shipped: fo-p4j = h + the whole broad-plank gate from i; fo-p4k = j with i's wedge break cloned away and the canonical
+# split star transplanted at (330,780), scale 0.55, rot 12, squash 0.7, its crack carried down to the break in the lower edge.
+
 
 def emblem_again(pid, rev, keep, change, extra_neg=""):
     """Regenerate an emblem from its own take (refs/<pid>-composition.png), changing one thing."""
