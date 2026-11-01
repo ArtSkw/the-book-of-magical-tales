@@ -4,6 +4,16 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-01: "Leśna przysięga" after reading the whole book.** (1) The two variants of a page
+  must differ in content, layout and perspective, each drawn from its own text, as in the earlier
+  tales. Rejected: one camera per pair with small changes (our rhythm rule had said "a variant pair
+  keeps the same shot"; the rule in `MANUSCRIPT_BIBLE.md` §3 now says the opposite). (2) Gustaw carries
+  his shield only while he walks or stands. When his hands are busy (lifting, holding, pulling,
+  kneeling) he sets it down nearby, still in view; it is equipment, not welded to him. (3) The old
+  gate's split star has one form on every page: the crossbar snapped through the centre of the star,
+  each half carrying half the star (the approved p3 follow-piglets take is the detail reference).
+  Rejected: a whole star with a crack beside it.
+
 - **2026-10-31: "Leśna przysięga" after the author's first reading.** (1) The charcoal burner is
   Agata, not Dobrochna (too foreign for today's children); the deer's place is the Matecznik /
   the Heartwood, the folk "heart of the forest" where animals are safe, not the "Dębowy Kąt"

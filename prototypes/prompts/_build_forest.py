@@ -443,6 +443,117 @@ again("fo-p2", "fo-p2e", "fo-p2f", "everything except the acorns in the foregrou
 # replaced by a copy of the empty cup at (972,946).
 
 
+# Fifth pass, author's reading of the whole book 2026-11-01 (docs/DECISIONS.md): (1) the old gate's split star
+# looked different on every page, so it now has one canonical form with a detail reference cut from the approved
+# p3 follow-piglets take; (2) Gustaw sets his shield down when his hands are busy; (3) the p8 stag drew legs at two
+# angles at once. Same method as the fourth pass: one change per take, only the changed region is pasted back.
+OLD_STAR_REF = "fo-old-star-setting.png"
+OLD_STAR = ("the OLD grey gate's star has ONE form on every page, exactly as in the attached OLD STAR DETAIL (" + OLD_STAR_REF + ", cut "
+            "from an approved page of this tale): the old grey crossbar is SNAPPED clean through in its middle, and the break runs "
+            "straight through the CENTRE of the carved four-pointed star, so each broken half of the crossbar carries one half of the "
+            "star, the two halves a little apart and out of line; the star is a dark cut groove in the grey wood. ")
+OLD_STAR_NEG = "no whole star on the old gate; no crack beside the star; no second crack; no gold star on the old gate"
+SHIELD_DOWN = ("Gustaw's hands are busy, so he does NOT carry his shield: nothing on his arm or his back. His red griffin shield is "
+               "set down nearby, {where}, the gold griffin facing us, whole and clearly visible. ")
+
+
+def fifth(pid, old, new, keep, change, neg="", star=False):
+    again(pid, old, new, keep, (OLD_STAR if star else "") + change, neg="; ".join(x for x in [OLD_STAR_NEG if star else "", neg] if x))
+    if star:
+        P = m.PAGES[pid]
+        P["extra_refs"] = list(dict.fromkeys(list(P["extra_refs"]) + [OLD_STAR_REF]))
+
+
+fifth("fo-p4", "fo-p4e", "fo-p4f", "everything except the star on the broken gate's crossbar",
+      "The broken gate keeps its place, size and planks; only its crossbar and star change.", star=True)
+fifth("fo-p5-ask-kindly", "fo-p5-ask-kindlyd", "fo-p5-ask-kindlye", "everything except Gustaw's shield and the star on the gate he lifts",
+      SHIELD_DOWN.format(where="leaning upright against the plain fence post at the right edge of the gateway") +
+      "He still lifts the broken gate with both hands in the same pose.", neg="no shield on Gustaw's arm or back", star=True)
+fifth("fo-p6", "fo-p6d", "fo-p6e", "everything except the star on the broken gate's crossbar",
+      "The broken gate keeps leaning against the gate post under Agata's hand; only its crossbar and star change.", star=True)
+fifth("fo-p7-give-sack", "fo-p7-give-sackg", "fo-p7-give-sackh", "everything except Gustaw's shield and the old grey gate's crossbar",
+      SHIELD_DOWN.format(where="leaning upright against the old grey fence post just left of the new gate, on the far side of the fence") +
+      "He still holds the new pale gate steady with both hands in the same pose. " + NEW_GATE + ".", neg="no shield on Gustaw's arm or back", star=True)
+again("fo-p8", "fo-p8g", "fo-p8h", "everything except the stag's legs and body",
+      "The stag stands calmly with EXACTLY FOUR LEGS, all drawn from the same three-quarter angle as its body: two forelegs under its "
+      "chest and two hind legs under its rump, each leg clearly joined to the body; no leg is drawn twice and no leg comes from a "
+      "second body angle. Its head, antlers, gold star, coat and place stay the same.",
+      neg="no extra legs; no fifth or sixth leg; no doubled body outline")
+
+# Shipped composites (changed regions only, blurred diff > 14, feathered): fo-p8i = p8g + the deer from p8h;
+# fo-p5-ask-kindlyf = ask-kindlyd + the gate star and set-down shield from ask-kindlye; fo-p4g = p4e + the star
+# from p4f; fo-p6f = p6d + the star from p6e; fo-p7-give-sacki = give-sackg + the set-down shield and Gustaw from
+# give-sackh, Marcin (who lost the mallet in h) kept from g, and of h's old gate only its top crossbar
+# (1390,444)-(1534,520), since h drew a second split star on a lower crossbar.
+
+# (4) Each second variant gets its own camera, layout and content from its own text (briefs by the art director,
+# Fable, 2026-11-01). These are new takes, not fixes: no composition reference. The first variants stay.
+m.STATE["mended-new"] = ("STATE: a NEW GATE of fresh pale wood hangs in the gateway, its crossbar with a carved four-pointed star — "
+                         "the only star on the fence; the old broken gate is gone; every other post and rail is old, grey and plain.")
+page("fo-p3-call-back", "full", "mist", ["oliwia", "marcin", "gustaw", "dobrochna", "mare", "piglets"], ["corner", "broken"], ["cups"],
+     "CAMERA: INSIDE the Heartwood, a little above standing height (as if standing on a thick root), looking SOUTH out through the open gateway toward the path. Portrait framing: the mossy floor of the Heartwood fills the lower half, strewn with empty acorn cups; the low plain fence crosses the picture a little below its middle with the open gateway in the centre; just beyond the gateway, on the path side, the broken gate lies flat in the grass with its cracked crossbar and split star turned toward us; the people stand on the path beyond it as whole figures, faces toward us; behind them the two great oaks of the path fade into flat mist bands at the top; the huge trunks of two of the Heartwood's ancient oaks cut the left and right edges in the foreground.",
+     "SCENE (page 3, the Heartwood, variant call-back): the piglets have raced back ahead of everyone: all three trot through the open gateway toward us, the Smallest in front, already among the empty cups in the foreground, snouts down and finding nothing. Marcin has stopped at the gateway just beyond the fallen gate, his one hazel switch lowered with its tip on the ground, head bowed, eyes on the split star at his feet, ashamed and quiet, his face still visible. Behind him Oliwia, hurrying after the piglets, has just stopped too and looks past him at the empty cups, beginning to understand, her face in three-quarter view; Agata beside her holds her rake upright in one hand and lifts the other toward her mouth as she whispers; Gustaw a step behind, calm, his shield on his arm, Koniczynka's head and neck over his shoulder. Nobody steps over the fence; only the piglets are inside. " + OLD_STAR,
+     "\"Oliwia called out, and Marcin the swineherd came out of the mist. The piglets ran round him and raced back between the old oaks, and everyone followed. The gate lay on the ground, broken by the storm, and everywhere lay empty acorn cups. Marcin bowed his head.\"",
+     "Oliwia, Marcin, Gustaw, Agata: exactly four people, all OUTSIDE the fence on the path; the mare's head and neck only; exactly three piglets INSIDE the Heartwood; one broken gate with one split star lying flat just outside the gateway; no star on any fence post; no deer.",
+     NEG + "; no adult, child or horse inside the fence; nobody climbing or stepping over the fence; not a bird's-eye view, the horizon stays inside the picture; no sky; the old star is a carved groove, never gold; no second gate; no forked or second stick; " + OLD_STAR_NEG)
+page("fo-p5-show-tracks", "plate", "dawn", ["oliwia", "marcin", "dobrochna", "gustaw", "piglets"], ["corner", "broken"], ["cups"],
+     "CAMERA: HIGH, looking steeply down from a little above head height, like a tilted-ground miniature: the mossy earth at the gateway fills almost the whole picture as a flat ground seen from above; the fence rails and the open gateway cut across the top edge, the five ancient oaks appear only as trunk bases in the top corners; the figures are seen from above AND in front, so their faces turn up toward us and stay readable. Landscape framing (a 5:4 plate; everything important in the middle four-fifths): one line of small cloven hoofprints runs diagonally across the centre of the moss from the lower left up toward the gateway, beside a scatter of empty acorn cups.",
+     "SCENE (page 5, the truth, variant show-tracks): Oliwia crouches at the left of the prints, her satchel swung forward, one finger pointing at the clearest hoofprint, saying nothing, her face turned up to Marcin with a small kind smile. Marcin crouches opposite her at the right of the prints, looking from them to her, cheeks red, lips parted as he sighs and begins to tell the truth, one hand on his chest, his hazel switch lying on the moss beside him. The Smallest piglet stands at the end of the line of prints, its own trotters pressing the same small marks into the moss, nosing an empty cup; Big and Middle sit close behind it. Agata stands bent forward at the top centre, both hands round her rake's handle, looking down at Marcin and nodding, warm. Gustaw at the top right, seen from above, has lifted the broken gate off the ground with both hands and holds it tilted so its cracked crossbar and split star turn up toward us; his red griffin shield leans against the gate post beside him, the griffin toward us. " + OLD_STAR,
+     "\"Oliwia crouched and showed Marcin the little hoofprints in the moss, right beside the empty cups. She said nothing, only smiled at him. Marcin sighed and told them everything. Gustaw lifted the broken gate; on its cracked crossbar was the carved star of the old oath.\"",
+     "Marcin, Oliwia, Agata, Gustaw: exactly four people; exactly three piglets; one line of small cloven hoofprints the size of the piglets' trotters; empty acorn cups; one broken gate with one split star, lifted by Gustaw; one shield on the ground; no star on any fence post.",
+     NEG + "; not a straight-down aerial or map view — every face stays visible; no deer or horse hoofprints — the prints are small and cloven, never round; nobody points at Marcin; nobody scolds; no shield on Gustaw's arm or back; the old star is a carved groove, never gold; no sky; " + OLD_STAR_NEG)
+page("fo-p7-gather-forest", "plate", "morning", ["dobrochna", "gustaw", "mare", "oliwia", "marcin", "piglets"], [], [],
+     "CAMERA: standing height, a wide view of the open oak forest a few steps south of the Heartwood, which stays OUT of the picture (no fence, no gate): big oak trunks stand at different depths like the columns of a hall, the farther ones fading into thin flat bands of cream mist; the mossy floor rises gently to the top of the picture and no sky shows. Landscape framing (a 5:4 plate; everything important in the middle four-fifths): the figures are spread across the whole width at different depths, each about a third of the picture's height, all within sight of each other; right of centre one BEECH tree — a smooth pale-grey trunk and copper-brown leaves, round-crowned like the oaks — with the piglets beneath it.",
+     "SCENE (page 7, the oath kept, variant gather-forest): everyone searches the forest floor for acorns. At the left Agata draws fallen leaves aside with her rake, held in both hands, looking over at the children; left of centre Gustaw bends with cupped hands full of acorns, his red griffin shield leaning against the nearest oak trunk, the griffin toward us, Koniczynka standing behind him with nothing on her back. Oliwia kneels in the centre foreground lifting a leaf with one hand and holding her satchel flap open with the other, half full of acorns, her face turned to Marcin. Marcin stands right of centre with both hands full of acorns, his hazel switch under one arm, smiling broadly at the three piglets under the beech: they crunch BEECHNUTS — small triangular brown nuts spilling from spiky husks among the copper leaves — the Smallest with a husk stuck on its snout. Under the beech only beechnuts; acorns only in the people's hands and satchel. All four faces readable in three-quarter view, glad.",
+     "\"They all spread out through the forest, but not too far, so they could hear each other. Under the beeches the piglets found beechnuts and munched them happily. 'Those are for them, and the acorns are for the deer,' said Marcin.\"",
+     "Oliwia, Agata, Gustaw, Marcin: exactly four people; one mare without a load; exactly three piglets under the beech; one beech tree among oaks; one shield leaning against a trunk; no fence, no gate, no star, no deer; no sack, no basket.",
+     NEG + "; no sack; no basket; no fence or gate; no star anywhere; no chestnuts or sweet-chestnut burrs — beechnuts are small and triangular; the piglets eat beechnuts, never acorns; no shield on Gustaw's arm or back; no second rake; no sky; no sunlight; no bright orange foliage; no distant view")
+page("fo-p9-help-fawn", "plate", "day", ["stag", "doe", "herd", "mare", "gustaw", "oliwia", "marcin", "dobrochna"], ["corner", "branch"], ["mended-new"],
+     "CAMERA: LOW, at a fawn's eye level, on the deer trail just east of the Heartwood, looking WEST toward the Heartwood's fence; the middle-ground figures are whole, not cut by the frame. Landscape framing (a 5:4 plate; everything important in the middle four-fifths): the doe and the fawn big in the right foreground; the pulled-aside branch lying along the trail's edge in the left foreground, the rope from its far end running back to the mare in the left middle ground; the stag in the centre middle ground; behind it the fence with the NEW GATE standing open; the children and Agata in the right middle ground under an oak; golden crowns above with small pale-blue patches of sky; the last flat band of mist rolling away at the far left.",
+     "SCENE (page 9, the morning comes, variant help-fawn): the branch has just been drawn aside. Koniczynka stands at the left with a hemp rope still tied from her saddle to the far end of the branch, which now lies along the edge of the trail; Gustaw holds her bridle with one hand and strokes her neck with the other, his red griffin shield hung from her saddle, the griffin toward us. The little fawn has darted across the cleared trail and presses against its mother's flank, the doe's head bent down to it, both in the right foreground. The stag stands calm in the centre in three-quarter view, the small gold star on its brow clear, looking at the people with kind eyes before it leads the herd in; behind it two hinds already step through the open new gate into the Heartwood. At the right, well back, Oliwia and Marcin hold hands, Agata beside them with her rake upright in her hand, all three faces turned to the fawn, happy and still: nobody goes near the deer. Where the stag stands the mist is gone and the oaks are golden in full sun. " + NEW_GATE + ".",
+     "\"Gustaw tied a rope to the far end of the branch, and Koniczynka slowly pulled it aside. Nobody went near the fawn. The little one darted to its mother and pressed against her side. The stag looked at them calmly and led the herd through the new gate into the Heartwood.\"",
+     "Oliwia, Marcin, Gustaw, Agata: exactly four people; one mare with one rope and the shield on her saddle; one stag with one small gold star; one doe; one fawn pressed to the doe; exactly two hinds at the gate; one branch lying along the trail; one new gate with one carved star; no piglets.",
+     NEG + "; no rope on or near any deer — the rope touches only the branch and the saddle; nobody touches a deer; nobody pulls the rope by hand; no shield on Gustaw's arm or back; no halo, glow or rays; no sun rays; no old grey gate; no star on any post; no fawn behind the branch; no piglets; no distant hills; no clouds; no saturated orange")
+for pid, rev in [("fo-p3-call-back", "fo-p3-call-backd"), ("fo-p5-show-tracks", "fo-p5-show-tracksc"),
+                 ("fo-p7-gather-forest", "fo-p7-gather-forestf"), ("fo-p9-help-fawn", "fo-p9-help-fawne")]:
+    m.REVISION[pid] = rev
+    if pid.startswith(("fo-p3", "fo-p5")):
+        mist_first(pid, rev)
+        m.PAGES[pid]["extra_refs"] = list(dict.fromkeys(list(m.PAGES[pid]["extra_refs"]) + [OLD_STAR_REF]))
+# Cold check of the new takes: call-backd shipped whole; three single-region fixes.
+fifth("fo-p5-show-tracks", "fo-p5-show-tracksc", "fo-p5-show-tracksd", "everything except the star on the broken gate Gustaw lifts",
+      "In show-tracksc the whole star sat on the left half next to the break; now the break runs through the star's centre.", star=True)
+again("fo-p7-gather-forest", "fo-p7-gather-forestf", "fo-p7-gather-forestg", "everything except what lies on the ground under the beech",
+      "Under the beech lie real BEECHNUTS: tiny shiny brown three-sided nuts, each as small as a fingertip (much smaller than a piglet's "
+      "nostril), and their small open woody husks, each split into four little lobes with short soft bristles, no bigger than a thumbnail. "
+      "The piglets nose and munch them. Nothing else changes.",
+      neg="no chestnuts; no big round spiky chestnut burrs; no conkers; no nut bigger than a fingertip")
+again("fo-p9-help-fawn", "fo-p9-help-fawne", "fo-p9-help-fawnf", "everything except the open gate and the deer stepping through it",
+      "(1) " + NEW_GATE + "; it stands open. (2) EXACTLY TWO hinds step through the open gate into the Heartwood, one behind the other; "
+      "no third deer at the gate.", neg="no third hind; no bottom rail or diagonal on the gate")
+# Shipped: fo-p3-call-backd whole; fo-p5-show-trackse = show-tracksc + the star from d (crop focus 0.9 keeps the shield);
+# fo-p9-help-fawng = help-fawne + the gate and two hinds from f (focus 0.75).
+# gather-foresth = gather-forestf + the beechnuts from g; its figures span the whole width, so the 5:4 crop cut Agata or the piglets
+again("fo-p7-gather-forest", "fo-p7-gather-foresth", "fo-p7-gather-foresti", "every person and animal, their poses, faces and costumes, the beech, the beechnuts, the shield against the oak, the light and colours",
+      "the FRAMING only: the camera steps back so the same group stands a little smaller and closer together; every figure, the shield and all three piglets sit inside the middle four-fifths of the width, and the outer fifth on each side holds only oak trunks, bracken and leaves.",
+      neg="no figure or piglet touching the left or right edge")
+# Shipped: fo-p7-gather-foresti whole (focus 0.5); the beechnuts stayed small and the group fits the 5:4 crop.
+# Fresh review of the fifth pass: p9 make-way had a hind with two heads and one standing on the gate; the new gate on both p9 takes
+# had plank tops above the crossbar; p7 gather-forest lost Koniczynka's caparison.
+GATE_FLUSH = "the NEW GATE in the Heartwood fence, standing open: exactly THREE upright pale planks whose tops end FLUSH UNDER one broad pale crossbar, so nothing rises above the crossbar; one four-pointed star carved in the centre of that crossbar as a darker groove"
+again("fo-p9-make-way", "fo-p9-make-wayf", "fo-p9-make-wayg", "everything except the deer and the gate in the background",
+      "(1) Every deer in the background has exactly ONE head, four legs and one body; the hinds graze or stand on the grass INSIDE the fence, none touching the gate or standing on it. (2) " + GATE_FLUSH + ".", neg="no deer with two heads; no deer on or over the gate; no plank above the crossbar")
+again("fo-p9-help-fawn", "fo-p9-help-fawng", "fo-p9-help-fawnh", "everything except the open gate itself",
+      GATE_FLUSH + "; the two hinds still step through it.", neg="no plank above the crossbar; no fourth plank")
+again("fo-p7-gather-forest", "fo-p7-gather-foresti", "fo-p7-gather-forestj", "everything except Koniczynka's back",
+      "Koniczynka wears her red caparison cloth with its narrow gold border over her back, as on every other page; no sack or load on it.", neg="no sack; no load on the mare")
+# The old gate's split star failed twice by generation, so it is painted by hand from one template (scratchpad star.py: a chip-carved
+# four-pointed groove whose centre sits on the break, each half on its own broken board): fo-p3-call-backe, fo-p5-show-tracksf,
+# fo-p6g and fo-p7-give-sackj. p3 follow-piglets, p4 and p5 ask-kindly already had that form.
+again("fo-p7-give-sack", "fo-p7-give-sackj", "fo-p7-give-sackk", "everything except Gustaw's shield",
+      "Gustaw's red griffin shield leans against the old grey fence post on the FAR side of the fence, Gustaw's side (outside the Heartwood), partly behind the rail, the griffin still visible; nothing stands on the moss on our side of the fence.", neg="no shield on our side of the fence; no shield on Gustaw's arm or back")
+
+
 if __name__ == "__main__":
     sheets()
     print("set-forest-oath", "m-sheet-forest", "sheets")
