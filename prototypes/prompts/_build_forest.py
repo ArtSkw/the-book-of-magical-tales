@@ -552,6 +552,9 @@ again("fo-p7-gather-forest", "fo-p7-gather-foresti", "fo-p7-gather-forestj", "ev
 # fo-p6g and fo-p7-give-sackj. p3 follow-piglets, p4 and p5 ask-kindly already had that form.
 again("fo-p7-give-sack", "fo-p7-give-sackj", "fo-p7-give-sackk", "everything except Gustaw's shield",
       "Gustaw's red griffin shield leans against the old grey fence post on the FAR side of the fence, Gustaw's side (outside the Heartwood), partly behind the rail, the griffin still visible; nothing stands on the moss on our side of the fence.", neg="no shield on our side of the fence; no shield on Gustaw's arm or back")
+# Shipped composites (changed region only): fo-p9-make-wayh = make-wayf + the deer and gate from g; fo-p9-help-fawni =
+# help-fawng + the gate from h; fo-p7-gather-forestk = gather-foresti + the caparison from j; fo-p7-give-sackl =
+# give-sackj + the shield behind the rail from k.
 
 
 if __name__ == "__main__":
