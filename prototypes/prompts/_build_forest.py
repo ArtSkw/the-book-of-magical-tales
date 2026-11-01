@@ -605,6 +605,20 @@ again("fo-p9-help-fawn", "fo-p9-help-fawnm", "fo-p9-help-fawnn", "everything exc
 # fo-p8m/n = k with the stag's star repainted by hand as crisp gold leaf with an ink edge (generation l stayed soft);
 # fo-p10-make-wayd = make-wayb + the gate from c (c's vines were heavier than the pair's); title: orn-title-forestc whole
 # (b ruled hard stripes across the stag), exported with export_webp.py directly.
+# Author 2026-11-01: the old gate has FOUR upright planks on p3 call-back, p4, p5 show-tracks, p6 and p7, but three on
+# p3 follow-piglets and p5 ask-kindly. Only the planks change; the crossbar and its transplanted star are kept by compositing.
+FOUR = ("the OLD broken grey gate has EXACTLY FOUR upright weathered grey planks side by side under its crossbar (not three), "
+        "the gate keeping the same overall width and place; the crossbar and its split carved star stay exactly as they are.")
+again("fo-p3-follow-piglets", "fo-p3-follow-pigletsf", "fo-p3-follow-pigletsg", "everything except the planks of the broken gate lying in the grass",
+      FOUR, neg="no three-plank gate; no fifth plank")
+again("fo-p5-ask-kindly", "fo-p5-ask-kindlyi", "fo-p5-ask-kindlyj", "everything except the planks of the broken gate Gustaw lifts",
+      FOUR + " Gustaw still lifts it with both hands in the same pose.", neg="no three-plank gate; no fifth plank")
+# p3 pigletsg drew five planks; h asks again with the count spelled out
+again("fo-p3-follow-piglets", "fo-p3-follow-pigletsf", "fo-p3-follow-pigletsh", "everything except the planks of the broken gate lying in the grass",
+      FOUR + " Count them: one, two, three, four broad planks lying side by side under the crossbar, the same width as on page 5, where Gustaw lifts this gate.",
+      neg="no three-plank gate; no five planks; no narrow planks")
+# Shipped: fo-p5-ask-kindlyk = i + the four planks from j (crossbar and star kept); fo-p3-follow-pigletsi = f + the whole four-plank gate from h.
+
 
 def emblem_again(pid, rev, keep, change, extra_neg=""):
     """Regenerate an emblem from its own take (refs/<pid>-composition.png), changing one thing."""
