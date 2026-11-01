@@ -627,7 +627,9 @@ again("fo-p4", "fo-p4h", "fo-p4i", "everything except the planks of the broken g
       "carved star stay exactly as they are, in the same place.", neg="no narrow planks; no gaps of grass between the planks; no fifth plank")
 m.PAGES["fo-p4"]["extra_refs"] = list(dict.fromkeys(list(m.PAGES["fo-p4"]["extra_refs"]) + ["fo-old-gate-setting.png"]))
 # Shipped: fo-p4j = h + the whole broad-plank gate from i; fo-p4k = j with i's wedge break cloned away and the canonical
-# split star transplanted at (330,780), scale 0.55, rot 12, squash 0.7, its crack carried down to the break in the lower edge.
+# split star transplanted at (330,780) — rejected by the author: it read as a different star. Shipped instead: fo-p4o =
+# fo-p4j (i's broad planks and its wedge break) with the star-and-break block of fo-p3-follow-pigletsi
+# ((752,1156)-(905,1214), centre (827,1185)) copied onto the break at (330,787), scale 1.2, rot 8, tone-matched (scratchpad patch.py).
 
 
 def emblem_again(pid, rev, keep, change, extra_neg=""):
