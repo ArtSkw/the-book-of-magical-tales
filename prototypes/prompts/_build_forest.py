@@ -576,7 +576,9 @@ MIST_FIRST.add("fo-p3-call-backf")
 # (1460,487; 0.55, rot 4). Other shipped edits: fo-p3-call-backh = g with the Big piglet's ear repainted pink;
 # fo-p8k = p8i + the grey posts of p8j; fo-p9-help-fawnk = help-fawni + the doe's and fawn's legs from j, and the
 # second, edge-on gate leaf covered by the old post stretched over it (x 1058-1121); fo-p9-make-wayi = make-wayh with
-# the Big piglet's second tail (1108-1131, 667-693) cloned away.
+# the Big piglet's second tail cloned away from the wood to its right (1109-1131, 677-693), leaving the boot above intact.
+# Third fresh check: fo-p9-help-fawnk now covers the edge-on leaf by moving the old post 15 px left (x 1060-1106, its
+# own width) and filling the gap with the next fence bay; fo-p3-call-backh's ear is the piglet's own skin texture.
 
 
 if __name__ == "__main__":
