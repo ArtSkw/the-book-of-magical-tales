@@ -211,9 +211,11 @@ TITLE = ("the frontispiece emblem that opens the tale \"The Forest Oath\": insid
 ENDINGS = {
     "make-way": ("the closing emblem (the colophon) of the tale \"The Forest Oath\", the companion of its frontispiece: inside the roundel, the Heartwood at noon — a golden old oak, beneath it a short stretch of the low plain split-oak fence with a small new gate standing open (three upright pale planks held by one broad crossbar across their tops, square-topped, no pickets, no brace), a four-pointed star carved in the centre of that crossbar; behind the fence the doe and her small fawn graze on acorns in the moss, and the star stag stands beside them with its head raised, calm: a red-brown stag with a darker brown neck mane and pale cream antlers, a crisp small gold four-pointed star on its brow; a small flat gold sun disc in the sky, without rays.",
                  "one stag with one small gold star; one doe; one fawn; one gate with one carved star; no star on any post; one sun disc."),
-    "help-fawn": ("the closing emblem (the colophon) of the tale \"The Forest Oath\", the companion of its frontispiece: inside the roundel, under golden oaks at noon, the small fawn pressed close against its mother's side, safe, her head bent to it; the star stag stands behind them, calm, the small gold star on its brow; the storm-broken oak branch lies aside along the edge of the moss; a small flat gold sun disc in the sky, without rays.",
+    "help-fawn": ("the closing emblem (the colophon) of the tale \"The Forest Oath\", the companion of its frontispiece: inside the roundel, under golden oaks at noon, the small fawn pressed close against its mother's side, safe, her head bent to it; the star stag stands behind them, calm: a red-brown stag with a darker brown neck mane and pale cream antlers, a crisp small gold four-pointed star on its brow; the storm-broken oak branch — one long grey-brown bough with forked twigs and a few brown leaves, not a stump — lies flat along the edge of the moss, pulled aside; a small flat gold sun disc in the sky, without rays.",
                   "one stag with one small gold star; one doe; one fawn; one branch lying aside; one sun disc."),
 }
+# help-fawn (a): the stag had dark antlers and no mane, the branch read as a stump
+EMBLEM_REV = {"help-fawn": "fo-p10-help-fawnb"}
 DAY_GROUND = "inside it a clear, pale day-blue ground (#a9c3cf) with a few soft cream cloud shapes — the morning has come (the frontispiece of this tale is the same roundel on a deep blue pre-dawn ground)."
 
 
@@ -401,6 +403,11 @@ for pid, old, new, extra in [("fo-p9-make-way", "fo-p9-make-waye", "fo-p9-make-w
           neg=NO_OLD_GATE)
 
 
+# fo-p7-gather-forestc is not a generation: gather-forestb kept Marcin's old knife and a whole star on
+# the old gate (its prompt predates this pass), so the right side (x >= 990, a 60 px soft seam inside
+# Gustaw's body) is taken from fo-p7-give-sackf, which shares the composition pixel for pixel.
+
+
 if __name__ == "__main__":
     sheets()
     print("set-forest-oath", "m-sheet-forest", "sheets")
@@ -415,5 +422,6 @@ if __name__ == "__main__":
     emblem_prompt("orn-title-forest", TITLE[0], TITLE[1], "one stag with one small gold star; one oak twig with two acorns.")
     print("orn-title-forest", "emblem")
     for variant, (motif, counts) in ENDINGS.items():
-        emblem_prompt(f"fo-p10-{variant}", motif, DAY_GROUND, counts, extra_refs=", orn-title-forest-clean.png")
-        print(f"fo-p10-{variant}", "emblem")
+        pid = EMBLEM_REV.get(variant, f"fo-p10-{variant}")
+        emblem_prompt(pid, motif, DAY_GROUND, counts, extra_refs=", orn-title-forest-clean.png")
+        print(pid, "emblem")
