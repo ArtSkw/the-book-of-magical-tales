@@ -8,6 +8,7 @@
 //                                                               (picks-redo2.json is read when present):
 //                                                               each ships as generated, one take, no variants
 //   node scripts/sfx/picks.mjs --redo3 <export.json>            ?sheet=redo3 (picks-redo3.json when present)
+//   node scripts/sfx/picks.mjs --forest <export.json>           ?sheet=forest: "Leśna przysięga" (picks-forest.json when present)
 //   node scripts/sfx/picks.mjs --redo4 <export.json>            ?sheet=redo4: the Bell's opening theme and its
 //                                                               night bed (picks-redo4.json when present)
 //   then: node scripts/sfx/master.mjs
@@ -40,6 +41,9 @@ const redo3Arg = arg("redo3") || (existsSync(DEFAULT_REDO3) ? DEFAULT_REDO3 : nu
 // the Bell's calmer opening theme and its night square with the villagers, picked on ?sheet=redo4
 const DEFAULT_REDO4 = path.join(ROOT, "scripts/sfx/picks-redo4.json");
 const redo4Arg = arg("redo4") || (existsSync(DEFAULT_REDO4) ? DEFAULT_REDO4 : null);
+// "Leśna przysięga": its themes, beds and spot sounds picked on ?sheet=forest (picks-forest.json when present)
+const DEFAULT_FOREST = path.join(ROOT, "scripts/sfx/picks-forest.json");
+const forestArg = arg("forest") || (existsSync(DEFAULT_FOREST) ? DEFAULT_FOREST : null);
 const themesArg = arg("themes") || (existsSync(DEFAULT_THEMES) ? DEFAULT_THEMES : null);
 const redo2Arg = arg("redo2") || (existsSync(DEFAULT_REDO2) ? DEFAULT_REDO2 : null);
 const manifest = JSON.parse(await readFile(path.join(ROOT, "scripts/sfx/manifest.json"), "utf8"));
@@ -223,6 +227,21 @@ if (redo4Arg) {
     took.push(id);
   }
   out._about += ` Redo4: ${took.join(", ") || "nothing new"} from ${path.basename(redo4Arg)}.`;
+}
+// The forest tale: each sound ships as picked, as generated (themes through the music chain, beds through
+// the bed chain, spot sounds as one-shots; several starred takes become variants). A star on a
+// comparison row (another tale's theme, the harp) changes nothing.
+if (forestArg) {
+  const ex = JSON.parse(await readFile(path.resolve(forestArg), "utf8"));
+  const took = [];
+  for (const [id, v] of Object.entries(ex.sounds || {})) {
+    const files = (v.picked || []).filter((x) => !String(x.role || "").startsWith("ref")).map((x) => rel(x.file));
+    if (!files.length) continue;
+    const kind = /-theme$/.test(id) ? "music" : /^fo-bed-/.test(id) ? "bed" : "oneshot";
+    out[id] = { kind, bus: kind === "music" ? "music" : kind === "bed" ? "amb" : "story", note: `forest (${ex.exportedAt})`, takes: files.slice(0, Math.max(1, v.ship || 1)) };
+    took.push(id);
+  }
+  out._about += ` Forest: ${took.join(", ") || "nothing"} from ${path.basename(forestArg)}.`;
 }
 await writeFile(path.join(ROOT, "scripts/sfx/picks.json"), JSON.stringify(out, null, 2) + "\n");
 const n = Object.keys(out).filter((k) => !k.startsWith("_")).length;

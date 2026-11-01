@@ -991,5 +991,244 @@ export const sounds = {
         "capped": 5
       }
     ]
+  },
+  "forest-intro-theme": {
+    "kind": "music",
+    "bus": "music",
+    "group": "music",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "music/forest-intro-theme",
+        "dur": 14.949,
+        "ch": 2,
+        "from": "forest-intro-b/forest-intro-b--music-v2-t01.mp3",
+        "lufs": -20,
+        "tp": -11.9
+      }
+    ]
+  },
+  "forest-ending-theme": {
+    "kind": "music",
+    "bus": "music",
+    "group": "music",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "music/forest-ending-theme",
+        "dur": 12.887,
+        "ch": 2,
+        "from": "forest-ending-a/forest-ending-a--music-v2-5-t01.mp3",
+        "lufs": -20,
+        "tp": -11.3
+      }
+    ]
+  },
+  "fo-bed-mist": {
+    "kind": "bed",
+    "bus": "amb",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": true,
+    "variants": [
+      {
+        "file": "forest-oath/fo-bed-mist",
+        "dur": 20,
+        "ch": 2,
+        "from": "fo-bed-mist-c/fo-bed-mist-c--sfx-v3-t01.wav",
+        "lufs": -25.8,
+        "tp": -3.8,
+        "capped": 1.9
+      }
+    ]
+  },
+  "fo-bed-dawn": {
+    "kind": "bed",
+    "bus": "amb",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": true,
+    "variants": [
+      {
+        "file": "forest-oath/fo-bed-dawn",
+        "dur": 20,
+        "ch": 2,
+        "from": "fo-bed-dawn-a/fo-bed-dawn-a--sfx-v3-t01.wav",
+        "lufs": -24.3,
+        "tp": -3.8
+      }
+    ]
+  },
+  "fo-bed-morning": {
+    "kind": "bed",
+    "bus": "amb",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": true,
+    "variants": [
+      {
+        "file": "forest-oath/fo-bed-morning",
+        "dur": 20,
+        "ch": 2,
+        "from": "fo-bed-morning-b/fo-bed-morning-b--sfx-v2-t01.wav",
+        "lufs": -23.7,
+        "tp": -3.1
+      }
+    ]
+  },
+  "fo-bed-noon": {
+    "kind": "bed",
+    "bus": "amb",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": true,
+    "variants": [
+      {
+        "file": "forest-oath/fo-bed-noon",
+        "dur": 20,
+        "ch": 2,
+        "from": "fo-bed-noon-a/fo-bed-noon-a--sfx-v2-t01.wav",
+        "lufs": -23.7,
+        "tp": -3
+      }
+    ]
+  },
+  "fo-piglets": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-piglets",
+        "dur": 2.834,
+        "ch": 1,
+        "from": "fo-piglets/fo-piglets--sfx-v2-t02.wav",
+        "lufs": -20,
+        "tp": -4.2
+      }
+    ]
+  },
+  "fo-gate-lift": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-gate-lift",
+        "dur": 2.394,
+        "ch": 1,
+        "from": "fo-gate-lift/fo-gate-lift--sfx-v2-t03.wav",
+        "lufs": -21.8,
+        "tp": -1
+      }
+    ]
+  },
+  "fo-chisel": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-chisel",
+        "dur": 2.377,
+        "ch": 1,
+        "from": "fo-chisel/fo-chisel--sfx-v2-t01.wav",
+        "lufs": -22.8,
+        "tp": -1
+      }
+    ]
+  },
+  "fo-acorns": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-acorns",
+        "dur": 1.878,
+        "ch": 1,
+        "from": "fo-acorns/fo-acorns--sfx-v2-t03.wav",
+        "lufs": -20,
+        "tp": -2.6
+      }
+    ]
+  },
+  "fo-munch": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-munch",
+        "dur": 2.406,
+        "ch": 1,
+        "from": "fo-munch/fo-munch--sfx-v2-t01.wav",
+        "lufs": -23.4,
+        "tp": -1
+      }
+    ]
+  },
+  "fo-stag": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-stag",
+        "dur": 1.737,
+        "ch": 1,
+        "from": "fo-stag/fo-stag--sfx-v2-t02.wav",
+        "lufs": -20,
+        "tp": -9.9
+      }
+    ]
+  },
+  "fo-hooves": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-hooves",
+        "dur": 2.735,
+        "ch": 1,
+        "from": "fo-hooves/fo-hooves--sfx-v2-t02.wav",
+        "lufs": -20,
+        "tp": -4.1
+      }
+    ]
+  },
+  "fo-branch": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-branch",
+        "dur": 2.796,
+        "ch": 1,
+        "from": "fo-branch/fo-branch--sfx-v2-t03.wav",
+        "lufs": -20,
+        "tp": -4.5
+      }
+    ]
   }
 };

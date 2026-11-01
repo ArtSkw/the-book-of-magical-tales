@@ -1,0 +1,24 @@
+{
+  "sheet": "forest",
+  "exportedAt": "2026-11-01T21:22:38.748Z",
+  "verdict": {},
+  "general": "",
+  "sounds": {
+    "forest-intro-theme": { "picked": [{ "file": "raw/forest-intro-b/forest-intro-b--music-v2-t01.mp3", "model": "music-v2", "role": "forest-intro-b" }, { "file": "raw/forest-intro-c/forest-intro-c--music-v2-t01.mp3", "model": "music-v2", "role": "forest-intro-c" }], "ship": 1, "note": "" },
+    "forest-ending-theme": { "picked": [{ "file": "raw/forest-ending-a/forest-ending-a--music-v2-5-t01.mp3", "model": "music-v2-5", "role": "forest-ending-a" }], "ship": 1, "note": "" },
+    "fo-bed-mist": { "picked": [{ "file": "raw/fo-bed-mist-c/fo-bed-mist-c--sfx-v3-t01.wav", "model": "sfx-v3", "role": "fo-bed-mist-c" }], "ship": 1, "note": "" },
+    "fo-bed-dawn": { "picked": [{ "file": "raw/fo-bed-dawn-a/fo-bed-dawn-a--sfx-v3-t01.wav", "model": "sfx-v3", "role": "fo-bed-dawn-a" }], "ship": 1, "note": "" },
+    "fo-bed-morning": { "picked": [{ "file": "raw/fo-bed-morning-b/fo-bed-morning-b--sfx-v2-t01.wav", "model": "sfx-v2", "role": "fo-bed-morning-b" }], "ship": 1, "note": "" },
+    "fo-bed-noon": { "picked": [{ "file": "raw/fo-bed-noon-a/fo-bed-noon-a--sfx-v2-t01.wav", "model": "sfx-v2", "role": "fo-bed-noon-a" }], "ship": 1, "note": "" },
+    "fo-piglets-trot": { "picked": [], "ship": 1, "note": "Niezbyt słychać tu prosiaczka, bardziej jakiś ryk lub wark" },
+    "fo-piglets": { "picked": [{ "file": "raw/fo-piglets/fo-piglets--sfx-v2-t02.wav", "model": "sfx-v2", "role": "fo-piglets" }], "ship": 2, "note": "" },
+    "fo-gate-lift": { "picked": [{ "file": "raw/fo-gate-lift/fo-gate-lift--sfx-v2-t03.wav", "model": "sfx-v2", "role": "fo-gate-lift" }], "ship": 1, "note": "" },
+    "fo-chisel": { "picked": [{ "file": "raw/fo-chisel/fo-chisel--sfx-v2-t01.wav", "model": "sfx-v2", "role": "fo-chisel" }], "ship": 1, "note": "" },
+    "fo-acorns": { "picked": [{ "file": "raw/fo-acorns/fo-acorns--sfx-v2-t03.wav", "model": "sfx-v2", "role": "fo-acorns" }], "ship": 1, "note": "" },
+    "fo-munch": { "picked": [{ "file": "raw/fo-munch/fo-munch--sfx-v2-t01.wav", "model": "sfx-v2", "role": "fo-munch" }], "ship": 1, "note": "" },
+    "fo-stag": { "picked": [{ "file": "raw/fo-stag/fo-stag--sfx-v2-t02.wav", "model": "sfx-v2", "role": "fo-stag" }], "ship": 1, "note": "" },
+    "fo-fawn": { "picked": [], "ship": 1, "note": "Nic z tego nie brzmi jak jelonek ani zwierzę, zbyt syntentyczne i sztuczne" },
+    "fo-hooves": { "picked": [{ "file": "raw/fo-hooves/fo-hooves--sfx-v2-t02.wav", "model": "sfx-v2", "role": "fo-hooves" }], "ship": 1, "note": "" },
+    "fo-branch": { "picked": [{ "file": "raw/fo-branch/fo-branch--sfx-v2-t03.wav", "model": "sfx-v2", "role": "fo-branch" }], "ship": 1, "note": "" }
+  }
+}
