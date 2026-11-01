@@ -1230,5 +1230,39 @@ export const sounds = {
         "tp": -4.5
       }
     ]
+  },
+  "fo-piglets-trot": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-piglets-trot",
+        "dur": 2.971,
+        "ch": 1,
+        "from": "fo-piglets-trot-c/fo-piglets-trot-c--sfx-v2-t02.wav",
+        "lufs": -20,
+        "tp": -2.1
+      }
+    ]
+  },
+  "fo-fawn": {
+    "kind": "oneshot",
+    "bus": "story",
+    "group": "forest-oath",
+    "gainDb": 0,
+    "loop": false,
+    "variants": [
+      {
+        "file": "forest-oath/fo-fawn",
+        "dur": 1.846,
+        "ch": 1,
+        "from": "fo-fawn-c/fo-fawn-c--sfx-v2-t01.wav",
+        "lufs": -20,
+        "tp": -4.2
+      }
+    ]
   }
 };
