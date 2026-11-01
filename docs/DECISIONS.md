@@ -4,6 +4,11 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-01: "Leśna przysięga" approved.** The author accepted the tale's text and every picture
+  after reading the whole book on both paths. A detail that must look the same on several pages (the
+  old gate's split star) is copied from one approved page in the same view, not regenerated or redrawn:
+  three regenerations and two hand-painted versions each came out different.
+
 - **2026-11-01: "Leśna przysięga" after reading the whole book.** (1) The two variants of a page
   must differ in content, layout and perspective, each drawn from its own text, as in the earlier
   tales. Rejected: one camera per pair with small changes (our rhythm rule had said "a variant pair
