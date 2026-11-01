@@ -403,9 +403,40 @@ for pid, old, new, extra in [("fo-p9-make-way", "fo-p9-make-waye", "fo-p9-make-w
           neg=NO_OLD_GATE)
 
 
+# Fourth pass (fresh review of the shipped pictures). The whole-picture regenerations kept drifting the
+# gate, so each take now changes ONE thing and only that region is pasted back into the shipped take
+# (scratchpad composite, like gather-forestc): the rest of every picture stays pixel for pixel.
+CARVED = "the star is a cut groove in the wood, darker brown in its shadow, the same colour family as the wood; never gold, never raised, never painted"
+again("fo-p7-give-sack", "fo-p7-give-sackf", "fo-p7-give-sackg", "everything except the old grey gate's crossbar",
+      "On the OLD grey gate leaning at the right, its crossbar clearly shows the old carved four-pointed star, and the crack runs right THROUGH the middle of that star, splitting it into two halves (" + CARVED + ").",
+      neg="no old gate without a star")
+again("fo-p7-gather-forest", "fo-p7-gather-forestb", "fo-p7-gather-forestd", "everything except Oliwia's bags",
+      "Oliwia has exactly ONE leather satchel on a strap across her body: she has swung it forward over the rail and pours the acorns out of it; there is no second bag at her hip.",
+      neg="no second bag on Oliwia")
+again("fo-p8", "fo-p8f", "fo-p8g", "everything except the new gate in the fence",
+      NEW_GATE + "; the planks end UNDER the crossbar, which closes the gate's top; " + CARVED + ".",
+      neg="no gold star on the gate; no rounded or pointed planks; no planks rising above the crossbar")
+again("fo-p9-help-fawn", "fo-p9-help-fawnc", "fo-p9-help-fawnd", "everything except the new gate in the fence",
+      NEW_GATE + "; the planks end UNDER the crossbar, which closes the gate's top; " + CARVED + ".",
+      neg="no gold star on the gate; no planks rising above the crossbar")
+again("fo-p4", "fo-p4d", "fo-p4e", "everything except the star on the broken gate's crossbar",
+      "The star on the broken gate is the old carved four-pointed star (" + CARVED.replace("brown", "grey-brown") + "), and the crack in the crossbar runs right THROUGH the middle of the star, splitting it into two halves.",
+      neg="no gold or bronze star; no whole star on the broken gate")
+again("fo-p3-follow-piglets", "fo-p3-follow-pigletsd", "fo-p3-follow-pigletse", "everything except where the fence rails pass Gustaw",
+      "Gustaw stands wholly in FRONT of the fence, on our side: both fence rails pass BEHIND his legs and cloak and are hidden by them; no rail crosses in front of any part of him.",
+      neg="no rail in front of Gustaw")
+again("fo-p2", "fo-p2e", "fo-p2f", "everything except the acorns in the foreground",
+      "There are NO whole acorns anywhere in the picture: in the foreground moss lie only a few EMPTY acorn cups and fallen leaves (the piglets have eaten every acorn outside the Heartwood).",
+      neg="no whole acorns")
+
+
 # fo-p7-gather-forestc is not a generation: gather-forestb kept Marcin's old knife and a whole star on
 # the old gate (its prompt predates this pass), so the right side (x >= 990, a 60 px soft seam inside
 # Gustaw's body) is taken from fo-p7-give-sackf, which shares the composition pixel for pixel.
+# Fourth pass, shipped: give-sackg, p8g, p9-help-fawnd and p4e whole (they changed only the asked region).
+# fo-p7-gather-foreste = gather-forestb left, give-sackg right (same seam), Oliwia's box (372,300)-(680,740)
+# from gather-forestd, which had dropped Marcin's mallet. fo-p10-make-wayb = fo-p10-make-way with the gate's
+# gold star recoloured by hand to a brown carved groove (pixels around (566,841)).
 
 
 if __name__ == "__main__":
