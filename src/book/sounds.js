@@ -1030,7 +1030,7 @@ export const sounds = {
     "kind": "bed",
     "bus": "amb",
     "group": "forest-oath",
-    "gainDb": 0,
+    "gainDb": -1,
     "loop": true,
     "variants": [
       {
@@ -1048,7 +1048,7 @@ export const sounds = {
     "kind": "bed",
     "bus": "amb",
     "group": "forest-oath",
-    "gainDb": 0,
+    "gainDb": -2,
     "loop": true,
     "variants": [
       {
@@ -1065,7 +1065,7 @@ export const sounds = {
     "kind": "bed",
     "bus": "amb",
     "group": "forest-oath",
-    "gainDb": 0,
+    "gainDb": -2,
     "loop": true,
     "variants": [
       {
@@ -1082,7 +1082,7 @@ export const sounds = {
     "kind": "bed",
     "bus": "amb",
     "group": "forest-oath",
-    "gainDb": 0,
+    "gainDb": -2,
     "loop": true,
     "variants": [
       {

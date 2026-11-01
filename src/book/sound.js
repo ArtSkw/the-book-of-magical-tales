@@ -714,9 +714,12 @@ export function createSound({ base = "/", enabled = true, onChange = null, debug
     },
     button: () => api.click(),
     // "Start over": the click of the clasp, then the leaves riffle back to the tale's title (the
-    // theme, an opening one too, gives way: the tale begins again)
+    // theme, an opening one too, gives way: the tale begins again, so its themes are new again too:
+    // the cooldown that keeps a theme from replaying on a page turn would otherwise silence the
+    // opening when the reader lands back on the title spread)
     startOver(R = null) {
       api.click();
+      S.themesHeard.clear();
       if (R) api.riffle({ ...R, silk: false, restart: true });
       else {
         stopSpots(0.3);

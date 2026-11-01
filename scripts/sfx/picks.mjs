@@ -233,7 +233,9 @@ if (redo4Arg) {
 // comparison row (another tale's theme, the harp) changes nothing.
 // The author (2026-11-01, reading in the book): both forest themes still sound louder than the other tales'
 // at the same measured loudness (a close, bright solo lute), so the engine plays them quieter.
-const FOREST_GAIN = { "forest-intro-theme": -6, "forest-ending-theme": -6 };
+// Its beds too sounded a touch louder (same measured level, livelier birds): -2 dB, the mist (already
+// shipped capped, 1.9 dB quieter) -1 dB.
+const FOREST_GAIN = { "forest-intro-theme": -6, "forest-ending-theme": -6, "fo-bed-mist": -1, "fo-bed-dawn": -2, "fo-bed-morning": -2, "fo-bed-noon": -2 };
 if (forestArg) {
   const ex = JSON.parse(await readFile(path.resolve(forestArg), "utf8"));
   const took = [];
