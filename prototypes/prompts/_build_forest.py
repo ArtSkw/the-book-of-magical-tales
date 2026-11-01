@@ -437,6 +437,10 @@ again("fo-p2", "fo-p2e", "fo-p2f", "everything except the acorns in the foregrou
 # fo-p7-gather-foreste = gather-forestb left, give-sackg right (same seam), Oliwia's box (372,300)-(680,740)
 # from gather-forestd, which had dropped Marcin's mallet. fo-p10-make-wayb = fo-p10-make-way with the gate's
 # gold star recoloured by hand to a brown carved groove (pixels around (566,841)).
+# fo-p3-follow-pigletsf = pigletsd with only the regions pigletse changed (blurred diff > 14, inside
+# (0,250)-(700,1250)), so Gustaw stands wholly in front of the fence. fo-p2g = p2e with the changed regions of
+# p2f inside y >= 760 (empty cups only); fo-p2h = p2g with the one cup still holding a nut, at (859,942),
+# replaced by a copy of the empty cup at (972,946).
 
 
 if __name__ == "__main__":
