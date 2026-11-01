@@ -38,6 +38,8 @@ function themeFlags(abs, m) {
   if (m.endDb > -45) warn.push("nie wybrzmiewa do końca"); else good.push("wybrzmiewa do ciszy");
   if (m.M < -26) info.push(`ciche nagranie: w książce +${Math.round(-20 - m.M)} dB`);
   if (m.clipped > 10) warn.push("przester");
+  // dynamics (the author, 2026-11-01: the first forest themes swelled too much; the Bell's sit at LRA 4-5)
+  if (m.LRA > 10) warn.push(`duża dynamika (LRA ${Math.round(m.LRA)})`); else good.push(`równo (LRA ${Math.round(m.LRA)})`);
   return { warn, good, info };
 }
 function bedFlags(abs, m) {
@@ -152,7 +154,20 @@ const redo = {
     await shotItem("fo-fawn", "Jelonek woła mamę", "Strona 8; strona 9 (Koniczynka odciąga gałąź); strona 10. Odrzucone: „zbyt syntetyczne”.", 1, ["fo-fawn-b", "fo-fawn-c"]),
   ] }] }],
 };
+// round 3 (2026-11-01): the themes again, softer and even (the author found them louder and too dynamic)
+const themes2 = {
+  name: "forest3", title: "Odsłuch: Leśna przysięga, motywy cichsze",
+  intro: "Nowe motywy otwarcia i zakończenia: cicho i równo, bez narastania (w poprzednich muzyka rosła do mocnego szczytu: rozpiętość głośności LRA 15–16, przy dzwonie 4–5, przy smoku 12–14). Trzy opisy (A: lutnia i flet, B: fidel i flet, C: sama lutnia), każdy w dwóch modelach. Obok dla porównania obecne motywy lasu oraz motywy dzwonu i smoka. Wszystko wyrównane do tego samego szczytu głośności, tak jak w książce. Wybierz po jednym i pobierz wybory.",
+  base: "", showModels: true, context: {},
+  sections: [{ title: "Motywy", groups: [{ items: [
+    await themeItem("forest-intro-theme", "Motyw otwarcia (strona tytułowa)", "Mgła przed świtem: cicho, równo, tajemniczo; na D.",
+      ["forest-intro-r2a", "forest-intro-r2b", "forest-intro-r2c"], [["music/forest-intro-theme", "Obecny motyw lasu", "ref"], ["music/bell-intro-theme", "Dzwon: otwarcie", "ref"], ["music/dragon-intro-theme", "Smok: otwarcie", "ref"]]),
+    await themeItem("forest-ending-theme", "Motyw zakończenia (ostatnia strona)", "Słońce w południe: cicho, równo, czule; D-dur.",
+      ["forest-ending-r2a", "forest-ending-r2b", "forest-ending-r2c"], [["music/forest-ending-theme", "Obecny motyw lasu", "ref"], ["music/bell-ending-theme", "Dzwon: zakończenie", "ref"], ["music/dragon-ending-theme", "Smok: zakończenie", "ref"]]),
+  ] }] }],
+};
 await mkdir(path.join(SFX, "sheets"), { recursive: true });
+await writeFile(path.join(SFX, "sheets/forest3.json"), JSON.stringify({ ...themes2, builtAt: new Date().toISOString() }));
 await writeFile(path.join(SFX, "sheets/forest2.json"), JSON.stringify({ ...redo, builtAt: new Date().toISOString() }));
 await writeFile(path.join(SFX, "sheets/forest.json"), JSON.stringify({ ...sheet, builtAt: new Date().toISOString() }));
 console.log(sheet.sections.flatMap((s) => s.groups[0].items).map((it) => `${it.id} ${it.takes.length}`).join(", "));

@@ -7,29 +7,24 @@
     "forest-intro-theme": {
       "picked": [
         {
-          "file": "raw/forest-intro-b/forest-intro-b--music-v2-t01.mp3",
-          "model": "music-v2",
-          "role": "forest-intro-b"
-        },
-        {
-          "file": "raw/forest-intro-c/forest-intro-c--music-v2-t01.mp3",
-          "model": "music-v2",
-          "role": "forest-intro-c"
+          "file": "raw/forest-intro-r2c/forest-intro-r2c--music-v2-5-t01.mp3",
+          "model": "music-v2-5",
+          "role": "forest-intro-r2c"
         }
       ],
       "ship": 1,
-      "note": ""
+      "note": "forest3 (2026-11-01T21:42:53.209Z): softer, even; the first round swelled too much"
     },
     "forest-ending-theme": {
       "picked": [
         {
-          "file": "raw/forest-ending-a/forest-ending-a--music-v2-5-t01.mp3",
-          "model": "music-v2-5",
-          "role": "forest-ending-a"
+          "file": "raw/forest-ending-r2c/forest-ending-r2c--music-v2-t01.mp3",
+          "model": "music-v2",
+          "role": "forest-ending-r2c"
         }
       ],
       "ship": 1,
-      "note": ""
+      "note": "forest3 (2026-11-01T21:42:53.209Z): softer, even; the first round was too dynamic"
     },
     "fo-bed-mist": {
       "picked": [

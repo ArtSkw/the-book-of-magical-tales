@@ -1001,9 +1001,9 @@ export const sounds = {
     "variants": [
       {
         "file": "music/forest-intro-theme",
-        "dur": 14.949,
+        "dur": 14.185,
         "ch": 2,
-        "from": "forest-intro-b/forest-intro-b--music-v2-t01.mp3",
+        "from": "forest-intro-r2c/forest-intro-r2c--music-v2-5-t01.mp3",
         "lufs": -20,
         "tp": -11.9
       }
@@ -1018,11 +1018,11 @@ export const sounds = {
     "variants": [
       {
         "file": "music/forest-ending-theme",
-        "dur": 12.887,
+        "dur": 13.392,
         "ch": 2,
-        "from": "forest-ending-a/forest-ending-a--music-v2-5-t01.mp3",
+        "from": "forest-ending-r2c/forest-ending-r2c--music-v2-t01.mp3",
         "lufs": -20,
-        "tp": -11.3
+        "tp": -10.9
       }
     ]
   },
