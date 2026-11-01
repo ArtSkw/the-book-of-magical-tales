@@ -555,6 +555,28 @@ again("fo-p7-give-sack", "fo-p7-give-sackj", "fo-p7-give-sackk", "everything exc
 # Shipped composites (changed region only): fo-p9-make-wayh = make-wayf + the deer and gate from g; fo-p9-help-fawni =
 # help-fawng + the gate from h; fo-p7-gather-forestk = gather-foresti + the caparison from j; fo-p7-give-sackl =
 # give-sackj + the shield behind the rail from k.
+# Second fresh review: the doe on p9 help-fawn had five legs and the gate two leaves; p8 hung the gate on new pale posts;
+# p9 make-way gave the Big piglet two tails; p3 call-back gave the Big piglet the Smallest's dark ear.
+again("fo-p9-help-fawn", "fo-p9-help-fawni", "fo-p9-help-fawnj", "everything except the legs of the doe and the fawn, and the gate",
+      "(1) The doe has EXACTLY FOUR legs and the fawn EXACTLY FOUR legs, each leg clearly joined to its own body; no extra leg between them. (2) The gate is ONE single leaf, " + GATE_FLUSH + ", hung on the old grey post and swung open; no second leaf, no edge-on board on the other post.",
+      neg="no fifth leg; no extra hooves; no double gate; no second gate leaf")
+again("fo-p8", "fo-p8i", "fo-p8j", "everything except the two posts the new gate hangs between",
+      "The new pale gate hangs between two OLD GREY weathered oak posts like the rest of the fence (rounded tops, grey, mossy); only the gate itself is new pale wood.",
+      neg="no new pale posts")
+again("fo-p9-make-way", "fo-p9-make-wayh", "fo-p9-make-wayi", "everything except the Big piglet's tail",
+      "The Big piglet (pink with one dark saddle patch) has exactly ONE small curly tail at its rump; nothing else curls on its back.", neg="no second tail")
+again("fo-p3-call-back", "fo-p3-call-backe", "fo-p3-call-backf", "everything except the Big piglet's ears",
+      "The Big piglet (one large dark saddle patch) has two PINK ears; only the Smallest piglet (all pink) has one dark ear.", neg="no dark ear on the Big piglet")
+MIST_FIRST.add("fo-p3-call-backf")
+# The Codex limit stopped make-wayi and call-backf (weekly limit to 2026-11-05); both were fixed by hand instead.
+# The old star: the approved star of fo-p5-ask-kindlyf (box (1008,298)-(1124,384), centre (1068,340)) is transplanted
+# with an affine fit and a wood-colour match onto every other old gate, after the old mark is cloned away along its board:
+# fo-p3-call-backg (centre (561,680), scale 0.85, squash 0.5), fo-p4h (324,786; 0.75, rot 14), fo-p5-show-tracksg
+# (1157,182; 0.7, rot 14), fo-p6h (from p6d; 637,392; 0.72, rot -6; crack extended through the board), fo-p7-give-sackm
+# (1460,487; 0.55, rot 4). Other shipped edits: fo-p3-call-backh = g with the Big piglet's ear repainted pink;
+# fo-p8k = p8i + the grey posts of p8j; fo-p9-help-fawnk = help-fawni + the doe's and fawn's legs from j, and the
+# second, edge-on gate leaf covered by the old post stretched over it (x 1058-1121); fo-p9-make-wayi = make-wayh with
+# the Big piglet's second tail (1108-1131, 667-693) cloned away.
 
 
 if __name__ == "__main__":
