@@ -231,6 +231,9 @@ if (redo4Arg) {
 // The forest tale: each sound ships as picked, as generated (themes through the music chain, beds through
 // the bed chain, spot sounds as one-shots; several starred takes become variants). A star on a
 // comparison row (another tale's theme, the harp) changes nothing.
+// The author (2026-11-01, reading in the book): both forest themes still sound louder than the other tales'
+// at the same measured loudness (a close, bright solo lute), so the engine plays them quieter.
+const FOREST_GAIN = { "forest-intro-theme": -6, "forest-ending-theme": -6 };
 if (forestArg) {
   const ex = JSON.parse(await readFile(path.resolve(forestArg), "utf8"));
   const took = [];
@@ -239,6 +242,7 @@ if (forestArg) {
     if (!files.length) continue;
     const kind = /-theme$/.test(id) ? "music" : /^fo-bed-/.test(id) ? "bed" : "oneshot";
     out[id] = { kind, bus: kind === "music" ? "music" : kind === "bed" ? "amb" : "story", note: `forest (${ex.exportedAt})`, takes: files.slice(0, Math.max(1, v.ship || 1)) };
+    if (FOREST_GAIN[id]) out[id].gainDb = FOREST_GAIN[id];
     took.push(id);
   }
   out._about += ` Forest: ${took.join(", ") || "nothing"} from ${path.basename(forestArg)}.`;

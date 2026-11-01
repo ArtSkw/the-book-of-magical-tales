@@ -996,7 +996,7 @@ export const sounds = {
     "kind": "music",
     "bus": "music",
     "group": "music",
-    "gainDb": 0,
+    "gainDb": -6,
     "loop": false,
     "variants": [
       {
@@ -1013,7 +1013,7 @@ export const sounds = {
     "kind": "music",
     "bus": "music",
     "group": "music",
-    "gainDb": 0,
+    "gainDb": -6,
     "loop": false,
     "variants": [
       {
