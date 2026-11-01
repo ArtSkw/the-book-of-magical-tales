@@ -581,6 +581,43 @@ MIST_FIRST.add("fo-p3-call-backf")
 # own width) and filling the gap with the next fence bay; fo-p3-call-backh's ear is the piglet's own skin texture.
 
 
+# Author 2026-11-01 (after the generator reset): on p9 help-fawn the rope ran tight from the branch to behind the mare;
+# the branch is already aside, so the rope stays tied to it and lies slack on the ground. Plus the reviewer's leftovers.
+again("fo-p9-help-fawn", "fo-p9-help-fawnk", "fo-p9-help-fawnl", "everything except the rope",
+      "The hemp rope is still knotted round the far end of the branch, but now it lies SLACK on the ground in loose loops beside "
+      "the branch, its free end in the grass; it does not rise, does not run to the mare and is not tied to the saddle; "
+      "Koniczynka stands free, nothing pulling.", neg="no taut rope; no rope from the mare or the saddle; no rope in the air")
+again("fo-p5-ask-kindly", "fo-p5-ask-kindlyf", "fo-p5-ask-kindlyg", "everything except the moss at Marcin's feet",
+      "Marcin's one thin hazel switch lies on the moss at his feet, because his hands are busy (one on his chest, one in Oliwia's).",
+      neg="no second stick; no switch in his hands")
+again("fo-p8", "fo-p8k", "fo-p8l", "everything except the star on the stag's brow",
+      "The star on the stag's brow is crisp burnished GOLD LEAF (#c9972b) with a fine dark ink edge, four slim points, clearly gold "
+      "against the red-brown coat, never pale cream; no glow.", neg="no pale or white star; no glow")
+
+# Physical-plausibility review: on p9 help-fawn the gate leaf stood flat in the fence line but covered only half the gap.
+again("fo-p9-help-fawn", "fo-p9-help-fawnm", "fo-p9-help-fawnn", "everything except the gate leaf",
+      "the gate stands WIDE OPEN: its one leaf (" + GATE_FLUSH + ") is swung back on its hinges on the LEFT post, turned edge-on toward "
+      "the Heartwood, seen at an angle and foreshortened, so the whole gateway between the two grey posts is open and the two hinds "
+      "walk through it.", neg="no closed gate; no gate leaf lying flat in the fence line; no second leaf")
+
+# Shipped: fo-p9-help-fawnm = k + the slack rope from l; fo-p9-help-fawno = m + the swung-open gate from n;
+# fo-p5-ask-kindlyh = d + the whole shield area of e (no ghost of the old shield), fo-p5-ask-kindlyi = h + the switch from g;
+# fo-p8m/n = k with the stag's star repainted by hand as crisp gold leaf with an ink edge (generation l stayed soft);
+# fo-p10-make-wayd = make-wayb + the gate from c (c's vines were heavier than the pair's); title: orn-title-forestc whole
+# (b ruled hard stripes across the stag), exported with export_webp.py directly.
+
+def emblem_again(pid, rev, keep, change, extra_neg=""):
+    """Regenerate an emblem from its own take (refs/<pid>-composition.png), changing one thing."""
+    src = (m.HERE / f"{pid}.txt").read_text().split("\n")
+    src[0] += f", {pid}-composition.png"
+    src.append(f"COMPOSITION: the attached COMPOSITION REFERENCE ({pid}-composition.png) is the current take of THIS emblem — "
+               f"keep it exactly ({keep}); the only change: {change} (This overrides the rule above about not copying compositions.)")
+    if extra_neg:
+        src = [l + f"; {extra_neg}." if l.startswith("NEGATIVES:") else l for l in src]
+        src = [l.replace(".; ", "; ") for l in src]
+    (m.HERE / f"{rev}.txt").write_text("\n".join(src))
+
+
 if __name__ == "__main__":
     sheets()
     print("set-forest-oath", "m-sheet-forest", "sheets")
@@ -598,3 +635,10 @@ if __name__ == "__main__":
         pid = EMBLEM_REV.get(variant, f"fo-p10-{variant}")
         emblem_prompt(pid, motif, DAY_GROUND, counts, extra_refs=", orn-title-forest-clean.png")
         print(pid, "emblem")
+    emblem_again("orn-title-forest", "orn-title-forestb", "the gold ring, the vines, the stag, its pose, the oaks, the colours",
+                 "(1) the mist is three or four FLAT, straight, horizontal pale pearl-grey bands lying across the lower part, like the flat bands of a medieval miniature, with no curls, waves or ribbon ends; (2) the sky holds only a few very small plain gold dots, no four-pointed stars, so the one star on the stag's brow stays the only star.", "no curling mist; no wavy ribbons; no four-pointed stars in the sky")
+    # title b drew the mist as hard straight stripes across the stag's chest; c keeps b's gold dots and softens the bands
+    emblem_again("orn-title-forest", "orn-title-forestc", "the gold ring, the vines, the stag, its pose, the oaks, the colours",
+                 "(1) the mist is two or three soft, flat, semi-transparent pale pearl-grey bands lying BEHIND the stag's neck and between the trunks, narrow, gently tapering at their ends like the flat mist bands of a medieval miniature; they never cross the stag's face, neck or chest, never curl and never look like ruled stripes; (2) the sky holds only a few very small plain gold dots, no four-pointed stars, so the one star on the stag's brow stays the only star.", "no curling mist; no wavy ribbons; no hard straight stripes; no mist over the stag; no four-pointed stars in the sky")
+    emblem_again("fo-p10-make-way", "fo-p10-make-wayc", "the gold ring, the vines, the oak, the deer and their poses, the fence, the sun, the colours",
+                 "the gate: ONE pale gate that fills the gap between its two grey posts, three upright pale planks whose tops end FLUSH UNDER one broad pale crossbar (nothing rises above it), and in the centre of the crossbar one four-pointed star CARVED as a darker brown groove in the wood.", "no rivets; no metal plate; no iron star; no plank above the crossbar; no gap beside the gate")
