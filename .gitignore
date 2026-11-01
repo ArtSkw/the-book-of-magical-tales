@@ -20,6 +20,7 @@ prototypes/graded/
 # Hand-written prompts (orn-*, set-*, room-wall) stay tracked.
 prototypes/prompts/a2-*.txt
 prototypes/prompts/mh-*.txt
+prototypes/prompts/fo-*.txt
 # Composition and setting references cut from local raws (prototypes/raw) for the builders
 prototypes/refs/*-composition.png
 prototypes/refs/*-setting.png

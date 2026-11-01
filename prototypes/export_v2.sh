@@ -10,6 +10,6 @@
 set -euo pipefail
 root="$(cd "$(dirname "$0")" && pwd -P)"
 raw="$root/raw/$1.png"
-case "$1" in a2-*) graded="$root/graded/a2-$3.png";; mh-*) graded="$root/graded/mh-$3.png";; esac
+case "$1" in a2-*) graded="$root/graded/a2-$3.png";; mh-*) graded="$root/graded/mh-$3.png";; fo-*) graded="$root/graded/fo-$3.png";; esac
 if [ "$4" = none ]; then cp "$raw" "$graded"; else (cd "$root/.." && python3 prototypes/grade.py "$raw" "$graded" --time "$4"); fi
 python3 "$root/export_webp.py" "$graded" "$root/../public/assets/illustrations/v2/$2/$3.webp" ${5:+--plate "$5"}

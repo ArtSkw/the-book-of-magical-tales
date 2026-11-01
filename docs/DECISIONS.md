@@ -4,6 +4,38 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-01: "Leśna przysięga" approved.** The author accepted the tale's text and every picture
+  after reading the whole book on both paths. A detail that must look the same on several pages (the
+  old gate's split star) is copied from one approved page in the same view, not regenerated or redrawn:
+  three regenerations and two hand-painted versions each came out different.
+
+- **2026-11-01: "Leśna przysięga" after reading the whole book.** (1) The two variants of a page
+  must differ in content, layout and perspective, each drawn from its own text, as in the earlier
+  tales. Rejected: one camera per pair with small changes (our rhythm rule had said "a variant pair
+  keeps the same shot"; the rule in `MANUSCRIPT_BIBLE.md` §3 now says the opposite). (2) Gustaw carries
+  his shield only while he walks or stands. When his hands are busy (lifting, holding, pulling,
+  kneeling) he sets it down nearby, still in view; it is equipment, not welded to him. (3) The old
+  gate's split star has one form on every page: the crossbar snapped through the centre of the star,
+  each half carrying half the star (the approved p3 follow-piglets take is the detail reference).
+  Rejected: a whole star with a crack beside it.
+
+- **2026-10-31: "Leśna przysięga" after the author's first reading.** (1) The charcoal burner is
+  Agata, not Dobrochna (too foreign for today's children); the deer's place is the Matecznik /
+  the Heartwood, the folk "heart of the forest" where animals are safe, not the "Dębowy Kąt"
+  (too generic, a third "oak" name). (2) The oath's star is on ONE thing: the gate's crossbar.
+  The storm broke the gate, the piglets went in through it, the heroes find the cracked star,
+  build a new gate and Marcin carves the star again; the rest of the fence is plain. Rejected:
+  a star on every post, then one new post with a new star (no reason for it to be special).
+  (3) A choice label says one concrete act: "Pokaż Marcinowi ślady raciczek", not "show him
+  gently". (4) The two options of a choice must be different kinds of action: p8 is "step
+  back, the hind will lead it" (trust the animal's nature) or "pull the branch away with
+  Koniczynka" (practical help); rejected "make way" / "move the branch", which were one act.
+  Choice ids stay; the pictures with fence stars are regenerated.
+  Pictures (fresh-context review): the new gate has ONE design on every page (three pale planks
+  under one broad crossbar with the carved star); the old cracked gate shows only on p7 as
+  Marcin's pattern, so later pages hold one star; on p8 the branch must truly cut the fawn off
+  from the doe; Marcin carves with a mallet and chisel, so the tool cannot read as a knife.
+
 - **2026-10-31: one type scale by role.** The pages used 17 different sizes (eight of them
   between 30 and 38) and six separate phone multipliers; the same element had one size under a
   plate and another on a text page. Now every text has a role on one modular scale (house body

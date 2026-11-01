@@ -21,7 +21,7 @@
 // switching between tales can be tested end to end before their pages exist.
 import { stories } from "../../stories.js";
 import { storyTranslations } from "../../locales.js";
-import { dragonSpreads, moonhillSpreads } from "./pages.js";
+import { dragonSpreads, moonhillSpreads, forestSpreads } from "./pages.js";
 
 export const NOMINAL_SPREADS = 11;
 
@@ -55,11 +55,16 @@ export const tales = [
     },
   },
   {
-    id: "tale-three",
-    title: { pl: "Opowieść trzecia", en: "The Third Tale" },
-    kicker: { pl: "Jeszcze niespisana", en: "Not yet written" },
+    // tale three: "Leśna przysięga"
+    id: "forest-oath",
+    ...fromStories("forest-oath"),
     ribbon: { color: "#857c40", motif: "star" }, // weld, a yellow-green ochre
-    available: false,
+    available: true,
+    spreads: forestSpreads,
+    epigraph: {
+      pl: { lines: ["„Co powiedziałem, to myślałem,", "a co myślałem, powiedziałem.", "Słoń jest wierny", "na sto procent!”"], author: "Dr. Seuss", work: "Horton wysiaduje jajo", note: "tłum. własne" },
+      en: { lines: ["“I meant what I said", "and I said what I meant.", "An elephant’s faithful", "one hundred per cent!”"], author: "Dr. Seuss", work: "Horton Hatches the Egg" },
+    },
   },
   {
     id: "tale-four",

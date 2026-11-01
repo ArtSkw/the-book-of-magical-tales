@@ -23,6 +23,7 @@ Define:
 - **Educational hook:** a concrete thing a child can learn through the story rather than through explanation.
 - **Emotional arc:** how the characters move from worry/confusion to understanding, repair, safety, or belonging.
 - **Places and times:** where each page happens and how the light changes (evening, dusk, deep dusk, night). The pictures and the sound beds both follow it.
+- **Spine:** answer the five questions of `docs/WRITING_BIBLE.md` §3 (the problem and its cause, why it matters and to whom, why the heroes act, the values shown, the one thing to remember). The seed lives in `docs/pilot/SEED_<tale-id>.md` until the set bible takes it over.
 - **Tale card:** fill in `docs/WRITING_BIBLE.md` §3 (law of magic, the world beyond the page, mystery and clues with one clue in a picture, stakes and a gentle clock, refrain, joyful turn, origin, voices, rich words, keepsake, return to warmth). The tale is a station of the journey (§4): where Gustaw and Oliwia arrive from, and which keepsake Oliwia takes on.
 
 ## 2. Polish-First Draft
@@ -176,6 +177,8 @@ Before showing a picture to the owner, check it zoomed in, against this list:
 - **Anatomy:** the right number of limbs, a left and a right paw or hand, horns, legs that do not melt into trees; nobody standing on what they should stand behind.
 - **Counts:** characters, animals and story objects exactly as the text says (e.g. always three mice).
 - **Continuity:** clothes, colours, props and where everyone is, against the story state.
+- **Props obey gravity and hands:** a tool or staff is held by a hand that is free to hold it, or lies on the ground; it never stands upright by itself or leans on someone whose hands are busy (author, forest tale p2 and p8).
+- **A symbol is unique when the story treats it as unique:** if the text makes one thing special (a carved star, a key), it appears once, not on every post (author, forest tale).
 - **Text:** the picture shows what the page says, for every choice variant.
 - **Style:** style match with the existing tales, medieval/fantasy atmosphere, no violence, scary intensity, modern details, or text artifacts.
 

@@ -83,6 +83,28 @@ export const TALES = {
       10: { place: "village-night", ending: true, variantFrom: 8, spots: { "ring-gently": [{ id: "mh-bell-far", first: [18, 30], max: 1 }], "share-song": [{ id: "mh-chicks", first: [18, 30], max: 1 }] } },
     },
   },
+  "forest-oath": {
+    themes: { intro: "forest-intro-theme", ending: ["forest-ending-theme", "motif-end"] },
+    // the oak forest from mist to noon (SET_BIBLE_forest-oath.md, colour script): the morning comes with the stag
+    places: {
+      "forest-mist": "fo-bed-mist", // p1-3: before dawn, thick still mist (the clearing, the path, the Heartwood)
+      "forest-dawn": "fo-bed-dawn", // p4-6: dawn, the mist thinning, frost
+      "forest-morning": "fo-bed-morning", // p7-8: late morning, thin mist, more birds
+      "forest-noon": "fo-bed-noon", // p9-10: golden noon, the mist gone
+    },
+    pages: {
+      1: { place: "forest-mist", spots: ["fo-piglets-trot"] }, // three piglets trot out of the mist
+      2: { place: "forest-mist", spots: ["fo-piglets"] }, // the piglets twitch their ears
+      3: { place: "forest-mist", variantFrom: 2, spots: { "follow-piglets": ["fo-piglets-trot"], "call-back": ["fo-piglets"] } },
+      4: { place: "forest-dawn", spots: [{ id: "fo-piglets", max: 1 }] }, // huddled behind Marcin's legs
+      5: { place: "forest-dawn", variantFrom: 4, spots: { "ask-kindly": ["fo-gate-lift"], "show-tracks": ["fo-gate-lift", "fo-piglets"] } }, // Gustaw lifts the broken gate
+      6: { place: "forest-dawn", spots: ["fo-piglets"] }, // nosing the empty cups in the frost
+      7: { place: "forest-morning", variantFrom: 6, spots: { "give-sack": ["fo-chisel", "fo-acorns"], "gather-forest": ["fo-munch", "fo-acorns"] } },
+      8: { place: "forest-morning", spots: ["fo-stag", "fo-fawn"] }, // the stag steps out; the fawn behind the branch
+      9: { place: "forest-noon", variantFrom: 8, spots: { "make-way": ["fo-hooves", "fo-stag"], "help-fawn": ["fo-branch", "fo-fawn"] } },
+      10: { place: "forest-noon", ending: true, variantFrom: 8, spots: { "make-way": [{ id: "fo-stag", first: [18, 30], max: 1 }], "help-fawn": [{ id: "fo-fawn", first: [18, 30], max: 1 }] } },
+    },
+  },
 };
 
 const norm = (s) => ({ ...SPOT, ...(typeof s === "string" ? { id: s } : s) });
