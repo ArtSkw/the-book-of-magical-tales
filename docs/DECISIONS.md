@@ -4,6 +4,13 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-04: the Dragon and the Bell rewritten by the same rules.** The author approved the new
+  Forest Oath and asked for the two older tales to follow. Every page after a choice now differs
+  through all three paragraphs (each variant with its own discovery and spoken line), close
+  repetitions are gone, and the shared-paragraph gate is an error for every tale (the warning
+  list is removed). The author allowed pictures to be regenerated where the text is better
+  served; the candidates are listed in the PR, to be made after the text is approved.
+
 - **2026-11-04: name groups exactly; clear, not poor.** Reading the Forest Oath in the book, the
   author found "the Heartwood, where the animals are safe… no pigs" unclear (pigs are animals too)
   and p3's endings thin: "żołędzie" four times and "jeleniom" three times in a paragraph, short flat
