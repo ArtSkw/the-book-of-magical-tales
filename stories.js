@@ -18,7 +18,7 @@ export const stories = [
         title: "A Little Surprise",
         body: [
           "Gustaw knelt and rested his shield against his knee, so that he would look smaller to the dragon. Oliwia stood close beside him and held her breath.",
-          "The dragon leaned over the wall and breathed on the loose stone. A golden wisp drifted from its nostrils and settled on the moss, slowly, ever so slowly. Bridge dragons do not breathe fire. They breathe warmth, which heats a stone but never burns anyone.",
+          "The dragon leaned over the wall and breathed on the loose stone. A golden wisp drifted from its nostrils and settled on the moss, slowly, ever so slowly. Bridge dragons breathe no fire, only warmth that heats a stone but burns no one.",
           "Then, from under the stone, came a tiny sound: peep, peep, peep. The dragon looked up at the travellers, as if to check whether they had heard it too."
         ],
         choices: [
@@ -40,13 +40,13 @@ export const stories = [
           1: {
             ask: [
               "Oliwia stepped closer. “What are you guarding?” she asked gently. The dragon looked at her for a long time. Then it laid one claw on the loose stone and carefully lifted its edge.",
-              "Underneath, in a narrow crack among moss, mortar and tiny grass roots, was a nest of river mice. Three mice huddled together, and the smallest one was trembling.",
-              "Every step on the bridge shook the loose stone, and the nest shook with it. And at dawn, heavy carts were going to cross the bridge to market. “The dragon isn’t blocking the road to be unkind,” Oliwia whispered. “It’s guarding the mice, because it can’t tell anyone they live here.”"
+              "Underneath, in a narrow crack among moss, mortar and tiny grass roots, was a nest of river mice. Three little ones huddled together, and the smallest was trembling.",
+              "Gustaw took a step, and the stone rocked, and the whole nest with it. “And at dawn the carts go to market this way,” the knight remembered. Oliwia understood. “The dragon isn’t cross. It’s guarding the mice, because it can’t tell anyone they live here.”"
             ],
             listen: [
               "Oliwia lay down on the cobbles and put her ear to the wall. She waited in silence until something peeped again. It came from a narrow crack under the loose stone.",
-              "Three river mice peeped out of the crack. They lived in a nest tucked in among moss, mortar and tiny grass roots. The dragon lay down beside Oliwia and watched with her as the smallest one trembled.",
-              "Every step on the bridge shook the loose stone, and the nest shook with it. And at dawn, heavy carts were going to cross the bridge to market. “The dragon isn’t blocking the road to be unkind,” Oliwia whispered. “It’s guarding the mice, because it can’t tell anyone they live here.”"
+              "Three river mice peered out. They lived in a nest tucked in among moss, mortar and tiny grass roots. The dragon lay down beside Oliwia and watched with her as the smallest one trembled.",
+              "When Gustaw shifted from foot to foot, Oliwia felt the stone quiver against her ear, and the nest with it. And at dawn heavy carts would come this way to market! “The dragon isn’t guarding the bridge from us,” she whispered. “It’s guarding the mice from our feet.”"
             ]
           }
         },
@@ -78,13 +78,13 @@ export const stories = [
           3: {
             lantern: [
               "Gustaw held up the lantern. In its light they could see every mossy stone and three pairs of shining little eyes. The mice looked at the light, then at the travellers, and not one of them ran away.",
-              "Moving the nest would take more hands, so Gustaw planted a red pennant by the path to the mill. When a knight sets one by the road, everyone around knows that he needs help.",
-              "The people who lived nearest came first, each with whatever they had in their hands: the miller with an armful of sheep’s wool, the baker with a clean kerchief, and the basket maker with a bundle of reeds he had just cut by the brook. The lantern showed them where to step safely."
+              "To move the nest in one piece, they would need more hands. Gustaw planted a red pennant by the path and shone his lantern on it. When a knight sets that sign by the road, everyone nearby knows he needs help.",
+              "The nearest neighbours came straight from their work: the miller with an armful of sheep’s wool, the baker with a clean kerchief and the basket maker with a bundle of reeds. “Mind that wobbly stone, there are mice living under it,” Gustaw whispered, lighting their way."
             ],
             bread: [
-              "Oliwia crumbled a little bread and laid the crumbs on the linen, right by the crack. First one little nose poked out, then a second, and at last a third. The mice nibbled and looked at Oliwia more and more boldly.",
-              "Moving the nest would take more hands, so Gustaw planted a red pennant by the path to the mill. When a knight sets one by the road, everyone around knows that he needs help.",
-              "The people who lived nearest came first, each with whatever they had in their hands: the miller with an armful of sheep’s wool, the baker with a clean kerchief, and the basket maker with a bundle of reeds he had just cut by the brook. They stood to one side, so as not to disturb the mice at their supper."
+              "Oliwia crumbled a little bread and laid the crumbs on the linen, right by the crack. First one little nose poked out, then a second and a third. The mice nibbled and looked at Oliwia more and more boldly.",
+              "Moving the nest would take more hands, but calling out would frighten the little ones. So Gustaw quietly planted a red pennant by the path. Everyone nearby understands that sign without a word: a knight needs help.",
+              "Soon the neighbours from along the brook arrived, each with whatever they had in their hands: the miller with an armful of wool, the baker with a clean kerchief and the basket maker with a bundle of reeds. They hung back. “I’ve never seen such tiny guests at supper,” the baker whispered."
             ]
           }
         },
@@ -127,14 +127,14 @@ export const stories = [
         bodyByChoice: {
           5: {
             crumbs: [
-              "Oliwia crumbled a crust of bread and laid a trail of crumbs from the crack all the way to the cradle. The first mouse went crumb by crumb until it climbed onto the wool. Then came the second.",
-              "The smallest stopped at every crumb and ate it down to the very last bit. The basket maker held the cradle perfectly still, and Gustaw slid his shield underneath it, so that nothing could fall.",
-              "When all three were inside, Gustaw and the basket maker carried the cradle to the dry grass on the bank, among the reeds. The dragon blinked at them slowly. “That’s how bridge dragons say thank you,” the basket maker whispered. “My grandfather saw it once too.”"
+              "Oliwia crumbled a crust and laid a trail along the wall from the crack all the way to the cradle. The first mouse went carefully, from one morsel to the next, until it hopped onto the wool. The second followed.",
+              "The smallest stopped at every crumb and ate it to the last scrap, while everyone waited, holding their breath. The basket maker kept the cradle perfectly still, and Gustaw slid his shield underneath, so that nothing could fall into the brook.",
+              "When the little one had at last joined the others, all three were carried down to the dry grass on the bank, among the reeds. The dragon blinked, very slowly. “That’s how bridge dragons say thank you,” the basket maker whispered. “My grandfather saw it once too.”"
             ],
             "warm-path": [
-              "The dragon leaned over the wall and breathed on the stones, one after another, from the crack all the way to the cradle. The stones grew warm and glowed amber from inside, like embers that no longer burn.",
-              "The first mouse crossed the warm stones and climbed onto the wool. The second followed. The smallest set off last, and the dragon guided it with its nose. The basket maker held the cradle, and Gustaw slid his shield underneath it.",
-              "When all three were inside, Gustaw and the basket maker carried the cradle to the dry grass on the bank, among the reeds. The dragon blinked at them slowly. “That’s how bridge dragons say thank you,” the basket maker whispered. “My grandfather saw it once too.”"
+              "The dragon leaned over the wall and breathed on the stones from the crack all the way to the cradle, and they warmed and glowed amber from inside, like embers that no longer burn.",
+              "The first mouse put out a careful paw, paused, then ran to the cradle. The second followed. The smallest set off last, and the dragon warmed the way for the mouse. The basket maker held the cradle, and Gustaw slid his shield underneath.",
+              "Together they carried the little ones down among the reeds, and the dragon lay beside them to keep them warm. Then it blinked at the knight, very slowly. Gustaw smiled. “Grandfather said that’s how bridge dragons say thank you. I thought it was just a story.”"
             ]
           }
         },
@@ -157,7 +157,7 @@ export const stories = [
               0: "Once the mice were safe, the dragon stepped off the road, and the bridge was open again. A few crumbs were left on the wall, just enough for the sparrows’ breakfast."
             },
             "warm-path": {
-              0: "Once the mice were safe, the dragon stepped off the road, and the bridge was open again. The stones on the wall cooled slowly and went dark, one after another."
+              0: "Once the mice were safe, the bridge was open again. The stones on the wall cooled slowly and went dark, one after another."
             }
           }
         },
@@ -180,13 +180,13 @@ export const stories = [
           7: {
             "name-promise": [
               "Oliwia stood before the dragon. “Thank you for looking after the little ones for so long,” she said. The dragon bowed its head, shook one copper scale loose from its side and, with a warm breath, set it into the wall right beside the mice’s old home.",
-              "At night the scale glowed amber in the wall. Oliwia kept her word, and from that night on everyone who crossed the bridge slowed down beside the scale and whispered: “Slowly and quietly, mice are sleeping by the bridge.” And the dragon kept watch by the cradle with its eyes open.",
-              "That night Oliwia fell asleep at the inn with a tiny reed basket in her hand. The basket maker had woven it for her as a keepsake, from the reeds left over from the cradle."
+              "After dark the scale glowed amber. Oliwia kept her word, and from then on everyone who crossed the bridge slowed down at that spot and whispered: “Slowly and quietly, mice are sleeping by the bridge.” And the dragon watched over them with its eyes open.",
+              "As they said goodbye, the basket maker pressed a tiny basket into Oliwia’s hand, woven from the reeds left over from the cradle. “So you’ll remember what the dragon was guarding,” he said."
             ],
             "wave-goodnight": [
-              "Oliwia waved to the dragon. “Goodnight, dragon,” she said. The dragon blinked sleepily, curled itself around the cradle and fell asleep, for the first time since the day the stone came loose.",
+              "Oliwia waved. “Goodnight, dragon,” she said. It blinked sleepily, curled itself around the cradle and fell asleep, for the first time since the day the stone came loose.",
               "With every breath it took, a wisp of golden warmth rose over the cradle. Oliwia kept her word, so people tiptoed across the bridge and hushed one another in whispers: “Slowly and quietly, mice are sleeping by the bridge.”",
-              "That night Oliwia fell asleep at the inn with a tiny reed basket in her hand. The basket maker had woven it for her as a keepsake, from the reeds left over from the cradle."
+              "At the inn Oliwia lay awake for a long time. She turned over a little basket the basket maker had woven her from the cradle’s leftover reeds, and listened for a soft dragon snore drifting up through the window."
             ]
           }
         },
@@ -271,13 +271,13 @@ export const stories = [
           1: {
             "follow-clover": [
               "Koniczynka led everyone round the tower, straight to the old pear tree. The silver moths were circling above a thick branch that reached all the way to the shutter.",
-              "On the branch hung the bell rope, tangled in tight loops. The wind had blown it out through the open shutter and wound it round the branch.",
-              "Right beside it, in the fork of the branch, was a nest of moss. A chaffinch was keeping her three chicks warm in it, and she did not fly away, although half the village stood under the tree. One hard tug on the rope, and the nest would fall."
+              "On the bough hung the bell rope, tangled in tight loops. The wind had blown it out through the open shutter and wound it round and round.",
+              "Koniczynka lifted her head towards the fork. Right beside the rope, in a nest of moss, a chaffinch sat keeping her three chicks warm. She did not fly away, although people and a horse stood beneath the tree. “One tug,” Gustaw whispered, “and the nest will come down with the rope.”"
             ],
             "ask-elders": [
-              "Grandmother Janina remembered at once. “When I was a little girl, the wind stole the rope once before,” she said. “We found it in the old pear tree. That tree always reaches its branches towards the tower.”",
-              "They followed her round the tower. Grandmother raised her stick and pointed at a thick branch that reached all the way to the shutter. On it hung the bell rope, tangled in tight loops.",
-              "Right beside it, in the fork of the branch, was a nest of moss. A chaffinch was keeping her three chicks warm in it, and she did not fly away, although half the village stood under the tree. One hard tug on the rope, and the nest would fall."
+              "Grandmother Janina remembered at once. “When I was a little girl, the wind stole the rope once before,” she said. “We found it in the old pear tree. Its branches have always reached up to the belfry.”",
+              "They followed her round the tower. Grandmother raised her stick and pointed to a thick branch just below the shutter. There hung the bell rope, tangled in tight loops.",
+              "Grandmother narrowed her eyes. “That wasn’t there in my day,” she muttered. In the fork, right beside the rope, a chaffinch had built a nest of moss and was keeping three chicks warm in it. One hard tug, and the little ones would fall."
             ]
           }
         },
@@ -288,7 +288,7 @@ export const stories = [
         body: [
           "The carpenter brought an ash ladder and slowly leaned it against the trunk, so it would not knock against the bark just below the nest. The baker wrapped the ladder’s feet in cloth, so they would not scrape on the stones.",
           "The chaffinch watched them with her black eyes, but she did not leave her nest. Oliwia never looked away from the little bird, and Koniczynka stood perfectly still and did not even snort.",
-          "“If she takes fright, the chicks will get cold,” the carpenter whispered. “We have to untangle the rope so the finch stays on her nest.”"
+          "“If she takes fright, the chicks will get cold,” the carpenter whispered. “We have to untangle the rope so the finch doesn’t so much as stir.”"
         ],
         choices: [
           {
@@ -308,14 +308,14 @@ export const stories = [
         bodyByChoice: {
           3: {
             "move-slowly": [
-              "The carpenter climbed the ladder and untangled the rope loop by loop, without a single tug. Oliwia stood below and counted the loops in a whisper: five, four, three, two, one.",
-              "When the last knot came free, the chaffinch was still keeping her chicks warm. A pear leaf fell from the branch, right onto Oliwia’s sleeve. She tucked it into her bag, next to the little reed basket from the bridge.",
-              "The rope hung inside the tower again. But when the carpenter pulled it, instead of “ding-dong” there came only a hoarse clank. The bell had lost its voice."
+              "The carpenter climbed the ladder and untangled the rope loop by loop, without a single tug. Oliwia stood below and counted in a whisper: five, four, three, two, one.",
+              "At the last knot the carpenter froze: the chaffinch had moved a wing. But she was only settling in the nest. A pear leaf drifted down from the branch onto Oliwia’s sleeve. She tucked it into her bag, next to the little reed basket from the bridge.",
+              "The carpenter threaded the rope back into the tower and pulled, once, carefully. Instead of “ding-dong” a hoarse clank came from above, as if someone had knocked on a cracked pot. The bell had lost its voice."
             ],
             "lullaby": [
               "Oliwia and Gustaw began to hum a lullaby very softly, and the carpenter on the ladder loosened the rope in time with it, loop by loop. The chaffinch half closed her eyes and did not stir.",
-              "When the last knot came free, the lullaby faded, and the chaffinch was still keeping her chicks warm. A pear leaf fell from the branch, right onto Oliwia’s sleeve. She tucked it into her bag, next to the little reed basket from the bridge.",
-              "The rope hung inside the tower again. But when the carpenter pulled it, instead of “ding-dong” there came only a hoarse clank. The bell had lost its voice."
+              "The last knot came free just as the lullaby ended. The chicks were asleep, and the chaffinch was still keeping them warm. A pear leaf slipped from the branch onto Oliwia’s shoulder. She tucked it into her bag, next to the little reed basket from the bridge.",
+              "Gustaw carried the rope to the tower and pulled. Everyone waited for “ding-dong”, but heard only a short, hoarse clank. Grandmother Janina shook her head. “Our bell has a frog in its throat, like me in winter.”"
             ]
           }
         },
@@ -346,14 +346,14 @@ export const stories = [
         bodyByChoice: {
           5: {
             "invite-smith": [
-              "The blacksmith came with her little hammer and a pouch of rivets. She drilled the bronze beside the crack and tapped the rivets in softly, tap after tap. The carpenter held the beam, so the bell would not swing.",
-              "The baker brought a basket of warm oat rolls with honey, because the work would go on late into the night. Anyone who stopped for a rest got one, and one was carried down for Koniczynka.",
-              "Oliwia polished the bell with a linen cloth until the lantern light shone inside it. When the moon stood over the tower, three rivets gleamed on the bell’s rim, side by side."
+              "The blacksmith came with her little hammer and a pouch of rivets. She drilled the bronze beside the crack and set them in softly, tap after tap, so as not to wake the chicks in the pear tree. The carpenter steadied the beam, so the bell would not swing.",
+              "The baker brought a basket of warm oat rolls with honey, because the work would go on late into the night. Anyone who put down their tools helped themselves, and one roll was carried down for Koniczynka.",
+              "Oliwia polished the bell with a linen cloth until the lantern light shone inside it. When the moon stood over the tower, three rivets gleamed on the bronze. “Now the crack won’t go any further,” said the blacksmith, putting her hammer away."
             ],
             "thank-bell": [
               "Everyone offered Grandmother a name: Thunder, Jingle, Big Bong… She only shook her head. At last the baker cried, “Evensong! She calls us every evening!” Grandmother’s eyes lit up. She remembered the rhyme.",
               "“When Evensong is hoarse, don’t weep or wail: turn her to the mountains and her voice won’t fail.” The carpenter understood first. “If we turn her, the clapper will strike fresh bronze, and the crack will stay to one side.”",
-              "Gustaw and the carpenter loosened the fittings and turned Evensong towards the mountains. The baker brought warm oat rolls with honey, so no one worked on an empty stomach, and one was carried down for Koniczynka."
+              "Gustaw and the carpenter loosened the fittings and turned Evensong towards the mountains. The baker, proud of his guess, brought a basket of honey rolls, still warm. He carried the sweetest-smelling one down for Koniczynka."
             ]
           }
         },
@@ -376,7 +376,7 @@ export const stories = [
         body: [
           "At last the bell was ready. With its rivets it would sound a little softer than before, but the blacksmith smiled. “A little softer, but Maciej will still hear it.”",
           "The whole village waited on the square. The moon peeped out from behind a cloud, and in the pear tree the chicks woke and poked their heads out of the nest. The chaffinch sat beside them, looking at the tower too.",
-          "The baker stood in the tower door with the rope in his hands and looked at Oliwia. “How shall we welcome it?” he asked."
+          "“Not too hard, the bronze is freshly mended,” the carpenter reminded them. “But Maciej has to hear us right up in the mountains.” The baker set off to the tower for the rope and glanced back at Oliwia. “How shall we welcome the new voice?”"
         ],
         paragraphByChoice: {
           5: {
@@ -408,12 +408,12 @@ export const stories = [
             "ring-gently": [
               "The baker pulled the rope lightly, ever so lightly. The bell spoke out clear and bright, and the children called along with it: “Ding-dong, come home!” Its voice drifted from window to window and on, all the way to the mountains.",
               "After a while, goat bells answered it out of the dark. Maciej the shepherd was coming down through the mist, straight towards the sound of the bell, and the reeve let out a sigh of relief.",
-              "Everyone listened to the bell: parents and children, the old folk, the blacksmith, the carpenter, and a very contented Koniczynka with a white smudge of flour on her nose from her roll."
+              "The square grew so quiet that you could hear the lantern wicks crackle. Only Koniczynka, with a white smudge of flour on her nose from her roll, snorted happily, and the children laughed."
             ],
             "share-song": [
               "The baker pulled the rope, and the whole square hummed along with the bell, then sang: “Ding-dong, come home!” No one could tell where the bronze ended and the voices began.",
               "In the pear tree the chicks lifted their heads and listened as hard as they could, as if to remember every note. And out of the dark, goat bells answered: Maciej the shepherd was coming down through the mist, straight towards the sound of the bell.",
-              "Everyone listened to the bell: parents and children, the old folk, the blacksmith, the carpenter, and a very contented Koniczynka with a white smudge of flour on her nose from her roll."
+              "Parents and children sang, the blacksmith and the carpenter too, and Grandmother Janina loudest of all. Even Koniczynka, with a white smudge of flour on her nose from her roll, nodded her head in time."
             ]
           }
         },
@@ -444,7 +444,7 @@ export const stories = [
               0: "Long after the square had emptied, three silver moths flew in from the orchard. Nothing was waiting to be mended any more, so they did not circle; they settled in a row on the bell and shimmered in the moonlight like little stars. Ever since, Moonhill has carried three stars on its coat of arms."
             },
             "share-song": {
-              0: "Long after the square had emptied, the chicks cheeped the bell’s tune in their sleep. Ever since, the bell has called the village home each evening, and the chaffinches wake everyone at dawn with the same song. Moonhill has two voices now: one of bronze, one of feathers."
+              0: "When the square had emptied, the chicks went on whistling the tune for a long while. Ever since, the bell has called the village home at dusk, and the chaffinches wake everyone at dawn with the same song. Moonhill has two voices now: one of bronze, one of feathers."
             }
           },
           1: {
