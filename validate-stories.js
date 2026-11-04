@@ -215,6 +215,20 @@ function checkChoiceText(story) {
       for (const t of texts) {
         if (bookWord && typeof t === "string" && bookWord.test(t)) addError(story, `${label} names the book inside the tale: "${t.slice(0, 70)}…"`);
       }
+      // clear, not poor (WRITING_BIBLE §1 rule 15): a content word (same first five letters, six
+      // letters or more, not a name) three times in one paragraph reads as thin language
+      for (const t of texts) {
+        if (typeof t !== "string") continue;
+        const seen = {};
+        for (const w of t.match(/\p{L}+/gu) || []) {
+          if (w.length < 6 || w[0] !== w[0].toLowerCase()) continue;
+          const st = w.toLowerCase().slice(0, 5);
+          (seen[st] ||= []).push(w);
+        }
+        for (const ws of Object.values(seen)) {
+          if (ws.length >= 3) warnings.push(`${story.title}: ${label} repeats "${ws.join(", ")}" in one paragraph; vary it (WRITING_BIBLE §1 rule 15)`);
+        }
+      }
       const asIf = AS_IF[lang];
       if (asIf) {
         const variants = page.bodyByChoice ? Object.values(page.bodyByChoice).flatMap((v) => Object.values(v || {})) : [page.body || []];

@@ -4,6 +4,15 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-04: name groups exactly; clear, not poor.** Reading the Forest Oath in the book, the
+  author found "the Heartwood, where the animals are safe… no pigs" unclear (pigs are animals too)
+  and p3's endings thin: "żołędzie" four times and "jeleniom" three times in a paragraph, short flat
+  clauses. Clarity for a child must not make the language poor. Now `WRITING_BIBLE.md` §1 rules 14
+  and 15, and a warning in `validate:stories` for a content word three times in one paragraph. The
+  author chose: "schronienie dzikich zwierząt. Świniom ze wsi…", Oliwia's understanding told in
+  narration on the follow-piglets path, "To dlatego mgła dziś nie zeszła" on the call-back path, and
+  the saying "Co obiecane lasowi…" (the oath was made with the forest).
+
 - **2026-11-03: no shared paragraph after a choice; a choice page states the need; learning from
   the masters.** After rereading "Leśna przysięga", the author found p4 did not say why the heroes
   must talk to Marcin or what they need from him (p3 had already told what he would confess), and the

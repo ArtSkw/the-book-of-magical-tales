@@ -71,6 +71,19 @@ history and payoffs; Kipling, Donaldson, Potter, Hutchins and Sendak for read-al
    never threatening, and the tale's tension comes from a mystery to solve or someone to help,
    not from the heroes' own fear.
 
+14. **Name the group exactly.** When a sentence sets one group against another, name both so the
+   contrast holds for a child: "wild animals" or "forest animals" against "the pigs from the
+   village", never "animals" against "pigs" (pigs are animals too). The same for people, birds and
+   creatures. (Rejected in the Forest Oath: "where the animals are safe… no pigs here"; the saying
+   "what is promised to the animals", now "to the forest".)
+15. **Clear, not poor.** Clear for a child never means thin language. No content word three times
+   in one paragraph, and no word repeated in neighbouring sentences unless it is the refrain or a
+   deliberate echo: find another way to say it ("all that falls from the oaks in autumn", "the
+   winter store", "the herd"), or let a pronoun carry it when it can point to one noun only. Mix long
+   and short sentences; a subordinate clause, an aside or one well-chosen image is welcome when it
+   reads well aloud. (Warning in `validate:stories`. Rejected: "Prosiaczki zjadły jeleniom
+   żołędzie… Musimy im przynieść nowe żołędzie".)
+
 ## 2. Choices change the page, not one line
 
 - **A choice page states the need before it asks.** Before the seals, the reader knows what is

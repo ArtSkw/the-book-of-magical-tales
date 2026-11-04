@@ -470,7 +470,7 @@ export const stories = [
       {
         title: "The Morning That Did Not Come",
         body: [
-          "Gustaw, Oliwia and the mare Koniczynka had spent the night in the clearing of Agata the charcoal burner, deep in Oakwood. Beside her hut stood a charcoal clamp: an earth mound in which wood slowly turned to charcoal.",
+          "Gustaw, Oliwia and the mare Koniczynka had spent the night in the clearing of Agata the charcoal burner, deep in Oakwood. Beside her hut stood a charcoal clamp: a mound of earth with wood slowly smouldering inside.",
           "After a night of storm, the sun should have been up, but the forest lay in milky mist and no birds sang. “The stag hasn’t come,” said Agata, puzzled. “Every morning a stag with a star between his antlers comes by. Wherever he goes, the mist clears, and I can take my charcoal to the smithy.”",
           "Then three piglets ran out of the mist. Oliwia spotted empty acorn cups and hoofprints in the moss. “Let’s see where they came from,” said Agata. “Hand in hand, step by step.”"
         ],
@@ -483,7 +483,7 @@ export const stories = [
       {
         title: "A Call in the Mist",
         body: [
-          "They set off after the piglets, but had barely left the charcoal clamp when the piglets stopped. Oliwia crouched down and stroked the biggest one’s back, and Koniczynka waited close behind her.",
+          "They set off after the piglets, but just past the charcoal clamp the little ones stopped. Oliwia crouched down and stroked the biggest one’s back, and Koniczynka waited close behind her.",
           "Suddenly a voice called out in the mist: “Dot! Patch! Snout!” The piglets lifted their snouts, and Agata cupped a hand to her ear.",
           "“Someone’s looking for them,” Oliwia whispered. “But they’re leading us somewhere too.”"
         ],
@@ -505,14 +505,14 @@ export const stories = [
         bodyByChoice: {
           1: {
             "follow-piglets": [
-              "The piglets led everyone through the mist to huge oaks behind a fence. The storm had knocked the gate flat. “This is the Heartwood, the very heart of the forest,” Agata whispered. “The deer have their acorns here. We never let pigs in.”",
+              "The piglets led everyone through the mist to huge oaks behind a fence. The storm had knocked the gate flat. “This is the Heartwood,” Agata whispered. “The deer keep their winter larder here. We never let village pigs in.”",
               "The piglets ran straight to a boy with a hazel stick. “Dot, Patch, Snout… all here!” he counted quickly. It was Marcin, the swineherd from Dąbrówka. He saw Agata and froze.",
-              "Oliwia picked up an empty acorn cup from the moss, and Agata said quietly, “Our grandparents promised the Heartwood’s acorns to the deer, and in return the stag brings us the morning.” Oliwia understood. “The piglets ate the deer’s acorns, so the deer went away, and the stag with the star went too. We must bring them new acorns.”"
+              "Oliwia picked up an empty acorn cup. “Our grandparents promised the Heartwood’s acorns to the deer,” Agata added, “and in return the stag brings us the morning.” Oliwia looked at the full-bellied piglets and understood: the stag with the star had led his herd away, for nothing was left to eat. The larder had to be filled again."
             ],
             "call-back": [
-              "Oliwia called into the mist, “We’re over here!” Marcin, the swineherd from Dąbrówka, came running up, breathless. “Dot, Patch, Snout!” he cried happily. But the piglets only circled him and dashed on, everyone after them.",
-              "The piglets ran on to some huge oaks by a gate the storm had broken, and rooted in the moss among the empty cups. Agata put her hand to her mouth. “This is the Heartwood, where the animals are safe. Pigs must never come in here!”",
-              "Agata explained that their grandparents had promised the Heartwood’s acorns to the deer, and in return the stag brought the morning. Marcin hung his head. “The piglets ate the deer’s acorns,” Oliwia whispered. “That’s why the stag didn’t come. The deer need new acorns.”"
+              "Oliwia called into the mist, “We’re over here!” Marcin, the swineherd from Dąbrówka, came running up, breathless. “Dot, Patch, Snout!” he cried happily. But the piglets only circled him and dashed on.",
+              "At last the runaways stopped under huge oaks by a broken gate and rooted among empty acorn cups. Agata put her hand to her mouth. “This is the Heartwood, a shelter for wild animals. Pigs from the village must never come in here!”",
+              "Agata told them of the oath: their grandparents had given the deer all that falls from the Heartwood’s oaks in autumn, and in return the stag brings the morning. Marcin hung his head. “The piglets ate it all,” Oliwia whispered, “so the stag led his herd away, and the mist stayed. We must gather a new winter store, quickly.”"
             ]
           }
         },
@@ -521,9 +521,9 @@ export const stories = [
       {
         title: "Marcin Says Nothing",
         body: [
-          "The mist grew paler, but still the sun did not come out. “Where are we going to find so many acorns?” Agata said anxiously. “The deer must eat their fill before winter comes. Marcin knows best where the acorns lie. He grazes his piglets in this forest every day.”",
+          "The mist grew paler, but still the sun did not come out. “Where are we going to find so many acorns?” Agata said anxiously. “The deer must eat their fill before winter comes. Marcin grazes his piglets in this forest every day, so he knows best where to look.”",
           "Marcin swallowed hard and blurted out, “The storm broke the gate! There was thunder and wind all night.” He said not a word about the piglets, though they kept rubbing against his legs.",
-          "Marcin stared at the ground. Oliwia thought: he’s afraid we’ll be cross with him about the piglets. And as long as he’s scared, he won’t help us look for acorns. She took his hand. “Hand in hand, step by step,” she whispered. Marcin squeezed her hand, but still said nothing."
+          "Marcin stared at the ground. Oliwia thought: he’s afraid we’ll be cross with him about the piglets. And as long as he’s scared, he won’t help us look for acorns. She took his hand. “Hand in hand, step by step,” she whispered. Marcin squeezed back, but still said nothing."
         ],
         choices: [
           {
@@ -544,7 +544,7 @@ export const stories = [
           3: {
             "ask-kindly": [
               "Oliwia asked gently, “What happened last night, Marcin? Nobody’s cross with you.” Marcin blinked, and then he began to talk so fast they could hardly keep up.",
-              "“The thunder frightened the piglets and they ran out of their pen. I’ve been looking for them since dawn. And now the gate’s on the ground, and nothing but empty cups! They were hungry. I know every oak in the wood, and this year there’s hardly anything under them. I was scared to tell.”",
+              "“The thunder frightened the piglets and they ran out of their pen. They were hungry. I’ve been looking for them since dawn. And now the gate’s on the ground, and nothing but empty cups! I know every oak in the wood, and this year there’s hardly anything under them. I was scared to tell.”",
               "“It’s good that you told us.” Agata laid a hand on his shoulder. Worn out from roaming, the piglets fell asleep in the leaves. Gustaw lifted the broken gate and, without a word, showed everyone the crossbar. In the middle was a carved star, split in two: the sign of the old oath."
             ],
             "show-tracks": [
@@ -564,7 +564,7 @@ export const stories = [
         title: "A Lean Year",
         body: [
           "Agata looked at the cracked star. “We promised the deer these acorns,” she said quietly. “But the piglets need to eat too.”",
-          "Marcin thought hard. “I’ve got a sack of acorns in my hut at the edge of the forest. I’ve been gathering them all autumn, to feed the piglets through the winter. Out in the forest there’s only the odd one left, under the leaves.”",
+          "Marcin thought hard. “I’ve got a sack of acorns in my hut at the edge of the forest. I’ve been gathering them all autumn, to feed the piglets through the winter. Out in the wood there’s only the odd one left, under the leaves.”",
           "Oliwia thought of the deer, who had to eat their fill before winter. The first frost of the year had already turned the grass white."
         ],
         choices: [
@@ -587,12 +587,12 @@ export const stories = [
             "give-sack": [
               "Oliwia looked at Marcin. “It’s your sack. You decide.” Marcin was silent for a long while. “Our grandparents gave their word, so I’ll keep it too.” He ran to his hut with Koniczynka, and the mare carried the sack to the Heartwood on her back.",
               "Agata added her own acorns. “We’ll find something for your piglets too. Everyone in the village will give a handful of oats.” Oliwia and Agata poured the acorns over the fence, where they dropped into the leaves with a soft rustle. “Hand in hand, step by step,” Marcin kept saying.",
-              "Meanwhile Gustaw built a new gate of pale planks and hung it between the posts. Marcin set his chisel to the crossbar and tapped with his mallet until a star appeared, just like the one on the old gate. “Now it’s my promise too,” he said."
+              "Meanwhile Gustaw built a new gate of pale planks and hung it between the posts. Marcin set his chisel to the crossbar and tapped with his mallet until a star appeared, just like the old one. “Now it’s my promise too,” he said."
             ],
             "gather-forest": [
               "Together they went from oak to oak, with Marcin leading. “There’s always something under this one, and I picked that one clean yesterday,” he said. Agata raked the leaves aside, and here and there an acorn gleamed beneath them.",
               "Nobody snuffled about harder than the piglets. Under the beech trees they found beechnuts, little three-sided nuts, and crunched them up eagerly. “Those are for them, and the acorns are for the deer!” said Marcin happily.",
-              "With their hands and Oliwia’s basket full, they returned to the Heartwood and tipped the acorns onto the moss. Gustaw and Agata built a new gate, and Marcin carved a star on its crossbar, just like the old one. The piglets, full of beechnuts, never even glanced at the acorns."
+              "With their hands and Oliwia’s basket full, they returned to the Heartwood and tipped everything onto the moss. Gustaw and Agata built a new gate, and Marcin carved a star on its crossbar, just like the old one. The piglets, full of beechnuts, never even glanced at the acorns."
             ]
           }
         },
@@ -607,7 +607,7 @@ export const stories = [
         body: [
           "When they had finished, the mist began to thin. A small golden star glinted between the trunks, and beneath it antlers appeared.",
           "The stag stepped calmly out of the mist, with the hinds and their young behind him. The smallest fawn was stuck behind a branch the storm had blown down, and bleated softly because it could not reach its mother.",
-          "Everyone stood still, so as not to frighten the deer. “The fawn can’t get through on its own,” Marcin whispered, holding Oliwia’s hand tighter. Behind them Koniczynka gave a soft snort."
+          "Everyone stood still, so as not to frighten the herd. “The fawn can’t get through on its own,” Marcin whispered, holding Oliwia’s hand tighter. Behind them Koniczynka gave a soft snort."
         ],
         choices: [
           {
@@ -628,11 +628,11 @@ export const stories = [
           7: {
             "make-way": [
               "Everyone quietly stepped back under the trees. After a while the hind came back for her fawn, nudged it with her nose and led it round the branch. Then the whole herd went through the new gate into the Heartwood, and soon came the crunch of acorns.",
-              "The stag with the star left the herd to its acorns and set off down the path. Wherever he passed, the mist parted, and sunlight blazed between the oaks. The frost on the grass turned into shining drops.",
+              "Only the stag with the star walked on, down the path. Wherever he passed, the mist parted, and sunlight blazed between the oaks. The frost on the grass turned into shining drops.",
               "They followed him, not too close, the piglets trotting behind. “Hand in hand, step by step, straight into the sun!” Oliwia laughed. On the path she found a single acorn still in its cup and tucked it into her bag, beside the little reed basket and the pear leaf, to plant along the road ahead."
             ],
             "help-fawn": [
-              "Gustaw tied a rope round the far end of the branch, and Koniczynka slowly pulled it aside. Nobody went near the fawn. The fawn darted to its mother on its own and pressed against her side.",
+              "Gustaw tied a rope round the far end of the branch, and Koniczynka slowly pulled it aside. Nobody went near the fawn. It darted to its mother on its own and pressed against her side.",
               "The stag with the star gave them a calm look. The hinds went through the new gate into the Heartwood, and he set off through the forest. The mist drew back before him, one band at a time, and behind him the oaks turned gold in the sun.",
               "Gustaw stroked Koniczynka’s neck. “Well done, girl.” Where the branch had lain, Oliwia found an acorn still in its cup, safe through the storm. She tucked it into her bag, beside the little reed basket and the pear leaf, to plant along the road ahead. “Hand in hand, step by step, straight into the sun!” she sang as they set off."
             ]
@@ -648,7 +648,7 @@ export const stories = [
         title: "The Star on the Gate",
         body: [
           "By noon all of Oakwood shone gold. Soup was bubbling in Agata’s clearing, the piglets were asleep in the shade, and the deer were feeding in the Heartwood.",
-          "Ever since, when people from Dąbrówka pass the gate with the star, they say: “A promise to the animals is kept, even in a lean year.” And Marcin always smiles when they do.",
+          "Ever since, when people from Dąbrówka pass the gate with the star, they say: “A promise to the forest is kept, even in a lean year.” And Marcin always smiles when they do.",
           "The end."
         ],
         paragraphByChoice: {
@@ -662,10 +662,10 @@ export const stories = [
           },
           5: {
             "give-sack": {
-              1: "Ever since, when people from Dąbrówka pass the gate with the star, they say: “A promise to the animals is kept, even in a lean year.” And Marcin always smiles when they do."
+              1: "Ever since, when people from Dąbrówka pass the gate with the star, they say: “A promise to the forest is kept, even in a lean year.” And Marcin always smiles when they do."
             },
             "gather-forest": {
-              1: "Ever since, when people from Dąbrówka pass the gate with the star, they say: “A promise to the animals is kept, even in a lean year.” And every autumn the village gathers acorns for the Heartwood, hand in hand."
+              1: "Ever since, when people from Dąbrówka pass the gate with the star, they say: “A promise to the forest is kept, even in a lean year.” And every autumn the village gathers acorns for the Heartwood, hand in hand."
             }
           }
         },
