@@ -20,6 +20,11 @@ const MAX_CHOICE_LABEL = 38;
 const MAX_CHOICE_RESPONSE = 110; // two lines at the `small` size (33): 117 characters at worst, measured
 const MAX_NOTE_BODY = 220;
 
+// Tales written before the no-shared-paragraph rule (docs/DECISIONS.md 2026-11-03): a paragraph shared by
+// the variants of a page is a warning there until the tale is rewritten, then its id leaves this list.
+// Never add a new tale.
+const SHARED_PARAGRAPH_LEGACY = new Set(["dragon-bridge", "moonhill-bell"]);
+
 const errors = [];
 const TEXT_FIELDS = ["body", "bodyByChoice", "paragraphByChoice", "curiosityNote", "curiosityNoteByChoice"];
 const BOOK_WORDS = { en: /\bbook\b/i, pl: /\bksi[ęe]g|\bksi[ąa]żk/i };
@@ -158,6 +163,16 @@ function checkChoiceText(story) {
             const body = whole[id];
             if (!Array.isArray(body) || body.length !== EXPECTED_PARAGRAPHS || body.some((p) => typeof p !== "string" || !p.trim())) {
               addError(story, `${label} bodyByChoice "${id}" must be ${EXPECTED_PARAGRAPHS} paragraphs of text`);
+            }
+          }
+          // no paragraph is shared between the options: each variant reaches the next page by its own road
+          const bodies = Object.values(whole).filter(Array.isArray);
+          for (let p = 0; p < EXPECTED_PARAGRAPHS; p++) {
+            const texts = bodies.map((b) => b[p]?.trim());
+            if (bodies.length > 1 && new Set(texts).size < texts.length) {
+              const msg = `${label} paragraph ${p + 1} is the same in two variants; write it once per option (docs/WRITING_BIBLE.md §2)`;
+              if (SHARED_PARAGRAPH_LEGACY.has(story.id)) warnings.push(`${story.title}: ${msg}`);
+              else addError(story, msg);
             }
           }
         }

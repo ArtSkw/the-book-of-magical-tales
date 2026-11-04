@@ -457,9 +457,9 @@ export const storyTranslations = {
         {
           title: "Poranek, który nie przyszedł",
           body: [
-            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Agaty, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel.",
+            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Agaty, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel. W nocy wiatr huczał w dębach, ale przed świtem wszystko ucichło.",
             "Rano słońce powinno wyjrzeć zza dębów, ale las tonął w mlecznej mgle i ptaki milczały. „Jeleń nie przyszedł” – zdziwiła się Agata. „Co rano przechodzi tędy jeleń z gwiazdką między rogami. Gdzie przejdzie, mgła się rozwiewa i mogę wieźć węgiel do kuźni”.",
-            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi. „Sprawdźmy, skąd przyszły” – powiedziała Agata. „Ręka w rękę, krok za krokiem”."
+            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi i małe odciski raciczek. „Sprawdźmy, skąd przyszły” – powiedziała Agata. „Ręka w rękę, krok za krokiem”."
           ],
           curiosityNote: {
             title: "Czy wiesz, że...?",
@@ -469,8 +469,8 @@ export const storyTranslations = {
         {
           title: "Wołanie we mgle",
           body: [
-            "Szli powoli, trzymając się za ręce, a Koniczynka stąpała tuż za nimi. Prosiaczki truchtały przodem i co chwilę się oglądały.",
-            "Nagle gdzieś we mgle ktoś zawołał: „Kropka! Łatka! Ryjek!”. Prosiaczki nastawiły uszu i stanęły.",
+            "Ruszyli za prosiaczkami, ale ledwie odeszli od mielerza, prosiaczki przystanęły. Oliwia przykucnęła i pogłaskała największego po grzbiecie, a Koniczynka czekała tuż za nią.",
+            "Nagle gdzieś we mgle ktoś zawołał: „Kropka! Łatka! Ryjek!”. Prosiaczki podniosły ryjki, a Agata przyłożyła dłoń do ucha.",
             "„Ktoś ich szuka” – szepnęła Oliwia. „Ale one też dokądś nas prowadzą”."
           ],
           choices: [
@@ -489,14 +489,14 @@ export const storyTranslations = {
           bodyByChoice: {
             1: {
               "follow-piglets": [
-                "Prosiaczki poprowadziły wszystkich do wielkich, starych dębów za drewnianym płotem. Furtka w płocie leżała na ziemi, wyłamana przez burzę. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne” – szepnęła Agata. „Tu nie wolno wpuszczać świń”.",
-                "Wszędzie walały się puste czapeczki żołędzi. Przy płocie stał chłopiec z kijem pasterskim i patrzył na nich wystraszony. To był Marcin, świniopas z Dąbrówki.",
-                "„Nasi dziadkowie obiecali, że żołędzie z Matecznika są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Agata. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+                "Prosiaczki poprowadziły wszystkich przez mgłę do ogromnych dębów za płotem. Burza wyłamała furtkę. „To Matecznik, serce lasu” – szepnęła Agata. „Tu jelenie mają swoje żołędzie. Świń tu nie wpuszczamy”.",
+                "Prosiaczki pobiegły prosto do chłopca z leszczynowym kijem. „Kropka, Łatka, Ryjek… wszystkie są!” – policzył szybko. To był Marcin, świniopas z Dąbrówki. Na widok Agaty zamarł.",
+                "Oliwia podniosła z mchu pustą czapeczkę żołędzia, a Agata powiedziała cicho: „Nasi dziadkowie obiecali jeleniom żołędzie z Matecznika, a jeleń w zamian przynosi nam poranek”. Oliwia zrozumiała. „Prosiaczki zjadły jeleniom żołędzie i jelenie odeszły, a z nimi jeleń z gwiazdką. Musimy im przynieść nowe żołędzie”."
               ],
               "call-back": [
-                "Oliwia zawołała: „Tutaj jesteśmy!”. Z mgły wyszedł Marcin, mały świniopas z Dąbrówki. Prosiaczki obiegły go i pognały z powrotem między wielkie, stare dęby, a wszyscy za nimi.",
-                "Furtka w drewnianym płocie leżała na ziemi, wyłamana przez burzę, a wszędzie walały się puste czapeczki żołędzi. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne” – szepnęła Agata, a Marcin spuścił głowę.",
-                "„Nasi dziadkowie obiecali, że żołędzie z Matecznika są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Agata. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+                "Oliwia zawołała w mgłę: „Tutaj jesteśmy!”. Przybiegł zdyszany Marcin, świniopas z Dąbrówki. „Kropka, Łatka, Ryjek!” – ucieszył się. Ale prosiaczki tylko go obiegły i pognały dalej, a wszyscy za nimi.",
+                "Stanęły dopiero pod ogromnymi dębami, przy furtce wyłamanej przez burzę, i zaczęły ryć w mchu wśród pustych czapeczek. Agata zakryła usta dłonią. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne. Tu nie wolno wpuszczać świń!”.",
+                "Agata opowiedziała, że dziadkowie obiecali jeleniom żołędzie z Matecznika, a jeleń w zamian co rano przynosi do lasu dzień. Marcin spuścił głowę. „Prosiaczki zjadły jeleniom żołędzie” – szepnęła Oliwia. „Dlatego jeleń nie przyszedł. Trzeba jeleniom nowych żołędzi”."
               ]
             }
           },
@@ -504,9 +504,9 @@ export const storyTranslations = {
         {
           title: "Marcin milczy",
           body: [
-            "Marcin od razu się odezwał. „Burza wyłamała furtkę” – powiedział szybko. „W nocy grzmiało i wiało”. O prosiaczkach nie wspomniał ani słowem, choć ocierały mu się o nogi.",
-            "Oliwia widziała, że Marcin się boi. Podeszła i wzięła go za rękę. „Ręka w rękę, krok za krokiem” – szepnęła. „Razem coś wymyślimy”.",
-            "Marcin ścisnął jej dłoń, ale wciąż patrzył w ziemię."
+            "Mgła pojaśniała, ale słońce wciąż nie wychodziło. „Skąd wziąć tyle żołędzi?” – zmartwiła się Agata. „Jelenie muszą się najeść, zanim przyjdzie zima. Marcin najlepiej wie, gdzie w lesie leżą żołędzie. Codziennie pasie w nim prosiaczki”.",
+            "Marcin przełknął ślinę i wyrzucił z siebie jednym tchem: „To burza wyłamała furtkę! W nocy grzmiało i wiało”. O prosiaczkach nie powiedział ani słowa, choć ocierały mu się o nogi.",
+            "Marcin patrzył w ziemię. Oliwia pomyślała: boi się, że będziemy na niego źli o prosiaczki. A dopóki się boi, nie pomoże nam szukać żołędzi. Wzięła go za rękę. „Ręka w rękę, krok za krokiem” – szepnęła. Marcin ścisnął jej dłoń, ale dalej milczał."
           ],
           choices: [
             {
@@ -524,14 +524,14 @@ export const storyTranslations = {
           bodyByChoice: {
             3: {
               "ask-kindly": [
-                "Oliwia zapytała łagodnie: „Co się stało tej nocy, Marcinie?”. Marcin zamrugał, a potem wszystko opowiedział.",
-                "Przez wyłamaną furtkę jego prosiaczki weszły do Matecznika i zjadły jeleniom żołędzie. „Bałem się powiedzieć” – wyszeptał. „Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Matecznikiem prawie nic nie ma”.",
-                "„Dobrze, że nam powiedziałeś”. Agata pogładziła go po ramieniu. Gustaw podniósł z ziemi wyłamaną furtkę, żeby ją obejrzeć. Na jej pękniętej poprzeczce widniała wycięta gwiazdka, znak dawnej przysięgi."
+                "Oliwia zapytała łagodnie: „Co się stało w nocy, Marcinie? Nikt się na ciebie nie gniewa”. Marcin zamrugał, a potem zaczął mówić tak szybko, że ledwie za nim nadążali.",
+                "„Kiedy grzmiało, prosiaczki przestraszyły się i uciekły mi z zagrody. Szukam ich od świtu. A tu furtka leży i same puste czapeczki! Były głodne. Znam każdy dąb w Borze, a w tym roku pod każdym prawie pusto. Bałem się powiedzieć”.",
+                "„Dobrze, że powiedziałeś”. Agata położyła mu rękę na ramieniu. Zmęczone nocną wędrówką prosiaczki zasnęły w liściach. Gustaw podniósł wyłamaną furtkę i bez słowa pokazał wszystkim poprzeczkę. Pośrodku widniała wycięta gwiazdka, znak dawnej przysięgi. Gwiazdka pękła na pół."
               ],
               "show-tracks": [
-                "Oliwia przykucnęła i pokazała Marcinowi małe odciski raciczek w mchu, tuż obok pustych czapeczek. Nic nie powiedziała, tylko się do niego uśmiechnęła.",
-                "Marcin westchnął i wszystko opowiedział. Przez wyłamaną furtkę jego prosiaczki weszły do Matecznika i zjadły jeleniom żołędzie. „Bałem się powiedzieć. Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Matecznikiem prawie nic nie ma”.",
-                "„Dobrze, że nam powiedziałeś”. Agata pogładziła go po ramieniu. Gustaw podniósł z ziemi wyłamaną furtkę, żeby ją obejrzeć. Na jej pękniętej poprzeczce widniała wycięta gwiazdka, znak dawnej przysięgi."
+                "Oliwia przykucnęła i bez słowa pokazała palcem małe odciski raciczek w mchu. Prowadziły od furtki prosto do pustych czapeczek. Potem uśmiechnęła się do Marcina, żeby wiedział, że nikt się nie gniewa.",
+                "Marcin przykucnął obok i położył rękę na sercu. „Te głębokie to Kropka, ona zawsze idzie pierwsza” – szepnął. „W nocy przestraszyły się grzmotów i uciekły mi z zagrody. Były głodne. Codziennie obchodzę z nimi cały Bór, a w tym roku pod dębami prawie pusto. Bałem się powiedzieć”.",
+                "Agata wsparła się na grabiach. „Dobre masz oko, Marcinie. I dobrze, że powiedziałeś”. Tymczasem Gustaw podniósł furtkę i oparł ją o słupek. Na poprzeczce widniała pęknięta na pół gwiazdka, którą dziadkowie wycięli na znak przysięgi."
               ]
             }
           },
@@ -544,7 +544,7 @@ export const storyTranslations = {
           title: "Chudy rok",
           body: [
             "Agata popatrzyła na pękniętą gwiazdkę. „Obiecaliśmy jeleniom te żołędzie” – powiedziała cicho. „Ale prosiaczki też muszą coś jeść”.",
-            "Marcin miał w swoim szałasie worek żołędzi, zebranych dla prosiaczków na zimę. Las był wielki, ale żołędzi leżało w nim niewiele.",
+            "Marcin zamyślił się. „Mam w szałasie na skraju lasu worek żołędzi. Zbierałem je całą jesień, prosiaczkom na zimę. A w lesie zostały już tylko pojedyncze, pod liśćmi”.",
             "Oliwia pomyślała o jeleniach, które muszą się najeść przed zimą. Na trawie bielił się już szron po pierwszym przymrozku."
           ],
           choices: [
@@ -563,14 +563,14 @@ export const storyTranslations = {
           bodyByChoice: {
             5: {
               "give-sack": [
-                "Marcin długo milczał. „Obiecali to nasi dziadkowie, to i ja dotrzymam” – powiedział i pobiegł po worek. Koniczynka zaniosła go na grzbiecie do Matecznika, a Agata dosypała żołędzi ze swojego zapasu.",
-                "„Twoim prosiaczkom też coś znajdziemy” – obiecała. „We wsi każdy da garść owsa”. Kiedy rozsypywali żołędzie pod starymi dębami, Marcin powtarzał: „Ręka w rękę, krok za krokiem”.",
-                "Gustaw z Agatą zbili nową furtkę, a Marcin wyciął dłutkiem na jej poprzeczce gwiazdkę, taką samą jak na starej furtce. Tak odnowili dawną przysięgę."
+                "Oliwia spojrzała na Marcina. „To twój worek. Ty zdecyduj”. Marcin długo milczał. „Nasi dziadkowie obiecali, to i ja dotrzymam słowa”. Pobiegł z Koniczynką po worek, a klacz przyniosła go na grzbiecie do Matecznika.",
+                "Agata dosypała swoich żołędzi. „Twoim prosiaczkom też coś znajdziemy. We wsi każdy da garść owsa”. Oliwia z Agatą sypały żołędzie przez płot, a te z cichym szelestem spadały w liście pod dębami. „Ręka w rękę, krok za krokiem” – powtarzał Marcin.",
+                "Tymczasem Gustaw zbił z jasnych desek nową furtkę i zawiesił ją między słupkami. Marcin przyłożył dłuto do poprzeczki i stukał pobijakiem, aż wyłoniła się gwiazdka, taka sama jak na starej furtce. „Teraz to i moja przysięga” – powiedział."
               ],
               "gather-forest": [
-                "Wszyscy rozeszli się po lesie, ale nie za daleko, żeby słyszeć się nawzajem. Szukali żołędzi w mchu i pod liśćmi, a prosiaczki węszyły najpilniej ze wszystkich.",
-                "Pod bukami prosiaczki znalazły bukiew, trójkątne orzeszki, i zajadały się nią z zapałem. „To dla nich, a żołędzie dla jeleni” – ucieszył się Marcin. „Ręka w rękę, krok za krokiem” – powtarzał, kiedy znosili pełne garście do Matecznika.",
-                "Gustaw z Agatą zbili nową furtkę, a Marcin wyciął dłutkiem na jej poprzeczce gwiazdkę, taką samą jak na starej furtce. Tak odnowili dawną przysięgę."
+                "Razem szli przez las, od dębu do dębu, a Marcin prowadził. „Pod tym zawsze coś leży, a spod tamtego zebrałem wszystko wczoraj” – mówił. Agata odgarniała grabiami liście, a pod nimi tu i ówdzie błyszczał żołądź.",
+                "Prosiaczki węszyły najpilniej ze wszystkich. Pod bukami znalazły bukiew, małe trójkątne orzeszki, i chrupały je z zapałem. „To dla nich, a żołędzie dla jeleni!” – ucieszył się Marcin.",
+                "Z pełnymi garściami i koszykiem Oliwii wrócili do Matecznika. Wysypali żołędzie na mech pod starymi dębami. Gustaw z Agatą zbili nową furtkę, a Marcin wyciął na jej poprzeczce gwiazdkę, taką samą jak na starej. Najedzone prosiaczki nawet nie spojrzały na żołędzie."
               ]
             }
           },
@@ -584,7 +584,7 @@ export const storyTranslations = {
           body: [
             "Kiedy skończyli, mgła zaczęła się przerzedzać. Między pniami błysnęła mała złota gwiazdka, a pod nią wyłoniły się rogi.",
             "Jeleń wyszedł z mgły spokojnie, a za nim łanie i młode. Najmniejszy jelonek utknął za gałęzią zwaloną przez burzę i cichutko popiskiwał, bo nie mógł dojść do mamy.",
-            "Wszyscy stali bez ruchu, żeby nie spłoszyć jeleni. Oliwia ścisnęła rękę Marcina."
+            "Wszyscy stali bez ruchu, żeby nie spłoszyć jeleni. „Jelonek sam nie przejdzie” – szepnął Marcin i mocniej ścisnął rękę Oliwii. Za ich plecami cicho parsknęła Koniczynka."
           ],
           choices: [
             {
@@ -602,14 +602,14 @@ export const storyTranslations = {
           bodyByChoice: {
             7: {
               "make-way": [
-                "Wszyscy cicho cofnęli się pod drzewa. Po chwili łania wróciła po jelonka, trąciła go nosem i poprowadziła dookoła gałęzi. Potem całe stado weszło przez nową furtkę do Matecznika.",
-                "Kiedy jelenie się najadły, jeleń z gwiazdką ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
-                "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
+                "Wszyscy cicho cofnęli się pod drzewa. Po chwili łania wróciła po jelonka, trąciła go nosem i poprowadziła dookoła gałęzi. Potem całe stado weszło przez nową furtkę do Matecznika, a spod dębów dobiegło chrupanie żołędzi.",
+                "Jeleń z gwiazdką zostawił stado przy żołędziach i ruszył ścieżką przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce. Szron na trawie zmieniał się w lśniące krople.",
+                "Szli za jeleniem, ale nie za blisko, a prosiaczki truchtały z tyłu. „Ręka w rękę, krok za krokiem, prosto w słońce!” – roześmiała się Oliwia. Na ścieżce znalazła żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy, żeby zasadzić go dalej przy drodze."
               ],
               "help-fawn": [
                 "Gustaw ostrożnie obwiązał liną dalszy koniec gałęzi, a Koniczynka powoli odciągnęła ją na bok. Nikt nie podchodził do jelonka. Maluch sam przemknął do mamy i przywarł do jej boku.",
-                "Jeleń z gwiazdką popatrzył na nich spokojnie i poprowadził stado przez nową furtkę do Matecznika. Potem ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
-                "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
+                "Jeleń z gwiazdką popatrzył na nich spokojnie. Łanie weszły przez nową furtkę do Matecznika, a on ruszył przez las i mgła cofała się przed nim pasmo po paśmie. Za nim dęby złociły się w słońcu.",
+                "Gustaw pogładził klacz po szyi. „Spisałaś się, Koniczynko”. Pod gałęzią Oliwia znalazła żołądź w czapeczce, który przeleżał tam całą burzę. Schowała go do torby, obok koszyczka i liścia gruszy, żeby zasadzić go dalej przy drodze. „Ręka w rękę, krok za krokiem, prosto w słońce!” – zaśpiewała, kiedy ruszyli w jasny dzień."
               ]
             }
           },

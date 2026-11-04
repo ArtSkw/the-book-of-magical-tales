@@ -4,6 +4,18 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-03: no shared paragraph after a choice; a choice page states the need; learning from
+  the masters.** After rereading "Leśna przysięga", the author found p4 did not say why the heroes
+  must talk to Marcin or what they need from him (p3 had already told what he would confess), and the
+  page after the choice repeated its last paragraph in both variants. A scan showed 11 of the 12
+  pages after a choice, across all three tales, ended on a paragraph shared by both variants: the
+  rule "the choice runs through all three paragraphs" had no gate. Now: no paragraph may be the same
+  in two variants (error in `validate:stories`; a warning for the Dragon and the Bell until they are
+  rewritten), and a choice page says what the heroes need before the seals (`WRITING_BIBLE.md` §2).
+  The bible named Tolkien and Rowling in one line and said nothing of their techniques; §5 now lists
+  what we take from them and from Konopnicka and Leśmian, with a per-page check. Order agreed: the
+  Forest Oath is rewritten first by these rules; if it reads well, the two older tales follow.
+
 - **2026-11-01: "Leśna przysięga" approved.** The author accepted the tale's text and every picture
   after reading the whole book on both paths. A detail that must look the same on several pages (the
   old gate's split star) is copied from one approved page in the same view, not regenerated or redrawn:
