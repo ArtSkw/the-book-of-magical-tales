@@ -56,13 +56,13 @@ export const storyTranslations = {
             1: {
               ask: [
                 "Oliwia podeszła bliżej. „Czego tak pilnujesz?” – zapytała łagodnie. Smok długo jej się przyglądał. Potem położył pazur na obluzowanym kamieniu i ostrożnie uchylił jego brzeg.",
-                "Pod spodem, w wąskiej szczelinie, wśród mchu, wapna i korzonków trawy, było gniazdko rzecznych myszek. Trzy myszki tuliły się do siebie, a najmniejsza drżała.",
-                "Każdy krok na moście trząsł obluzowanym kamieniem, a razem z nim gniazdkiem. A o świcie przez most miały przejechać ciężkie wozy na targ. „Smok nie zagrodził drogi ze złości” – szepnęła Oliwia. „Pilnuje myszek, bo nie umie nikomu powiedzieć, że tu mieszkają”."
+                "Pod spodem, w wąskiej szczelinie, wśród mchu, wapna i korzonków trawy, było gniazdko rzecznych myszek. Trzy maleństwa tuliły się do siebie, a najmniejsze drżało.",
+                "Gustaw zrobił krok i kamień zachybotał, a z nim całe gniazdko. „A o świcie jadą tędy wozy na targ” – przypomniał rycerz. Oliwia zrozumiała. „Smok nie jest zły. Pilnuje myszek, bo nie umie nikomu powiedzieć, że tu mieszkają”."
               ],
               listen: [
                 "Oliwia położyła się na bruku i przyłożyła ucho do murka. Czekała w ciszy, aż znów coś piśnie. Pisk dochodził z wąskiej szczeliny pod obluzowanym kamieniem.",
-                "Ze szczeliny wyjrzały trzy rzeczne myszki. Mieszkały w gniazdku wciśniętym między mech, wapno i korzonki trawy. Smok położył się obok Oliwii i razem z nią patrzył, jak najmniejsza drży.",
-                "Każdy krok na moście trząsł obluzowanym kamieniem, a razem z nim gniazdkiem. A o świcie przez most miały przejechać ciężkie wozy na targ. „Smok nie zagrodził drogi ze złości” – szepnęła Oliwia. „Pilnuje myszek, bo nie umie nikomu powiedzieć, że tu mieszkają”."
+                "Stamtąd wyjrzały trzy rzeczne myszki. Mieszkały w gniazdku wciśniętym między mech, wapno i korzonki trawy. Smok położył się obok Oliwii i razem z nią patrzył, jak najmniejsza drży.",
+                "Kiedy Gustaw przestąpił z nogi na nogę, Oliwia poczuła uchem, jak kamień drgnął, a z nim gniazdko. A o świcie miały tędy przejechać ciężkie wozy na targ! „Smok nie broni mostu przed nami” – szepnęła. „Broni myszek przed naszymi krokami”."
               ]
             }
           },
@@ -91,13 +91,13 @@ export const storyTranslations = {
             3: {
               lantern: [
                 "Gustaw uniósł latarnię. W jej świetle widać było każdy omszały kamień i trzy pary błyszczących oczek. Myszki patrzyły to na światło, to na wędrowców, ale żadna nie uciekła.",
-                "Do przeprowadzki potrzeba było więcej rąk, więc Gustaw zatknął przy ścieżce do młyna czerwony proporzec. Kiedy rycerz stawia go przy drodze, wszyscy w okolicy wiedzą, że potrzebuje pomocy.",
-                "Przyszli ci, którzy byli najbliżej, i każde z tym, co akurat miało w rękach: młynarz z naręczem owczej wełny, piekarka z czystą chustą i wikliniarz z pękiem trzcin ściętych nad potokiem. Latarnia pokazywała im, gdzie bezpiecznie postawić stopę."
+                "Żeby przenieść gniazdko w całości, trzeba było więcej rąk. Gustaw zatknął przy ścieżce czerwony proporzec i oświetlił go latarnią. Kiedy rycerz stawia taki znak przy drodze, wszyscy w okolicy wiedzą, że potrzebuje pomocy.",
+                "Najbliżsi sąsiedzi przyszli prosto od swojej roboty: młynarz z naręczem owczej wełny, piekarka z czystą chustą i wikliniarz z pękiem trzcin. „Omijajcie ten chwiejny kamień, pod nim mieszkają myszki” – szepnął Gustaw i świecił im pod nogi."
               ],
               bread: [
-                "Oliwia ukruszyła trochę chleba i położyła okruszki na płótnie, tuż przy szczelinie. Najpierw wysunął się jeden nosek, potem drugi, a na końcu trzeci. Myszki jadły i coraz śmielej patrzyły na Oliwię.",
-                "Do przeprowadzki potrzeba było więcej rąk, więc Gustaw zatknął przy ścieżce do młyna czerwony proporzec. Kiedy rycerz stawia go przy drodze, wszyscy w okolicy wiedzą, że potrzebuje pomocy.",
-                "Przyszli ci, którzy byli najbliżej, i każde z tym, co akurat miało w rękach: młynarz z naręczem owczej wełny, piekarka z czystą chustą i wikliniarz z pękiem trzcin ściętych nad potokiem. Stanęli z boku, żeby nie płoszyć myszek przy kolacji."
+                "Oliwia ukruszyła trochę chleba i położyła okruszki na płótnie, tuż przy szczelinie. Najpierw wysunął się jeden nosek, potem drugi i trzeci. Myszki jadły i coraz śmielej patrzyły na Oliwię.",
+                "Do przeprowadzki brakowało rąk, ale wołanie spłoszyłoby maluchy. Gustaw po cichu zatknął więc przy ścieżce czerwony proporzec. Ten znak każdy w okolicy rozumie bez słów: rycerz potrzebuje pomocy.",
+                "Wkrótce nadeszli sąsiedzi znad potoku, każdy z tym, co miał w rękach: młynarz z naręczem wełny, piekarka z czystą chustą i wikliniarz z pękiem trzcin. Przystanęli z boku. „Takich małych gości przy chlebie jeszcze nie widziałam” – szepnęła piekarka."
               ]
             }
           },
@@ -137,14 +137,14 @@ export const storyTranslations = {
           bodyByChoice: {
             5: {
               crumbs: [
-                "Oliwia pokruszyła skórkę chleba i ułożyła z okruszków ścieżkę od szczeliny aż do kołyski. Pierwsza myszka szła okruszek po okruszku, aż weszła na wełnę. Za nią druga.",
-                "Najmniejsza zatrzymywała się przy każdym okruszku i zjadała go do ostatniej okruszyny. Wikliniarz trzymał kołyskę nieruchomo, a Gustaw podsunął pod nią tarczę, żeby nic nie spadło.",
-                "Kiedy wszystkie trzy siedziały w środku, wikliniarz z Gustawem przenieśli kołyskę w suchą trawę nad brzegiem, między trzciny. Smok mrugnął do nich powoli. „Tak mostowe smoki mówią »dziękuję«” – szepnął wikliniarz. „Mój dziadek też to kiedyś widział”."
+                "Oliwia pokruszyła skórkę chleba i ułożyła na murku ścieżkę od szczeliny aż do kołyski. Pierwsza myszka szła ostrożnie, od jednej drobiny do następnej, aż wskoczyła na wełnę. Za nią druga.",
+                "Najmniejsza przystawała przy każdej kruszynie i zjadała ją do końca, a wszyscy czekali, wstrzymując oddech. Wikliniarz trzymał kołyskę nieruchomo, a Gustaw podsunął pod nią tarczę, żeby nic nie spadło do potoku.",
+                "Kiedy maluch wreszcie dołączył do rodzeństwa, całą trójkę zniesiono nad brzeg, w suchą trawę między trzcinami. Smok mrugnął bardzo powoli. „Tak mostowe smoki mówią »dziękuję«” – szepnął wikliniarz. „Mój dziadek też to kiedyś widział”."
               ],
               "warm-path": [
-                "Smok pochylił się nad murkiem i chuchał na kamienie, jeden po drugim, od szczeliny aż do kołyski. Kamienie nagrzały się i zajaśniały od środka bursztynowo, jak węgielki, które już nie parzą.",
-                "Pierwsza myszka przeszła po ciepłych kamieniach i weszła na wełnę. Za nią druga. Najmniejsza ruszyła na końcu, a smok prowadził ją nosem. Wikliniarz trzymał kołyskę, a Gustaw podsunął pod nią tarczę.",
-                "Kiedy wszystkie trzy siedziały w środku, wikliniarz z Gustawem przenieśli kołyskę w suchą trawę nad brzegiem, między trzciny. Smok mrugnął do nich powoli. „Tak mostowe smoki mówią »dziękuję«” – szepnął wikliniarz. „Mój dziadek też to kiedyś widział”."
+                "Smok pochylił się nad murkiem i chuchał na kamienie od szczeliny aż do kołyski, a one nagrzewały się i jaśniały od środka bursztynowo, jak węgielki, które już nie parzą.",
+                "Pierwsza myszka ostrożnie wystawiła łapkę, przystanęła na chwilę i pobiegła do kołyski. Za nią druga. Najmniejsza ruszyła na końcu, a smok grzał jej drogę oddechem. Wikliniarz trzymał kołyskę, a Gustaw podsunął pod nią tarczę.",
+                "Obaj znieśli maluchy nad brzeg, między trzciny, a smok położył się obok, żeby było im ciepło. Potem mrugnął do rycerza, bardzo powoli. „Dziadek mówił, że tak dziękują mostowe smoki” – uśmiechnął się Gustaw. „Myślałem, że to bajka”."
               ]
             }
           },
@@ -166,7 +166,7 @@ export const storyTranslations = {
                 0: "Kiedy myszki były już bezpieczne, smok zszedł z drogi i most znów stał otworem. Na murku zostało kilka okruszków, w sam raz na śniadanie dla wróbli."
               },
               "warm-path": {
-                0: "Kiedy myszki były już bezpieczne, smok zszedł z drogi i most znów stał otworem. Kamienie na murku stygły powoli i gasły jeden po drugim."
+                0: "Kiedy myszki były już bezpieczne, most znów stał otworem. Kamienie na murku stygły powoli i gasły jeden po drugim."
               }
             }
           },
@@ -187,13 +187,13 @@ export const storyTranslations = {
             7: {
               "name-promise": [
                 "Oliwia stanęła przed smokiem. „Dziękuję, że tak długo pilnowałeś najmniejszych” – powiedziała. Smok pochylił łeb, strząsnął z boku jedną miedzianą łuskę i ciepłym oddechem osadził ją w murku, tuż przy dawnym mysim domu.",
-                "Nocą łuska świeciła w murku bursztynowo. Oliwia dotrzymała słowa i od tej nocy każdy, kto szedł przez most, zwalniał przy łusce i szeptał: „Powoli i cicho, przy moście śpią myszki”. A smok czuwał przy kołysce z otwartymi oczami.",
-                "Tej nocy Oliwia zasypiała w gospodzie z maleńkim trzcinowym koszyczkiem w dłoni. Wikliniarz uplótł go dla niej na pamiątkę, z trzcin, które zostały po kołysce."
+                "Po zmroku łuska jaśniała bursztynowo. Oliwia dotrzymała słowa i odtąd każdy, kto szedł przez most, zwalniał w tym miejscu i szeptał: „Powoli i cicho, przy moście śpią myszki”. A smok czuwał przy nich z otwartymi oczami.",
+                "Na pożegnanie wikliniarz wcisnął Oliwii w dłoń maleńki koszyczek, upleciony z trzcin, które zostały po kołysce. „Żebyś pamiętała, czego pilnował smok” – powiedział."
               ],
               "wave-goodnight": [
                 "Oliwia pomachała smokowi ręką. „Dobranoc, smoku” – powiedziała. Smok mrugnął sennie, zwinął się wokół kołyski i zasnął, pierwszy raz od dnia, w którym obluzował się kamień.",
                 "Z każdym jego oddechem nad kołyską unosiła się smużka złotego ciepła. Oliwia dotrzymała słowa, więc ludzie szli przez most na palcach i uciszali się szeptem: „Powoli i cicho, przy moście śpią myszki”.",
-                "Tej nocy Oliwia zasypiała w gospodzie z maleńkim trzcinowym koszyczkiem w dłoni. Wikliniarz uplótł go dla niej na pamiątkę, z trzcin, które zostały po kołysce."
+                "W gospodzie Oliwia długo nie mogła zasnąć. Obracała w palcach trzcinowy koszyczek, który wikliniarz uplótł z resztek po kołysce, i nasłuchiwała, czy przez okno nie dobiegnie z dołu ciche smocze pochrapywanie."
               ]
             }
           },
@@ -238,7 +238,7 @@ export const storyTranslations = {
         {
           title: "Gdy dzwon nie zawołał",
           body: [
-            "Gustaw, Oliwia i klacz Koniczynka dotarli na Księżycowe Wzgórze tuż przed zmierzchem. Na dachu dzwonnicy obracał się żelazny sierp księżyca i pokazywał, skąd wieje wiatr. To od niego wzgórze wzięło nazwę.",
+            "Gustaw, Oliwia i klacz Koniczynka dotarli na Księżycowe Wzgórze tuż przed zmierzchem. Na dachu dzwonnicy obracał się żelazny półksiężyc i pokazywał, skąd wieje wiatr. To od niego wzgórze wzięło nazwę.",
             "Co wieczór dzwon wołał stąd ludzi do domów, a dzieci powtarzały za nim: „Bim-bam, do domu!”. Tego wieczoru dzwonnica milczała. Rodziny wyszły na plac z rogowymi latarniami i patrzyły w górę.",
             "„Pasterz Maciej jest jeszcze z kozami pod górami” – powiedział z troską wójt. „We mgle nie zejdzie, póki nie usłyszy dzwonu”. Tymczasem Koniczynka wyciągała pysk ku staremu sadowi, gdzie między gruszami połyskiwały srebrne ćmy."
           ],
@@ -252,7 +252,7 @@ export const storyTranslations = {
           body: [
             "Wójt otworzył drzwi dzwonnicy wielkim żelaznym kluczem. Piekarz zajrzał do środka i zadarł głowę. „Liny nie ma!” – zawołał. „Zawsze zwisała tu aż do samej podłogi”.",
             "Wszyscy mówili naraz. Tylko Oliwia patrzyła na Koniczynkę, która strzygła uszami ku gruszom. „Gdzie krążą srebrne ćmy, tam coś czeka na naprawę” – szepnęła jakaś dziewczynka z wioski.",
-            "Babcia Janina wsparła się na lasce. „Albo górski wiatr znowu nabroił. Po południu wiało tak, że dzwon sam pobrzękiwał, a sierp na dachu kręcił się w kółko”."
+            "Babcia Janina wsparła się na lasce. „Albo górski wiatr znowu nabroił. Po południu wiało tak, że dzwon sam pobrzękiwał, a księżyc na dachu kręcił się w kółko”."
           ],
           choices: [
             {
@@ -271,13 +271,13 @@ export const storyTranslations = {
             1: {
               "follow-clover": [
                 "Koniczynka poprowadziła wszystkich wokół wieży, prosto pod starą gruszę. Srebrne ćmy krążyły tam nad grubą gałęzią, która sięgała aż do okiennicy.",
-                "Na gałęzi wisiała lina od dzwonu, splątana w ciasne pętle. Wiatr wywiał ją przez otwartą okiennicę i owinął wokół gałęzi.",
-                "Tuż obok, w rozwidleniu, było gniazdko z mchu. Zięba grzała w nim trzy pisklęta i nie odleciała, choć pod drzewem stało pół wioski. Wystarczyło mocniej szarpnąć liną, a gniazdko spadłoby z gałęzi."
+                "Na konarze wisiała lina od dzwonu, splątana w ciasne pętle. Wiatr wywiał ją przez otwartą okiennicę i okręcił kilka razy dookoła.",
+                "Koniczynka podniosła łeb ku rozwidleniu. Tuż przy linie, w gniazdku z mchu, siedziała zięba i grzała trzy pisklęta. Nie odleciała, choć pod drzewem stali ludzie i koń. „Wystarczy jedno szarpnięcie” – szepnął Gustaw – „a gniazdo spadnie razem z liną”."
               ],
               "ask-elders": [
-                "Babcia Janina od razu sobie przypomniała. „Kiedy byłam mała, wiatr też raz porwał linę” – powiedziała. „Znaleźliśmy ją w starej gruszy. Ta grusza zawsze wyciąga gałęzie ku dzwonnicy”.",
-                "Poszli za nią wokół wieży. Babcia uniosła laskę i pokazała grubą gałąź, która sięgała aż do okiennicy. Wisiała na niej lina od dzwonu, splątana w ciasne pętle.",
-                "Tuż obok, w rozwidleniu, było gniazdko z mchu. Zięba grzała w nim trzy pisklęta i nie odleciała, choć pod drzewem stało pół wioski. Wystarczyło mocniej szarpnąć liną, a gniazdko spadłoby z gałęzi."
+                "Babcia Janina od razu sobie przypomniała. „Kiedy byłam mała, wiatr też raz porwał linę” – powiedziała. „Znaleźliśmy ją w starej gruszy. Jej gałęzie od zawsze sięgają aż do dzwonnicy”.",
+                "Poszli za nią wokół wieży. Babcia uniosła laskę i pokazała pod samą okiennicą grubą gałąź. Wisiała na niej lina od dzwonu, splątana w ciasne pętle.",
+                "Babcia zmrużyła oczy. „Tego za moich czasów nie było” – mruknęła. W rozwidleniu, tuż przy linie, zięba uwiła gniazdko z mchu i grzała w nim trzy pisklęta. Jedno mocniejsze szarpnięcie i maluchy spadłyby z gałęzi."
               ]
             }
           },
@@ -287,7 +287,7 @@ export const storyTranslations = {
           body: [
             "Cieśla przyniósł jesionową drabinę i oparł ją o pień powoli, żeby nie stuknęła o korę tuż pod gniazdem. Piekarz owinął płótnem nogi drabiny, żeby nie zgrzytały o kamienie.",
             "Zięba patrzyła na nich czarnymi oczkami, ale nie zeszła z gniazda. Oliwia nie spuszczała z niej wzroku, a Koniczynka stała bez ruchu i nawet nie parsknęła.",
-            "„Jak zięba się spłoszy, pisklęta zmarzną” – szepnął cieśla. „Linę trzeba rozplątać tak, żeby ptaszka nie spłoszyć”."
+            "„Jak zięba się spłoszy, pisklęta zmarzną” – szepnął cieśla. „Linę trzeba rozplątać tak, żeby ptaszek nawet nie drgnął”."
           ],
           choices: [
             {
@@ -305,14 +305,14 @@ export const storyTranslations = {
           bodyByChoice: {
             3: {
               "move-slowly": [
-                "Cieśla wspiął się po drabinie i rozplątywał linę pętla po pętli, bez jednego szarpnięcia. Oliwia stała na dole i liczyła pętle szeptem: pięć, cztery, trzy, dwie, jedna.",
-                "Kiedy puścił ostatni supeł, zięba wciąż grzała pisklęta. Z gałęzi spadł liść gruszy, prosto na rękaw Oliwii. Oliwia schowała go do torby, obok trzcinowego koszyczka znad mostu.",
-                "Lina znów zwisała w wieży. Ale kiedy cieśla za nią pociągnął, zamiast „bim-bam” rozległ się chrapliwy brzęk. Dzwon zachrypł."
+                "Cieśla wspiął się po drabinie i rozplątywał linę pętla po pętli, bez jednego szarpnięcia. Oliwia stała na dole i liczyła szeptem: pięć, cztery, trzy, dwie, jedna.",
+                "Przy ostatnim supełku cieśla zamarł, bo zięba poruszyła skrzydłem. Ale tylko poprawiła się w gnieździe. Z gałęzi sfrunął liść gruszy i opadł Oliwii na rękaw. Schowała go do torby, obok trzcinowego koszyczka znad mostu.",
+                "Cieśla przewlókł linę z powrotem do wieży i pociągnął, raz, ostrożnie. Zamiast „bim-bam” z góry dobiegło chrapliwe brzęknięcie, jakby ktoś stuknął w pęknięty garnek. Dzwon zachrypł."
               ],
               "lullaby": [
                 "Oliwia i Gustaw zaczęli cichutko nucić kołysankę, a cieśla na drabinie luzował linę w jej rytmie, pętla po pętli. Zięba przymknęła oczy i ani drgnęła.",
-                "Kiedy puścił ostatni supeł, kołysanka ucichła, a zięba wciąż grzała pisklęta. Z gałęzi spadł liść gruszy, prosto na rękaw Oliwii. Oliwia schowała go do torby, obok trzcinowego koszyczka znad mostu.",
-                "Lina znów zwisała w wieży. Ale kiedy cieśla za nią pociągnął, zamiast „bim-bam” rozległ się chrapliwy brzęk. Dzwon zachrypł."
+                "Ostatni supeł puścił akurat wtedy, gdy kołysanka dobiegła końca. Pisklęta spały, a zięba wciąż je grzała. Z gałęzi zsunął się liść gruszy i opadł Oliwii na ramię. Schowała go do torby, obok trzcinowego koszyczka znad mostu.",
+                "Gustaw zaniósł linę do wieży i pociągnął. Wszyscy czekali na „bim-bam”, a usłyszeli krótkie, chrapliwe brzęknięcie. Babcia Janina pokręciła głową. „Zachrypł nam dzwon, jak ja zimą”."
               ]
             }
           },
@@ -340,14 +340,14 @@ export const storyTranslations = {
           bodyByChoice: {
             5: {
               "invite-smith": [
-                "Kowalka przyszła z małym młoteczkiem i woreczkiem nitów. Przewierciła spiż przy pęknięciu i wbijała nity cichutko, stuk po stuku. Cieśla trzymał belkę, żeby dzwon się nie kołysał.",
-                "Piekarz przyniósł kosz ciepłych owsianych bułeczek z miodem, bo robota miała potrwać do późnej nocy. Kto odkładał narzędzia, dostawał jedną, a jedną zniesiono na dół dla Koniczynki.",
-                "Oliwia polerowała dzwon lnianą szmatką, aż zabłysło w nim światło latarni. Kiedy księżyc stanął nad wieżą, na brzegu dzwonu lśniły trzy nity, jeden obok drugiego."
+                "Kowalka przyszła z małym młoteczkiem i woreczkiem nitów. Przewierciła spiż przy pęknięciu i wbijała je cichutko, stuk po stuku, żeby nie budzić piskląt w gruszy. Cieśla przytrzymywał belkę, by dzwon się nie kołysał.",
+                "Piekarz przyniósł kosz ciepłych owsianych bułeczek z miodem, bo robota miała potrwać do późnej nocy. Kto odkładał narzędzia, częstował się, a jedną zniesiono na dół dla Koniczynki.",
+                "Oliwia polerowała dzwon lnianą szmatką, aż zabłysło w nim światło latarni. Kiedy księżyc stanął nad wieżą, na spiżu lśniły trzy nity. „Teraz pęknięcie już dalej nie pójdzie” – powiedziała kowalka i schowała młoteczek."
               ],
               "thank-bell": [
                 "Wszyscy po kolei podsuwali babci imiona: Grzmot, Brzęczka, Bimbała… Babcia tylko kręciła głową. Wreszcie piekarz zawołał: „Wieczornica! Przecież co wieczór nas woła!”. Babci zabłysły oczy. Przypomniała sobie rymowankę.",
                 "„Gdy Wieczornica zachrypi, nie płacz, nie narzekaj: obróć ją ku górom i na jej głos czekaj”. Cieśla zrozumiał pierwszy. „Jak ją obrócimy, serce będzie biło w zdrowy spiż, a pęknięcie zostanie z boku”.",
-                "Gustaw z cieślą poluzowali uchwyty i obrócili Wieczornicę ku górom. Piekarz przyniósł kosz ciepłych owsianych bułeczek z miodem, żeby nikt nie pracował o pustym brzuchu. Jedną zniesiono na dół dla Koniczynki."
+                "Gustaw z cieślą poluzowali uchwyty i obrócili Wieczornicę ku górom. Piekarz, dumny ze swojej podpowiedzi, przyniósł kosz bułeczek z miodem, jeszcze ciepłych. Najbardziej pachnącą zniósł na dół dla Koniczynki."
               ]
             }
           },
@@ -369,7 +369,7 @@ export const storyTranslations = {
           body: [
             "Wreszcie dzwon był gotowy. Z nitami miał brzmieć odrobinę ciszej niż dawniej, ale kowalka się uśmiechnęła: „Ciszej, ale Maciej i tak go usłyszy”.",
             "Cała wioska czekała na placu. Księżyc wyjrzał zza chmury, a w gruszy obudziły się pisklęta i wychyliły główki z gniazda. Zięba siedziała przy nich i też patrzyła na wieżę.",
-            "Piekarz stanął w drzwiach wieży z liną w rękach i spojrzał na Oliwię. „Jak go przywitamy?” – zapytał."
+            "„Mocno nie wolno, spiż świeżo naprawiony” – przypomniał cieśla. „A Maciej musi nas usłyszeć aż pod górami”. Piekarz ruszył do wieży po linę i obejrzał się na Oliwię. „Jak przywitamy nowy głos?”."
           ],
           paragraphByChoice: {
             5: {
@@ -399,12 +399,12 @@ export const storyTranslations = {
               "ring-gently": [
                 "Piekarz pociągnął linę lekko, ledwie-ledwie. Dzwon odezwał się jasno i czysto, a dzieci zawołały razem z nim: „Bim-bam, do domu!”. Głos popłynął od okna do okna i dalej, aż pod góry.",
                 "Po chwili z ciemności odpowiedziały mu dzwoneczki kóz. Pasterz Maciej schodził we mgle prosto na głos dzwonu, a wójt odetchnął z ulgą.",
-                "Dzwonu słuchali rodzice i dzieci, starsi, kowalka, cieśla i bardzo zadowolona Koniczynka, która miała na nosie biały ślad mąki po bułeczce."
+                "Na placu zrobiło się tak cicho, że słychać było trzask knotów w latarniach. Tylko Koniczynka, z białym śladem mąki na nosie po bułeczce, parsknęła z zadowoleniem, aż dzieci się roześmiały."
               ],
               "share-song": [
                 "Piekarz pociągnął linę. Cały plac zanucił razem z dzwonem, a potem zaśpiewał: „Bim-bam, do domu!”. Nie dało się rozróżnić, gdzie kończy się spiż, a gdzie zaczynają się głosy.",
                 "W gruszy pisklęta podniosły główki i słuchały tak uważnie, jakby chciały zapamiętać każdą nutę. A z ciemności odpowiedziały dzwoneczki kóz: pasterz Maciej schodził we mgle prosto na głos dzwonu.",
-                "Dzwonu słuchali rodzice i dzieci, starsi, kowalka, cieśla i bardzo zadowolona Koniczynka, która miała na nosie biały ślad mąki po bułeczce."
+                "Śpiewali rodzice i dzieci, kowalka i cieśla, a babcia Janina najgłośniej ze wszystkich. Nawet Koniczynka, z białym śladem mąki na nosie po bułeczce, kiwała łbem do taktu."
               ]
             }
           },
@@ -434,7 +434,7 @@ export const storyTranslations = {
                 0: "Długo po tym, jak plac opustoszał, z sadu przyfrunęły trzy srebrne ćmy. Nic już nie czekało na naprawę, więc nie krążyły, tylko usiadły rzędem na dzwonie i połyskiwały w świetle księżyca jak małe gwiazdy. Od tamtej pory Księżycowe Wzgórze ma w herbie trzy gwiazdki."
               },
               "share-song": {
-                0: "Długo po tym, jak plac opustoszał, pisklęta przez sen powtarzały wieczorną melodię. Od tamtej pory dzwon woła wieczorem ludzi do domów, a zięby budzą wioskę o świcie tą samą piosenką. Księżycowe Wzgórze ma dwa głosy: jeden ze spiżu, drugi z piórek."
+                0: "Kiedy plac już opustoszał, pisklęta jeszcze długo pogwizdywały tę melodię. Od tamtej pory dzwon woła wieczorem ludzi do domów, a zięby budzą wioskę o świcie tą samą piosenką. Księżycowe Wzgórze ma dwa głosy: jeden ze spiżu, drugi z piórek."
               }
             },
             1: {
@@ -457,9 +457,9 @@ export const storyTranslations = {
         {
           title: "Poranek, który nie przyszedł",
           body: [
-            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Agaty, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel.",
-            "Rano słońce powinno wyjrzeć zza dębów, ale las tonął w mlecznej mgle i ptaki milczały. „Jeleń nie przyszedł” – zdziwiła się Agata. „Co rano przechodzi tędy jeleń z gwiazdką między rogami. Gdzie przejdzie, mgła się rozwiewa i mogę wieźć węgiel do kuźni”.",
-            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi. „Sprawdźmy, skąd przyszły” – powiedziała Agata. „Ręka w rękę, krok za krokiem”."
+            "Gustaw, Oliwia i klacz Koniczynka nocowali na polanie węglarki Agaty, w głębi Dębowego Boru. Obok szałasu stał mielerz: kopiec z ziemi, pod którym drewno powoli zmieniało się w węgiel. W nocy wiatr huczał w dębach, ale przed świtem wszystko ucichło.",
+            "Rano słońce powinno już wstać, ale las tonął w mlecznej mgle i ptaki milczały. „Jeleń nie przyszedł” – zdziwiła się Agata. „Co rano przechodzi tędy jeleń z gwiazdką między rogami. Którędy pójdzie, tam mgła się rozwiewa i mogę wieźć węgiel do kuźni”.",
+            "Wtedy z mgły wybiegły trzy prosiaczki. Oliwia zauważyła w mchu puste czapeczki żołędzi i małe odciski raciczek. „Sprawdźmy, skąd przyszły” – powiedziała Agata. „Ręka w rękę, krok za krokiem”."
           ],
           curiosityNote: {
             title: "Czy wiesz, że...?",
@@ -469,8 +469,8 @@ export const storyTranslations = {
         {
           title: "Wołanie we mgle",
           body: [
-            "Szli powoli, trzymając się za ręce, a Koniczynka stąpała tuż za nimi. Prosiaczki truchtały przodem i co chwilę się oglądały.",
-            "Nagle gdzieś we mgle ktoś zawołał: „Kropka! Łatka! Ryjek!”. Prosiaczki nastawiły uszu i stanęły.",
+            "Ruszyli za prosiaczkami, ale ledwie odeszli od mielerza, maluchy przystanęły. Oliwia przykucnęła i pogłaskała największego po grzbiecie, a Koniczynka czekała tuż za nią.",
+            "Nagle gdzieś we mgle ktoś zawołał: „Kropka! Łatka! Ryjek!”. Prosiaczki podniosły ryjki, a Agata przyłożyła dłoń do ucha.",
             "„Ktoś ich szuka” – szepnęła Oliwia. „Ale one też dokądś nas prowadzą”."
           ],
           choices: [
@@ -489,14 +489,14 @@ export const storyTranslations = {
           bodyByChoice: {
             1: {
               "follow-piglets": [
-                "Prosiaczki poprowadziły wszystkich do wielkich, starych dębów za drewnianym płotem. Furtka w płocie leżała na ziemi, wyłamana przez burzę. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne” – szepnęła Agata. „Tu nie wolno wpuszczać świń”.",
-                "Wszędzie walały się puste czapeczki żołędzi. Przy płocie stał chłopiec z kijem pasterskim i patrzył na nich wystraszony. To był Marcin, świniopas z Dąbrówki.",
-                "„Nasi dziadkowie obiecali, że żołędzie z Matecznika są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Agata. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+                "Prosiaczki poprowadziły wszystkich przez mgłę do ogromnych dębów za płotem. Burza wyłamała furtkę. „To Matecznik, serce lasu” – szepnęła Agata. „Tu jelenie mają spiżarnię na zimę. Świń ze wsi nie wpuszczamy”.",
+                "Prosiaczki pobiegły prosto do chłopca z leszczynowym kijem. „Kropka, Łatka, Ryjek… wszystkie są!” – policzył szybko. To był Marcin, świniopas z Dąbrówki. Na widok Agaty zamarł.",
+                "Oliwia podniosła pustą czapeczkę. „Dziadkowie obiecali jeleniom żołędzie z Matecznika” – dodała Agata – „a jeleń w zamian przynosi nam poranek”. Oliwia popatrzyła na najedzone prosiaczki i wszystko zrozumiała: jeleń z gwiazdką odszedł ze swoim stadem, bo nie miało tu co jeść. Trzeba było na nowo zapełnić spiżarnię."
               ],
               "call-back": [
-                "Oliwia zawołała: „Tutaj jesteśmy!”. Z mgły wyszedł Marcin, mały świniopas z Dąbrówki. Prosiaczki obiegły go i pognały z powrotem między wielkie, stare dęby, a wszyscy za nimi.",
-                "Furtka w drewnianym płocie leżała na ziemi, wyłamana przez burzę, a wszędzie walały się puste czapeczki żołędzi. „To Matecznik, serce lasu, gdzie zwierzęta są bezpieczne” – szepnęła Agata, a Marcin spuścił głowę.",
-                "„Nasi dziadkowie obiecali, że żołędzie z Matecznika są dla jeleni, a jeleń w zamian przynosi nam poranek” – wyjaśniła Agata. Oliwia popatrzyła na puste czapeczki i zrozumiała. „Prosiaczki zjadły jeleniom żołędzie, więc jelenie odeszły, a z nimi jeleń z gwiazdką. Trzeba oddać jeleniom żołędzie”."
+                "Oliwia zawołała w mgłę: „Tutaj jesteśmy!”. Przybiegł zdyszany Marcin, świniopas z Dąbrówki. „Kropka, Łatka, Ryjek!” – ucieszył się. Ale prosiaczki tylko go obiegły i pognały dalej.",
+                "Stanęły dopiero pod ogromnymi dębami, przy wyłamanej furtce, i zaczęły ryć w mchu wśród pustych czapeczek. Agata zakryła usta dłonią. „To Matecznik, serce lasu, schronienie dzikich zwierząt. Świniom ze wsi nie wolno tu wchodzić!”.",
+                "Agata opowiedziała o przysiędze: dziadkowie oddali jeleniom wszystko, co jesienią spada z dębów Matecznika, a jeleń w zamian przynosi poranek. Marcin spuścił głowę. „Prosiaczki wszystko wyjadły” – szepnęła Oliwia. „Jeleń odszedł ze stadem, więc mgła nie zeszła. Trzeba szybko zebrać nowy zapas”."
               ]
             }
           },
@@ -504,9 +504,9 @@ export const storyTranslations = {
         {
           title: "Marcin milczy",
           body: [
-            "Marcin od razu się odezwał. „Burza wyłamała furtkę” – powiedział szybko. „W nocy grzmiało i wiało”. O prosiaczkach nie wspomniał ani słowem, choć ocierały mu się o nogi.",
-            "Oliwia widziała, że Marcin się boi. Podeszła i wzięła go za rękę. „Ręka w rękę, krok za krokiem” – szepnęła. „Razem coś wymyślimy”.",
-            "Marcin ścisnął jej dłoń, ale wciąż patrzył w ziemię."
+            "Mgła pojaśniała, ale słońce wciąż nie wychodziło. „Skąd wziąć tyle żołędzi?” – zmartwiła się Agata. „Jelenie muszą się najeść, zanim przyjdzie zima. Marcin codziennie pasie w lesie prosiaczki, więc najlepiej wie, gdzie szukać”.",
+            "Marcin przełknął ślinę i wyrzucił z siebie jednym tchem: „To burza wyłamała furtkę! W nocy grzmiało i wiało”. O prosiaczkach nie powiedział ani słowa, choć ocierały mu się o nogi.",
+            "Marcin patrzył w ziemię. Oliwia pomyślała: boi się, że będziemy na niego źli o prosiaczki. A dopóki się boi, nie pomoże nam szukać żołędzi. Wzięła go za rękę. „Ręka w rękę, krok za krokiem” – szepnęła. Marcin ścisnął jej dłoń, ale dalej milczał."
           ],
           choices: [
             {
@@ -524,14 +524,14 @@ export const storyTranslations = {
           bodyByChoice: {
             3: {
               "ask-kindly": [
-                "Oliwia zapytała łagodnie: „Co się stało tej nocy, Marcinie?”. Marcin zamrugał, a potem wszystko opowiedział.",
-                "Przez wyłamaną furtkę jego prosiaczki weszły do Matecznika i zjadły jeleniom żołędzie. „Bałem się powiedzieć” – wyszeptał. „Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Matecznikiem prawie nic nie ma”.",
-                "„Dobrze, że nam powiedziałeś”. Agata pogładziła go po ramieniu. Gustaw podniósł z ziemi wyłamaną furtkę, żeby ją obejrzeć. Na jej pękniętej poprzeczce widniała wycięta gwiazdka, znak dawnej przysięgi."
+                "Oliwia zapytała łagodnie: „Co się stało w nocy, Marcinie? Nikt się na ciebie nie gniewa”. Marcin zamrugał, a potem zaczął mówić tak szybko, że ledwie za nim nadążali.",
+                "„Kiedy grzmiało, prosiaczki przestraszyły się i uciekły mi z zagrody. Były głodne. Szukam ich od świtu. A tu furtka leży i same puste czapeczki! Znam każdy dąb w Borze, a w tym roku pod każdym prawie pusto. Bałem się powiedzieć”.",
+                "„Dobrze, że powiedziałeś”. Agata położyła mu rękę na ramieniu. Zmęczone nocną wędrówką prosiaczki zasnęły w liściach. Gustaw podniósł wyłamaną furtkę i bez słowa pokazał wszystkim poprzeczkę. Pośrodku widniała wycięta gwiazdka, znak dawnej przysięgi. Gwiazdka pękła na pół."
               ],
               "show-tracks": [
-                "Oliwia przykucnęła i pokazała Marcinowi małe odciski raciczek w mchu, tuż obok pustych czapeczek. Nic nie powiedziała, tylko się do niego uśmiechnęła.",
-                "Marcin westchnął i wszystko opowiedział. Przez wyłamaną furtkę jego prosiaczki weszły do Matecznika i zjadły jeleniom żołędzie. „Bałem się powiedzieć. Były głodne. W tym roku dęby dały tak mało żołędzi, że poza Matecznikiem prawie nic nie ma”.",
-                "„Dobrze, że nam powiedziałeś”. Agata pogładziła go po ramieniu. Gustaw podniósł z ziemi wyłamaną furtkę, żeby ją obejrzeć. Na jej pękniętej poprzeczce widniała wycięta gwiazdka, znak dawnej przysięgi."
+                "Oliwia przykucnęła i bez słowa pokazała palcem małe odciski raciczek w mchu. Prowadziły od furtki prosto do pustych czapeczek. Potem uśmiechnęła się do Marcina, żeby wiedział, że nikt się nie gniewa.",
+                "Marcin przykucnął obok i położył rękę na sercu. „Te głębokie to Kropka, ona zawsze idzie pierwsza” – szepnął. „W nocy przestraszyły się grzmotów i uciekły mi z zagrody. Były głodne. Codziennie obchodzę z nimi cały Bór, a w tym roku pod dębami prawie pusto. Bałem się powiedzieć”.",
+                "Agata wsparła się na grabiach. „Dobre masz oko, Marcinie. I dobrze, że powiedziałeś”. Tymczasem Gustaw podniósł furtkę i oparł ją o słupek. Na poprzeczce widniała pęknięta na pół gwiazdka, którą dziadkowie wycięli na znak przysięgi."
               ]
             }
           },
@@ -544,7 +544,7 @@ export const storyTranslations = {
           title: "Chudy rok",
           body: [
             "Agata popatrzyła na pękniętą gwiazdkę. „Obiecaliśmy jeleniom te żołędzie” – powiedziała cicho. „Ale prosiaczki też muszą coś jeść”.",
-            "Marcin miał w swoim szałasie worek żołędzi, zebranych dla prosiaczków na zimę. Las był wielki, ale żołędzi leżało w nim niewiele.",
+            "Marcin zamyślił się. „Mam w szałasie na skraju lasu worek żołędzi. Zbierałem je całą jesień, prosiaczkom na zimę. A w Borze zostały już tylko pojedyncze, pod liśćmi”.",
             "Oliwia pomyślała o jeleniach, które muszą się najeść przed zimą. Na trawie bielił się już szron po pierwszym przymrozku."
           ],
           choices: [
@@ -563,14 +563,14 @@ export const storyTranslations = {
           bodyByChoice: {
             5: {
               "give-sack": [
-                "Marcin długo milczał. „Obiecali to nasi dziadkowie, to i ja dotrzymam” – powiedział i pobiegł po worek. Koniczynka zaniosła go na grzbiecie do Matecznika, a Agata dosypała żołędzi ze swojego zapasu.",
-                "„Twoim prosiaczkom też coś znajdziemy” – obiecała. „We wsi każdy da garść owsa”. Kiedy rozsypywali żołędzie pod starymi dębami, Marcin powtarzał: „Ręka w rękę, krok za krokiem”.",
-                "Gustaw z Agatą zbili nową furtkę, a Marcin wyciął dłutkiem na jej poprzeczce gwiazdkę, taką samą jak na starej furtce. Tak odnowili dawną przysięgę."
+                "Oliwia spojrzała na Marcina. „To twój worek. Ty zdecyduj”. Marcin długo milczał. „Nasi dziadkowie obiecali, to i ja dotrzymam słowa”. Pobiegł z Koniczynką do szałasu, a klacz przyniosła worek na grzbiecie do Matecznika.",
+                "Agata dosypała swoich żołędzi. „Twoim prosiaczkom też coś znajdziemy. We wsi każdy da garść owsa”. Oliwia z Agatą sypały żołędzie przez płot, a te z cichym szelestem spadały w liście pod dębami. „Ręka w rękę, krok za krokiem” – powtarzał Marcin.",
+                "Tymczasem Gustaw zbił z jasnych desek nową furtkę i zawiesił ją między słupkami. Marcin przyłożył dłuto do poprzeczki i stukał pobijakiem, aż wyłoniła się gwiazdka, taka sama jak na starej. „Teraz to i moja przysięga” – powiedział."
               ],
               "gather-forest": [
-                "Wszyscy rozeszli się po lesie, ale nie za daleko, żeby słyszeć się nawzajem. Szukali żołędzi w mchu i pod liśćmi, a prosiaczki węszyły najpilniej ze wszystkich.",
-                "Pod bukami prosiaczki znalazły bukiew, trójkątne orzeszki, i zajadały się nią z zapałem. „To dla nich, a żołędzie dla jeleni” – ucieszył się Marcin. „Ręka w rękę, krok za krokiem” – powtarzał, kiedy znosili pełne garście do Matecznika.",
-                "Gustaw z Agatą zbili nową furtkę, a Marcin wyciął dłutkiem na jej poprzeczce gwiazdkę, taką samą jak na starej furtce. Tak odnowili dawną przysięgę."
+                "Razem szli przez las, od dębu do dębu, a Marcin prowadził. „Pod tym zawsze coś leży, a spod tamtego zebrałem wszystko wczoraj” – mówił. Agata odgarniała grabiami liście, a pod nimi tu i ówdzie błyszczał żołądź.",
+                "Prosiaczki węszyły najpilniej ze wszystkich. Pod bukami znalazły bukiew, małe trójkątne orzeszki, i chrupały je z zapałem. „To dla nich, a żołędzie dla jeleni!” – ucieszył się Marcin.",
+                "Z pełnymi garściami i koszykiem Oliwii wrócili do Matecznika. Wysypali wszystko na mech pod starymi dębami. Gustaw z Agatą zbili nową furtkę, a Marcin wyciął na jej poprzeczce gwiazdkę, taką samą jak na starej. Najedzone prosiaczki nawet nie spojrzały na żołędzie."
               ]
             }
           },
@@ -584,7 +584,7 @@ export const storyTranslations = {
           body: [
             "Kiedy skończyli, mgła zaczęła się przerzedzać. Między pniami błysnęła mała złota gwiazdka, a pod nią wyłoniły się rogi.",
             "Jeleń wyszedł z mgły spokojnie, a za nim łanie i młode. Najmniejszy jelonek utknął za gałęzią zwaloną przez burzę i cichutko popiskiwał, bo nie mógł dojść do mamy.",
-            "Wszyscy stali bez ruchu, żeby nie spłoszyć jeleni. Oliwia ścisnęła rękę Marcina."
+            "Wszyscy stali bez ruchu, żeby nie spłoszyć stada. „Jelonek sam nie przejdzie” – szepnął Marcin i mocniej ścisnął rękę Oliwii. Za ich plecami cicho parsknęła Koniczynka."
           ],
           choices: [
             {
@@ -602,14 +602,14 @@ export const storyTranslations = {
           bodyByChoice: {
             7: {
               "make-way": [
-                "Wszyscy cicho cofnęli się pod drzewa. Po chwili łania wróciła po jelonka, trąciła go nosem i poprowadziła dookoła gałęzi. Potem całe stado weszło przez nową furtkę do Matecznika.",
-                "Kiedy jelenie się najadły, jeleń z gwiazdką ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
-                "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
+                "Wszyscy cicho cofnęli się pod drzewa. Po chwili łania wróciła po jelonka, trąciła go nosem i poprowadziła dookoła gałęzi. Potem całe stado weszło przez nową furtkę do Matecznika, a spod dębów dobiegło chrupanie żołędzi.",
+                "Tylko jeleń z gwiazdką ruszył dalej, ścieżką przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce. Szron na trawie zmieniał się w lśniące krople.",
+                "Szli za jeleniem, ale nie za blisko, a prosiaczki truchtały z tyłu. „Ręka w rękę, krok za krokiem, prosto w słońce!” – roześmiała się Oliwia. Na ścieżce znalazła żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy, żeby zasadzić go dalej przy drodze."
               ],
               "help-fawn": [
                 "Gustaw ostrożnie obwiązał liną dalszy koniec gałęzi, a Koniczynka powoli odciągnęła ją na bok. Nikt nie podchodził do jelonka. Maluch sam przemknął do mamy i przywarł do jej boku.",
-                "Jeleń z gwiazdką popatrzył na nich spokojnie i poprowadził stado przez nową furtkę do Matecznika. Potem ruszył przez las. Gdzie przeszedł, tam mgła się rozstępowała, a między dębami rozbłyskało słońce.",
-                "„Ręka w rękę, krok za krokiem, prosto w słońce” – roześmiała się Oliwia. Przy ścieżce znalazła jeden żołądź w czapeczce i schowała go do torby, obok koszyczka i liścia gruszy. Obiecała, że zasadzi go gdzieś dalej przy drodze."
+                "Jeleń z gwiazdką popatrzył na nich spokojnie. Łanie weszły przez nową furtkę do Matecznika, a on ruszył przez las i mgła cofała się przed nim pasmo po paśmie. Za nim dęby złociły się w słońcu.",
+                "Gustaw pogładził klacz po szyi. „Spisałaś się, Koniczynko”. Pod gałęzią Oliwia znalazła żołądź w czapeczce, który przeleżał tam całą burzę. Schowała go do torby, obok koszyczka i liścia gruszy, żeby zasadzić go dalej przy drodze. „Ręka w rękę, krok za krokiem, prosto w słońce!” – zaśpiewała, kiedy ruszyli w jasny dzień."
               ]
             }
           },
@@ -622,7 +622,7 @@ export const storyTranslations = {
           title: "Gwiazdka na furtce",
           body: [
             "W południe cały Dębowy Bór lśnił złotem. Na polanie Agaty gotowała się zupa, prosiaczki spały w cieniu, a w Mateczniku pasły się jelenie.",
-            "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha.",
+            "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane lasowi, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha.",
             "Koniec."
           ],
           paragraphByChoice: {
@@ -636,10 +636,10 @@ export const storyTranslations = {
             },
             5: {
               "give-sack": {
-                1: "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha."
+                1: "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane lasowi, tego się dotrzymuje, nawet w chudy rok”. A Marcin zawsze się wtedy uśmiecha."
               },
               "gather-forest": {
-                1: "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane zwierzętom, tego się dotrzymuje, nawet w chudy rok”. I każdej jesieni wieś zbiera żołędzie dla Matecznika, ręka w rękę."
+                1: "Od tamtej pory ludzie z Dąbrówki mówią przy furtce z gwiazdką: „Co obiecane lasowi, tego się dotrzymuje, nawet w chudy rok”. I każdej jesieni wieś zbiera żołędzie dla Matecznika, ręka w rękę."
               }
             }
           },

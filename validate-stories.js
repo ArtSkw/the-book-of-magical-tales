@@ -160,6 +160,14 @@ function checkChoiceText(story) {
               addError(story, `${label} bodyByChoice "${id}" must be ${EXPECTED_PARAGRAPHS} paragraphs of text`);
             }
           }
+          // no paragraph is shared between the options: each variant reaches the next page by its own road
+          const bodies = Object.values(whole).filter(Array.isArray);
+          for (let p = 0; p < EXPECTED_PARAGRAPHS; p++) {
+            const texts = bodies.map((b) => b[p]?.trim());
+            if (bodies.length > 1 && new Set(texts).size < texts.length) {
+              addError(story, `${label} paragraph ${p + 1} is the same in two variants; write it once per option (docs/WRITING_BIBLE.md §2)`);
+            }
+          }
         }
       }
       for (const src of Object.keys(page.bodyByChoice || {})) {
@@ -199,6 +207,20 @@ function checkChoiceText(story) {
       const bookWord = BOOK_WORDS[lang];
       for (const t of texts) {
         if (bookWord && typeof t === "string" && bookWord.test(t)) addError(story, `${label} names the book inside the tale: "${t.slice(0, 70)}…"`);
+      }
+      // clear, not poor (WRITING_BIBLE §1 rule 15): a content word (same first five letters, six
+      // letters or more, not a name) three times in one paragraph reads as thin language
+      for (const t of texts) {
+        if (typeof t !== "string") continue;
+        const seen = {};
+        for (const w of t.match(/\p{L}+/gu) || []) {
+          if (w.length < 6 || w[0] !== w[0].toLowerCase()) continue;
+          const st = w.toLowerCase().slice(0, 5);
+          (seen[st] ||= []).push(w);
+        }
+        for (const ws of Object.values(seen)) {
+          if (ws.length >= 3) warnings.push(`${story.title}: ${label} repeats "${ws.join(", ")}" in one paragraph; vary it (WRITING_BIBLE §1 rule 15)`);
+        }
       }
       const asIf = AS_IF[lang];
       if (asIf) {

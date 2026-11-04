@@ -16,7 +16,7 @@ The tone and values come from `BRIEF.md`; how sentences, choices and wonder are 
 - ✓ Every page needs `title`, `body`, `choices` (an empty array on pages without a choice); every choice needs `id`, `label`, `response`.
 - ✓ A choice label fits on one line of the wax-seal tab: at most **38 characters**. A response fits in two lines: at most **110 characters** (sizes: `docs/TYPE_SCALE.md`).
 - ✓ Exactly one page has `ending: true`: the last one. It has no choices and its last paragraph is `"The end."` in English and `"Koniec."` in Polish.
-- ✓ The page after a choice page (3, 5, 7, 9) is written whole for each option in `bodyByChoice`; it needs no shared `body`. Echo lines (`echoes`) are retired.
+- ✓ The page after a choice page (3, 5, 7, 9) is written whole for each option in `bodyByChoice`; it needs no shared `body`, and no paragraph may be the same in both variants. Echo lines (`echoes`) are retired.
 - ✓ An earlier choice may come back as single paragraphs (`paragraphByChoice`), every option covered, each paragraph rewritten by one choice at most, never on top of that choice's own whole page; the ending's last paragraph stays "The end." / "Koniec.".
 - ✓ The translation carries every text field the English page has (`body`, `bodyByChoice`, `paragraphByChoice`, notes), or English would show.
 - ✓ The first paragraph of every page and variant opens with a letter (it carries the illuminated initial): start with narration, not dialogue.
@@ -54,7 +54,8 @@ Use this checklist before considering a tale ready for review:
 - [ ] Choice pages are balanced, have 2 options each, and every choice is kind, valid, nonviolent, and softly acknowledged later.
 - [ ] The tale card (`docs/WRITING_BIBLE.md`, §3) is filled in before drafting.
 - [ ] Every page after a choice is written whole for each option, every path is a real, different way through, and at least one earlier choice returns later (usually in the ending).
-- [ ] Every page passes the questions of the writing bible, §5: why is this here, where did it come from, what does it change next.
+- [ ] Every page passes the questions of the writing bible, §6: why is this here, where did it come from, what does it change next; and the masters' check of §5 (the hour or the light, one detail for the senses, a voice you know, a last line that turns the page).
+- [ ] Every choice page states what the heroes need and why this choice is the way to it, before the seals (§2).
 - [ ] Middle pages do not over-explain the moral; values are shown through what characters notice, decide, repair, carry, wait for, or protect.
 - [ ] The final page ends clearly with `"Koniec."` in Polish and `"The end."` in English.
 - [ ] 3-4 curiosity notes are included, on pages without a choice, with 3 as the minimum and 4 only for a genuinely worthwhile topic.

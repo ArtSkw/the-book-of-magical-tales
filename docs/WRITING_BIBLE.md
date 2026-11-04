@@ -71,10 +71,33 @@ history and payoffs; Kipling, Donaldson, Potter, Hutchins and Sendak for read-al
    never threatening, and the tale's tension comes from a mystery to solve or someone to help,
    not from the heroes' own fear.
 
+14. **Name the group exactly.** When a sentence sets one group against another, name both so the
+   contrast holds for a child: "wild animals" or "forest animals" against "the pigs from the
+   village", never "animals" against "pigs" (pigs are animals too). The same for people, birds and
+   creatures. (Rejected in the Forest Oath: "where the animals are safe… no pigs here"; the saying
+   "what is promised to the animals", now "to the forest".)
+15. **Clear, not poor.** Clear for a child never means thin language. No content word three times
+   in one paragraph, and no word repeated in neighbouring sentences unless it is the refrain or a
+   deliberate echo: find another way to say it ("all that falls from the oaks in autumn", "the
+   winter store", "the herd"), or let a pronoun carry it when it can point to one noun only. Mix long
+   and short sentences; a subordinate clause, an aside or one well-chosen image is welcome when it
+   reads well aloud. (Warning in `validate:stories`. Rejected: "Prosiaczki zjadły jeleniom
+   żołędzie… Musimy im przynieść nowe żołędzie".)
+
 ## 2. Choices change the page, not one line
 
+- **A choice page states the need before it asks.** Before the seals, the reader knows what is
+  wrong now, what the heroes need (to learn, to get, to do), and why this person or thing is the
+  way to it. A page never asks again a question an earlier page has answered. (Rejected: the
+  Forest Oath's p4 first asked the reader to get the truth from Marcin after p3 had already
+  told it, and nobody said what only Marcin knew.)
 - The page after a choice is written **whole, once per option** (`bodyByChoice`). The choice
-  runs through all three paragraphs; there is no italic echo line.
+  runs through all three paragraphs; there is no italic echo line. **No paragraph is shared by
+  the options, not even the last.** Both variants arrive at the same point (the next page starts
+  from one state) by different roads: each has its own discovery, its own detail for the senses
+  and its own spoken line, and it tells what this act made happen that the other could not.
+  (Gate: `validate:stories`; the three early tales converged on a shared last paragraph,
+  `docs/DECISIONS.md` 2026-11-03.)
 - An earlier choice may **come back later as one paragraph** (`paragraphByChoice`), e.g. the
   first choice returning in the ending's saying, or the p6 choice deciding how p8 opens.
   Pictures vary only on the choice right before them, so a returning paragraph must fit every
@@ -131,7 +154,55 @@ and a later tale may mention an earlier keepsake in one sentence. Every tale mus
 its own and in any order: a reference to another tale is a small pleasure, never something the
 reader needs to know.
 
-## 5. Writing and checking
+## 5. Learning from the masters
+
+We borrow how they write, never what they wrote (`BRIEF.md`: no characters, places, races or lore
+from any existing world). Each technique has to work inside a three-paragraph page read aloud to a
+child of four to eight, so each comes with the size it takes here.
+
+**Tolkien** (*The Hobbit* is the nearest model: a tale first told aloud to his own children)
+- **History deeper than the page.** An old oath, a grandfather who saw it, a name with a reason
+  (the Heartwood, Moonhill). One line of the past per tale; never explained in full.
+- **Land, weather and light carry the story.** The hour and the light change with the plot and
+  show it: the mist lifts only when the oath is kept. Name the hour or the light on most pages,
+  in a few words, not a description.
+- **Rest, food and hospitality mark safety.** A meal, a fire, a bed at an inn close a stretch of the
+  road and tell a young child that all is well.
+- **The small do the deciding act.** The turn belongs to the least important person in the scene
+  (a swineherd boy, a girl), done quietly, with no force.
+- **Things with a past.** One object carries the history of the place (the gate with the carved
+  star, the bell's forgotten name), and the heroes' act adds to that history.
+
+**Rowling**
+- **The specific, surprising detail.** Not "the piglets" but Kropka, Łatka and Ryjek; not "nuts" but
+  three-cornered beechnuts. One concrete thing per page a child will repeat: a taste, a smell, a
+  texture, a sound.
+- **A voice you know with your eyes shut.** Each speaker has a habit of speech or a thing they
+  always do (Marcin counts his piglets; Agata reads the time from her kiln). Humour comes from
+  who people are, gently, never at anyone's expense.
+- **Magic learned by watching.** The rule is said once, then the reader sees it work and can
+  predict it.
+- **Fair clues.** The reader can see the clue (often in a picture first) and solve the small
+  mystery a moment before the heroes say it aloud.
+- **A secret told in steps.** A character hides something for a reason the child understands;
+  it comes out in steps and is met kindly.
+- **A last line that turns the page.** A page ends on something to want: a sound, a sight, a
+  question still open.
+
+**The Polish folk tale** (the language and the land)
+- **Konopnicka, *O krasnoludkach i o sierotce Marysi*:** the Polish forest, field and season named
+  exactly (the plant, the bird, the work of the month), warmth toward simple people and animals,
+  gentle humour.
+- **Leśmian, *Klechdy sezamowe* and *Klechdy polskie*:** the cadence of a tale told by the fire, words
+  that are a pleasure to say aloud, wonder taken as part of ordinary life. We take his sound, not
+  his talking things (rule 5 holds).
+- Use the real Polish names of things; no archaic pastiche, no dialect.
+
+**The check on every page** (with §6 step 3): Is the hour or the light there? Is there one detail
+for the senses a child will remember? Would you know who speaks without the name? Does the last
+line pull the page over (or, on the last page, bring rest)?
+
+## 6. Writing and checking
 
 1. Answer the spine (§3), fill in the tale card, and keep the story state in the set bible.
 2. Draft in Polish; read every page aloud. Then a full `miodkuj` audit (skill
