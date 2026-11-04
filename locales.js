@@ -238,7 +238,7 @@ export const storyTranslations = {
         {
           title: "Gdy dzwon nie zawołał",
           body: [
-            "Gustaw, Oliwia i klacz Koniczynka dotarli na Księżycowe Wzgórze tuż przed zmierzchem. Na dachu dzwonnicy obracał się żelazny sierp księżyca i pokazywał, skąd wieje wiatr. To od niego wzgórze wzięło nazwę.",
+            "Gustaw, Oliwia i klacz Koniczynka dotarli na Księżycowe Wzgórze tuż przed zmierzchem. Na dachu dzwonnicy obracał się żelazny półksiężyc i pokazywał, skąd wieje wiatr. To od niego wzgórze wzięło nazwę.",
             "Co wieczór dzwon wołał stąd ludzi do domów, a dzieci powtarzały za nim: „Bim-bam, do domu!”. Tego wieczoru dzwonnica milczała. Rodziny wyszły na plac z rogowymi latarniami i patrzyły w górę.",
             "„Pasterz Maciej jest jeszcze z kozami pod górami” – powiedział z troską wójt. „We mgle nie zejdzie, póki nie usłyszy dzwonu”. Tymczasem Koniczynka wyciągała pysk ku staremu sadowi, gdzie między gruszami połyskiwały srebrne ćmy."
           ],
@@ -252,7 +252,7 @@ export const storyTranslations = {
           body: [
             "Wójt otworzył drzwi dzwonnicy wielkim żelaznym kluczem. Piekarz zajrzał do środka i zadarł głowę. „Liny nie ma!” – zawołał. „Zawsze zwisała tu aż do samej podłogi”.",
             "Wszyscy mówili naraz. Tylko Oliwia patrzyła na Koniczynkę, która strzygła uszami ku gruszom. „Gdzie krążą srebrne ćmy, tam coś czeka na naprawę” – szepnęła jakaś dziewczynka z wioski.",
-            "Babcia Janina wsparła się na lasce. „Albo górski wiatr znowu nabroił. Po południu wiało tak, że dzwon sam pobrzękiwał, a sierp na dachu kręcił się w kółko”."
+            "Babcia Janina wsparła się na lasce. „Albo górski wiatr znowu nabroił. Po południu wiało tak, że dzwon sam pobrzękiwał, a księżyc na dachu kręcił się w kółko”."
           ],
           choices: [
             {

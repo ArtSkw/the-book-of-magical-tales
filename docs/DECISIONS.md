@@ -10,6 +10,9 @@ bibles and the prompt builders; this log keeps the why.
   repetitions are gone, and the shared-paragraph gate is an error for every tale (the warning
   list is removed). The author allowed pictures to be regenerated where the text is better
   served; the candidates are listed in the PR, to be made after the text is approved.
+  After reading both tales the author approved the text and kept every picture (the chicks read
+  clearly when zoomed). One fix: the Bell's crescent weathervane was "sierp", which reads as a
+  farm sickle; now "żelazny półksiężyc" on p1 and "księżyc na dachu" on p2.
 
 - **2026-11-04: name groups exactly; clear, not poor.** Reading the Forest Oath in the book, the
   author found "the Heartwood, where the animals are safe… no pigs" unclear (pigs are animals too)
