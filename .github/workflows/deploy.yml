@@ -26,7 +26,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: 22
+          # one Node line for CI and local work; check-latest takes the newest security patch
+          node-version-file: .nvmrc
+          check-latest: true
           cache: npm
 
       - name: Install dependencies
