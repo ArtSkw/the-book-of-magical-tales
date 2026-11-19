@@ -4,6 +4,12 @@ Directions the author approved or rejected, with the reason, so no session
 re-opens them. Newest first. The rules that follow from them live in the
 bibles and the prompt builders; this log keeps the why.
 
+- **2026-11-19: Node 26 for CI and local work.** After the November 2026 Node security release
+  (HIGH on 26.x, 24.x and 22.x) the author chose to move to the 26 LTS line. CI built on 22 and
+  local work ran on 24; now `.nvmrc` holds `26` and CI reads it with `check-latest: true`, so every
+  deploy builds on the newest patch. Checked on 26.13.1: install, validate:stories, check:pages,
+  build and the dev server.
+
 - **2026-11-04: the Dragon and the Bell rewritten by the same rules.** The author approved the new
   Forest Oath and asked for the two older tales to follow. Every page after a choice now differs
   through all three paragraphs (each variant with its own discovery and spoken line), close
